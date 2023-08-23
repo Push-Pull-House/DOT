@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;DOT/src/main/java/com/kh/config&apos; to &apos;securityConfig&apos;" description="Rename resource &apos;config&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/main/java/com/kh/config" name="securityConfig" stamp="1692749359466" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;DOT/src/main/java/com/kh/springboot&apos; to &apos;common&apos;" description="Rename resource &apos;springboot&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/main/java/com/kh/springboot" name="common" stamp="1692751503486" updateReferences="true"/>
+</session>

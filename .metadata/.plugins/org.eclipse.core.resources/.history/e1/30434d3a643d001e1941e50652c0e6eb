@@ -1,0 +1,12 @@
+package com.kh.springboot.menu.model.vo;
+
+/*
+ * java.lang.Enum을 상속 
+ * Enum => Enumeration(열거)의 약자형
+ * 기존에 사용하던 상수를 정희하는 방법중 하나인 static final과 같은 기능을 함
+ * 문자열 혹은 숫자들을 나타내는 기본자료형들을 Enum을 통해서 표현할수 있음
+ */
+public enum MenuType {
+	KR, CH, JP
+	
+}

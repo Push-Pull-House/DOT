@@ -1,0 +1,11 @@
+package com.kh.springboot.menu.model.vo;
+
+/*
+ * java.lang.Enum을 상속 
+ * Enum => Enumeration(열거)의 약자형
+ *
+ */
+public enum MenuType {
+	KR, CH, JP
+	
+}
