@@ -1,0 +1,248 @@
+body {
+    margin : 0;
+    box-sizing: border-box;
+    background-color: black;
+    height: 100%;
+}
+
+
+
+.wrap {
+    height: 100vh;
+    overflow: hidden;
+    background-color: black;
+}
+
+/* ============================================================= */
+/* 헤더바 */
+/* ============================================================= */
+
+.header {
+    /* width: 95%; */
+    height: 80px;
+    margin: 0 10px 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    background-color: black;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+}
+.logo {
+    z-index: 10;
+    margin-left: 60px;
+}
+
+.logo img {
+    margin-left: 90px;
+    width: 150px;
+    cursor: pointer;
+}
+
+.logo img:hover {
+    display: inline-block;
+    animation: tada; 
+    animation-duration: .5s; 
+}
+
+
+.header .header-tools {
+    display: flex;
+    margin-right: 50px;
+    font-weight: 480;
+    cursor: pointer;
+}
+
+.header-tools span {
+    font-size: 35px;
+    font-weight: 500;
+    line-height: 50px;
+    margin-left: 20px;
+}
+
+.header .search-tool {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.search-input {
+    width: 0px;
+    height: 0px;
+    opacity: 0;
+    border-radius: 15px;
+    transition: all .5s;
+    font-size: 14px;
+}
+
+#search {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    z-index: 10;
+    right: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+#search:checked + label input {
+    margin-right: 20px;
+    display: block;
+    width: 250px;
+    height: 40px;
+    transition: all .5s;
+    color: white;
+    background-color: transparent;
+    border: 1.4px solid white;
+    padding-left: 20px;
+    opacity: 1;
+}
+
+.alert-tool {
+    position: relative;
+}
+
+.alert-tool label {
+    position: relative;
+}
+
+.alert-tool p {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    color: white;
+    border: 0px solid white;
+    border-radius: 10px;
+    background-color: red;
+    top: 35px;
+    right: 0;
+}
+
+#alert-box {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.alert-list {
+    width: 0px;
+    height: 0px;
+    top: 30px;
+    right: -100px;
+    border: 1px solid white;
+    border-radius: 25px;
+    background-color: black;
+    position: absolute;
+    overflow: hidden;
+    overflow-y: auto;
+    transition: all .5s;
+    opacity: 0;
+}
+
+#alert-box:checked + label>.alert-list {
+    height: 300px;
+    width: 250px;
+    transition: all .5s;
+    opacity: 1;
+}
+
+.alert-list dl {
+    margin: 0;
+    width: 90%;
+    margin: auto;
+}
+
+.alert-list dt {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    /* margin: 0; */
+}
+
+.alert-list span {
+    font-size: 2px;
+    /* white-space: nowrap; */
+    word-break: break-all;
+}
+
+.alert-list img {
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+}
+
+.alert-list dt:hover {
+    background-color: rgba(115,115,115, 0.2);
+    width: 100%;
+    border-radius: 15px;
+}
+
+.dm-tool {
+    position: relative;
+}
+
+.dm-tool p {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    color: white;
+    border: 0px solid white;
+    border-radius: 10px;
+    background-color: red;
+    top: 35px;
+    right: 0;
+}
+
+.alert-tool>span:hover,
+.dm-tool>span:hover,
+#search:hover ~ span {
+    font-weight: 800;
+    animation: swing; 
+    animation-duration: .5s; 
+}
+
+.header .profile {
+    width: 250px;
+    margin-left: 40px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.header .profile p:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.profile-img>img {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+}
+
+.profile-name {
+    height: 100%;
+    margin-left: 20px;
+}
+
+.profile-name p {
+    height: 100%;   
+    display: flex;
+    align-items: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+

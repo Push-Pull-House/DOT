@@ -23,8 +23,8 @@
 </head>
 <body>
 	<script>
-    AOS.init();    
-</script>
+    	AOS.init();    
+	</script>
 <div class="bgblack">
     &nbsp;
 <div class="blackbox">
