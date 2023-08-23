@@ -10,7 +10,6 @@
     <fullyQualifiedTypeName name="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
     <fullyQualifiedTypeName name="jdk.internal.org.jline.utils.Log"/>
     <fullyQualifiedTypeName name="org.springframework.web.servlet.handler.HandlerInterceptorAdapter"/>
-    <fullyQualifiedTypeName name="java.io.IOException"/>
     <fullyQualifiedTypeName name="java.util.Date"/>
     <fullyQualifiedTypeName name="org.springframework.transaction.annotation.Transactional"/>
     <fullyQualifiedTypeName name="com.kh.spring.common.Utils"/>
@@ -44,4 +43,17 @@
     <fullyQualifiedTypeName name="org.springframework.http.HttpHeaders"/>
     <fullyQualifiedTypeName name="com.kh.member.model.vo.Member"/>
     <fullyQualifiedTypeName name="com.kh.DOT.member.model.vo.Member"/>
+    <fullyQualifiedTypeName name="org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpServletResponse"/>
+    <fullyQualifiedTypeName name="java.io.IOException"/>
+    <fullyQualifiedTypeName name="javax.servlet.ServletException"/>
+    <fullyQualifiedTypeName name="org.springframework.security.core.Authentication"/>
+    <fullyQualifiedTypeName name="java.util.Collection"/>
+    <fullyQualifiedTypeName name="java.util.Iterator"/>
+    <fullyQualifiedTypeName name="com.kh.dot.member.model.vo.Member"/>
+    <fullyQualifiedTypeName name="org.springframework.security.core.GrantedAuthority"/>
+    <fullyQualifiedTypeName name="javax.security.sasl.AuthenticationException"/>
+    <fullyQualifiedTypeName name="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler"/>
+    <fullyQualifiedTypeName name="org.springframework.security.core.AuthenticationException"/>
 </qualifiedTypeNameHistroy>

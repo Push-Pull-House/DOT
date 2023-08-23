@@ -1,0 +1,52 @@
+ package com.kh.dot.member.controller;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.kh.dot.member.model.vo.Member;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@Controller
+public class MemberController {
+	@Autowired
+    private MemberMapper memberMapper;
+	@Autowired
+	private LoginIdPwValidator loginIdPwValidator;
+	
+	@GetMapping("/join")
+	public String goJoin() {
+		return "join";
+	}
+	
+	@PostMapping("/join")
+	public String joinOk(HttpServletRequest req, @ModelAttribute MemberDTO mdto) {
+		//패스워드 암호화
+		String encodedPasswd = loginIdPwValidator.passwordEncoder().encode(mdto.getMem_passwd());
+		mdto.setMem_passwd(encodedPasswd);
+		
+		int res = memberMapper.insertMember(mdto);
+		if(res > 0) {
+			req.setAttribute("msg", "회원가입이 완료되었습니다.");
+			req.setAttribute("url", "/index");
+		}else {
+			req.setAttribute("msg", "회원가입에 실패했습니다.");
+			req.setAttribute("url", "/join");
+		}
+		
+		return "message";
+	}
+}
