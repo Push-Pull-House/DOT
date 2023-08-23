@@ -34,7 +34,7 @@
     <!-- 로그인 컨텐츠 -->
     <!-- 로고 -->
     <div class="login_logo"  data-aos="fade-up" data-aos-delay="250">
-        <img src="resources/images/dots_logo.png">
+        <img src="resources/images/dot_logo.png">
     </div>
     <div id="login-content" >
         <h1><b>로그인</b></h1>
