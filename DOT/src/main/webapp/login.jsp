@@ -24,7 +24,7 @@
 <body>
 	<script>
     AOS.init();    
-</script>
+	</script>
 <div class="bgblack">
     &nbsp;
 <div class="blackbox">

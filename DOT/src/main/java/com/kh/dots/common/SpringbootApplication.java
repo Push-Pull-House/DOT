@@ -1,4 +1,4 @@
-package com.kh.dot.common;
+package com.kh.dots.common;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

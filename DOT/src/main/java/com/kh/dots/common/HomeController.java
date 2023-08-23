@@ -1,4 +1,4 @@
-package com.kh.dot.common;
+package com.kh.dots.common;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
