@@ -1,6 +1,7 @@
-$(document).ready(function(){
-  console.log($('.feed-img'))
-  $('.feed-img').slick({
+var jb1 = jQuery.noConflict();
+jb1(document).ready(function(){
+  console.log(jb1('.feed-img'))
+  jb1('.feed-img').slick({
     // Slick configuration options
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -9,8 +10,8 @@ $(document).ready(function(){
     // Add more options as needed
   });
 
-  console.log($('.feed-img2'))
-  $('.feed-img2').slick({
+  console.log(jb1('.feed-img2'))
+  jb1('.feed-img2').slick({
     // Slick configuration options
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -20,10 +21,10 @@ $(document).ready(function(){
   });
 
   function showImages() {
-    $('.feed-img img').css('display', 'block');
+    jb1('.feed-img img').css('display', 'block');
   }
 
-  var images = $('.feed-img img');
+  var images = jb1('.feed-img img');
   var loadedImages = 0;
 
   images.on('load', function() {
@@ -33,37 +34,37 @@ $(document).ready(function(){
         }
       });
   const  slick = () => {
-    $("#exampleModal .slick-dots li").eq(0).click();
+    jb1("#exampleModal .slick-dots li").eq(0).click();
    
   }     
-  $(".reply-wrap>div").on("click", function(){
+  jb1(".reply-wrap>div").on("click", function(){
     slick();
-    $(this).next().click();
+    jb1(this).next().click();
   })
 
 });
 
-$(document).ready(function(){
-$(".toggle-button").click(function(){
-    $(this).next(".more-options").slideToggle(250);
+jb1(document).ready(function(){
+jb1(".toggle-button").click(function(){
+    jb1(this).next(".more-options").slideToggle(250);
 });
 
-$(document).mouseup(function(e){
-    var container = $(".more-options");
-    var buttons = $(".toggle-button");
+jb1(document).mouseup(function(e){
+    var container = jb1(".more-options");
+    var buttons = jb1(".toggle-button");
     if (!container.is(e.target) && container.has(e.target).length === 0
         && !buttons.is(e.target) && buttons.has(e.target).length === 0) {
         container.slideUp(250);
     }
 });
 
-$(".modal-toggle-button").click(function(){
-    $(this).next(".modal-more-options").slideToggle(250);
+jb1(".modal-toggle-button").click(function(){
+    jb1(this).next(".modal-more-options").slideToggle(250);
 });
 
-$(document).mouseup(function(e){
-    var container = $(".modal-more-options");
-    var buttons = $(".modal-toggle-button");
+jb1(document).mouseup(function(e){
+    var container = jb1(".modal-more-options");
+    var buttons = jb1(".modal-toggle-button");
     if (!container.is(e.target) && container.has(e.target).length === 0
         && !buttons.is(e.target) && buttons.has(e.target).length === 0) {
         container.slideUp(250);
@@ -98,10 +99,10 @@ var storeFillSVG =
     </svg>`;
 
 
-$(".clickable-svg").click(function() {
-    var $this = $(this);
-    var currentHeartSVG = $this.find("svg");
-    var currentBoxSVG = $this.find("svg");
+jb1(".clickable-svg").click(function() {
+    var jb1this = jb1(this);
+    var currentHeartSVG = jb1this.find("svg");
+    var currentBoxSVG = jb1this.find("svg");
     
     if (currentHeartSVG.hasClass("bi-heart")) {
         currentHeartSVG.replaceWith(heartFillSVG);

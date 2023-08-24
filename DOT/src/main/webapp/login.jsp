@@ -31,14 +31,10 @@ prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> -->
     	<c:if test="${ not empty alertMsg }">
 			<script>
 				if('${alertMsg}' == '아이디 또는 비밀번호가 일치하지 않습니다.'){
-					swal('${alertMsg}',{
-		             	 icon:"error"
-		            });
+					swal('${alertMsg}');
 				}
 				else if('${alertMsg}' == '로그아웃 되었습니다.'){
-					swal('${alertMsg}',{
-		             	 icon:"success"
-		            });
+					swal('${alertMsg}');
 				}
 			</script>
 			<c:remove var="alertMsg" />

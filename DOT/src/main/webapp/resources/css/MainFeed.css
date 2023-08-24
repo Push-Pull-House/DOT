@@ -1228,11 +1228,12 @@ input[id="menuicon"]:checked + label ~ .sidebar-shortcuts  {
     border-radius: 20px;
     /* background-color: white; */
 }
-.Ranking{
-    color:white;
+.Ranking {
+    color: white;
     text-align: center;
-    margin: 30px;
+    margin: 30px 60px;
 }
+
 .Rangking_Title{
     font-size:25px;
 }

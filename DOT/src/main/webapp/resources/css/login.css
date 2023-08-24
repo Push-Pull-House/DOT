@@ -251,27 +251,19 @@ body {
     background-color: black;
     border: 1px solid rgba(255,255,255,0.3);
   	margin-top : -6%;
+  	padding-bottom:20px;
 }
 .swal-text {
     text-align: center;
     color: white;
  	font-size:20px;
+ 	
 }
 .swal-title {
     text-align: center;
     color: white;
+    
 }
-.swal-icon--success:before {
- 	display:none;
-}
-.swal-icon--success:after {
-    display:none;
-}
-.swal-icon--success__hide-corners{
-    display:none;
-}
-
-
 .swal-button-container{
 	display:flex;
 	justify-content : center;

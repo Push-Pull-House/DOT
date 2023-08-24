@@ -17,248 +17,21 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
-    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <script type="text/javascript" src="resources/js/MainFeed.js"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <script type="text/javascript" src="resources/js/MainFeed.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <link rel="stylesheet" type="text/css" href="resources/css/slick-theme.css" />
     <link rel="stylesheet" type="text/css" href="resources/css/slick.css" />
 </head>
 <body>
 	<div class="wrap">
-        <div class="header">
-            <div class="logo">
-                <a>
-                    <img src="resources/images/dot_logo.png" />
-                </a>
-            </div>
-            <div class="header-tools">
-                <div class="search-tool">
-                    <input type="checkbox" id="search" />
-                    <label for="search">
-                        <form action="" method="get">
-                            <input type="text" class="search-input" placeholder="검색할 항목을 입력하세요" />
-                        </form>
-                    </label>
-                    <span class="material-symbols-outlined">
-                        search
-                    </span>
-                </div>
-                <div class="alert-tool">
-                    <span class="material-symbols-outlined">
-                        notifications
-                    </span>
-                    <p></p>
-                </div>
-                <div class="dm-tool">
-                    <span class="material-symbols-outlined">
-                        mail
-                    </span>
-                    <p></p>
-                </div>
-                <div class="profile">
-                    <div class="profile-img" onclick="location.href='My_Feed.html';">
-                        <img src="resources/images/sampe_img1.jpg" />
-                    </div>
-                    <div class="profile-name" onclick="location.href='My_Feed.html';">
-                        <p>dasdfsdffsdfsasda</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+		<jsp:include page="../common/Header.jsp" />        
+        <jsp:include page="../common/Sidebar.jsp" />
+       
         <div class="contents">
-            <div class="sidebar-wrap">
-                <input type="checkbox" id="menuicon">
-                <label for="menuicon">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </label>
-                <div class="sidebar">
-                    <div class="side-content">
-                        <div class="tools br-bottom">
-                            <dl>
-                                <dt>
-                                    <a class="material-symbols-outlined">
-                                        home
-                                        <span>홈</span>
-                                    </a>
-                                </dt>
-                                <dt>
-                                    <a class="material-symbols-outlined">
-                                        search
-                                        <span>탐색</span>
-                                    </a>
-                                </dt>
-                                <dt>
-                                    <a class="material-symbols-outlined">
-                                        notifications
-                                        <span>알림</span>
-                                    </a>
-                                </dt>
-                                <dt>
-                                    <a class="material-symbols-outlined">
-                                        mail
-                                        <span>메세지</span>
-                                    </a>
-                                </dt>
-                                <dt>
-                                    <a class="material-symbols-outlined">
-                                        add_box
-                                        <span>스토어</span>
-                                    </a>
-                                </dt>
-                                <dt>
-                                    <a class="material-symbols-outlined">
-                                        group
-                                        <span>팔로워</span>
-                                    </a>
-                                </dt>
-                            </dl>
-                        </div>
-                        <div class="friends br-bottom">
-                            <span>팔로우</span>
-                            <div class="friends-list">
-                                <a class="friend-profile">
-                                    <div class="profile-img">
-                                        <img src="resources/images/sampe_img1.jpg" />
-                                    </div>
-                                    <div class="profile-name">
-                                        <span>dasdasda</span>
-                                    </div>
-                                    <label></label>
-                                </a>
-                                <a class="friend-profile">
-                                    <div class="profile-img">
-                                        <img src="resources/images/sampe_img1.jpg" />
-                                    </div>
-                                    <div class="profile-name">
-                                        <span>dasdasda</span>
-                                    </div>
-                                    <label></label>
-                                </a>
-                                <a class="friend-profile">
-                                    <div class="profile-img">
-                                        <img src="resources/images/sampe_img1.jpg" />
-                                    </div>
-                                    <div class="profile-name">
-                                        <span>dasdasda</span>
-                                    </div>
-                                    <label></label>
-                                </a>
-                                <a class="friend-profile">
-                                    <div class="profile-img">
-                                        <img src="resources/images/sampe_img1.jpg" />
-                                    </div>
-                                    <div class="profile-name">
-                                        <span>dasdasda</span>
-                                    </div>
-                                    <label></label>
-                                </a>
-                                <a class="friend-profile">
-                                    <div class="profile-img">
-                                        <img src="resources/images/sampe_img1.jpg" />
-                                    </div>
-                                    <div class="profile-name">
-                                        <span>dasdasda</span>
-                                    </div>
-                                    <label></label>
-                                </a>
-                                <a class="friend-profile">
-                                    <div class="profile-img">
-                                        <img src="resources/images/sampe_img1.jpg" />
-                                    </div>
-                                    <div class="profile-name">
-                                        <span>dasdasda</span>
-                                    </div>
-                                    <label></label>
-                                </a>
-                                <div class="friend-profile more-friends">
-                                    <span>더보기</span>
-                                    <span class="material-symbols-outlined">
-                                        add
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tools br-bottom">
-                            <dl>
-                                <dt>
-                                    <a class="material-symbols-outlined" href="changePwd.html">
-                                        password
-                                        <span>비밀번호변경</span>
-                                    </a>
-                                </dt>
-                                <dt>
-                                    <a class="material-symbols-outlined" href="deleteUser.html">
-                                        person_remove
-                                        <span>회원탈퇴</span>
-                                    </a>
-                                </dt>
-                            </dl>
-                        </div>
-                        <div class="tools br-bottom">
-                            <dl>
-                                <dt>
-                                    <a class="material-symbols-outlined">
-                                        logout
-                                        <span>로그아웃</span>
-                                    </a>
-                                </dt>
-                            </dl>
-                        </div>
-                        <div class="footer">
-                            <span>
-                                회사소개 | 이용약관 | 개인정보처리방침 | 운영정책 | 청소년보호정책 | 권리침해신고안내 | 공지사항
-                            </span>
-                            <div>
-                                <p>&copy; 2023 Dot. All rights reserved.</p>
-                                <p>Connect with friends and share your moments with our SNS platform. Join us today!</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="sidebar-shortcuts">
-                    <div class="shortcuts-wrap">
-                        <dl>
-                            <dt>
-                                <a class="material-symbols-outlined">
-                                    home
-                                </a>
-                                <h5>홈</h5>
-                            </dt>
-                            <dt>
-                                <a class="material-symbols-outlined">
-                                    search
-                                </a>
-                                <h5>탐색하기</h5>
-                            </dt>
-                            <dt>
-                                <a class="material-symbols-outlined">
-                                    add_box
-                                </a>
-                                <h5>스토어</h5>
-                            </dt>
-                            <dt>
-                                <a class="material-symbols-outlined">
-                                    group
-                                </a>
-                                <h5>친구</h5>
-                            </dt>
-                        </dl>
-                        <dl>
-                            <dt>
-                                <a class="material-symbols-outlined" href="${contextPath}/logout.me ">
-                                    logout
-                                </a>
-                                <h5>로그아웃</h5>
-                            </dt>
-                        </dl>
-                    </div>
-                </div>
-            </div>
             <div class="main-content">
                 <div class="main-wrap">
                     <div class="feed-list">
@@ -386,7 +159,7 @@
                                 <div class="feed-wrap">
                                     <div class="feed-header">
                                         <div class="user-profile">
-                                            <img src="img/sampe_img1.jpg" />
+                                            <img src="resources/images/sampe_img1.jpg" />
                                             <span>dasdasda</span>
                                             <span class="material-symbols-outlined toggle-button"
                                                 id="more-options-icon">
