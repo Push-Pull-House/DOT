@@ -128,6 +128,8 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\Users\wan94\OneDrive\Desktop\FullHouse-WorkSpaceTest\DOT"/>
+			<item value="C:\Users\wan94\OneDrive\Desktop\FullHouse-WorkSpace\DOT"/>
 			<item value="C:\Users\wan94\OneDrive\Desktop\Dot-Project\DOT"/>
 			<item value="C:\Users\wan94\OneDrive\Desktop\Spring-WorkSpace\test"/>
 		</list>

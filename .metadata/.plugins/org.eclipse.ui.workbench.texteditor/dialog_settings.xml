@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="img"/>
+		<item key="selection" value="FeedDetail"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="FeedDetail"/>
+			<item value="FreeDetail"/>
+			<item value="더보기"/>
+			<item value="모두보기"/>
 			<item value="img"/>
 			<item value="$"/>
 			<item value="jstl"/>
@@ -19,10 +23,6 @@
 			<item value="security"/>
 			<item value="simpleGrantedAuthority"/>
 			<item value="configuration"/>
-			<item value="mybatis-config.xml"/>
-			<item value="DOT"/>
-			<item value="gardle"/>
-			<item value="map"/>
 		</list>
 		<list key="replacehistory">
 			<item value="jb1"/>

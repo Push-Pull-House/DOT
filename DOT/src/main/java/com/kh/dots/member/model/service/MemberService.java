@@ -8,4 +8,10 @@ public interface MemberService {
 
 	Member loginUser(Member m);
 
+	int idCheck(String userId);
+
+	int insertMember(Member m);
+
+	void certifiedPhoneNumber(String userPhone, String numStr);
+
 }

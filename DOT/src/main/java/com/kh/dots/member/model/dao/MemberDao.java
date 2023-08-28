@@ -19,4 +19,12 @@ public class MemberDao {
 	public Member loginUser(Member m) {
 		return sqlSession.selectOne("member.loginUser", m);
 	}
+
+	public int idCheck(String userId) {
+		return sqlSession.selectOne("member.idCheck", userId);
+	}
+
+	public int insertMember(Member m) {
+		return sqlSession.insert("member.insertMember",m);
+	}
 }

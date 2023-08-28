@@ -1,16 +1,20 @@
 package com.kh.dots.member.controller;
 
+import java.util.Random;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
@@ -56,6 +60,11 @@ public class MemberController {
 		return "member/login.jsp";
 	}
 	
+	@GetMapping("/enrollForm.me")
+	public String enrollForm() {
+		return "forward:member/Enroll_Form.jsp";
+	}
+	
 	@PostMapping("/login.me")
 	public String loginMember(
 							@ModelAttribute Member m , 
@@ -70,10 +79,10 @@ public class MemberController {
 		String url = "";
 		if(loginUser == null) {
 			model.addAttribute("alertMsg","아이디 또는 비밀번호가 일치하지 않습니다.");
-			url = "forward:login.jsp";
+			url = "forward:/member/login.jsp";
 		}else {
 			model.addAttribute("loginUser", loginUser);
-			url = "forward:/Sns/mainFeed.jsp";		
+			url = "forward:/sns/mainFeed.jsp";		
 		}
 		
 		//암호화 후 로그인 요청 처리
@@ -106,6 +115,69 @@ public class MemberController {
 		session.invalidate();
 		status.setComplete();
 		model.addAttribute("alertMsg", "로그아웃 되었습니다.");
-		return "forward:login.jsp";
+		return "forward:member/login.jsp";
 	}
+	
+	@ResponseBody
+	@GetMapping("/idCheck.me")
+	public String idCheck(String userId) {
+		
+		int result = mService.idCheck(userId);
+		if(result == 0) {
+			log.info(userId);
+			if(userId.equals("")) {
+				result = 2;
+			}else{
+				result = 0;
+			}
+		}
+
+		return result+"";
+	}
+	
+	@PostMapping("/insert.me")
+	public String insertMember(@Validated Member m , HttpSession session, Model model) {
+		log.info("옴?");
+		//암호화 작업
+		String encPwd = bcrypotPasswordEncoder.encode(m.getUserPwd());
+		log.info("아이디 = {}", m.getUserId());
+		log.info("암호화 전 비밀번호 = {}",m.getUserPwd());
+		//암호화된 pwd를 Member m에 담아주기
+		m.setUserPwd(encPwd);
+		
+		log.info("암호화 후 비밀번호 = {} "+m.getUserPwd());
+		
+		//1. memberService호출해서 insertMember 실행(Insert)
+		int result = mService.insertMember(m);
+		String url = "";
+		log.info("result = {}",result);
+		if(result > 0) {
+			//성공시
+			model.addAttribute("alertMsg", "회원가입성공");
+			url = "forward:member/login.jsp";
+		}else {
+			//실패
+			model.addAttribute("alertMsg","회원가입실패");
+			url = "forward:member/login.jsp";
+		}
+		
+		return url;
+	}
+	
+	@GetMapping("/sendSMS.me")
+    public @ResponseBody
+    String sendSMS(String userPhone) {
+
+        Random rand  = new Random();
+        String numStr = "";
+        for(int i=0; i<4; i++) {
+            String ran = Integer.toString(rand.nextInt(10));
+            numStr+=ran;
+        }
+
+        System.out.println("수신자 번호 : " + userPhone);
+        System.out.println("인증번호 : " + numStr);
+        mService.certifiedPhoneNumber(userPhone,numStr);
+        return numStr;
+    }
 }
