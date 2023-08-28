@@ -51,6 +51,11 @@ public class MemberController {
 		binder.addValidators(memValidator);
 	}
 	
+	@GetMapping("/login.me")
+	public String loginMember() {
+		return "member/login.jsp";
+	}
+	
 	@PostMapping("/login.me")
 	public String loginMember(
 							@ModelAttribute Member m , 

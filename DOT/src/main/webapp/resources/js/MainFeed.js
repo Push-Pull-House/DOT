@@ -117,4 +117,31 @@ jb1(".clickable-svg").click(function() {
     }
 });
 
+
+    var followBtn = $('.followBtn');
+    var chatBtn = $('.chatBtn');
+
+    var followerList = $('.follower-list');
+    var chattingList = $('.chatting-list');
+
+    chattingList.css("display","none");
+
+    followBtn.click(() => {
+        followBtn.addClass('focus-btn');
+        chatBtn.removeClass('focus-btn');
+
+        followerList.css('display','block');
+        chattingList.css("display","none");
+    });
+
+    chatBtn.click(() => {
+        followBtn.removeClass('focus-btn');
+        chatBtn.addClass('focus-btn');
+
+        followerList.css('display','none');
+        chattingList.css("display","block");
+    });
+
+
+
 });

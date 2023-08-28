@@ -12,6 +12,6 @@ public class HomeController {
 	@GetMapping("/")
 	public String home() {
 		log.info("/home 요청!");
-		return "forward:login.jsp";
+		return "forward:start.jsp";
 	}
 }
