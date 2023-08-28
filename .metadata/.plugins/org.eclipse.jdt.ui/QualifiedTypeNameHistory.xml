@@ -25,7 +25,6 @@
     <fullyQualifiedTypeName name="com.kh.spring.board.model.service.BoardServiceImpl"/>
     <fullyQualifiedTypeName name="java.io.File"/>
     <fullyQualifiedTypeName name="javax.servlet.ServletContext"/>
-    <fullyQualifiedTypeName name="java.sql.Date"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Component"/>
     <fullyQualifiedTypeName name="java.lang.StringBuilder"/>
     <fullyQualifiedTypeName name="java.util.Arrays"/>
@@ -56,4 +55,7 @@
     <fullyQualifiedTypeName name="javax.security.sasl.AuthenticationException"/>
     <fullyQualifiedTypeName name="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler"/>
     <fullyQualifiedTypeName name="org.springframework.security.core.AuthenticationException"/>
+    <fullyQualifiedTypeName name="java.sql.Date"/>
+    <fullyQualifiedTypeName name="com.kh.dots.member.model.vo.Member"/>
+    <fullyQualifiedTypeName name="org.springframework.security.config.annotation.web.builders.HttpSecurity"/>
 </qualifiedTypeNameHistroy>

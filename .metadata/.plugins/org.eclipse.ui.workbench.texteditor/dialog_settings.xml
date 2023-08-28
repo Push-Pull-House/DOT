@@ -1,30 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="SimpleGrantedAuthority"/>
+		<item key="selection" value="FeedDetail"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="FeedDetail"/>
+			<item value="FreeDetail"/>
+			<item value="더보기"/>
+			<item value="모두보기"/>
+			<item value="img"/>
+			<item value="$"/>
+			<item value="jstl"/>
+			<item value="Rank"/>
+			<item value="오창정님이 회원"/>
+			<item value="noti"/>
+			<item value="blackbox"/>
+			<item value="mybatis"/>
+			<item value="security"/>
 			<item value="simpleGrantedAuthority"/>
 			<item value="configuration"/>
-			<item value="mybatis-config.xml"/>
-			<item value="DOT"/>
-			<item value="mybatis"/>
-			<item value="gardle"/>
-			<item value="map"/>
-			<item value="mapping"/>
-			<item value="mapper"/>
-			<item value="-mapper"/>
-			<item value="console"/>
-			<item value="fromdata"/>
-			<item value="json"/>
-			<item value="item[i]"/>
-			<item value="data"/>
 		</list>
 		<list key="replacehistory">
+			<item value="jb1"/>
+			<item value="$ch"/>
 			<item value=""/>
 			<item value="item"/>
 			<item value="data"/>

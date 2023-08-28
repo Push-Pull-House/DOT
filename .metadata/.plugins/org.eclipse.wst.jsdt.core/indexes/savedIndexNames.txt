@@ -1,8 +1,1 @@
-INDEX VERSION 1.4+C:\Users\wan94\OneDrive\Desktop\FullHouse-WorkSpace\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-4169964224.index
-434047566.index
-3180093775.index
-3037192072.index
-904168057.index
-3437988925.index
-1879294996.index
+INDEX VERSION 1.4+C:\Users\wan94\OneDrive\Desktop\FullHouse-WorkSpaceTest\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
