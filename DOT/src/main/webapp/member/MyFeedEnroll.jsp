@@ -54,6 +54,7 @@
             <div class="contents">
           		<jsp:include page="../common/Sidebar.jsp" />
                 <div class="main_content">
+                    <form action="" method="post" enctype="multipart/form-data">
                     <div class="main_container">
                         <div class="slide_wrap">
                             <div class="slide_container">
@@ -76,10 +77,10 @@
                         <div class="update_container">
                             <div class="id_container">
                                 <div class="userid_img">
-                                    <img src ="img/IU.jfif">
+                                    <img src ="${contextPath}${profileImg.filePath}/${profileImg.changeName}">
                                 </div>
                                 <div class="user_id">
-                                    <h5>xeesoohee</h5>
+                                    <h5>${loginUser.userNick}</h5>
                                 </div>
                             </div>
                             <div class="feed_container">
@@ -94,6 +95,7 @@
                             </div>
                         </div>
                     </div>
+                   </form>
                 </div>
             </div>
         </div>

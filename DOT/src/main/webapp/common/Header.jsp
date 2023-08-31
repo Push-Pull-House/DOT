@@ -30,7 +30,7 @@
 <body>
     <div class="header">
         <div class="logo">
-            <a>
+            <a href="${contextPath}/mainFeed">
                 <img src="${contextPath}/resources/images/dot_logo.png" />
             </a>
         </div>
@@ -184,10 +184,10 @@
             </div>
 
             <div class="profile">
-                <div class="profile-img" onclick="location.href='MyFeed.me';">
+                <div class="profile-img" onclick="location.href='${contextPath}/MyFeed.me';">
                     <img src="${contextPath}${profileImg.filePath}/${profileImg.changeName}" />
                 </div>
-                <div class="profile-name" onclick="location.href='MyFeed.me';">
+                <div class="profile-name" onclick="location.href='${contextPath}/MyFeed.me';">
                     <p>${loginUser.userNick}</p>
                 </div>
             </div>

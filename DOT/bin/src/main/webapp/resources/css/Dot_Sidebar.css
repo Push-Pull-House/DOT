@@ -141,8 +141,13 @@ body {
     border-radius: 15px;
 }
 
+.profile-name {
+	display:flex;
+	align-items:center;
+}
+
 .profile-name>span {
-    margin-left: 40px;
+    margin-left: 10px;
 }
 
 .friend-profile>label {

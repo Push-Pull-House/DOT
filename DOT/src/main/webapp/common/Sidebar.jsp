@@ -46,7 +46,7 @@
                             </a>
                         </dt>
                         <dt>
-                            <a class="material-symbols-outlined">
+                            <a class="material-symbols-outlined" href="${contextPath}/search">
                                 search
                                 <span>탐색</span>
                             </a>
@@ -64,7 +64,7 @@
                             </a>
                         </dt>
                         <dt>
-                            <a class="material-symbols-outlined">
+                            <a class="material-symbols-outlined" href="${contextPath}/MyFeed.me">
                                 add_box
                                 <span>스토어</span>
                             </a>
@@ -146,13 +146,13 @@
                         <h5>홈</h5>
                     </dt>
                     <dt>
-                        <a class="material-symbols-outlined">
+                        <a class="material-symbols-outlined" href="${contextPath}/search">
                             search
                         </a>
                         <h5>탐색하기</h5>
                     </dt>
                     <dt>
-                        <a class="material-symbols-outlined">
+                        <a class="material-symbols-outlined" href="${contextPath}/MyFeed.me">
                             add_box
                         </a>
                         <h5>스토어</h5>

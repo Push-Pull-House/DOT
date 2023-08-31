@@ -244,6 +244,7 @@ public class MemberController {
 	@GetMapping("/MyFeedEnroll.me")
 	public String MyFeedEnroll(HttpSession session) {
 		Member loginUser = (Member) session.getAttribute("loginUser");
+		Images profileImg = mService.selectListImages(loginUser.getUserNo());
 		return "/member/MyFeedEnroll.jsp";
 	}
 	

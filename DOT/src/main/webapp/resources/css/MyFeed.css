@@ -567,9 +567,10 @@ a:hover {
 }
 
 .modal-feed-body img {
-    width: 100%;
+    width: 95%;
     margin: 0 auto;
     height: 430px;
+    margin-right: 24px;
     object-fit: fill;
 }
 
@@ -722,12 +723,12 @@ a:hover {
 .line-div {
     border-right: 1px solid rgba(255, 255, 255, 0.3);
     height: 70px;
-    width: 570px !important;
+    width: 540px !important;
 }
 .line-div > span {
     display: block;
     margin-top: 15px;
-    margin-left: 500px !important;
+    margin-left: 480px !important;
 }
 
 

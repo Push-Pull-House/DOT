@@ -12,9 +12,5 @@ public class ChattingController {
 	@Autowired
 	private ChattingService chatService;
 	
-	@GetMapping("/mainFeed")
-	public String forwardFeedMain() {
-		return "sns/mainFeed.jsp";
-	}
 	
 }
