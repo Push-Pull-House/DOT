@@ -1,9 +1,0 @@
-package com.kh.dot.security.securityConfig;
-
-public class LoginFailHandler extends SimpleUrlAuthenticationFailureHandler {
-	@Override
-    public void onAuthenticationFailure(HttpServletRequest req, HttpServletResponse res, AuthenticationException e) throws IOException, ServletException {
-		String url = "/login?error";
-		res.sendRedirect(url);
-    }
-}

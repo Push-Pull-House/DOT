@@ -1,5 +1,0 @@
-package com.kh.springboot.menu.service;
-
-public interface MenuService {
-
-}

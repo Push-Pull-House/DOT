@@ -1,8 +1,0 @@
-package com.kh.securityConfig;
-
-import org.springframework.context.annotation.Configuration;
-
-@Configuration
-public class SecuirtyConfig extends WebSecurityConfigurerAdapter {
-
-}
