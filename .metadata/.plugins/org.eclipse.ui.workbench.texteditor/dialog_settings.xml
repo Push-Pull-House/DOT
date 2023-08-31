@@ -1,31 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="FeedDetail"/>
+		<item key="selection" value="send"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
-			<item value="FeedDetail"/>
-			<item value="FreeDetail"/>
-			<item value="더보기"/>
-			<item value="모두보기"/>
-			<item value="img"/>
-			<item value="$"/>
-			<item value="jstl"/>
-			<item value="Rank"/>
-			<item value="오창정님이 회원"/>
-			<item value="noti"/>
-			<item value="blackbox"/>
-			<item value="mybatis"/>
-			<item value="security"/>
-			<item value="simpleGrantedAuthority"/>
-			<item value="configuration"/>
+			<item value="send"/>
+			<item value="sendKey"/>
+			<item value="sendkey"/>
+			<item value=".modal-hea"/>
+			<item value=".modal"/>
+			<item value=".swal"/>
+			<item value="matches"/>
+			<item value="matcher"/>
+			<item value="macher"/>
+			<item value="macther"/>
+			<item value=".cameras"/>
+			<item value="enroll"/>
+			<item value="mbti"/>
+			<item value="updateProfileImg"/>
+			<item value="selectListImages"/>
 		</list>
 		<list key="replacehistory">
 			<item value="jb1"/>
+			<item value="jb2"/>
 			<item value="$ch"/>
 			<item value=""/>
 			<item value="item"/>
@@ -33,8 +34,8 @@
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1589"/>
-		<item key="DIALOG_Y_ORIGIN" value="263"/>
+		<item key="DIALOG_X_ORIGIN" value="1492"/>
+		<item key="DIALOG_Y_ORIGIN" value="559"/>
 		<item key="DIALOG_WIDTH" value="340"/>
 		<item key="DIALOG_HEIGHT" value="454"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>

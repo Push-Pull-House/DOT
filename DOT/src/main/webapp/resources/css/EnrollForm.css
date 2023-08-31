@@ -185,6 +185,9 @@ a {
 .login-min2 {
     min-width: 150px;
 }
+.login-min3 {
+	padding: 3px !important;
+}
 .mbti_container {
     border-radius: 10px;
     position: relative;
@@ -360,7 +363,7 @@ a {
 
 .leaf {
     position: absolute;
-    top: 0;
+    top: -10%;
     animation-name: fall, left01;
     animation-timing-function: linear;
     animation-direction: normal;

@@ -108,6 +108,13 @@ body {
 .modalstyle {
     background-color: black;
     border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    margin-top:120px;
+}
+.modal-header{
+	border-bottom:0px !important;
+}
+.modal-footer{
+	border-top:1px solid rgba(255, 255, 255, 0.3) !important;
 }
 .modal-bottom {
     text-align: center;
@@ -230,7 +237,7 @@ body {
 
 .leaf {
     position: absolute;
-    top: 0;
+    top: -10%;
     animation-name: fall, left01;
     animation-timing-function: linear;
     animation-direction: normal;

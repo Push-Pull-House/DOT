@@ -31,7 +31,7 @@
     <div class="header">
         <div class="logo">
             <a>
-                <img src="${contextPath}/resources/images/DotLogo.png" />
+                <img src="${contextPath}/resources/images/dot_logo.png" />
             </a>
         </div>
         <div class="header-tools">
@@ -184,11 +184,11 @@
             </div>
 
             <div class="profile">
-                <div class="profile-img">
-                    <img src="${contextPath}/resources/images/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
+                <div class="profile-img" onclick="location.href='MyFeed.me';">
+                    <img src="${contextPath}${profileImg.filePath}/${profileImg.changeName}" />
                 </div>
-                <div class="profile-name">
-                    <p>dasdfsdffsdfsasda</p>
+                <div class="profile-name" onclick="location.href='MyFeed.me';">
+                    <p>${loginUser.userNick}</p>
                 </div>
             </div>
         </div>

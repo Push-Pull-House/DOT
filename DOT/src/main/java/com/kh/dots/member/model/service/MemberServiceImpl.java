@@ -1,10 +1,14 @@
 package com.kh.dots.member.model.service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import com.kh.dots.common.model.vo.Images;
 import com.kh.dots.member.model.dao.MemberDao;
 import com.kh.dots.member.model.vo.Member;
 
@@ -18,6 +22,9 @@ public class MemberServiceImpl implements MemberService{
 	
 	@Autowired
 	private MemberDao memberDao;
+	
+	@Autowired
+	private JavaMailSender sender;
 
 	@Override
 	public Member selectOne(String userId) {
@@ -61,5 +68,77 @@ public class MemberServiceImpl implements MemberService{
             System.out.println(e.getCode());
         }
 		
+	}
+
+	@Override
+	public Images selectListImages(int userNo) {
+		return memberDao.selectListImages(userNo);
+	}
+
+	@Override
+	public List<Images> selectListMyImg(int userNo) {
+		return memberDao.selectListMyImg(userNo);
+	}
+
+	@Override
+	public List<Images> detailMyFeedModal(int imgNo) {
+		return memberDao.detailMyFeedModal(imgNo);
+	}
+
+	@Override
+	public List<Object> sideFriendList(int userNo) {
+		return memberDao.sideFriendList(userNo);
+	}
+
+	@Override
+	public Member checkMember(int userNo) {
+		return memberDao.checkMember(userNo);
+	}
+
+	@Override
+	public int updateMember(Member m) {
+		return memberDao.updateMember(m);
+	}
+
+	@Override
+	public int updateProfileImg(Member m) {
+		return memberDao.updateProfileImg(m);
+	}
+
+	@Override
+	public int insertProFileImg() {
+		return memberDao.insertProFileImg();
+	}
+
+	@Override
+	public int changePwd(Member m) {
+		return memberDao.changePwd(m);
+	}
+
+	@Override
+	public int deleteUser(Member m) {
+		return memberDao.deleteUser(m);
+	}
+
+	@Override
+	public void sendEmail(String to_email, String authenticationKey, String title, String content) {
+		SimpleMailMessage message = new SimpleMailMessage();
+		message.setFrom("jwan9415@naver.com");
+		message.setTo(to_email);
+		message.setText(content);
+		message.setSubject(title);
+		
+		sender.send(message);
+		log.info("이메일전송!");
+	}
+
+	@Override
+	public Member logincheck(Member m) {
+		return memberDao.logincheck(m);
+	}
+
+	@Override
+	public int loginPwdReset(Member m) {
+		return memberDao.loginPwdReset(m);
 	}
 }

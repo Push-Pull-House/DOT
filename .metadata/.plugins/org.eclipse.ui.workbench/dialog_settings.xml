@@ -6,20 +6,22 @@
 		<item key="org.eclipse.ui.internal.quickaccess.QuickAccessDialogDIALOG_USE_PERSISTED_SIZE" value="true"/>
 		<item key="org.eclipse.ui.internal.quickaccess.QuickAccessDialogDIALOG_USE_PERSISTED_LOCATION" value="false"/>
 		<list key="orderedElements">
-			<item value="org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPartspring/src/main/resources/mapper/chat-mapper.xml"/>
-			<item value="com.springsource.sts.config.ui.editors.SpringConfigEditorspring/src/main/webapp/WEB-INF/spring/quartz-context.xml"/>
+			<item value="/DOT/src/main/webapp/member/login.jsp"/>
+			<item value="org.eclipse.equinox.security.ui.storage"/>
 		</list>
 		<list key="orderedProviders">
-			<item value="org.eclipse.ui.editors"/>
-			<item value="org.eclipse.ui.editors"/>
+			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
+			<item value="org.eclipse.ui.preferences"/>
 		</list>
 		<list key="textEntries">
-			<item value="1"/>
+			<item value="3"/>
 			<item value="1"/>
 		</list>
 		<list key="textArray">
-			<item value="chat-"/>
-			<item value="quartz"/>
+			<item value="login.js"/>
+			<item value="log"/>
+			<item value="login.j"/>
+			<item value="login"/>
 		</list>
 	</section>
 	<section name="ImportExportAction">

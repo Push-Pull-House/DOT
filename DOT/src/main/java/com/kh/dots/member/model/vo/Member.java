@@ -25,4 +25,10 @@ public class Member {
 	private boolean enable;
 	private String wbStatus;
 	private String status;
+	
+	private int fileWriter;
+	private String filePath;
+	private String originName;
+	private String changeName; 
+	private int fileLevel;
 }

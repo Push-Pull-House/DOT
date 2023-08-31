@@ -40,7 +40,7 @@
                 <div class="tools br-bottom">
                     <dl>
                         <dt>
-                            <a class="material-symbols-outlined">
+                            <a class="material-symbols-outlined" href="${contextPath}/mainFeed">
                                 home
                                 <span>홈</span>
                             </a>
@@ -80,60 +80,17 @@
                 <div class="friends br-bottom">
                     <span>팔로우</span>
                     <div class="friends-list">
-                        <a class="friend-profile">
-                            <div class="profile-img">
-                                <img src="${contextPath}/resources/images/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
-                            </div>
-                            <div class="profile-name">
-                                <span>dasdasda</span>
-                            </div>
-                            <label></label>
-                        </a>
-                        <a class="friend-profile">
-                            <div class="profile-img">
-                                <img src="${contextPath}/resources/images/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
-                            </div>
-                            <div class="profile-name">
-                                <span>dasdasda</span>
-                            </div>
-                            <label></label>
-                        </a>
-                        <a class="friend-profile">
-                            <div class="profile-img">
-                                <img src="${contextPath}/resources/images/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
-                            </div>
-                            <div class="profile-name">
-                                <span>dasdasda</span>
-                            </div>
-                            <label></label>
-                        </a>
-                        <a class="friend-profile">
-                            <div class="profile-img">
-                                <img src="${contextPath}/resources/images/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
-                            </div>
-                            <div class="profile-name">
-                                <span>dasdasda</span>
-                            </div>
-                            <label></label>
-                        </a>
-                        <a class="friend-profile">
-                            <div class="profile-img">
-                                <img src="${contextPath}/resources/images/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
-                            </div>
-                            <div class="profile-name">
-                                <span>dasdasda</span>
-                            </div>
-                            <label></label>
-                        </a>
-                        <a class="friend-profile">
-                            <div class="profile-img">
-                                <img src="${contextPath}/resources/images/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
-                            </div>
-                            <div class="profile-name">
-                                <span>dasdasda</span>
-                            </div>
-                            <label></label>
-                        </a>
+                    	<c:forEach var="f" items="${mlist}">
+	                        <a class="friend-profile"  href="${contextPath}/YourFeed.me?uno=${f.userNo}">
+	                            <div class="profile-img">
+	                               <img src="${contextPath}${f.filePath}/${f.changeName}" />
+	                            </div>
+	                            <div class="profile-name">
+	                                <span>${f.userNick}</span>
+	                            </div>
+	                            <label></label>
+	                        </a>
+                        </c:forEach>
                         <div class="friend-profile more-friends">
                             <span>더보기</span>
                             <span class="material-symbols-outlined">
@@ -145,13 +102,13 @@
                 <div class="tools br-bottom">
                     <dl>
                         <dt>
-                            <a class="material-symbols-outlined" data-toggle="modal" data-target="#exampleModal">
+                            <a class="material-symbols-outlined" href="${contextPath}/changePwd">
                                 password
                                 <span>비밀번호변경</span>
                             </a>
                         </dt>
                         <dt>
-                            <a class="material-symbols-outlined openPopup">
+                            <a class="material-symbols-outlined" href="${contextPath}/deleteUser">
                                 person_remove
                                 <span>회원탈퇴</span>
                             </a>
@@ -161,7 +118,7 @@
                 <div class="tools br-bottom">
                     <dl>
                         <dt>
-                            <a class="material-symbols-outlined">
+                            <a class="material-symbols-outlined" href="${contextPath}/logout.me">
                                 logout
                                 <span>로그아웃</span>
                             </a>
@@ -183,7 +140,7 @@
             <div class="shortcuts-wrap">
                 <dl>
                     <dt>
-                        <a class="material-symbols-outlined">
+                        <a class="material-symbols-outlined" href="${contextPath}/mainFeed">
                             home
                         </a>
                         <h5>홈</h5>
@@ -209,7 +166,7 @@
                 </dl>
                 <dl>
                     <dt>
-                        <a class="material-symbols-outlined">
+                        <a class="material-symbols-outlined" href="${contextPath}/logout.me">
                             logout
                         </a>
                         <h5>로그아웃</h5>
@@ -218,6 +175,7 @@
             </div>
         </div>
     </div>
+   
 </body>
 
 </html>
