@@ -8,7 +8,11 @@
 1692757631287	Rename resource 'LoginFailHandelr.java'
 1692762523308	Rename resource 'login.jsp'
 1692762574968	Rename resource 'index.jsp'
+<<<<<<< HEAD
+1692767189453	Rename resource 'DOT'
+=======
 1692767442855	Rename resource 'dot'
 1692838241182	Rename resource 'member'
 1692845338392	Rename resource 'dots'
 1692845591821	Rename resource 'dotsSnS'
+>>>>>>> dc6ef9c361addc3136b4bce55c7f853d0f0daffd
