@@ -72,10 +72,8 @@ public class MemberController {
 							Model model,
 							@SessionAttribute(required = false) String nextUrl
 			) {
-		log.info("찍어보자구 {} , {}",m , m);
 		//암호화 전 로그인 요청처리
 		Member loginUser = mService.loginUser(m);
-		log.info("찍어보자구 {}", loginUser);
 		String url = "";
 		if(loginUser == null) {
 			model.addAttribute("alertMsg","아이디 또는 비밀번호가 일치하지 않습니다.");
@@ -87,23 +85,25 @@ public class MemberController {
 		
 		//암호화 후 로그인 요청 처리
 //		Member loginUser = mService.selectOne(m.getUserId());
-		// loginUser의 userPwd는 암호화된 상태의 비밀번호
-		// m안의 userPwd는 암호화전 상태의 비밀번호
-		
-		// BcrpytPasswordEncoder객체의 matches 메소드 사용
-		// matches(평문, 암호문)을 작성하면 내부적으로 두 값이 일치하는 검사 후 일치하면 true/ 일치하지 않으면 false
-		
+//		// loginUser의 userPwd는 암호화된 상태의 비밀번호
+//		// m안의 userPwd는 암호화전 상태의 비밀번호
+//		
+//		// BcrpytPasswordEncoder객체의 matches 메소드 사용
+//		// matches(평문, 암호문)을 작성하면 내부적으로 두 값이 일치하는 검사 후 일치하면 true/ 일치하지 않으면 false
+//		
 //		String url = "";
 //		if(loginUser != null && bcrypotPasswordEncoder.matches(m.getUserPwd(), loginUser.getUserPwd())) {
 //			// 로그인 성공
 //			model.addAttribute("loginUser",loginUser);
-//			url = "mainFeed";
+//			url = "redirect:/mainFeed";
 //	
 //			// 사용한 nextUrl제거
 //			model.addAttribute("nextUrl",null);
+//			log.info("loginUser={}",loginUser);
 //		}else {
 //			model.addAttribute("errorMsg","아이디 또는 비밀번호가 일치하지 않습니다.");
 //			url = "redirect:"+(nextUrl != null ? nextUrl : "/");
+//			log.info("loginUser={}",loginUser);
 //		}
 		
 		return url;

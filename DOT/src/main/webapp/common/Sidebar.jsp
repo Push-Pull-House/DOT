@@ -201,7 +201,8 @@
                         <h5>스토어</h5>
                     </dt>
                     <dt>
-                        <a class="material-symbols-outlined">
+                        <a class="material-symbols-outlined"
+                        	 href="${contextPath}/follow/followlist">
                             group
                         </a>
                         <h5>친구</h5>

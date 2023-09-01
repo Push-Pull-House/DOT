@@ -78,6 +78,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>	
+		<!-- 휴대폰 인증 관련 API -->
+		<dependency>
+    		<groupId>net.nurigo</groupId>
+    		<artifactId>javaSDK</artifactId>
+    		<version>2.2</version>
+		</dependency>
 	</dependencies>
 
 	<build>

@@ -296,7 +296,7 @@
                    <br /><br /><br /><br />
                    <!-- 가입하기 버튼 -->
                    <div class="btn-box">
-                       <button type="submit" class="btn btn-primary btn2 btn-lg">
+                       <button type="submit" class="btn btn-primary btn2 btn-lg"">
                            가입하기
                        </button>
                        &nbsp;&nbsp;

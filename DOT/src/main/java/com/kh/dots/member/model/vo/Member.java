@@ -25,4 +25,6 @@ public class Member {
 	private boolean enable;
 	private String wbStatus;
 	private String status;
+	private String filePath;
+	private String changeName;
 }

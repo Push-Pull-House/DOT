@@ -35,6 +35,8 @@ prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> -->
 				}
 				else if('${alertMsg}' == '로그아웃 되었습니다.'){
 					swal('${alertMsg}');
+				}else if('${alertMsg}' == '회원가입성공'){
+					swal('${alertMsg}');
 				}
 			</script>
 			<c:remove var="alertMsg" />
@@ -48,7 +50,7 @@ prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> -->
                 <!-- 로그인 컨텐츠 -->
                 <!-- 로고 -->
                 <div class="login_logo" data-aos="fade-up" data-aos-delay="250">
-                    <img src="${contextPath }/resources/images/DotLogo.png" />
+                    <img src="resources/images/dot_logo.png" />
                 </div>
                 <div id="login-content">
                     <h1><b>로그인</b></h1>
@@ -101,11 +103,8 @@ prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> -->
                     </div>
                 </div>
                 <script>
-                    function mainFeed() {
-                        location.href = 'MainFeed.html';
-                    }
                     function enroll() {
-                        location.href = 'EnrollForm.html';
+                        location.href = 'enrollForm.me';
                     }
                 </script>
             </div>

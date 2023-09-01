@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<link rel="stylesheet" href="../resources/css/MainFeed.css">
+	<link rel="stylesheet" href="${contextPath}/resources/css/MainFeed.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet"
@@ -15,15 +15,15 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-    <link rel="stylesheet" type="text/css" href="../resources/css/slick-theme.css" />
-    <link rel="stylesheet" type="text/css" href="../resources/css/slick.css" />
+    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/slick-theme.css" />
+    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/slick.css" />
         
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script type="text/javascript" src="../resources/js/MainFeed.js"></script>
+    <script type="text/javascript" src="${contextPath}/resources/js/MainFeed.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 </head>
 <body>
@@ -39,7 +39,7 @@
                                 <div class="feed-wrap">
                                     <div class="feed-header">
                                         <div class="user-profile">
-                                            <img src="resources/img/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
+                                            <img src="${contextPath}/resources/images/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
                                             <span>dasdasda</span>
                                             <span class="material-symbols-outlined toggle-button"
                                                 id="more-options-icon">
@@ -86,16 +86,16 @@
                                     <div class="feed-body">
                                         <div class="feed-img">
                                             <div>
-                                                <img src="resources/img/karina2.jpeg" />
+                                                <img src="${contextPath}/resources/images/karina2.jpeg" />
                                             </div>
                                             <div>
-                                                <img src="resources/img/karina3.jpeg" />
+                                                <img src="${contextPath}/resources/images/karina3.jpeg" />
                                             </div>
                                             <div>
-                                                <img src="resources/img/karina1.jpeg" />
+                                                <img src="${contextPath}/resources/images/karina1.jpeg" />
                                             </div>
                                             <div>
-                                                <img src="resources/img/—Pngtree—user icon_5097430.png" />
+                                                <img src="${contextPath}/resources/images/—Pngtree—user icon_5097430.png" />
                                             </div>
                                         </div>
                                         <div class="body-bottom">
@@ -152,7 +152,7 @@
                                                 <dl>
                                                     <dt>
                                                         <img
-                                                            src="resources/img/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
+                                                            src="${contextPath}/resources/images/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
                                                         <div class="reply-list">
                                                             <span>dasdasda</span>
                                                             <span>와 오창정 폼 미쳐따이</span>
@@ -275,7 +275,7 @@
                     <div class="modal-title" id="feedDetail">
                         <div class="feed-header modal-feed-header">
                             <div class="modal-user-profile">
-                                <img src="resources/img/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
+                                <img src="${contextPath}/resources/images/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
                                 <span>dasdasda</span>
                                 <span class="material-symbols-outlined modal-toggle-button">
                                     more_horiz
@@ -327,16 +327,16 @@
                     <div class="modal-feed-body">
                         <div class="feed-img">
                             <div>
-                                <img src="resources/img/karina2.jpeg" />
+                                <img src="${contextPath}/resources/images/karina2.jpeg" />
                             </div>
                             <div>
-                                <img src="resources/img/karina3.jpeg" />
+                                <img src="${contextPath}/resources/images/karina3.jpeg" />
                             </div>
                             <div>
-                                <img src="resources/img/karina1.jpeg" />
+                                <img src="${contextPath}/resources/images/karina1.jpeg" />
                             </div>
                             <div>
-                                <img src="resources/img/—Pngtree—user icon_5097430.png" />
+                                <img src="${contextPath}/resources/images/—Pngtree—user icon_5097430.png" />
                             </div>
                         </div>
                         <div class="body-bottom">
@@ -386,98 +386,98 @@
                             <div class="reply-middle">
                                 <dl>
                                     <dt>
-                                        <img src="resources/img/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
+                                        <img src="${contextPath}/resources/images/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
                                         <div class="reply-list">
                                             <span>dasdasda</span>
                                             <span>와 오창정 폼 미쳐따이</span>
                                         </div>
                                     </dt>
                                     <dt>
-                                        <img src="resources/img/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
+                                        <img src="${contextPath}/resources/images/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
                                         <div class="reply-list">
                                             <span>dasdasda</span>
                                             <span>와 오창정 폼 미쳐따이</span>
                                         </div>
                                     </dt>
                                     <dt>
-                                        <img src="resources/img/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
+                                        <img src="${contextPath}/resources/images/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
                                         <div class="reply-list">
                                             <span>dasdasda</span>
                                             <span>와 오창정 폼 미쳐따이</span>
                                         </div>
                                     </dt>
                                     <dt>
-                                        <img src="resources/img/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
+                                        <img src="${contextPath}/resources/images/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
                                         <div class="reply-list">
                                             <span>dasdasda</span>
                                             <span>와 오창정 폼 미쳐따이</span>
                                         </div>
                                     </dt>
                                     <dt>
-                                        <img src="resources/img/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
+                                        <img src="${contextPath}/resources/images/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
                                         <div class="reply-list">
                                             <span>dasdasda</span>
                                             <span>와 오창정 폼 미쳐따이</span>
                                         </div>
                                     </dt>
                                     <dt>
-                                        <img src="resources/img/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
+										<img src="${contextPath}/resources/images/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
                                         <div class="reply-list">
                                             <span>dasdasda</span>
                                             <span>와 오창정 폼 미쳐따이</span>
                                         </div>
                                     </dt>
                                     <dt>
-                                        <img src="resources/img/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
+                                        <img src="${contextPath}/resources/images/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
                                         <div class="reply-list">
                                             <span>dasdasda</span>
                                             <span>와 오창정 폼 미쳐따이</span>
                                         </div>
                                     </dt>
                                     <dt>
-                                        <img src="resources/img/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
+                                        <img src="${contextPath}/resources/images/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
                                         <div class="reply-list">
                                             <span>dasdasda</span>
                                             <span>와 오창정 폼 미쳐따이</span>
                                         </div>
                                     </dt>
                                     <dt>
-                                        <img src="resources/img/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
+                                        <img src="${contextPath}/resources/images/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
                                         <div class="reply-list">
                                             <span>dasdasda</span>
                                             <span>와 오창정 폼 미쳐따이</span>
                                         </div>
                                     </dt>
                                     <dt>
-                                        <img src="resources/img/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
+                                        <img src="${contextPath}/resources/images/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
                                         <div class="reply-list">
                                             <span>dasdasda</span>
                                             <span>와 오창정 폼 미쳐따이</span>
                                         </div>
                                     </dt>
                                     <dt>
-                                        <img src="resources/img/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
+                                        <img src="${contextPath}/resources/images/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
                                         <div class="reply-list">
                                             <span>dasdasda</span>
                                             <span>와 오창정 폼 미쳐따이</span>
                                         </div>
                                     </dt>
                                     <dt>
-                                        <img src="resources/img/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
+                                        <img src="${contextPath}/resources/images/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
                                         <div class="reply-list">
                                             <span>dasdasda</span>
                                             <span>와 오창정 폼 미쳐따이</span>
                                         </div>
                                     </dt>
                                     <dt>
-                                        <img src="resources/img/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
+                                        <img src="${contextPath}/resources/images/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
                                         <div class="reply-list">
                                             <span>dasdasda</span>
                                             <span>와 오창정 폼 미쳐따이</span>
                                         </div>
                                     </dt>
                                     <dt>
-                                        <img src="resources/img/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
+                                        <img src="${contextPath}/resources/images/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
                                         <div class="reply-list">
                                             <span>dasdasda</span>
                                             <span>와 오창정 폼 미쳐따이</span>
@@ -518,37 +518,37 @@
                                 <div>
                                     <dl>
                                         <dt>
-                                            <img src="resources/img/karina2.jpeg" />
+                                            <img src="${contextPath}/resources/images/karina2.jpeg" />
                                             <span>karina_1211</span>
                                             <input type="checkbox" />
                                         </dt>
                                         <dt>
-                                            <img src="resources/img/karina2.jpeg" />
+                                            <img src="${contextPath}/resources/images/karina2.jpeg" />
                                             <span>karina_1211</span>
                                             <input type="checkbox" />
                                         </dt>
                                         <dt>
-                                            <img src="resources/img/karina2.jpeg" />
+                                            <img src="${contextPath}/resources/images/karina2.jpeg" />
                                             <span>karina_1211</span>
                                             <input type="checkbox" />
                                         </dt>
                                         <dt>
-                                            <img src="resources/img/karina2.jpeg" />
+                                            <img src="${contextPath}/resources/images/karina2.jpeg" />
                                             <span>karina_1211</span>
                                             <input type="checkbox" />
                                         </dt>
                                         <dt>
-                                            <img src="resources/img/karina2.jpeg" />
+                                            <img src="${contextPath}/resources/images/karina2.jpeg" />
                                             <span>karina_1211</span>
                                             <input type="checkbox" />
                                         </dt>
                                         <dt>
-                                            <img src="resources/img/karina2.jpeg" />
+                                            <img src="${contextPath}/resources/images/karina2.jpeg" />
                                             <span>karina_1211</span>
                                             <input type="checkbox" />
                                         </dt>
                                         <dt>
-                                            <img src="resources/img/karina2.jpeg" />
+                                            <img src="${contextPath}/resources/images/karina2.jpeg" />
                                             <span>karina_1211</span>
                                             <input type="checkbox" />
                                         </dt>
@@ -559,22 +559,22 @@
                                 <div>
                                     <dl>
                                         <dt>
-                                            <img src="resources/img/karina2.jpeg" />
+                                            <img src="${contextPath}/resources/images/karina2.jpeg" />
                                             <span>karina_1211</span>
                                             <input type="checkbox" />
                                         </dt>
                                         <dt>
-                                            <img src="resources/img/karina2.jpeg" />
+                                            <img src="${contextPath}/resources/images/karina2.jpeg" />
                                             <span>karina_1211</span>
                                             <input type="checkbox" />
                                         </dt>
                                         <dt>
-                                            <img src="resources/img/karina2.jpeg" />
+                                            <img src="${contextPath}/resources/images/karina2.jpeg" />
                                             <span>karina_1211</span>
                                             <input type="checkbox" />
                                         </dt>
                                         <dt>
-                                            <img src="resources/img/karina2.jpeg" />
+                                            <img src="${contextPath}/resources/images/karina2.jpeg" />
                                             <span>karina_1211</span>
                                             <input type="checkbox" />
                                         </dt>
