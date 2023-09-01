@@ -1,0 +1,577 @@
+body {
+    margin : 0;
+    box-sizing: border-box;
+    height: 100%;
+    background-color: black !important;
+}
+
+
+
+.wrap {
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* ============================================================= */
+/* 컨텐츠 영역 */
+/* ============================================================= */
+.contents {
+    display: flex;
+    width: 100%;
+    height: 85%;
+    bottom: 1px solid white;
+}
+
+
+/* ============================================================= */
+/* 채팅 리스트 */
+/* ============================================================= */
+
+.chat-list-wrap {
+    width: 40%;
+    min-width: 800px;
+    height: 85vh;
+    display: flex;
+    justify-content: end;
+    color:rgb(200, 200, 200);
+    overflow: hidden;
+}
+
+.chat-wrap {
+    width: 400px;
+    margin: 30px 20px 0 0;
+    margin-right: 20px;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+.chat-header {
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    width: 95%;
+    height: 5%;
+    padding-bottom: 20px;
+    font-size: 30px;
+    font-weight: 900;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.chat-header>span:nth-child(1) {
+    margin-left: 15px;
+    color: white;
+}
+
+.chat-header>span:nth-child(3) {
+	margin-left:5%;	
+}
+
+.chat-header>span:nth-child(5) {
+    margin-left: 5%;
+    margin-right: 10px;
+}
+
+.chat-header>span:nth-child(4),
+.chat-header>span:nth-child(5) {
+    font-size: 35px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all .35s;
+}
+
+.chat-header label input {
+    position: absolute;
+    right: 120px;
+    top: -11px;
+    width: 0px;
+    height: 40px;
+    font-size: 13px;
+    padding: 0 10px;
+    border-radius: 10px;
+    background-color: black;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    transition: all .35s;
+    opacity: 0;
+}
+
+#chat-search {
+    width: 30px;
+    height: 40px;
+    position: absolute;
+    right: 64px;
+    opacity: 0;
+    cursor: pointer;
+}
+
+#chat-search:hover + form + span  {
+    font-weight: bold;
+    color:rgb(255, 255, 255);
+}
+
+#chat-search:checked + form label input {
+    width: 250px;
+    opacity: 1;
+}
+
+.chat-header input:focus {
+    outline: 0;
+}
+
+.chat-header .more-options {
+    display: none;
+    position: absolute;
+    right: -30px;
+    top: 30px;
+    width: 160px;
+    z-index: 50;
+    overflow: hidden;
+}
+
+.more-options>div {
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 15px;
+    background-color: black;
+    line-height: 30px;
+}
+
+.more-options dl {
+    margin: 15px 15px;
+    font-size: 13px;
+    line-height: 35px;
+}
+
+.more-options dt {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    padding: 3px 0 0 6px;
+    transition: all .25s;
+}
+
+.more-options dt:hover { 
+    transition: all .25s;
+    background-color: rgba(115,115,115, 0.4);
+    border-radius: 10px;
+    color: white;
+}
+
+.more-options dt span:nth-child(2) {
+    margin-left: 10px;
+}
+
+
+.add_box:hover {
+    font-weight: 900;
+    color:rgb(255, 255, 255);
+}
+
+.chat-header form {
+	width:100%;
+	height : 100%;
+}
+
+.chat-wrap > form {
+    width: 100%;
+    height: 73vh;
+    overflow-y: auto;
+}
+
+.chat-list .deleteListBtn {
+    height: 50px;
+    width: 100%;
+    background-color: black;
+    color:white;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+.chat-list .deleteListBtn:hover {
+    transition: all .35s;
+    background-color: rgba(115,115,115, 0.2);
+}
+
+.list-info-wrap {
+    height: 60px;
+}
+
+.list-info>.deleteCheck {
+    width: 30px;
+    height: 30px;
+    margin-right: 20px;
+}
+
+.chat-list dt:hover .list-info-wrap {
+    background-color: rgba(115,115,115, 0.2);
+}
+
+.list-info-wrap {
+    width: 100%;
+}
+
+.list-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 92%;
+    margin: 10px auto;
+}
+
+.list-info img {
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    border-radius: 25px;
+}
+
+.list-text {
+    width: 100%;
+    padding-left: 20px;
+    line-height: 22px;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.list-top {
+    display: flex;
+    justify-content: space-between;
+    color: rgb(229, 229, 229);
+}
+
+.list-top>span:last-child {
+    color: gray;
+}
+
+.list-bot {
+    color: rgb(157, 157, 157);
+}
+
+
+
+/* ============================================================= */
+/* 채팅 방  */
+/* ============================================================= */
+
+.chat-room-wrap {
+    width: 40%;
+    min-width: 500px;
+    height: 100%;
+    color:white;
+    display: flex;
+    justify-content: end;
+}
+
+.room-wrap {
+    width: 100%;
+    margin-top: 30px;
+    margin-left: 25px;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+.room-header {
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    width: 95%;
+    height: 5%;
+    padding-bottom: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-wrap {
+    width: 95%;
+    display: flex;
+    align-items: center;
+}
+
+.room-header img {
+    margin-left: 2%;
+    width: 35px;
+    height: 35px;
+    border-radius: 20px;
+}
+
+.room-header span:nth-child(2) {
+    margin-left: 5%;
+    width: 60%;
+}
+
+.user-id {
+    height: 100%;
+    cursor: pointer;
+}
+
+.user-id:hover {
+    text-decoration: underline;
+}
+
+.room-header span:nth-child(3) {
+    width: 20%;
+    color: rgb(188, 188, 188);
+    text-align: right;
+    height: 100%;
+}
+
+.room-header label {
+    height: 100%;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: lightgreen;
+    margin-left: 3%;
+}
+
+.room-body {
+    height: 65%;
+    min-height: 300px;
+    max-height: 700px;
+    width: 95%;
+    margin: auto;
+    /* overflow: auto; */
+}
+
+.room-body li {
+    text-decoration: none;
+}
+
+.display-chatting {
+    height:100%;
+    overflow: auto; /*스크롤 처럼*/
+    list-style:none;
+    padding: 10px 10px;
+    z-index: 1;
+    margin: auto;
+}
+
+.myChat{
+    text-align: right;
+}
+
+.myChat p {
+    background-color: rgba(48, 48, 250, 0.997);
+}
+
+.otherChat b {
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+.otherChat p {
+    background-color: rgb(46, 46, 46);
+    margin-left: 40px;
+}
+
+.chatDate{
+    font-size : 10px;
+}
+
+.img {
+    width: 30px;
+    height:30px;
+    border-radius: 15px;
+}
+
+.chat{
+    max-width: 250px;
+    display : inline-block;
+    border-radius : 10px;
+    padding: 5px 10px;
+    font-size: 15px;
+    text-align: start;
+}
+
+.room-footer {
+    height: 24%;
+    min-height: 100px;
+}
+
+.chat-input {
+    height: 60%;
+    display: flex;
+    justify-content: center;
+}
+
+.chat-input > textarea {
+    width: 90%;
+    height: 90%;
+    border: 0px;
+    border-top: 1px solid rgba(255,255,255,0.3);
+    resize: none;
+    background-color: black;
+    color:white;
+    font-size: 16px;
+    padding: 2%;
+}
+
+.chat-input > textarea:focus {
+    outline: 0;
+}
+
+.chat-tool {
+    width: 90%;
+    height: 5%;
+    margin: auto;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.chat-tool>.upload-file {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    opacity: 0;
+    z-index: 10;
+}
+
+.chat-tool>span {
+    font-size: 1.6em;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.chat-tool>button {
+    font-size: 16px;
+    font-weight: 700;
+    border: 0px;
+    background-color: transparent;
+    color: white;
+}
+
+/* ============================================================= */
+/* 우측 컨텐츠  */
+/* ============================================================= */
+
+.sub-content {
+    width: 20%;
+    min-width: 400px;
+    height: 100%;
+    
+}
+
+
+
+
+
+
+
+
+
+
+/* ============================================================= */
+/* 채팅방 모달  */
+/* ============================================================= */
+
+.modal-content {
+    background-color: black !important;
+    border: 1.5px solid rgba(255,255,255,0.3) !important;
+    border-radius: 15px !important;
+    color: white;
+    width: 400px !important;
+}
+
+.modal-header {
+    text-align: center !important;
+    border-bottom: 1.5px solid rgba(255,255,255,0.3) !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-header>h5 {
+    font-size: 16px !important;
+}
+
+.modal-header>form {
+    width: 100%;
+}
+
+.modal-header input[type=search] {
+    margin-top: 20px;
+    width: 100%;
+    height: 40px;
+    background-color: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 10px;
+    font-size: 14px;
+    padding-left: 20px;
+}
+
+.modal-header input[type=search]:focus {
+    outline: 0;
+    color: white;
+}
+
+.modal-body {
+    height: 500px !important;
+    overflow: hidden;
+}
+
+.modal-body>span {
+    font-size: 14px;
+    color: gray;
+}
+
+.modal-body .follower-list {
+    margin-top: 10px;
+    height: 100%;
+    padding-bottom: 50px;
+    overflow: auto !important;
+}
+
+.modal-body .follower-list dt {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-top: 18px;
+    justify-content:space-between;
+}
+
+.follower-list dt img {
+    width: 36px;
+    height: 36px;
+    border-radius: 18px;
+}
+
+.follower-list dt label {
+    font-size: 15px;
+    font-weight: 500;
+    margin-left: 18px;
+    color: lightgray;
+}
+
+.follower-list dt input[type=checkbox] {
+    width: 18px;
+    height: 18px;
+    border: 1px solid rgba(115,115,115, 0.3) !important;
+    border-radius: 9px !important;
+    background-color: transparent !important;
+}
+
+.modal-footer {
+    border: 0 !important;
+}
+
+.modal-footer button {
+    padding: 5px 15px !important;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255, 0.3) !important;
+    color: lightgray;
+    background-color: transparent !important;
+}
+
+.modal-footer button:hover {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    transition: all .35s;
+}

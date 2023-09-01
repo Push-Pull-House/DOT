@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+import com.kh.dots.common.model.vo.Images;
 import com.kh.dots.member.model.vo.Member;
 
 @Component
@@ -13,7 +14,6 @@ public class MemberValidator implements Validator{
 	public boolean supports(Class<?> clazz) {
 		return Member.class.equals(clazz); // 검사하고자하는 객체가 Member타입일대만 유효성 검사지원 
 	}
-	
 	/* 
 	 * 필드별로 유효성 검사 실시
 	 * 부적합한 값이 있을경우, Errors객체에 해다 오류사실을 추가.

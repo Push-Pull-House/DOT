@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-    <link rel="stylesheet" href="../resources/css/Dot_Headers.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/Dot_Headers.css">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,200,0,0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
@@ -19,7 +19,7 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 
-    <script src="../resources/js/sidebar.js"></script>
+    <script src="${contextPath}/resources/js/sidebar.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -30,8 +30,8 @@
 <body>
     <div class="header">
         <div class="logo">
-            <a>
-                <img src="../resources/images/DotLogo.png" />
+            <a href="${contextPath}/mainFeed">
+                <img src="${contextPath}/resources/images/dot_logo.png" />
             </a>
         </div>
         <div class="header-tools">
@@ -67,7 +67,7 @@
                                     <div class="modal-profile-icon">
                                         <label>
                                             <a>
-                                                <img src="resources/img/karina2.jpeg" />
+                                                <img src="${contextPath}/resources/images/karina2.jpeg" />
                                             </a>
                                         </label>
                                         <div class="modal-alarm-contents">
@@ -82,7 +82,7 @@
                                     <div class="modal-profile-icon">
                                         <label>
                                             <a>
-                                                <img src="resources/img/karina2.jpeg" />
+                                                <img src="${contextPath}/resources/images/karina2.jpeg" />
                                             </a>
                                         </label>
                                         <div class="modal-alarm-contents">
@@ -97,7 +97,7 @@
                                     <div class="modal-profile-icon">
                                         <label>
                                             <a>
-                                                <img src="resources/img/profile3.jpg" />
+                                                <img src="${contextPath}/resources/images/profile3.jpg" />
                                             </a>
                                         </label>
                                         <div class="modal-alarm-contents">
@@ -112,7 +112,7 @@
                                     <div class="modal-profile-icon">
                                         <label>
                                             <a>
-                                                <img src="resources/img/profile4.jpg" />
+                                                <img src="${contextPath}/resources/images/profile4.jpg" />
                                             </a>
                                         </label>
                                         <div class="modal-alarm-contents">
@@ -127,7 +127,7 @@
                                     <div class="modal-profile-icon">
                                         <label>
                                             <a>
-                                                <img src="resources/img/profile5.jpg" />
+                                                <img src="${contextPath}/resources/images/profile5.jpg" />
                                             </a>
                                         </label>
                                         <div class="modal-alarm-contents">
@@ -142,7 +142,7 @@
                                     <div class="modal-profile-icon">
                                         <label>
                                             <a>
-                                                <img src="resources/img/profile6.jpg" />
+                                                <img src="${contextPath}/resources/images/profile6.jpg" />
                                             </a>
                                         </label>
                                         <div class="modal-alarm-contents">
@@ -157,7 +157,7 @@
                                     <div class="modal-profile-icon">
                                         <label>
                                             <a>
-                                                <img src="resources/img/profile7.jpg" />
+                                                <img src="${contextPath}/resources/images/profile7.jpg" />
                                             </a>
                                         </label>
                                         <div class="modal-alarm-contents">
@@ -176,7 +176,7 @@
                 </div>
                 <!-- 모달 끝 -->
             </div>
-            <div class="dm-tool">
+            <div class="dm-tool" onclick="location.href='${contextPath}/chat/chatRoomList';">
                 <span class="material-symbols-outlined">
                     mail
                 </span>
@@ -184,11 +184,11 @@
             </div>
 
             <div class="profile">
-                <div class="profile-img">
-                    <img src="resources/img/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
+                <div class="profile-img" onclick="location.href='${contextPath}/MyFeed.me';">
+                    <img src="${contextPath}${profileImg.filePath}/${profileImg.changeName}" />
                 </div>
-                <div class="profile-name">
-                    <p>dasdfsdffsdfsasda</p>
+                <div class="profile-name" onclick="location.href='${contextPath}/MyFeed.me';">
+                    <p>${loginUser.userNick}</p>
                 </div>
             </div>
         </div>
