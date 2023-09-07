@@ -22,4 +22,6 @@ public class Feed {
 	private String likeCount; //	LIKE_COUNT
 	private String feedHashtag; //	FEED_HASHTAG
 	
+	private String userNick;
+	
 }

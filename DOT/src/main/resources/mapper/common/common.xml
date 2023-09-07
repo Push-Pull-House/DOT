@@ -13,6 +13,23 @@
 		<result column="FILE_FNO" property="fileFno"/>
 	</resultMap>
 	
+	<resultMap id="memberResultSet" type="member">
+		<id column="USER_NO" property="userNo"/>
+		<result column="USER_ID" property='userId'/>
+		<result column="USER_PWD" property="userPwd"/>
+		<result column="USER_NAME" property="userName"/>
+		<result column="USER_NICK" property="userNick"/>
+		<result column="USER_PHONE" property="userPhone"/>
+		<result column="USER_EMAIL" property="userEmail"/>
+		<result column="USER_MBTI" property="userMbti"/>
+		<result column="ENROLL_DATE" property="enrollDate"/>
+		<result column="USER_BIRTHDAY" property="userBirthday"/>
+		<result column="ENABLE" property="enable"/>
+		<result column='WB_STATUS' property="wbStatus"/>
+		<result column="STATUS" property="status"/>
+		<result column="CHECK_LOGIN" property="checkLog"/>
+	</resultMap>
+	
 	<select id="selectList" parameterType="string" resultMap="imageResultSet">
 		SELECT *
 		FROM IMAGE I
@@ -29,5 +46,52 @@
 			#{search_keyword}
 		)		
 	</insert>
+	
+	<!-- 관리자페이지 회원 관리 -->
+   <select id="memList1" resultMap="memberResultSet">   
+      SELECT *
+      FROM MEMBER
+      
+   </select>
+   
+   
+   <select id="memList" resultMap="memberResultSet">   
+      SELECT *
+      FROM MEMBER
+      <if test="keyword != null and keyword != ''">
+         WHERE
+         <choose>
+            <when test="condition == 'userId'">
+               USER_ID LIKE '%${keyword}%'
+            </when>
+            <when test="condition == 'userName'">
+               USER_NAME LIKE '%${keyword}%'
+            </when>
+            <when test="condition == 'userNick'">
+               USER_NICK LIKE '%${keyword}%'
+            </when>
+         </choose>
+      </if>
+   </select>
+   
+   <select id="selectMListCount" parameterType="hashmap" resultType="int">
+      SELECT
+         COUNT(*)
+      FROM MEMBER
+      <if test="keyword != null and keyword != ''">
+         WHERE
+         <choose>
+            <when test="condition == 'userId'">
+               USER_ID LIKE '%${keyword}%'
+            </when>
+            <when test="condition == 'userName'">
+               USER_NAME LIKE '%${keyword}%'
+            </when>
+            <when test="condition == 'userNick'">
+               USER_NICK LIKE '%${keyword}%'
+            </when>
+         </choose>
+      </if>
+   </select>
 	
 </mapper>

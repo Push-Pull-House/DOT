@@ -38,8 +38,9 @@
             <div class="search-tool">
                 <input type="checkbox" id="search" />
                 <label for="search">
-                    <form>
-                        <input type="text" class="search-input" placeholder="검색할 항목을 입력하세요" />
+                    <form action="${contextPath}/searchList.se" method="get">
+                        <input type="text" class="search-input" name="keyword" placeholder="검색할 항목을 입력하세요" />
+                        <button type="submit" style="display:none">Search</button>
                     </form>
                 </label>
                 <span class="material-symbols-outlined">
@@ -184,12 +185,22 @@
             </div>
 
             <div class="profile">
-                <div class="profile-img" onclick="location.href='${contextPath}/MyFeed.me';">
-                    <img src="${contextPath}${profileImg.filePath}/${profileImg.changeName}" />
-                </div>
-                <div class="profile-name" onclick="location.href='${contextPath}/MyFeed.me';">
-                    <p>${loginUser.userNick}</p>
-                </div>
+            	<c:if test="${loginUser.userId ne 'admin'}">
+	                <div class="profile-img" onclick="location.href='${contextPath}/MyFeed.me';">
+	                    <img src="${contextPath}${profileImg.filePath}/${profileImg.changeName}" />
+	                </div>
+	                <div class="profile-name" onclick="location.href='${contextPath}/MyFeed.me';">
+	                    <p>${loginUser.userNick}</p>
+	                </div>
+                </c:if>
+                <c:if test="${loginUser.userId eq 'admin'}">
+                	<div class="profile-img" onclick="location.href='${contextPath}/adminMain';">
+	                    <img src="${contextPath}${profileImg.filePath}/${profileImg.changeName}" />
+	                </div>
+	                <div class="profile-name" onclick="location.href='${contextPath}/adminMain';">
+	                    <p>${loginUser.userNick}</p>
+	                </div>
+                </c:if>
             </div>
         </div>
     </div>
