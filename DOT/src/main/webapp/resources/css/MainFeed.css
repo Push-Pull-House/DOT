@@ -609,6 +609,14 @@ body {
     border: 0;
 }
 
+.modal-backdrop.show {
+    opacity: 0.2 !important;
+}
+
+.modal{
+	top:70px !important;
+}
+
 
 /* ============================================================= */
 /* 공유 모달  */

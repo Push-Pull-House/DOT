@@ -136,7 +136,7 @@ body {
 }
 
 .alert-tool>span:hover,
-.dm-tool>a:hover,
+.dm-tool>span:hover,
 #search:hover ~ span {
     font-weight: 800;
     animation: swing; 

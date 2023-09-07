@@ -2,10 +2,12 @@ package com.kh.dots.member.controller;
 
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,7 @@ import com.kh.dots.common.Utils;
 import com.kh.dots.common.model.vo.Images;
 import com.kh.dots.member.model.service.MemberService;
 import com.kh.dots.member.model.validator.MemberValidator;
+import com.kh.dots.member.model.vo.Friend;
 import com.kh.dots.member.model.vo.Member;
 
 import lombok.extern.slf4j.Slf4j;
@@ -115,11 +118,19 @@ public class MemberController {
 		if(loginUser != null && bcrypotPasswordEncoder.matches(m.getUserPwd(), loginUser.getUserPwd())) {
 			// 로그인 성공
 			Images profileImg = mService.selectListImages(loginUser.getUserNo());
-			List<Object> mlist = mService.sideFriendList(loginUser.getUserNo());
+			List<Friend> mlist = mService.sideFriendList(loginUser.getUserNo());
+			List<Member> friendList = new ArrayList();
+			for(Friend a : mlist) {
+				Member f = mService.selectFriendList2(a);
+				if(f != null) {
+					friendList.add(f);
+				}
+			}
+			
 			log.info("mlist={}",mlist);
 			model.addAttribute("loginUser", loginUser);
 			session.setAttribute("profileImg", profileImg);
-			session.setAttribute("mlist", mlist);
+			session.setAttribute("mlist", friendList);
 			url = "redirect:/mainFeed";
 	
 		}else {
@@ -131,8 +142,10 @@ public class MemberController {
 	}
 	
 	@GetMapping("/logout.me")
-	public String logoutMember(HttpSession session , SessionStatus status, Model model ) {
-		
+	public String logoutMember(HttpSession session , SessionStatus status, Model model, HttpServletResponse response ) {
+		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+        response.setHeader("Pragma", "no-cache");
+        response.setHeader("Expires", "0");
 		session.invalidate();
 		status.setComplete();
 		model.addAttribute("alertMsg", "로그아웃 되었습니다.");
@@ -215,7 +228,6 @@ public class MemberController {
 	public List<Images> detailMyFeedModal(int imgNo) {
 		
 		List<Images> result = mService.detailMyFeedModal(imgNo);
-		
 		return result;
 	}
 	
@@ -241,12 +253,7 @@ public class MemberController {
 		return "/member/MyEdit.jsp";
 	}
 	
-	@GetMapping("/MyFeedEnroll.me")
-	public String MyFeedEnroll(HttpSession session) {
-		Member loginUser = (Member) session.getAttribute("loginUser");
-		Images profileImg = mService.selectListImages(loginUser.getUserNo());
-		return "/member/MyFeedEnroll.jsp";
-	}
+	
 	
 	@GetMapping("/changePwd")
 	public String changePwd() {
@@ -302,11 +309,11 @@ public class MemberController {
 			//성공시
 			model.addAttribute("loginUser",m);
 			session.setAttribute("profileImg", profileImg2);
-			session.setAttribute("alertMsg", "회원정보수정성공");
+			session.setAttribute("alertMsg", "회원정보 수정 성공!");
 			url = "redirect:/MyFeed.me";
 		}else {
 			//성공시
-			model.addAttribute("alertMsg", "회원정수정실패");
+			model.addAttribute("alertMsg", "회원정보 수정 실패!");
 			url = "redirect:/MyEdit.me";
 		}
 		return url;

@@ -24,6 +24,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+    <!--  웹소켓 -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.1/sockjs.min.js"></script>
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
     <title>Dot.</title>
 </head>
 
@@ -88,7 +91,7 @@
 	                            <div class="profile-name">
 	                                <span>${f.userNick}</span>
 	                            </div>
-	                            <label></label>
+	                           		<label id="friend${f.userNo}"></label>
 	                        </a>
                         </c:forEach>
                         <div class="friend-profile more-friends">
@@ -118,7 +121,7 @@
                 <div class="tools br-bottom">
                     <dl>
                         <dt>
-                            <a class="material-symbols-outlined" href="${contextPath}/logout.me">
+                            <a class="material-symbols-outlined" id="logoutButton1">
                                 logout
                                 <span>로그아웃</span>
                             </a>
@@ -166,7 +169,7 @@
                 </dl>
                 <dl>
                     <dt>
-                        <a class="material-symbols-outlined" href="${contextPath}/logout.me">
+                        <a class="material-symbols-outlined" id="logoutButton2" >
                             logout
                         </a>
                         <h5>로그아웃</h5>
@@ -174,8 +177,85 @@
                 </dl>
             </div>
         </div>
+        <div id="userStatus">
+      		<input type="hidden" value="${loginUser.userNick }" id="WebNick2"/>
+       		<input type="hidden" value="${loginUser.userNo }" id="WebNo2"/>
+        </div>
     </div>
-   
+    <script>
+		 	// 웹소켓 연결(웹 브라우저에서 실행)
+		    const socket = new SockJS("http://localhost:8083${contextPath}/websocket"); //URL에 대한 WebSocket 연결을 설정
+		    const stompClient = Stomp.over(socket); //WebSocket을 통해 Stomp 클라이언트를 생성
+		    stompClient.connect( {} , () => {
+                console.log('연결되었어요');    
+                var userNick = $('#WebNick2').val();
+	            var userNo = $('#WebNo2').val();
+	            var statusLog = true;
+	            const userTopic = '/topic/updateLoginStatus';
+	            const userApp = "/app/updateLoginStatus";
+	            
+                stompClient.subscribe(userTopic, function(message) {
+                	var message1 = JSON.parse(message.body);
+                	console.log('updateLoginStatus',message1);
+ 		        	var friendList = message1.friendList;
+ 		        	for(let i=0; i<friendList.length; i++){
+ 		        		if($("#friend"+friendList[i].userNo) != null && friendList[i].checkLog == 'N'){
+ 			        		$("#friend"+friendList[i].userNo).css("backgroundColor","#b01b1b");
+ 		        		}else{
+ 		        			$("#friend"+friendList[i].userNo).css("backgroundColor","lightgreen");
+ 		        		}
+ 		        	}
+	            	
+	         	});
+                
+                stompClient.subscribe("/topic/friendLoginStatus", function(message) {
+                	var message1 = JSON.parse(message.body);
+                	console.log('updateLoginStatus',message1);
+ 		        	var friendList = message1.friendList;
+ 		        	for(let i=0; i<friendList.length; i++){
+ 		        		if($("#friend"+friendList[i].userNo) != null && friendList[i].checkLog == 'N'){
+ 			        		$("#friend"+friendList[i].userNo).css("backgroundColor","#b01b1b");
+ 		        		}else{
+ 		        			$("#friend"+friendList[i].userNo).css("backgroundColor","lightgreen");
+ 		        		}
+ 		        	}
+	         	});
+                
+                
+	            
+	            stompClient.send(userApp, {}, JSON.stringify({
+	                userNick:  userNick,// 자신의 사용자명을 지정
+	                checkLog: statusLog,
+	                userNo:  userNo
+	            }));
+            
+		    });
+		    
+		    $("#logoutButton1").click(function() {
+		        var userNick = $('#WebNick2').val();
+		        var statusLog = false; // 로그아웃 상태로 설정
+		        stompClient.send("/app/updateLogoutStatus", {}, JSON.stringify({
+		        	userNick: userNick,
+		            isLoggedIn: statusLog
+		        }));
+		        
+		       location.href="${contextPath}/logout.me";
+		    });
+		    
+		    $("#logoutButton2").click(function() {
+		        var userNick = $('#WebNick2').val();
+		        var statusLog = false; // 로그아웃 상태로 설정
+		        stompClient.send("/app/updateLogoutStatus", {}, JSON.stringify({
+		            userNick: userNick,
+		            isLoggedIn: statusLog
+		        }));
+		        
+		       location.href="${contextPath}/logout.me";
+		    });
+		    
+		 
+    	
+      </script> 
 </body>
 
 </html>

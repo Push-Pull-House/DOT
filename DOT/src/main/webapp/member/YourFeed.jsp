@@ -77,11 +77,6 @@
                        <c:if test="${otherUser.fileWriter == 0}">
                        	   <img src="${contextPath}/resources/images/—Pngtree—user icon_5097430.png" />
                        </c:if>
-                       <div class="profile-camera">
-                           <button class="cameras">
-                               <span class="icon1 material-symbols-outlined">photo_camera</span>
-                           </button>
-                       </div>
                    </div>
 
                    <div class="mypage-setbox">
@@ -115,14 +110,6 @@
                                grid_on
                                </span>
                            <h5 id="h5-1">게시물</h5>
-                       </div>
-                   </div>
-                   <div class="selectbox" id="selectbox">
-                       <div class="selectbox-btn" id="pro-btn4" onclick="selected2();">
-                           <span class="material-symbols-outlined">
-                               bookmarks
-                               </span>
-                           <h5 id="h5-2">스토어</h5>
                        </div>
                    </div>
                </div>
@@ -387,267 +374,6 @@
 			           </div>
 			       </div>
 			   </div>
-               <!-- 하단 선택 박스2-->
-               <div class="choice2 list2">
-                   <div class="myimage">
-                   		<c:forEach var="n" items="${myImglist}" begin="0" end="0">
-	                       <div class="myimage-section"  data-bs-toggle="modal" data-bs-target="#MyDetailFeed2" onclick="feedNo2(event , ${n.fileNo})">
-	                           <img class="img-size" src="${contextPath}${n.filePath}/${n.changeName}" />
-	                           <div class="like">
-	                               <svg
-	                                   xmlns="http://www.w3.org/2000/svg"
-	                                   width="16"
-	                                   height="16"
-	                                   fill="currentColor"
-	                                   class="bi bi-heart-fill"
-	                                   viewBox="0 0 16 16"
-	                               >
-	                                   <path
-	                                       fill-rule="evenodd"
-	                                       d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-	                                   />
-	                               </svg>
-	                               <span class="bi">444</span>
-	                               <svg
-	                                   xmlns="http://www.w3.org/2000/svg"
-	                                   width="16"
-	                                   height="16"
-	                                   fill="currentColor"
-	                                   class="bi bi-chat-left-fill"
-	                                   viewBox="0 0 16 16"
-	                               >
-	                                   <path
-	                                       d="M2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"
-	                                   />
-	                               </svg>
-	                               <span class="bi">44</span>
-	                           </div>
-	                       </div>
-	                    </c:forEach>
-                   </div>
-               </div>
-           </div>
-           <!-- Modal2 -->
-		   <div class="modal fade" id="MyDetailFeed2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		       <div class="modal-dialog modal-xl">
-		           <div class="modal-content">
-		               <div class="modal-header modal-backgound">
-		                   <div class="modal-title" id="exampleModalLabel">
-		                       <div class="feed-header modal-feed-header">
-		                           <div class="modal-user-profile">
-		                               <img src="${contextPath}${profileImg.filePath}/${profileImg.changeName}" />
-		                               <span>${loginUser.userNick}</span>
-		                               <div class="line-div">
-		                                   <span class="material-symbols-outlined modal-toggle-button"> more_horiz </span>
-		                                   <div class="modal-more-options">
-		                                       <div>
-		                                           <dl>
-		                                               <dt onclick="location.href='My_Feed_Edit.html'">
-		                                                   <span class="material-symbols-outlined"> edit </span>
-		                                                   <a>수정하기</a>
-		                                               </dt>
-		                                               <dt>
-		                                                   <span class="material-symbols-outlined"> add_box </span>
-		                                                   <a>저장하기</a>
-		                                               </dt>
-		                                               <dt>
-		                                                   <span class="material-symbols-outlined"> person_remove </span>
-		                                                   <a>팔로우 취소</a>
-		                                               </dt>
-		                                               <dt>
-		                                                   <span class="material-symbols-outlined"> report </span>
-		                                                   <a>신고하기</a>
-		                                               </dt>
-		                                           </dl>
-		                                       </div>
-		                                   </div>
-		                               </div>
-		                           </div>
-		                       </div>
-		                   </div>
-		                   <button type="button" class="modal-close" data-bs-dismiss="modal" aria-label="Close">Ⅹ</button>
-		               </div>
-		               <div class="modal-body modal-backgound">
-		                   <div class="modal-feed-body">
-		                       <div class="feed-img2" id="feed-img">
-		                        <%--  <div>
-		                         	<img src="${contextPath}/resources/images/dog1.gif">
-		                         </div>
-		                         <div>
-		                         	<img src="${contextPath}/resources/images/dog2.gif">
-		                         </div> --%>
-		                       </div>
-		                       <div class="body-bottom">
-		                           <div class="feed-tools">
-		                               <div class="clickable-svg">
-		                                   <svg
-		                                       xmlns="http://www.w3.org/2000/svg"
-		                                       width="20"
-		                                       height="20"
-		                                       fill="currentColor"
-		                                       class="bi bi-heart"
-		                                       viewBox="0 0 16 16"
-		                                   >
-		                                       <path
-		                                           d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"
-		                                       />
-		                                   </svg>
-		                               </div>
-		                               <div class="clickable-svg">
-		                                   <svg
-		                                       xmlns="http://www.w3.org/2000/svg"
-		                                       width="25"
-		                                       height="25"
-		                                       fill="currentColor"
-		                                       class="bi bi-share"
-		                                       viewBox="0 0 16 16"
-		                                   >
-		                                       <path
-		                                           d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"
-		                                       />
-		                                   </svg>
-		                               </div>
-		                               <div class="clickable-svg">
-		                                   <svg
-		                                       xmlns="http://www.w3.org/2000/svg"
-		                                       width="28"
-		                                       height="28"
-		                                       fill="currentColor"
-		                                       class="bi bi-plus-square"
-		                                       viewBox="0 0 16 16"
-		                                   >
-		                                       <path
-		                                           d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"
-		                                       />
-		                                       <path
-		                                           d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
-		                                       />
-		                                   </svg>
-		                               </div>
-		                           </div>
-		                           <div class="feed-text">
-		                               <span> 회원님의 게시글을 1,024명이 좋아합니다. </span>
-		                               <br />
-		                               <span>
-		                                   <b>dasdas</b>
-		                                   다 여러분들 덕분에 제가 이렇게 되었습니다 ㅎㅎ 여러분 만나서 반갑숩니다 ㅎㅎ껄껄
-		                               </span>
-		                           </div>
-		                       </div>
-		                   </div>
-		                   <div class="modal-feed-footer">
-		                       <div class="reply-wrap">
-		                           <div class="reply-middle">
-		                               <dl>
-		                                   <dt>
-		                                       <img src="img/parksujun.jpg" />
-		                                       <div class="reply-list">
-		                                           <span>dasdasda</span>
-		                                           <span>와 오창정 폼 미쳐따이</span>
-		                                       </div>
-		                                   </dt>
-		                                   <dt>
-		                                       <img src="img/parksujun.jpg" />
-		                                       <div class="reply-list">
-		                                           <span>dasdasda</span>
-		                                           <span>와 오창정 폼 미쳐따이</span>
-		                                       </div>
-		                                   </dt>
-		                                   <dt>
-		                                       <img src="img/parksujun.jpg" />
-		                                       <div class="reply-list">
-		                                           <span>dasdasda</span>
-		                                           <span>와 오창정 폼 미쳐따이</span>
-		                                       </div>
-		                                   </dt>
-		                                   <dt>
-		                                       <img src="img/parksujun.jpg" />
-		                                       <div class="reply-list">
-		                                           <span>dasdasda</span>
-		                                           <span>와 오창정 폼 미쳐따이</span>
-		                                       </div>
-		                                   </dt>
-		                                   <dt>
-		                                       <img src="img/parksujun.jpg" />
-		                                       <div class="reply-list">
-		                                           <span>dasdasda</span>
-		                                           <span>와 오창정 폼 미쳐따이</span>
-		                                       </div>
-		                                   </dt>
-		                                   <dt>
-		                                       <img src="img/parksujun.jpg" />
-		                                       <div class="reply-list">
-		                                           <span>dasdasda</span>
-		                                           <span>와 오창정 폼 미쳐따이</span>
-		                                       </div>
-		                                   </dt>
-		                                   <dt>
-		                                       <img src="img/parksujun.jpg" />
-		                                       <div class="reply-list">
-		                                           <span>dasdasda</span>
-		                                           <span>와 오창정 폼 미쳐따이</span>
-		                                       </div>
-		                                   </dt>
-		                                   <dt>
-		                                       <img src="img/parksujun.jpg" />
-		                                       <div class="reply-list">
-		                                           <span>dasdasda</span>
-		                                           <span>와 오창정 폼 미쳐따이</span>
-		                                       </div>
-		                                   </dt>
-		                                   <dt>
-		                                       <img src="img/parksujun.jpg" />
-		                                       <div class="reply-list">
-		                                           <span>dasdasda</span>
-		                                           <span>와 오창정 폼 미쳐따이</span>
-		                                       </div>
-		                                   </dt>
-		                                   <dt>
-		                                       <img src="img/parksujun.jpg" />
-		                                       <div class="reply-list">
-		                                           <span>dasdasda</span>
-		                                           <span>와 오창정 폼 미쳐따이</span>
-		                                       </div>
-		                                   </dt>
-		                                   <dt>
-		                                       <img src="img/parksujun.jpg" />
-		                                       <div class="reply-list">
-		                                           <span>dasdasda</span>
-		                                           <span>와 오창정 폼 미쳐따이</span>
-		                                       </div>
-		                                   </dt>
-		                                   <dt>
-		                                       <img src="img/parksujun.jpg" />
-		                                       <div class="reply-list">
-		                                           <span>dasdasda</span>
-		                                           <span>와 오창정 폼 미쳐따이</span>
-		                                       </div>
-		                                   </dt>
-		                                   <dt>
-		                                       <img src="img/parksujun.jpg" />
-		                                       <div class="reply-list">
-		                                           <span>dasdasda</span>
-		                                           <span>와 오창정 폼 미쳐따이</span>
-		                                       </div>
-		                                   </dt>
-		                                   <dt>
-		                                       <img src="img/parksujun.jpg" />
-		                                       <div class="reply-list">
-		                                           <span>dasdasda</span>
-		                                           <span>와 오창정 폼 미쳐따이</span>
-		                                       </div>
-		                                   </dt>
-		                               </dl>
-		                           </div>
-		                           <div class="reply-bottom">
-		                               <input type="text" placeholder="댓글을 입력하세요." />
-		                               <button>답글</button>
-		                           </div>
-		                       </div>
-		                   </div>
-		               </div>
-		           </div>
-		       </div>
 		   </div>
            <!-- 실시간 바 -->
            <div class="sub-content">
@@ -825,19 +551,6 @@
             choice1.removeClass('choice1');
             choice2.addClass('choice2');
        }
-       function selected2() {
-            const btn1 = $('#pro-btn3');
-            const btn2 = $('#pro-btn4');
-            const choice1 = $('.list1');
-            const choice2 = $('.list2');
-
-            btn2.addClass('change');
-            btn1.removeClass('change');
-            choice1.addClass('choice1');
-            choice2.removeClass('choice2');
-       }
-      
-
    </script>
    <script>
 		const  slick2 = () => {
@@ -852,16 +565,18 @@
 	           data: { imgNo : imgNo },
 	           success: function (result) {
 	        	   console.log(result);
-	               let html = "<div id='slick_feed'>";
-	               
+	        	   let html = "<div id='slick_feed'>";
 	           	   for(let img of result){
-		           		html += "<div>"
+    	   		   		if(img.changeName != "DotLogo_D.png"){
+			           		html += "<div>"
 							html += "<img src=${contextPath}"+img.filePath+"/"+img.changeName+">"
-						html += "</div>"
-	               }
-	           		html += "</div>"
+							html += "</div>"
+       	   				}
+               		}
+           			html += "</div>"
 	           		
 	           	   	jb1(".feed-img").html(html);
+           			if (result.length > 1) {
 			       jb1('#slick_feed').slick({
 			    	   	// Slick configuration options
 			    	   	slidesToShow: 1,
@@ -871,42 +586,7 @@
 			    	   	// Add more options as needed
 			    	 });
 			       	 slick2();
-	       	   }
-	        });
-	   }
-   </script>
-	<script>
-		const  slick3 = () => {
-   	    	jb1("#MyDetailFeed2 .slick-dots li").eq(0).click();
-   		}    
-	   function feedNo2(e , no){
-		   //e.stopPropagation();
-		   console.log(no);
-	       const imgNo = no;
-	       jb1.ajax({
-	           url: '${contextPath}/detail.myfeed',
-	           data: { imgNo : imgNo },
-	           success: function (result) {
-	        	   console.log(result);
-	               let html = "<div id='slick_feed2'>";
-	               
-	           	   for(let img of result){
-		           		html += "<div>"
-							html += "<img src=${contextPath}"+img.filePath+"/"+img.changeName+">"
-						html += "</div>"
-	               }
-	           		html += "</div>"
-	           		
-	           	   	jb1(".feed-img2").html(html);
-			       jb1('#slick_feed2').slick({
-			    	   	// Slick configuration options
-			    	   	slidesToShow: 1,
-			    	   	slidesToScroll: 1,
-			    	   	arrows : true,
-			    	   	dots:true
-			    	   	// Add more options as needed
-			    	 });
-			       	 slick3();
+           			}
 	       	   }
 	        });
 	   }

@@ -19,7 +19,10 @@ public class Utils {
 		String originName = upfile.getOriginalFilename();// flower.jpg
 		String currentTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());//20230807122350
 		int random = (int) (Math.random() * 90000 +10000);// 5자리 랜덤정수값
-		String ext = originName.substring(originName.lastIndexOf("."));
+		String ext ="";
+		if(!originName.equals("") && originName != null) {
+			ext = originName.substring(originName.lastIndexOf("."));
+		}
 		
 		String changeName = currentTime+random+ext;
 		

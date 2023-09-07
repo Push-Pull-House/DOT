@@ -56,7 +56,11 @@
 <body>
 	<c:if test="${ not empty alertMsg }">
 		<script>
-			if('${alertMsg}' == '회원정보수정성공'){
+			if('${alertMsg}' == '회원정보 수정 성공!'){
+				swal('${alertMsg}');
+			}else if('${alertMsg}' == '게시물 수정 성공!'){
+				swal('${alertMsg}');
+			}else if('${alertMsg}' == '게시물 작성 성공!'){
 				swal('${alertMsg}');
 			}
 		</script>
@@ -89,7 +93,7 @@
                                <button class="btn" onclick="myEdit()">
                                    <span class="icon2"><h6>프로필 수정</h6></span>
                                </button>
-                               <button class="btn"  onclick="myFeedEdit()">
+                               <button class="btn"  onclick="myFeedEnroll()">
                                    <span class="icon2"><h6>피드 등록</h6></span>
                                </button>
                            </div>
@@ -174,7 +178,7 @@
 			                                   <div class="modal-more-options">
 			                                       <div>
 			                                           <dl>
-			                                               <dt onclick="location.href='My_Feed_Edit.html'">
+			                                               <dt onclick="myFeedEdit()">
 			                                                   <span class="material-symbols-outlined"> edit </span>
 			                                                   <a>수정하기</a>
 			                                               </dt>
@@ -201,14 +205,10 @@
 			               </div>
 			               <div class="modal-body modal-backgound">
 			                   <div class="modal-feed-body">
+			                   
 			                       <div class="feed-img" id="feed-img">
-			                        <%--  <div>
-			                         	<img src="${contextPath}/resources/images/dog1.gif">
-			                         </div>
-			                         <div>
-			                         	<img src="${contextPath}/resources/images/dog2.gif">
-			                         </div> --%>
 			                       </div>
+			                        
 			                       <div class="body-bottom">
 			                           <div class="feed-tools">
 			                               <div class="clickable-svg">
@@ -436,7 +436,7 @@
 		                                   <div class="modal-more-options">
 		                                       <div>
 		                                           <dl>
-		                                               <dt onclick="location.href='My_Feed_Edit.html'">
+		                                               <dt id="modifyFeed">
 		                                                   <span class="material-symbols-outlined"> edit </span>
 		                                                   <a>수정하기</a>
 		                                               </dt>
@@ -795,8 +795,13 @@
        function myEdit() {
            location.href = '${contextPath}/MyEdit.me';
        }
-       function myFeedEdit() {
+       function myFeedEnroll() {
            location.href = '${contextPath}/MyFeedEnroll.me';
+       }
+       function myFeedEdit() {
+    	   const num = $(".fileNum").eq(0).text();
+    	   location.href = '${contextPath}/MyFeedEdit.me?fno='+num;
+           
        }
        AOS.init();
        $(document).ready(function () {
@@ -834,7 +839,7 @@
 
    </script>
    <script>
-		const  slick2 = () => {
+		const  select2 = () => {
    	    	jb1("#MyDetailFeed .slick-dots li").eq(0).click();
    		}    
 	   function feedNo(e , no){
@@ -846,16 +851,20 @@
 	           data: { imgNo : imgNo },
 	           success: function (result) {
 	        	   console.log(result);
-	               let html = "<div id='slick_feed'>";
-	               
+	               let html = "<div class='fileNum' style='display:none'>"+result[0].fileFno+"</div>"
+	           		   html += "<div id='slick_feed'>";
 	           	   for(let img of result){
-		           		html += "<div>"
+           		   		if(img.changeName != "DotLogo_D.png"){
+			           		html += "<div>"
 							html += "<img src=${contextPath}"+img.filePath+"/"+img.changeName+">"
-						html += "</div>"
+							html += "</div>"
+           	   			}
 	               }
 	           		html += "</div>"
 	           		
 	           	   	jb1(".feed-img").html(html);
+	           		
+	           	 if (result.length > 1) {
 			       jb1('#slick_feed').slick({
 			    	   	// Slick configuration options
 			    	   	slidesToShow: 1,
@@ -864,7 +873,8 @@
 			    	   	dots:true
 			    	   	// Add more options as needed
 			    	 });
-			       	 slick2();
+			       	 select2();
+	           	 }
 	       	   }
 	        });
 	   }
@@ -882,16 +892,17 @@
 	           data: { imgNo : imgNo },
 	           success: function (result) {
 	        	   console.log(result);
-	               let html = "<div id='slick_feed2'>";
-	               
+	           	   html += "<div id='slick_feed2'>";
 	           	   for(let img of result){
-		           		html += "<div>"
-							html += "<img src=${contextPath}"+img.filePath+"/"+img.changeName+">"
+          		   	if(img.changeName != "DotLogo_D.png"){
+			        	html += "<div>"
+						html += "<img src=${contextPath}"+img.filePath+"/"+img.changeName+">"
 						html += "</div>"
-	               }
-	           		html += "</div>"
-	           		
-	           	   	jb1(".feed-img2").html(html);
+          	   		}
+	              }
+	           	html += "</div>"
+	           	jb1(".feed-img2").html(html);
+	           	 if (result.length > 1) {
 			       jb1('#slick_feed2').slick({
 			    	   	// Slick configuration options
 			    	   	slidesToShow: 1,
@@ -901,6 +912,7 @@
 			    	   	// Add more options as needed
 			    	 });
 			       	 slick3();
+	           	 }
 	       	   }
 	        });
 	   }

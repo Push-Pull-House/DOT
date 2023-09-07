@@ -2,6 +2,7 @@ package com.kh.dots.member.model.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.dots.common.model.vo.Images;
 import com.kh.dots.member.model.dao.MemberDao;
+import com.kh.dots.member.model.vo.Friend;
 import com.kh.dots.member.model.vo.Member;
 
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +27,8 @@ public class MemberServiceImpl implements MemberService{
 	
 	@Autowired
 	private JavaMailSender sender;
+	
+	 private Map<String, Boolean> userStatusMap = new HashMap<>();
 
 	@Override
 	public Member selectOne(String userId) {
@@ -86,7 +90,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public List<Object> sideFriendList(int userNo) {
+	public List<Friend> sideFriendList(int userNo) {
 		return memberDao.sideFriendList(userNo);
 	}
 
@@ -141,4 +145,20 @@ public class MemberServiceImpl implements MemberService{
 	public int loginPwdReset(Member m) {
 		return memberDao.loginPwdReset(m);
 	}
+
+	@Override
+	public int updateUserLoginStatus(Member m) {
+		return memberDao.updateUserLoginStatus(m);
+	}
+
+	@Override
+	public Member selectFriendList2(Friend a) {
+		return memberDao.selectFriendList2(a);
+	}
+
+	@Override
+	public List<Member> selectAll() {
+		return memberDao.selectAll();
+	}
+	
 }

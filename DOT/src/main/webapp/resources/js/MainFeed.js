@@ -34,7 +34,7 @@ jb1(document).ready(function(){
         }
       });
   const  slick = () => {
-    jb1("#exampleModal .slick-dots li").eq(0).click();
+    jb1("#feedDetail .slick-dots li").eq(0).click();
    
   }     
   jb1(".reply-wrap>div").on("click", function(){

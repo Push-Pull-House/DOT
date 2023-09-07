@@ -11,11 +11,11 @@ jb1(document).ready(function(){
       if (!container.is(e.target) && container.has(e.target).length === 0
           && !buttons.is(e.target) && buttons.has(e.target).length === 0) {
           container.slideUp(250);
-      }
+      }        
   });
 
   jb1(".modal-toggle-button").click(function(){
-      jb1(this).next(".modal-more-options").slideToggle(250);
+      jb1(".modal-more-options").slideToggle(250);
   });
 
   jb1(document).mouseup(function(e){

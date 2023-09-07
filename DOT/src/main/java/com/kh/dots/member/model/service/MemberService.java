@@ -1,8 +1,10 @@
 package com.kh.dots.member.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.kh.dots.common.model.vo.Images;
+import com.kh.dots.member.model.vo.Friend;
 import com.kh.dots.member.model.vo.Member;
 
 public interface MemberService {
@@ -23,7 +25,7 @@ public interface MemberService {
 
 	List<Images> detailMyFeedModal(int imgNo);
 
-	List<Object> sideFriendList(int userNo);
+	List<Friend> sideFriendList(int userNo);
 
 	Member checkMember(int userNo);
 
@@ -42,5 +44,12 @@ public interface MemberService {
 	Member logincheck(Member m);
 
 	int loginPwdReset(Member m);
+
+	int updateUserLoginStatus(Member m);
+
+	Member selectFriendList2(Friend a);
+
+	List<Member> selectAll();
+
 
 }

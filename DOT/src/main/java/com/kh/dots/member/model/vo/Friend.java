@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Firend {
+public class Friend {
 	private int friendNo;
 	private int friendUser1;
 	private int friendUser2;

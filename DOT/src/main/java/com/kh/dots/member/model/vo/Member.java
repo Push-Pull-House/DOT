@@ -22,13 +22,15 @@ public class Member {
 	private String userMbti;
 	private Date enrollDate;
 	private Date userBirthday;
-	private boolean enable;
+	private String enable;
 	private String wbStatus;
 	private String status;
+	private String checkLog;
 	
 	private int fileWriter;
 	private String filePath;
 	private String originName;
 	private String changeName; 
 	private int fileLevel;
+	
 }

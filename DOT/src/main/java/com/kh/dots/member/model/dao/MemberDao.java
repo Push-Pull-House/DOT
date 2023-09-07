@@ -1,6 +1,5 @@
 package com.kh.dots.member.model.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -8,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.dots.common.model.vo.Images;
+import com.kh.dots.member.model.vo.Friend;
 import com.kh.dots.member.model.vo.Member;
 
 import lombok.extern.slf4j.Slf4j;
@@ -47,7 +47,7 @@ public class MemberDao {
 		return sqlSession.selectList("member.detailMyFeedModal",imgNo);
 	}
 
-	public List<Object> sideFriendList(int userNo) {
+	public List<Friend> sideFriendList(int userNo) {
 		return sqlSession.selectList("member.sideFriendList", userNo);
 	}
 
@@ -81,5 +81,17 @@ public class MemberDao {
 
 	public int loginPwdReset(Member m) {
 		return sqlSession.update("member.loginPwdReset",m);
+	}
+
+	public int updateUserLoginStatus(Member m) {
+		return sqlSession.update("member.updateUserLoginStatus",m);
+	}
+
+	public Member selectFriendList2(Friend a) {
+		return sqlSession.selectOne("member.selectFriendList2",a);
+	}
+
+	public List<Member> selectAll() {
+		return sqlSession.selectList("member.selectAll");
 	}
 }

@@ -25,6 +25,8 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script type="text/javascript" src="${contextPath}/resources/js/MainFeed.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    
+    
 </head>
 <body>
 	<div class="wrap">
@@ -168,6 +170,8 @@
                                     </div>
                                 </div>
                             </dt>
+                            
+                            
                         </dl>
                     </div>
                 </div>
@@ -586,13 +590,27 @@
                     <div class="modal-footer">
                         <button type="button" class="share-close" data-bs-dismiss="modal">나가기</button>
                         <button type="submit" class="share-add">공유하기</button>
+                        
                     </div>
                 </form>
             </div>
         </div>
     </div>
+    
     <script>
           AOS.init();
     </script>
+     <script>
+		 	// 웹소켓 연결(웹 브라우저에서 실행)
+		   // const socket = new SockJS("http://localhost:8083${contextPath}/websocket"); //URL에 대한 WebSocket 연결을 설정
+		    //const stompClient = Stomp.over(socket); //WebSocket을 통해 Stomp 클라이언트를 생성
+		    
+		  
+		 
+    	
+      </script> 
+   
+      
+      
 </body>
 </html>

@@ -79,7 +79,7 @@ body {
 }
 
 .main_container .buttons .add:hover {
-    color: white;
+    color: white !important;
     border-radius: 25px;
 }
 
@@ -124,8 +124,8 @@ body {
 
 .slide_container img {
     width: 100%;
-    height: 682px;
-    object-fit: cover;
+    height: 540px;
+    object-fit: contain;
 }
 
 .slick-prev:before,
@@ -152,13 +152,14 @@ body {
 
 .main_container .slide_list .thumbnail img {
     width: 100px;
-    height: 100%;
+    height: 120px;
+    object-fit : fill;
 }
 
 .main_container .slide_list .remove {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 8px;
+    right: 8px;
 }
 
 .main_container .slide_list img {
@@ -270,4 +271,35 @@ body {
 .update_container .cancle:hover {
     background-color: white;
     color: black;
+}
+
+/* swal */
+.swal-modal {
+    background-color: black;
+    border: 1px solid white;
+}
+.swal-text {
+    text-align: center;
+    color: white;
+}
+.swal-title {
+    text-align: center;
+    color: white;
+}
+.swal-icon--success:before {
+    display: none;
+}
+.swal-icon--success:after {
+    display: none;
+}
+.swal-icon--success__hide-corners {
+    display: none;
+}
+.swal-footer{
+	display: flex;
+    justify-content: center;
+}
+.btn-box {
+    display: flex;
+    justify-content: center;
 }

@@ -16,6 +16,7 @@
 		<result column="ENABLE" property="enable"/>
 		<result column='WB_STATUS' property="wbStatus"/>
 		<result column="STATUS" property="status"/>
+		<result column="CHECK_LOGIN" property="checkLog"/>
 	</resultMap>
 	
 	<resultMap id="imagesResultSet" type="images">
@@ -27,6 +28,13 @@
 		<result column="STATUS" property="status"/>
 		<result column="FILE_LEVEL" property="fileLevel"/>
 		<result column="FILE_FNO" property="fileFno"/>
+	</resultMap>  
+	
+	<resultMap id="friendResultSet" type="friend">
+		<id column="FRIEND_NO" property="friendNo"/>
+		<result column="FRIEND_USER1" property='friendUser1'/>
+		<result column="FRIEND_USER2" property="friendUser2"/>
+		<result column="ENABLE" property="enable"/>
 	</resultMap>  
 
  	<select id="selectOne" parameterType="String" resultMap="memberResultSet">
@@ -61,6 +69,7 @@
 			#{userBirthday},
 			DEFAULT,
 			DEFAULT,
+			DEFAULT,
 			DEFAULT
 		)
 	</insert>
@@ -89,13 +98,33 @@
 							)
 	</select>
 	
-	<select id="sideFriendList" parameterType="int" resultMap="memberResultSet">
-		SELECT *
+	<select id="sideFriendList" parameterType="int" resultMap="friendResultSet">
+		<!-- SELECT *
 		FROM MEMBER M
 		JOIN FRIEND F ON FRIEND_USER2 = USER_NO
         LEFT JOIN IMAGE I ON FILE_WRITER = M.USER_NO AND FILE_LEVEL = 1
 		WHERE FRIEND_USER1 = #{userNo}
-		ORDER BY USER_NO DESC
+		ORDER BY USER_NO DESC -->
+		SELECT FRIEND_USER1, FRIEND_USER2
+		FROM FRIEND
+		WHERE FRIEND_USER1 = #{userNo}
+	</select>
+	
+	<select id="selectFriendList2" parameterType="friend" resultMap="memberResultSet">
+		<!-- SELECT *
+		FROM MEMBER M
+		JOIN FRIEND F ON FRIEND_USER2 = USER_NO
+        LEFT JOIN IMAGE I ON FILE_WRITER = M.USER_NO AND FILE_LEVEL = 1
+		WHERE FRIEND_USER1 = #{userNo}
+		ORDER BY USER_NO DESC -->
+		SELECT *
+		FROM MEMBER M
+		LEFT JOIN IMAGE I ON FILE_WRITER = M.USER_NO AND FILE_LEVEL = 1
+		WHERE M.USER_NO = (
+							SELECT FRIEND_USER1
+							FROM FRIEND
+							WHERE FRIEND_USER1 = #{friendUser2} AND FRIEND_USER2 = #{friendUser1}				
+							)
 	</select>
 	
 	<select id="checkMember" parameterType="int" resultMap="memberResultSet">
@@ -162,4 +191,15 @@
 		SET USER_PWD = '$2a$10$VC/SNhYAZHbEdNIDOTkfpusMw0m9KeRvUs2lTUVkDU/4J/P9ct5Ke'
 		WHERE USER_ID = #{userId}
 	</update>
+	
+	<update id="updateUserLoginStatus" parameterType="member">
+		UPDATE MEMBER
+		SET CHECK_LOGIN = #{checkLog}
+		WHERE USER_NICK = #{userNick}
+	</update>
+	
+	<select id="selectAll" resultMap="memberResultSet">
+		SELECT *
+		FROM MEMBER
+	</select>
 </mapper>

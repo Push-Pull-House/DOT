@@ -567,7 +567,7 @@ a:hover {
 }
 
 .modal-feed-body img {
-    width: 95%;
+    width: 98%;
     margin: 0 auto;
     height: 430px;
     margin-right: 24px;
@@ -730,5 +730,7 @@ a:hover {
     margin-top: 15px;
     margin-left: 480px !important;
 }
-
+.modal-user-profile > span:nth-child(2){
+	width:100px;
+}
 

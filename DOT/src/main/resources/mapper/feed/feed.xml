@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="feed">
+	
+	<resultMap id="imagesResultSet" type="images">
+		<id column="FILE_NO" property="fileNo"/>
+		<result column="FILE_WRITER" property='fileWriter'/>
+		<result column="ORIGIN_NAME" property="originName"/>
+		<result column="CHANGE_NAME" property="changeName"/>
+		<result column="FILE_PATH" property="filePath"/>
+		<result column="STATUS" property="status"/>
+		<result column="FILE_LEVEL" property="fileLevel"/>
+		<result column="FILE_FNO" property="fileFno"/>
+	</resultMap>  
+	
+	<resultMap id="feedExtResultSet" type="feedExt">
+		<id column="FEED_NO" property="feedNo"/>
+		<result column="FEED_WRITER" property='feedWriter'/>
+		<result column="FEED_CONTENT" property="feedContent"/>
+		<result column="LIKE_STATUS" property="likeStatus"/>
+		<result column="CHOICE_STATUS" property="choiceStatus"/>
+		<result column="LIKE_COUNT" property="likeCount"/>
+		<result column="FEED_HASHTAG" property="feedHashtag"/>
+		<collection property="feedImgList" ofType="Images" javaType="java.util.List"
+		            resultMap="imagesResultSet" />
+	</resultMap> 
+	
+	<resultMap id="feedResultSet" type="feed">
+		<id column="FEED_NO" property="feedNo"/>
+		<result column="FEED_WRITER" property='feedWriter'/>
+		<result column="FEED_CONTENT" property="feedContent"/>
+		<result column="LIKE_STATUS" property="likeStatus"/>
+		<result column="CHOICE_STATUS" property="choiceStatus"/>
+		<result column="LIKE_COUNT" property="likeCount"/>
+		<result column="FEED_HASHTAG" property="feedHashtag"/>
+	</resultMap> 
+
+	<insert id="insertFeed" parameterType="feed">
+		INSERT INTO FEED
+		VALUES(
+			SEQ_FEED_NO.NEXTVAL,
+			#{feedWriter},
+			#{feedContent},
+			DEFAULT,
+			DEFAULT,
+			DEFAULT,
+			#{feedHashtag}
+		)
+	</insert>
+	
+	<insert id="insertFeedImg" parameterType="list">
+		INSERT INTO IMAGE(FILE_NO , FILE_FNO, FILE_WRITER , ORIGIN_NAME, CHANGE_NAME, FILE_PATH , STATUS ,FILE_LEVEL )
+	 	SELECT SEQ_FILE_NO.NEXTVAL AS FILE_NO , SEQ_FEED_NO.CURRVAL as FILE_FNO ,  C.* FROM 
+	 	(
+	 		<foreach collection="list" item="img" separator="UNION ALL">
+	 			SELECT
+	 				
+	 				#{img.fileWriter} as FILE_WRITER,
+	 				#{img.originName} as ORIGIN_NAME,
+	 				#{img.changeName} as CHANGE_NAME,
+	 				#{img.filePath} as FILE_PATH,
+	 				'Y' as STATUS,
+	 				#{img.fileLevel} as FILD_LEVEL	 				
+	 			FROM DUAL
+	 		</foreach>
+	 		
+	 	) C
+	</insert>
+	
+	<select id="selectFeedData" parameterType="int" resultMap="feedResultSet">
+		SELECT *
+		FROM FEED
+		WHERE FEED_NO = #{fno}	
+	</select>
+	
+	<select id="selectFeedImgList" parameterType="int" resultMap="imagesResultSet">
+		SELECT *
+		FROM IMAGE
+		WHERE FILE_FNO = #{fno}
+	</select>
+	
+	<update id="updateFeedText" parameterType="feed">
+		UPDATE FEED
+		SET FEED_CONTENT = #{feedContent},
+			FEED_HASHTAG = #{feedHashtag}
+		WHERE FEED_NO = #{feedNo} AND FEED_WRITER = #{feedWriter} 
+	</update>
+	
+	<delete id="deleteImage" parameterType="map">
+		DELETE FROM IMAGE
+		WHERE FILE_FNO = #{feedNo}
+		AND FILE_LEVEL IN (${deleteList})
+	</delete>
+	
+	<update id="updateImage" parameterType="images">
+		UPDATE IMAGE 
+		SET
+		ORIGIN_NAME = #{originName},
+		CHANGE_NAME = #{changeName},
+		FILE_PATH = #{filePath}
+		WHERE FILE_FNO= #{fileFno} AND FILE_LEVEL = #{fileLevel}
+	</update>
+	
+	<insert id="insertImage" parameterType="images">
+		INSERT INTO IMAGE(
+			FILE_NO,
+			FILE_WRITER,
+			ORIGIN_NAME,
+			CHANGE_NAME,
+			FILE_PATH,
+			STATUS,
+			FILE_LEVEL,
+			FILE_FNO
+		) VALUES (
+			SEQ_FILE_NO.NEXTVAL,
+			#{fileWriter},
+			#{originName},
+			#{changeName},
+			#{filePath},
+			'Y',
+			#{fileLevel},
+			#{fileFno}
+		)
+	</insert>
+</mapper>

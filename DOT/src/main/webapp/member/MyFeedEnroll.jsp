@@ -49,28 +49,95 @@
         <link rel="stylesheet" href="${contextPath}/resources/css/My_Feed_Enroll.css" />
 </head>
 <body>
+	<c:if test="${ not empty alertMsg }">
+		<script>
+			if('${alertMsg}' == '게시물 작성 실패!'){
+				swal('${alertMsg}');
+			}
+		</script>
+		<c:remove var="alertMsg" />
+	</c:if>
 	<div class="wrap">
             <jsp:include page="../common/Header.jsp" />    
             <div class="contents">
           		<jsp:include page="../common/Sidebar.jsp" />
                 <div class="main_content">
-                    <form action="" method="post" enctype="multipart/form-data">
+                    <form action="${contextPath}/feedEnroll.fe" method="post" enctype="multipart/form-data" id="form-form-from">
                     <div class="main_container">
                         <div class="slide_wrap">
                             <div class="slide_container">
                                 <div class="add-remove">
+	                       			<img src="${contextPath}/resources/images/DotLogo_D.png">
+	                       			<img src="${contextPath}/resources/images/DotLogo_D.png">
+	                       			<img src="${contextPath}/resources/images/DotLogo_D.png">
+	                       			<img src="${contextPath}/resources/images/DotLogo_D.png">
+	                       			<img src="${contextPath}/resources/images/DotLogo_D.png">
                                 </div>
                                 <div class="buttons">
-                                    <label class="button add-slide">
-                                        <span class="material-symbols-outlined add">
-                                            add_circle
-                                        </span>
-                                        <input type="file" class="file-input" accept="image/*" style="display: none;">
-                                    </label>
+                                    <label class="button add-slide" id="add-slide1">
+									    <span class="material-symbols-outlined add" style="color:skyblue;">
+									        add_circle
+									    </span>
+									    <input type="file" class="file-input" accept="image/*" style="display: none;" name="feedImg1" id="feedImg1" required>
+									</label>
+									 <label class="button add-slide" id="add-slide2" >
+						                <span class="material-symbols-outlined add">
+						                    add_circle
+						                </span>
+						                <input type="file" class="file-input" accept="image/*" style="display: none;" name="feedImg2" id="feedImg2">
+            						</label>
+            						<label class="button add-slide" id="add-slide3" >
+						                <span class="material-symbols-outlined add">
+						                    add_circle
+						                </span>
+						                <input type="file" class="file-input" accept="image/*" style="display: none;" name="feedImg3" id="feedImg3">
+            						</label>
+            						<label class="button add-slide" id="add-slide4" >
+						                <span class="material-symbols-outlined add">
+						                    add_circle
+						                </span>
+						                <input type="file" class="file-input" accept="image/*" style="display: none;" name="feedImg4" id="feedImg4">
+            						</label>
+            						<label class="button add-slide" id="add-slide5" >
+						                <span class="material-symbols-outlined add">
+						                    add_circle
+						                </span>
+						                <input type="file" class="file-input" accept="image/*" style="display: none;" name="feedImg5" id="feedImg5">
+            						</label>
                                 </div>
                             </div>
                             <div class="slide_list_wrap">
                                 <div class="slide_list">
+                                	<div class="thumbnail">
+                                		<img src="${contextPath}/resources/images/DotLogo_D.png">
+		                				<a href="javascript:void(0)" class="remove-slide">
+		                					<span class="material-symbols-outlined remove">delete_forever</span>
+		                				</a>
+		                			</div>
+		                			<div class="thumbnail">
+                                		<img src="${contextPath}/resources/images/DotLogo_D.png">
+		                				<a href="javascript:void(0)" class="remove-slide">
+		                					<span class="material-symbols-outlined remove">delete_forever</span>
+		                				</a>
+		                			</div>
+		                			<div class="thumbnail">
+                                		<img src="${contextPath}/resources/images/DotLogo_D.png">
+		                				<a href="javascript:void(0)" class="remove-slide">
+		                					<span class="material-symbols-outlined remove">delete_forever</span>
+		                				</a>
+		                			</div>
+		                			<div class="thumbnail">
+                                		<img src="${contextPath}/resources/images/DotLogo_D.png">
+		                				<a href="javascript:void(0)" class="remove-slide">
+		                					<span class="material-symbols-outlined remove">delete_forever</span>
+		                				</a>
+		                			</div>
+		                			<div class="thumbnail">
+                                		<img src="${contextPath}/resources/images/DotLogo_D.png">
+		                				<a href="javascript:void(0)" class="remove-slide">
+		                					<span class="material-symbols-outlined remove">delete_forever</span>
+		                				</a>
+		                			</div>
                                 </div>
                             </div>
                         </div>
@@ -84,14 +151,16 @@
                                 </div>
                             </div>
                             <div class="feed_container">
-                                <textarea class="text" placeholder="문구 입력...."></textarea>
+                                <textarea class="text" name="feedContent" placeholder="문구 입력..."></textarea>
                             </div>
                             <div class="hash_container">
-                                <input type="text" class="hashtag" placeholder="태그 입력...."/>
+                                <input type="text" name="hashTag" class="hashtag" placeholder="태그 입력...."/>
                             </div>
                             <div class="confirm_container">
                                 <div class="cancle_btn"></div>
-                                <div class="confirm_btn"><button class="cancle" onclick="toMyFeed()">취소</button><button class="confirm">등록</button></div>
+                                <div class="confirm_btn"><button type="button" class="cancle" onclick="toMyFeed()">취소</button>
+                                <button type="button" id="form-btn-feed" class="confirm">등록</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -100,56 +169,102 @@
             </div>
         </div>
 		<script>
+		  var form = $('#form-form-from');
+		  var btn = $('#form-btn-feed');
+		  btn.on('click', function(event) {
+			  //event.preventDefault();
+			  console.log("1");
+			  swal({
+				  text:"게시물을 등록하시겠습니까?",
+				  buttons : ["취소하기","등록하기"]
+			  })
+			  .then((value) => {
+				  console.log(value);
+				  if(value){
+					  var chk = $('#feedImg1');
+					  if(!chk.val()){
+						  swal("썸네일사진은 필수입니다.(하늘색버튼)");
+					  }else{
+					  	form.submit();
+					  }
+				  }else{
+					  console.log("다시해~");
+				  }
+			  });
+		    });
+			  
 		  function toMyFeed() {
 		        location.href = '${contextPath}/MyFeed.me';
 		  }
-		  jb1(function () {
-		    var slideContainer = jb1('.add-remove');
-		    var slideList = jb1('.slide_list');
-		    var slideIndex = 0;
+		</script>
 		
-		    jb1('.slide_list').slick({
-		        slidesToShow: 1,
-		        slidesToScroll: 1
+		<script>
+		 $(document).ready(function () {
+		        var slideContainer = jb1('.add-remove');
+		        var slideList = jb1('.slide_list');
+
+		        // Initialize the slick slider for the slideContainer
+		        slideContainer.slick({
+		            slidesToShow: 1,
+		            slidesToScroll: 1,
+		            infinite: true, // Prevent infinite scrolling
+		        });
+		      
 		    });
-		
-		    jb1('.file-input').on('change', function (e) {
-		        var files = e.target.files;
-		        if (files && files.length > 0) {
-		            var imgUrl = URL.createObjectURL(files[0]);
-		            slideIndex++;
-		
-		            var newSlide = '<div class="add_img"><img src="' + imgUrl + '"></div>';
-		            jb1('.add-remove').slick('slickAdd', newSlide);
-		
-		            var newSlideThumbnail = '<div class="thumbnail"><img src="' + imgUrl + '">' +
-		                                    '<a href="javascript:void(0)" class="remove-slide">' +
-		                                    '<span class="material-symbols-outlined remove">delete_forever</span></a></div>';
-		            slideList.append(newSlideThumbnail);
-		
-		            jb1('.remove-slide').show(); // 사진 추가되면 지우는 버튼 보이게 함
+		        var slideContainer = $('.add-remove');
+		        var slideList = $('.slide_list');
+		        
+		        var slidmainImg = jb1('.add-remove img');
+		        var slidmainImg2 = jb1('.thumbnail>img');
+		        var inputImage = jb1('.file-input');
+		        var deleteImage = jb1('.thumbnail span')
+		            
+		        for(let i=0 ; i<inputImage.length ; i++){
+
+				    // 파일이 선택 되었을 때의 동작
+				    inputImage[i].addEventListener("change", function(){
+						
+				        if(this.files[0] != undefined){ // 파일이 선택 되었을 때
+				            const reader = new FileReader(); // 선택된 파일을 읽을 객체 생성
+				            reader.readAsDataURL(this.files[0]);
+				            // 지정된 파일을 읽음 -> result에 저장(URL 포함) -> URL을 이용해서 이미지 볼 수 있음
+
+				            reader.onload = function(e){ // reader가 파일을 다 읽어온 경우
+				                // e.tartget == redaer
+				                // e.target.result == 읽어들인 이미지의 URL
+				                // preview[i] == 파일이 선택된 input태그와 인접한 preview 이미지 태그
+				                slidmainImg[i].setAttribute("src", e.target.result);
+				            	slidmainImg2[i].setAttribute("src", e.target.result);
+
+				            }
+				      
+				        } else { // 파일이 선택되지 않았을 때 (취소)
+				        	slidmainImg[i].setAttribute("src","${contextPath}/resources/images/DotLogo_D.png"); // src 속성 제거
+				        	slidmainImg2[i].setAttribute("src","${contextPath}/resources/images/DotLogo_D.png"); // src 속성 제거
+				        }
+				    });
+
+
+
+				    // 미리보기 삭제 버튼(x)이 클릭 되었을 때의 동작
+				    deleteImage[i].addEventListener("click", function(){
+
+				        // 미리보기가 존재하는 경우에만 (이전에 추가된 이미지가 있을 때만 X버튼 동작)
+				        if( slidmainImg2[i].getAttribute("src")  !=  "${contextPath}/resources/images/DotLogo_D.png" ){
+
+				            // 미리보기 삭제
+				           	slidmainImg[i].setAttribute("src","${contextPath}/resources/images/DotLogo_D.png"); // src 속성 제거
+				        	slidmainImg2[i].setAttribute("src","${contextPath}/resources/images/DotLogo_D.png"); // src 속성 제거
+
+				            // input의 값을 "" 만들기
+				            console.log(inputImage[i].value);
+				            inputImage[i].value = "";
+				            console.log(inputImage[i].value);
+				        }
+
+				    });
 		        }
-		    });
-		
-		    slideList.on('click', '.remove-slide', function () {
-		        var clickedIndex = jb1(this).parent().index();
-		        jb1('.slide_list').slick('slickRemove', clickedIndex);
-		        jb1(this).parent().remove();
-		        slideIndex--;
-		
-		        if (slideIndex === 0) {
-		            jb1('.remove-slide').hide(); // 모든 사진이 삭제되면 지우는 버튼 숨김
-		        }
-		    });
-		
-		    jb1('.add-slide').on('click', function () {
-		        jb1('.file-input').click();
-		    });
-		});
-		
-		
-		
-		
+		   
 		</script>
 </body>
 </html>
