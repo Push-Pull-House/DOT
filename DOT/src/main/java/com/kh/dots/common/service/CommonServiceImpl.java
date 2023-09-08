@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.dots.common.model.dao.CommonDao;
 import com.kh.dots.common.model.vo.Images;
+import com.kh.dots.common.model.vo.Search;
 import com.kh.dots.feed.model.vo.Feed;
 import com.kh.dots.member.model.vo.Member;
 
@@ -59,5 +60,15 @@ public class CommonServiceImpl implements CommonService {
 	@Override
 	public int deleteFeed(int i) {
 		return cDao.deleteFeed(i);
+	}
+
+	@Override
+	public List<Search> MyHistory(int i) {
+		return cDao.MyHistory(i);
+	}
+
+	@Override
+	public int insertSearch(Search search) {
+		return cDao.insertSearch(search);
 	}
 }

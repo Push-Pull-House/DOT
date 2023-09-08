@@ -19,5 +19,6 @@ public class UserStatusMessage {
     private boolean checkLog;
     private int userNo;
     private List<Member> friendList;
+    
     // Getter 및 Setter 메서드
 }

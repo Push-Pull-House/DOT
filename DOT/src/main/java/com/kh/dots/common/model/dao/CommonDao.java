@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.dots.common.model.vo.Images;
+import com.kh.dots.common.model.vo.Search;
 import com.kh.dots.feed.model.vo.Feed;
 import com.kh.dots.member.model.vo.Member;
 
@@ -52,6 +53,14 @@ public class CommonDao {
 
 	public int deleteFeed(int i) {
 		return sqlSession.delete("common.deleteFeed",i);
+	}
+
+	public List<Search> MyHistory(int i) {
+		return sqlSession.selectList("common.MyHistory",i);
+	}
+
+	public int insertSearch(Search search) {
+		return sqlSession.insert("common.insertSearch",search);
 	}
 	
 }

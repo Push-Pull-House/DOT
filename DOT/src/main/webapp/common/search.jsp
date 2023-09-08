@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html lang="en">
@@ -77,7 +78,7 @@
                 <!-- 검색아래 피드파트-->
                  <div class="feed-content-wrap">
                     <div class="feed-content-wrap1">
-                    	<c:forEach var="s" items="${slist}" begin="0" end="9" step="1" >
+                    	<c:forEach var="s" items="${slist}" begin="0" end="${slist.size()}" step="1" >
                         	<div class="feed-content2" data-bs-toggle="modal" data-bs-target="#MyDetailFeed" onclick="feedNo(event , ${s.fileNo})">
                         		<div>
                                 <img src="${contextPath}${s.filePath}/${s.changeName}">
@@ -116,212 +117,82 @@
                     </div>
                 </div>   
             </div>
-
-            <div class="sub-content">
-                <div class="sub-wrap">
-                    <div class="sub-container">
-                        <div class="sub-recommand">
-                            <div class="sub-title">
-                                <span>회원님을 위한 추천</span>
-                            </div>
-                            <div class="result-content-area">
-                                <div class="result-content">
-                                    <dl class="follow-list">
-                                        <dt class="follow-img">      
-                                            <img src="${contextPath}/resources/images/profile1.jpg">
-                                        </dt> 
-                                        <dt class="follow-id">
-                                            <div class="user-id">
-                                                <span>xeesoxee
-                                                </span>
-                                            </div>
-                                            <div class="user-nickname">
-                                                <span>회원님을 팔로우합니다</span>
-                                            </div>
-                                        </dt>
-                                        <dt class="follow-btn">
-                                        <button>팔로우</button> 
-                                        </dt>
-                                    </dl>
+			<!-- 실시간 바 -->
+             <div class="sub-content">
+                 <div class="sub-wrap">
+                     <div class="sub-container">
+                         <div class="sub-recommand">
+                             <div class="sub-title">
+                                 <span>회원님을 위한 추천</span>
+                             </div>
+                              <div class="result-content-area">
+                                <c:if test="${rf ne null }">
+                          		  <c:forEach var ="i" items="${rf}">
+                                  <div class="result-content">
+                                      <dl class="follow-list">
+                                          <dt class="follow-img">
+                                              <img src='${contextPath}${i.filePath}/${i.changeName}' /> 
+                                          </dt>
+                                          <dt class="follow-id">
+                                              <div class="user-id" style="color:white;">
+                                                  <span>${i.userNick }</span>
+                                              </div>
+                                              <div class="user-nickname">
+                                                  <span>${i.userName }</span>
+                                              </div>
+                                          </dt>
+                                          <dt class="follow-btn1">
+                                              <button class="follow-btn10 follower-btn" id="f-btn1_${i.userNo}" onclick="follow(event,${i.userNo})" value="${i.userNo}"><h6>팔로우</h6></button>
+                                              <button class="follow-btn10 follower-btn" id="f-btn2_${i.userNo}" onclick="unfollow(event,${i.userNo})" value="${i.userNo}" style="display:none; color:white;"><h6>팔로잉</h6></button>
+                                          </dt>
+                                      </dl>
+                                  </div>
+                           		  </c:forEach> 
+                           		  </c:if>
                                 </div>
-                                <div class="result-content">
-                                    <dl class="follow-list">
-                                        <dt class="follow-img">      
-                                            <img src="${contextPath}/resources/images/profile2.jpg">
-                                        </dt> 
-                                        <dt class="follow-id">
-                                            <div class="user-id">
-                                                <span>xeesoxee
-                                                </span>
-                                            </div>
-                                            <div class="user-nickname">
-                                                <span>회원님을 팔로우합니다</span>
-                                            </div>
-                                        </dt>
-                                        <dt class="follow-btn">
-                                            <button>팔로우</button> 
-                                        </dt>
-                                    </dl>
-                                </div>
-                                <div class="result-content">
-                                    <dl class="follow-list">
-                                        <dt class="follow-img">      
-                                            <img src="${contextPath}/resources/images/profile3.jpg">
-                                        </dt> 
-                                        <dt class="follow-id">
-                                            <div class="user-id">
-                                                <span>xeesoxee
-                                                </span>
-                                            </div>
-                                            <div class="user-nickname">
-                                                <span>회원님을 팔로우합니다</span>
-                                            </div>
-                                        </dt>
-                                        <dt class="follow-btn">
-                                            <button>팔로우</button> 
-                                        </dt>
-                                    </dl>
-                                </div>
-                                <div class="result-content">
-                                    <dl class="follow-list">
-                                        <dt class="follow-img">      
-                                            <img src="${contextPath}/resources/images/profile4.jpg">
-                                        </dt> 
-                                        <dt class="follow-id">
-                                            <div class="user-id">
-                                                <span>xeesoxee
-                                                </span>
-                                            </div>
-                                            <div class="user-nickname">
-                                                <span>회원님을 팔로우합니다</span>
-                                            </div>
-                                        </dt>
-                                        <dt class="follow-btn">
-                                            <button>팔로우</button> 
-                                        </dt>
-                                    </dl>
-                                </div>
-                                <div class="result-content">
-                                    <dl class="follow-list">
-                                        <dt class="follow-img">      
-                                            <img src="${contextPath}/resources/images/profile5.jpg">
-                                        </dt> 
-                                        <dt class="follow-id">
-                                            <div class="user-id">
-                                                <span>xeesoxee
-                                                </span>
-                                            </div>
-                                            <div class="user-nickname">
-                                                <span>회원님을 팔로우합니다</span>
-                                            </div>
-                                        </dt>
-                                        <dt class="follow-btn">
-                                            <button>팔로우</button> 
-                                        </dt>
-                                    </dl>
-                                </div>
-                                <div class="result-content">
-                                    <dl class="follow-list">
-                                        <dt class="follow-img">      
-                                            <img src="${contextPath}/resources/images/profile6.jpg">
-                                        </dt> 
-                                        <dt class="follow-id">
-                                            <div class="user-id">
-                                                <span>xeesoxee
-                                                </span>
-                                            </div>
-                                            <div class="user-nickname">
-                                                <span>회원님을 팔로우합니다</span>
-                                            </div>
-                                        </dt>
-                                        <dt class="follow-btn">
-                                            <button>팔로우</button> 
-                                        </dt>
-                                    </dl>
-                                </div>
-                                <div class="result-content">
-                                    <dl class="follow-list">
-                                        <dt class="follow-img">      
-                                            <img src="${contextPath}/resources/images/profile7.jpg">
-                                        </dt> 
-                                        <dt class="follow-id">
-                                            <div class="user-id">
-                                                <span>xeesoxee
-                                                </span>
-                                            </div>
-                                            <div class="user-nickname">
-                                                <span>회원님을 팔로우합니다</span>
-                                            </div>
-                                        </dt>
-                                        <dt class="follow-btn">
-                                            <button>팔로우</button> 
-                                        </dt>
-                                    </dl>
-                                </div>
-                                <div class="result-content">
-                                    <dl class="follow-list">
-                                        <dt class="follow-img">      
-                                            <img src="${contextPath}/resources/images/knotted-logo2.png">
-                                        </dt> 
-                                        <dt class="follow-id">
-                                            <div class="user-id">
-                                                <span>xeesoxee
-                                                </span>
-                                            </div>
-                                            <div class="user-nickname">
-                                                <span>회원님을 팔로우합니다</span>
-                                            </div>
-                                        </dt>
-                                        <dt class="follow-btn">
-                                            <button>팔로우</button> 
-                                        </dt>
-                                    </dl>
-                                </div>
-                                <div class="result-content">
-                                    <dl class="follow-list">
-                                        <dt class="follow-img">      
-                                            <img src="${contextPath}/resources/images/knotted_img.jpg">
-                                        </dt> 
-                                        <dt class="follow-id">
-                                            <div class="user-id">
-                                                <span>xeesoxee
-                                                </span>
-                                            </div>
-                                            <div class="user-nickname">
-                                                <span>회원님을 팔로우합니다</span>
-                                            </div>
-                                        </dt>
-                                        <dt class="follow-btn">
-                                            <button>팔로우</button> 
-                                        </dt>
-                                    </dl>
-                                </div>
-                                <div class="result-content">
-                                    <dl class="follow-list">
-                                        <dt class="follow-img">      
-                                            <img src="${contextPath}/resources/images/profile8.jpg">
-                                        </dt> 
-                                        <dt class="follow-id">
-                                            <div class="user-id">
-                                                <span>xeesoxee
-                                                </span>
-                                            </div>
-                                            <div class="user-nickname">
-                                                <span>회원님을 팔로우합니다</span>
-                                            </div>
-                                        </dt>
-                                        <dt class="follow-btn">
-                                            <button>팔로우</button> 
-                                        </dt>
-                                    </dl>
-                                </div>
-                            </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <script>
+        //사이드바 친구추천
+        function follow(e,no){
+        	console.log(e,no);
+            const userNo = $('#f-btn1_'+no).val();
+			const clickbtn = $('#f-btn1_'+no);
+			const clickbtn2 = $('#f-btn2_'+no);
+
+            $.ajax({
+                url: '${contextPath}/follow/followlist/addfollow',
+                data: { userNo: userNo },
+                method: 'post',
+                success(result) {
+                    // 처리 로직
+                    clickbtn.css("display", "none");
+                    clickbtn2.css("display","block");
+                }
+            });
+        }
+		
+        function unfollow(e,no){
+        	console.log(e,no);
+        	const userNo = $('#f-btn2_'+no).val();
+ 			const clickbtn = $('#f-btn1_'+no);
+ 			const clickbtn2 = $('#f-btn2_'+no);
+		    $.ajax({
+		        url: '${contextPath}/follow/followlist/unfollow',
+		        data: { userNo: userNo },
+		        method: 'post',
+		        success(result) {
+		            // AJAX 요청 성공 처리
+		        	clickbtn.css("display", "block");
+                    clickbtn2.css("display","none");
+		        }
+		    });
+        }
+        </script>
    		 <!-- Modal1 -->
 		<div class="modal fade" id="MyDetailFeed" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		    <div class="modal-dialog modal-xl">

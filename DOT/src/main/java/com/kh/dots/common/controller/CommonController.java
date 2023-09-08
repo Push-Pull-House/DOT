@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.kh.dots.common.model.template.Pagination;
 import com.kh.dots.common.model.vo.Images;
 import com.kh.dots.common.model.vo.PageInfo;
+import com.kh.dots.common.model.vo.Search;
 import com.kh.dots.common.service.CommonService;
 import com.kh.dots.feed.model.vo.Feed;
+import com.kh.dots.member.model.service.MemberService;
 import com.kh.dots.member.model.vo.Member;
 
 import lombok.extern.slf4j.Slf4j;
@@ -29,12 +31,15 @@ public class CommonController {
 	@Autowired
 	private CommonService cService;
 	
-	////////////////////
-	//    탐색 기능     //
-	////////////////////
+	@Autowired
+	private MemberService mService;
+	
 	@GetMapping("/search")
-	public String search() {
-	log.info("search");
+	public String search(HttpSession Session, Model model) {
+	Member m = (Member)Session.getAttribute("loginUser");
+	List<Member> rf = mService.recommandFollowList(m.getUserNo());
+	log.info("rf={}",rf);
+	model.addAttribute("rf",rf);
 	return "common/search.jsp";
 	}
 	
@@ -42,38 +47,32 @@ public class CommonController {
 	@GetMapping("/searchList.se") 
 	public String selectList(
 	@RequestParam(name = "keyword") String keyword,
-	Model model)
+	Model model,
+	HttpSession Session)
 	{
+		Member m = (Member)Session.getAttribute("loginUser");
+		List<Member> rf = mService.recommandFollowList(m.getUserNo());
+		log.info("rf={}",rf);
+		model.addAttribute("rf",rf);
 		log.info("keyword = {}", keyword);
-		
+		List<Search> MyHistory = cService.MyHistory(m.getUserNo());
+		int result = 0;
+		if(MyHistory != null) {
+			if(!MyHistory.get(0).getSearchKeyword().equals(keyword)) {
+				Search search = new Search();
+				search.setSearchWriter(m.getUserNo());
+				search.setSearchKeyword(keyword);
+				result = cService.insertSearch(search);
+				log.info("result={}",result);
+			}
+		}
 		List<Images> slist =  cService.selectList(keyword);
 		log.info("slist = {} ", slist);
 		
 		model.addAttribute("slist",slist);
-		
 		return "common/search.jsp";
 	}
 	
-	
-	// 검색 키워드 저장 기능
-	@GetMapping("/keywordList/{keyword}")
-	public String keywordList(
-		@RequestParam(name = "keyword") String keyword,
-		HttpSession session,
-		Model model
-		) {
-	log.info("keyword = {}", keyword);
-	Member loginUser = (Member)session.getAttribute("loginUser");
-	int loginUserNo = loginUser.getUserNo();
-	
-	Map<String, Object> map = new HashMap();
-	map.put("loginUserNo",loginUserNo);
-	map.put("keyword", keyword);
-	int result = cService.keywordList(map);
-	log.info("kList = {} ", result);
-	
-	return "common/search.jsp";
-	}
 	
 	/* 어드민 기능 */
 	@GetMapping("/adminMain")

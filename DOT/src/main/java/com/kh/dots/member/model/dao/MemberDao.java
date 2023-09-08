@@ -1,6 +1,7 @@
 package com.kh.dots.member.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,5 +94,29 @@ public class MemberDao {
 
 	public List<Member> selectAll() {
 		return sqlSession.selectList("member.selectAll");
+	}
+	
+	public List<Member> searchFollowerList(int userNo) {
+		return 	sqlSession.selectList("member.searchFollowerList",userNo);
+	}
+
+	public List<Images> searchFollowerImageList(int userNo) {
+		return sqlSession.selectList("member.searchFollowerImageList",userNo);
+	}
+
+	public List<Member> searchFollowList(int userNo) {
+		return sqlSession.selectList("member.searchFollowList",userNo);
+	}
+
+	public int unFollow(Map<String, Integer> map) {
+		return sqlSession.delete("member.unFollow",map);
+	}
+
+	public int addFollow(Map<String, Integer> map) {
+		return sqlSession.insert("member.addFollow",map);
+	}
+
+	public List<Member> recommandFollowList(int userNo) {
+		return sqlSession.selectList("member.recommandFollowList",userNo);
 	}
 }

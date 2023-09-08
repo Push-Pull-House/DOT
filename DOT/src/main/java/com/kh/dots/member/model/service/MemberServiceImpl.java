@@ -161,4 +161,33 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.selectAll();
 	}
 	
+	@Override
+	public List<Member> searchFollowerList(int userNo) {
+		return memberDao.searchFollowerList(userNo);
+	}
+
+	@Override
+	public List<Images> searchFollowerImageList(int userNo) {
+		return memberDao.searchFollowerImageList(userNo);
+	}
+
+	@Override
+	public List<Member> searchFollowList(int userNo) {
+		return memberDao.searchFollowList(userNo);
+	}
+
+	@Override
+	public int unFollow(Map<String, Integer> map) {
+		return memberDao.unFollow(map);
+	}
+
+	@Override
+	public int addFollow(Map<String, Integer> map) {
+		return memberDao.addFollow(map);
+	}
+	
+	@Override
+	public List<Member> recommandFollowList(int userNo) {
+		return memberDao.recommandFollowList(userNo);
+	}
 }

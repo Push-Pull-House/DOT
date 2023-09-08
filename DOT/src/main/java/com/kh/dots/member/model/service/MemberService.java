@@ -51,5 +51,15 @@ public interface MemberService {
 
 	List<Member> selectAll();
 
+	List<Member> searchFollowerList(int userNo);
 
+	List<Images> searchFollowerImageList(int userNo);
+
+	List<Member> searchFollowList(int userNo);
+
+	int unFollow(Map<String, Integer> map);
+
+	int addFollow(Map<String, Integer> map);
+
+	List<Member> recommandFollowList(int userNo);
 }

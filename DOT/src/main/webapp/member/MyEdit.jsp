@@ -315,7 +315,7 @@
 	        </div>
 	        <!-- 실시간 바 -->
 	        <div class="sub-content">
-	            <div class="sub-wrap">
+	            <<!-- div class="sub-wrap">
 	                <div class="sub-container">
 	                    <div>
 	                        <div class="Ranking">
@@ -324,6 +324,7 @@
 	                                data-aos="fade-left"
 	                                data-aos-anchor="top-top"
 	                                data-aos-delay="150"
+	                                style="color:white"
 	                            >
 	                                실시간 랭킹
 	                            </h1>
@@ -449,7 +450,7 @@
 	                        </div>
 	                    </div>
 	                </div>
-	            </div>
+	            </div> -->
 	        </div>
 	    </div>    
     </div>

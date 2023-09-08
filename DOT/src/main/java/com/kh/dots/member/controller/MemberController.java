@@ -3,7 +3,9 @@ package com.kh.dots.member.controller;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import javax.servlet.ServletContext;
@@ -432,6 +434,46 @@ public class MemberController {
 			return AuthenticationKey;
 		}
 		
+	}
+	
+	@GetMapping("/follow/followlist")
+	public String SearchFollowerList(Model model,HttpSession Session) {
+		Member m = (Member)Session.getAttribute("loginUser");
+		List<Member> follower = mService.searchFollowerList(m.getUserNo());
+		List<Member> follow = mService.searchFollowList(m.getUserNo());
+		List<Member> rf = mService.recommandFollowList(m.getUserNo());
+		
+		log.info("follower={}",follower);
+		model.addAttribute("fr",follower);
+		model.addAttribute("fw",follow);
+		model.addAttribute("rf",rf);
+		return "/member/follow.jsp";
+	}
+	@ResponseBody
+	@PostMapping("/follow/followlist/unfollow")
+	public String unFollow( Member mb,HttpSession Session ) {
+		Member m = (Member)Session.getAttribute("loginUser");
+		Map <String,Integer> map= new HashMap();
+		map.put("loginUserNo",m.getUserNo());
+		map.put("userNo",mb.getUserNo());
+
+		int result = mService.unFollow(map);
+		
+		return result+"";
+	}
+	
+	@ResponseBody
+	@PostMapping("/follow/followlist/addfollow")
+	public String addFollow(Member mb, HttpSession Session) {
+		Member m = (Member)Session.getAttribute("loginUser");
+		Map <String,Integer> map= new HashMap();
+		log.info("check={}",m.getUserNo());
+		map.put("loginUserNo",m.getUserNo());
+		map.put("userNo",mb.getUserNo());
+		
+		int result = mService.addFollow(map);
+		
+		return result+"";
 	}
 	
 } 

@@ -81,7 +81,7 @@
                     </dl>
                 </div>
                 <div class="friends br-bottom">
-                    <span>팔로우</span>
+                    <span>친구</span>
                     <div class="friends-list">
                     	<c:forEach var="f" items="${mlist}">
 	                        <a class="friend-profile"  href="${contextPath}/YourFeed.me?uno=${f.userNo}">
@@ -161,7 +161,7 @@
                         <h5>스토어</h5>
                     </dt>
                     <dt>
-                        <a class="material-symbols-outlined">
+                        <a class="material-symbols-outlined" href="${contextPath}/follow/followlist">
                             group
                         </a>
                         <h5>친구</h5>
@@ -249,7 +249,6 @@
 		            userNick: userNick,
 		            isLoggedIn: statusLog
 		        }));
-		        
 		       location.href="${contextPath}/logout.me";
 		    });
 		    

@@ -13,6 +13,13 @@
 		<result column="FILE_FNO" property="fileFno"/>
 	</resultMap>
 	
+	<resultMap id="searchResultSet" type="search">
+		<id column="SEARCH_NO" property="searchNo"/>
+		<result column="SEARCH_WRITER" property="searchWriter"/>
+		<result column="SEARCH_KEYWORD" property="searchKeyword"/>
+		<result column="ENROLL_DATE" property="enrollDate"/>
+	</resultMap>
+	
 	<resultMap id="memberResultSet" type="member">
 		<id column="USER_NO" property="userNo"/>
 		<result column="USER_ID" property='userId'/>
@@ -38,13 +45,21 @@
 	</select> 
 	
 	
-	<insert id="keywordList" parameterType="map">
-		INSERT INTO SEARCH 
+	<select id="MyHistory" parameterType="int" resultMap="searchResultSet">
+		SELECT *
+		FROM SEARCH
+		WHERE SEARCH_WRITER = #{i}
+		ORDER BY SEARCH_NO DESC
+	</select>
+	
+	<insert id="insertSearch" parameterType="search">
+		INSERT INTO SEARCH
 		VALUES (
-			SEQ_search_no.NEXTVAL,
-			#{search_writer}, 
-			#{search_keyword}
-		)		
+				SEQ_SEARCH_NO.NEXTVAL,
+				#{searchWriter},
+				#{searchKeyword},
+				SYSDATE				
+				)
 	</insert>
 	
 	<!-- 관리자페이지 회원 관리 -->

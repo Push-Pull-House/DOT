@@ -542,12 +542,12 @@ input[id='menuicon']:checked + label ~ .sidebar-shortcuts {
 }
 
 .Ranking {
-    color: white;
+    color: white !important;
     text-align: center;
     margin: 30px;
 }
 .Rangking_Title {
-    font-size: 25px;
+    font-size: 25px !important;
 }
 .Ranking_Content {
     display: flex;

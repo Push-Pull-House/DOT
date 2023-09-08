@@ -16,6 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.kh.dots.common.Utils;
 import com.kh.dots.common.model.vo.Images;
+import com.kh.dots.common.model.vo.Search;
+import com.kh.dots.common.service.CommonService;
 import com.kh.dots.feed.model.vo.Feed;
 import com.kh.dots.feed.service.FeedService;
 import com.kh.dots.member.model.service.MemberService;
@@ -34,9 +36,25 @@ public class FeedController {
 	
 	@Autowired
 	private ServletContext application;
+	
+	@Autowired
+	private CommonService cService;
 
 	@GetMapping("/mainFeed")
-	public String forwardFeedMain() {
+	
+	public String forwardFeedMain(HttpSession Session,Model model) {
+		Member m = (Member)Session.getAttribute("loginUser");
+		List<Search> MyHistory1 = cService.MyHistory(m.getUserNo());
+		List<Search> MyHistory = new ArrayList();
+		for(int i=0; i<MyHistory1.size(); i++) {
+			if(i<8) {
+				Search s = MyHistory1.get(i);
+				MyHistory.add(s);
+			}else {
+				break;
+			}
+		}
+		model.addAttribute("history",MyHistory);
 		return "sns/mainFeed.jsp";
 	}
 	

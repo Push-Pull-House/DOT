@@ -181,87 +181,17 @@
                     <div class="sub-container">
                         <div>
                             <div class="Ranking">
-                                <h1 class="Rangking_Title" data-aos="fade-left" data-aos-anchor="top-top" data-aos-delay="150">실시간 랭킹</h1>
+                                <h1 class="Rangking_Title" data-aos="fade-left" data-aos-anchor="top-top" data-aos-delay="150">나의 검색기록</h1>
+                               	<c:forEach var="my" items="${history}">
                                 <br>
                                 <div class="Ranking_Article">
                                     <div class="Ranking_Content" data-aos="fade-left" data-aos-anchor="top-top" data-aos-delay="250">
-                                        <div class="num">1위</div>
                                         <div class="Ranking_Text">
-                                            <div class="Ranking_Num"><b>수진님 담주에는 오나?</b></div>
+                                            <div class="Ranking_Num"><b>-</b>&nbsp;&nbsp;<b>${my.searchKeyword}</b></div>
                                         </div>
                                     </div>
                                 </div>
-                                <br>
-                                
-                                <div class="Ranking_Article">
-                                    <div class="Ranking_Content" data-aos="fade-left" data-aos-anchor="top-top" data-aos-delay="350">
-                                        <div class="num">2위</div>
-                                        <div class="Ranking_Text">
-                                            <div class="Ranking_Num"><b>서현역 칼부림</b></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
-
-                                <div class="Ranking_Article">
-                                    <div class="Ranking_Content" data-aos="fade-left" data-aos-anchor="top-top" data-aos-delay="450">
-                                        <div class="num">3위</div>
-                                        <div class="Ranking_Text">
-                                            <div class="Ranking_Num"><b>유토피아 콘크리트</b></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
-
-                                <div class="Ranking_Article">
-                                    <div class="Ranking_Content" data-aos="fade-left" data-aos-anchor="top-top" data-aos-delay="550">
-                                        <div class="num">4위</div>
-                                        <div class="Ranking_Text">
-                                            <div class="Ranking_Num"><b>김소연 다리 그만떨어</b></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
-
-                                <div class="Ranking_Article">
-                                    <div class="Ranking_Content" data-aos="fade-left" data-aos-anchor="top-top" data-aos-delay="650">
-                                        <div class="num">5위</div>
-                                        <div class="Ranking_Text">
-                                            <div class="Ranking_Num"><b>집에 가고싶다..</b></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
-
-                                <div class="Ranking_Article">
-                                    <div class="Ranking_Content" data-aos="fade-left" data-aos-anchor="top-top" data-aos-delay="750">
-                                        <div class="num">6위</div>
-                                        <div class="Ranking_Text">
-                                            <div class="Ranking_Num"><b>박보영 졸귀</b></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
-
-                                <div class="Ranking_Article">
-                                    <div class="Ranking_Content" data-aos="fade-left" data-aos-anchor="top-top" data-aos-delay="850">
-                                        <div class="num">7위</div>
-                                        <div class="Ranking_Text">
-                                            <div class="Ranking_Num"><b>마이페이지</b></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
-
-                                <div class="Ranking_Article">
-                                    <div class="Ranking_Content" data-aos="fade-left" data-aos-anchor="top-top" data-aos-delay="950">
-                                        <div class="num">8위</div>
-                                        <div class="Ranking_Text">
-                                            <div class="Ranking_Num"><b>오창정 프신..</b></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
+                                </c:forEach>
                             </div>
                         </div>
                     </div>

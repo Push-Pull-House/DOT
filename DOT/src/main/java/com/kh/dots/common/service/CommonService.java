@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.session.RowBounds;
 
 import com.kh.dots.common.model.vo.Images;
+import com.kh.dots.common.model.vo.Search;
 import com.kh.dots.feed.model.vo.Feed;
 import com.kh.dots.member.model.vo.Member;
 
@@ -28,4 +29,8 @@ public interface CommonService {
 	public int selectFListCount(Map<String, Object> paramMap);
 
 	public int deleteFeed(int i);
+
+	public List<Search> MyHistory(int i);
+
+	public int insertSearch(Search search);
 }
