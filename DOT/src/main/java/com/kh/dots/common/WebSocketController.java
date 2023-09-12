@@ -1,22 +1,19 @@
 package com.kh.dots.common;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.socket.WebSocketSession;
 
+import com.kh.dots.common.model.vo.Alarm;
+import com.kh.dots.common.service.CommonService;
 import com.kh.dots.member.model.service.MemberService;
-import com.kh.dots.member.model.vo.Friend;
 import com.kh.dots.member.model.vo.Member;
 
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +24,9 @@ public class WebSocketController  {
 
 	@Autowired
 	MemberService mService;
+	
+	@Autowired
+	CommonService cService;
 	
 	private final SimpMessageSendingOperations messagingTemplate;
 	
@@ -100,21 +100,25 @@ public class WebSocketController  {
 		 message.setFriendList(Allmember);
 		 messagingTemplate.convertAndSend(userTopic, message);
 	 }
+
+	 @MessageMapping("/updateFollowStatus")
+	 public void updateFollowStatus(@Payload UserStatusMessage message) {
+		 int userNo = message.getUserNo();
+		 int loginNo = message.getUserNo2();
+		 log.info("websocketNo={}",userNo);
+		 Member m1 = mService.checkMember(userNo);
+		 Member m2 = mService.checkMember(loginNo);
+		 int result = cService.insertFollowAlarm1(m1);
+		 int result2 = cService.updateFollowAlarm1(m2);
+		 
+		 
+		 List<Alarm> list = cService.selectMyAlarm(userNo);
+		 log.info("list={}",list);
+			
+		 
+		 message.setAlarmList(list);
+		 messagingTemplate.convertAndSend("/topic/updateFollowStatus", message);
+	 }
+ }
 	 
-		/*
-		 * @MessageMapping("/friendLoginStatus") public void friendLoginStatus(@Payload
-		 * UserStatusMessage message) { int userNo = message.getUserNo();
-		 * 
-		 * // 친구 목록 서비스를 사용하여 친구 목록을 가져옵니다. List<Friend> mlist =
-		 * mService.sideFriendList(userNo); List<Member> friendList = new ArrayList();
-		 * for(Friend a : mlist) { Member f = mService.selectFriendList2(a); if(f !=
-		 * null) { String isLoggedIn = f.getCheckLog(); friendList.add(f); } }
-		 * log.info("WebFriend={}",friendList); message.setFriendList(friendList); // 친구
-		 * 목록을 반복하여 특정 친구의 로그인 상태를 업데이트하고 클라이언트에게 알립니다.
-		 * 
-		 * // 업데이트된 친구 로그인 상태를 클라이언트에게 보냅니다.
-		 * messagingTemplate.convertAndSend("/topic/updateLoginStatus", message); }
-		 */
 
-
-}

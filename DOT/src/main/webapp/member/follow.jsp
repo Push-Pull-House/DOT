@@ -42,7 +42,9 @@
         />
 
         <link rel="stylesheet" href="../resources/css/Following.css" />
-
+	   <!--  웹소켓 -->
+	   <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.1/sockjs.min.js"></script>
+	   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
         <title>MyFeed</title>
         <style></style>
     </head>
@@ -55,6 +57,7 @@
                 <div class="main-content">
                     <div class="choice1 list1">
                         <div class="mypage-selectbox">
+                        	<input type="hidden" value="${loginUser.userNo }" id="myUserNo"/>
                             <div class="selectbox">
                                 <div class="follow-content">
                                     <div class="follow">
@@ -99,7 +102,7 @@
                                 <div class="result-content">
                                     <dl class="follow-list">
                                         <div class="follow-img">
-                                            <img src='${contextPath}${i.filePath}/${i.changeName}' />
+                                            <img src='${contextPath}/${i.filePath}/${i.changeName}' />
                                         </div>
                                         <div class="follow-id">
                                             <div class="user-id">
@@ -238,7 +241,7 @@
 	                                <div class="result-content">
 	                                    <dl class="follow-list">
 	                                        <div class="follow-img">
-	                                            <img src='${contextPath}${c.filePath}/${c.changeName}' />
+	                                            <img src='${contextPath}/${c.filePath}/${c.changeName}' />
 	                                        </div>
 	                                        <div class="follow-id">
 	                                            <div class="user-id">
@@ -334,7 +337,7 @@
 	                                    <div class="result-content">
 	                                        <dl class="follow-list">
 	                                            <dt class="follow-img">
-	                                                <img src='${contextPath}${i.filePath}/${i.changeName}' /> 
+	                                                <img src='${contextPath}/${i.filePath}/${i.changeName}' /> 
 	                                            </dt>
 	                                            <dt class="follow-id">
 	                                                <div class="user-id">
@@ -372,7 +375,7 @@
         });
         
         //사이드바 친구추천
-        function follow(e,no){
+       /* function follow(e,no){
         	console.log(e,no);
             const userNo = $('#f-btn1_'+no).val();
 			const clickbtn = $('#f-btn1_'+no);
@@ -389,7 +392,7 @@
                 }
             });
         }
-		
+ */		
         function unfollow(e,no){
         	console.log(e,no);
         	const userNo = $('#f-btn2_'+no).val();
@@ -422,6 +425,35 @@
             });
             /* 선택 */
             function toggleFollow() {}
+        </script>
+        <script>
+        const socketFollow = new SockJS("http://localhost:8083${contextPath}/websocket"); //URL에 대한 WebSocket 연결을 설정
+        const stompFollow = Stomp.over(socketFollow); //WebSocket을 통해 Stomp 클라이언트를 생성
+        stompFollow.connect( {} , () => {
+            console.log('연결되었어요3');
+            
+        });
+            function follow(e,no){
+            	const myNo = $('#myUserNo').val();
+            	const userNo = $('#f-btn2_'+no).val();
+     			const clickbtn = $('#f-btn1_'+no);
+     			const clickbtn2 = $('#f-btn2_'+no);
+   			    $.ajax({
+   	                url: '${contextPath}/follow/followlist/addfollow',
+   	                data: { userNo: userNo },
+   	                method: 'post',
+   	                success(result) {
+   	                    // 처리 로직
+   	                    clickbtn.css("display", "none");
+   	                    clickbtn2.css("display","block");
+   	                }
+   	            });
+     			console.log(userNo);
+		        stompClient.send("/app/updateFollowStatus", {}, JSON.stringify({
+		        	userNo: userNo,
+		        	userNo2 : myNo
+		        }));
+		    };
         </script>
     </body>
 </html>

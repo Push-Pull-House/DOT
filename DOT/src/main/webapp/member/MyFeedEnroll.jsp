@@ -144,7 +144,7 @@
                         <div class="update_container">
                             <div class="id_container">
                                 <div class="userid_img">
-                                    <img src ="${contextPath}${profileImg.filePath}/${profileImg.changeName}">
+                                    <img src ="${contextPath}/${profileImg.filePath}/${profileImg.changeName}">
                                 </div>
                                 <div class="user_id">
                                     <h5>${loginUser.userNick}</h5>

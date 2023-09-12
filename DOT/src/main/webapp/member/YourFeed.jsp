@@ -72,7 +72,7 @@
                <div class="mypage-profile-container">
                    <div class="profile-imgs">
                    	   <c:if test="${otherUser.fileWriter != 0}">
-                       	   <img src="${contextPath}${otherUser.filePath}/${otherUser.changeName}" />
+                       	   <img src="${contextPath}/${otherUser.filePath}/${otherUser.changeName}" />
                        </c:if>
                        <c:if test="${otherUser.fileWriter == 0}">
                        	   <img src="${contextPath}/resources/images/—Pngtree—user icon_5097430.png" />
@@ -96,8 +96,8 @@
                            </div>
                        </div>
                        <div class="mypage-follower">
-                           <div class="follows" onclick="follow()" style="cursor: pointer"><h5>팔로우  32명</h5></div>
-                           <div class="follows" onclick="follow()" style="cursor: pointer"><h5>팔로워  1320명<h5></h5></div>
+                           <div class="follows" onclick="follow()" style="cursor: pointer"><h5>팔로우  ${follow.size()}명</h5></div>
+                           <div class="follows" onclick="follow()" style="cursor: pointer"><h5>팔로워  ${follower.size()}명<h5></h5></div>
                            <div class="follows" ><h5>게시물  ${myImglist.size()}개</h5></div>
                        </div>
                    </div>
@@ -118,7 +118,7 @@
                    <div class="myimage">
                    		<c:forEach var="m" items="${myImglist}">
 	                       <div class="myimage-section" data-bs-toggle="modal" data-bs-target="#MyDetailFeed" onclick="feedNo(event , ${m.fileNo})">
-	                           <img class="img-size" src="${contextPath}${m.filePath}/${m.changeName}" />
+	                           <img class="img-size" src="${contextPath}/${m.filePath}/${m.changeName}" />
 	                           <div class="like">
 	                               <svg
 	                                   xmlns="http://www.w3.org/2000/svg"
@@ -160,7 +160,7 @@
 			                   <div class="modal-title" id="exampleModalLabel">
 			                       <div class="feed-header modal-feed-header">
 			                           <div class="modal-user-profile">
-			                               <img src="${contextPath}${profileImg.filePath}/${profileImg.changeName}" />
+			                               <img src="${contextPath}/${profileImg.filePath}/${profileImg.changeName}" />
 			                               <span>${loginUser.userNick}</span>
 			                               <div class="line-div">
 			                                   <span class="material-symbols-outlined modal-toggle-button"> more_horiz </span>
@@ -569,7 +569,7 @@
 	           	   for(let img of result){
     	   		   		if(img.changeName != "DotLogo_D.png"){
 			           		html += "<div>"
-							html += "<img src=${contextPath}"+img.filePath+"/"+img.changeName+">"
+							html += "<img src=${contextPath}/"+img.filePath+"/"+img.changeName+">"
 							html += "</div>"
        	   				}
                		}

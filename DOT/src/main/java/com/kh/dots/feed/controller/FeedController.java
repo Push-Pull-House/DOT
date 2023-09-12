@@ -54,7 +54,7 @@ public class FeedController {
 				break;
 			}
 		}
-		model.addAttribute("history",MyHistory);
+		Session.setAttribute("history",MyHistory);
 		return "sns/mainFeed.jsp";
 	}
 	
@@ -79,7 +79,7 @@ public class FeedController {
 		feed.setFeedWriter(loginUser.getUserNo());
 		log.info("Feed={}",feed.toString());
 		
-		String webPath = "/resources/images";
+		String webPath = "resources/images";
 		String severFolderPath = application.getRealPath(webPath+"/");
 		
 		List<MultipartFile> feedImgs = new ArrayList();
@@ -161,7 +161,7 @@ public class FeedController {
 		feed.setFeedWriter(loginUser.getUserNo());
 		feed.setFeedNo(fno);
 		
-		String webPath = "/resources/images";
+		String webPath = "resources/images";
 		String severFolderPath = application.getRealPath(webPath+"/");
 		List<MultipartFile> upfiles = new ArrayList();
 		upfiles.add(feedImg1);

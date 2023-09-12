@@ -81,7 +81,7 @@
                     	<c:forEach var="s" items="${slist}" begin="0" end="${slist.size()}" step="1" >
                         	<div class="feed-content2" data-bs-toggle="modal" data-bs-target="#MyDetailFeed" onclick="feedNo(event , ${s.fileNo})">
                         		<div>
-                                <img src="${contextPath}${s.filePath}/${s.changeName}">
+                                <img src="${contextPath}/${s.filePath}/${s.changeName}">
                                 <div class="like">
 	                               <svg
 	                                   xmlns="http://www.w3.org/2000/svg"
@@ -131,7 +131,7 @@
                                   <div class="result-content">
                                       <dl class="follow-list">
                                           <dt class="follow-img">
-                                              <img src='${contextPath}${i.filePath}/${i.changeName}' /> 
+                                              <img src='${contextPath}/${i.filePath}/${i.changeName}' /> 
                                           </dt>
                                           <dt class="follow-id">
                                               <div class="user-id" style="color:white;">
@@ -201,7 +201,7 @@
 		                <div class="modal-title" id="exampleModalLabel">
 		                    <div class="feed-header modal-feed-header">
 		                        <div class="modal-user-profile">
-		                            <img src="${contextPath}${profileImg.filePath}/${profileImg.changeName}" />
+		                            <img src="${contextPath}/${profileImg.filePath}/${profileImg.changeName}" />
 		                            <span>${loginUser.userNick}</span>
 		                            <div class="line-div">
 		                                <span class="material-symbols-outlined modal-toggle-button"> more_horiz </span>
@@ -432,7 +432,7 @@
 	               
 	           	   for(let img of result){
 		           		html += "<div>"
-							html += "<img src=${contextPath}"+img.filePath+"/"+img.changeName+">"
+							html += "<img src=${contextPath}/"+img.filePath+"/"+img.changeName+">"
 						html += "</div>"
 	               }
 	           		html += "</div>"

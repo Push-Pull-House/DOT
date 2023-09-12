@@ -62,7 +62,7 @@
 	                                	<label for ="profile_img"><img src="${contextPath}/resources/images/—Pngtree—user icon_5097430.png"></label>
 	                                </c:if>
 	                                <c:if test="${profileImg.fileNo != 0}">
-	                                	<label for ="profile_img"><img src="${contextPath}${profileImg.filePath}/${profileImg.changeName}" /></label>
+	                                	<label for ="profile_img"><img src="${contextPath}/${profileImg.filePath}/${profileImg.changeName}" /></label>
 	                                </c:if>
 	                            </div>
 	                            <div>

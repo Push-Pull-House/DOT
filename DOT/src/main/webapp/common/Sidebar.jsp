@@ -55,7 +55,7 @@
                             </a>
                         </dt>
                         <dt>
-                            <a class="material-symbols-outlined">
+                            <a class="material-symbols-outlined" href="${contextPath}/Alarm.al">
                                 notifications
                                 <span>알림</span>
                             </a>
@@ -86,7 +86,7 @@
                     	<c:forEach var="f" items="${mlist}">
 	                        <a class="friend-profile"  href="${contextPath}/YourFeed.me?uno=${f.userNo}">
 	                            <div class="profile-img">
-	                               <img src="${contextPath}${f.filePath}/${f.changeName}" />
+	                               <img src="${contextPath}/${f.filePath}/${f.changeName}" />
 	                            </div>
 	                            <div class="profile-name">
 	                                <span>${f.userNick}</span>

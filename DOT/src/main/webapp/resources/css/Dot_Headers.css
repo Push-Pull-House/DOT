@@ -113,9 +113,13 @@ body {
     color: white;
     border: 0px solid white;
     border-radius: 10px;
-    background-color: red;
     top: 35px;
     right: 0;
+}
+
+.alarm-status{
+	font-size : 10px !important;
+	color: rgb(135, 135, 135) !important;
 }
 
 
@@ -243,12 +247,14 @@ body {
     flex-direction: column;
     justify-content: start;
     padding-left: 14px;
+    margin-top: -15px;
 }
 
 .modal-alarm-user{
     color: whitesmoke !important;
     font-size: 13px;
     font-weight: bold;
+    height:34px;
 }
 
 .modal-alarm-content{

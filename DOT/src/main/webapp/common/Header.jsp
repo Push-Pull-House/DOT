@@ -24,6 +24,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+   <!--  웹소켓 -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.1/sockjs.min.js"></script>
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
     <title>Dot.</title>
 </head>
 
@@ -52,142 +55,73 @@
                 <span class="material-symbols-outlined" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     notifications
                 </span>
-                <p></p>
+                <c:if test="${!alarmlist.isEmpty()}">
+                	<p id="newAlarm1" style="background-color:red;"></p>
+                </c:if>
+                <c:if test="${alarmlist.isEmpty()}">
+                	<p id="newAlarm2"></p>
+                </c:if>
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog modal-xl">
-                        <div class="modal-content">
+                        <div class="modal-content haeder-alarm">
                             <div class="modal-body modal-backgound" style="height: 30%;">
                                 <div class="modal-box">
-                                    <div class="alarm-all-btn">
-                                        <a>
-                                            모두보기
-                                        </a>
-                                    </div>
-                                    <div class="modal-profile-icon">
+                                    <c:forEach var="alarm" items="${alarmlist}">
+                                    <div class="modal-profile-icon" onclick="alarm(event,${alarm.alarmNo},'${alarm.alarmType}');">
                                         <label>
                                             <a>
-                                                <img src="${contextPath}/resources/images/karina2.jpeg" />
+                                                <img src="${contextPath}/${alarm.filePath}/${alarm.changeName}">
                                             </a>
                                         </label>
                                         <div class="modal-alarm-contents">
                                             <div class="modal-alarm-user">
-                                                im_Zzang_gu_da
+                                                ${alarm.userNick}
+                                                <span class="alarm-status">안읽음</span>
                                             </div>
                                             <div class="modal-alarm-content">
-                                                im_Zzang_gu_da님이 회원님을 팔로우하기 시작했습니다.
+                                                ${alarm.alarmContent}
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="modal-profile-icon">
-                                        <label>
-                                            <a>
-                                                <img src="${contextPath}/resources/images/karina2.jpeg" />
-                                            </a>
-                                        </label>
-                                        <div class="modal-alarm-contents">
-                                            <div class="modal-alarm-user">
-                                                i_want_to_be_a_Gamani
-                                            </div>
-                                            <div class="modal-alarm-content">
-                                                i_want_to_be_a_Gamani님이 댓글을 남겼습니다 : "나는야 진정한 가마니가 될꺼야>_0!!"
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-profile-icon">
-                                        <label>
-                                            <a>
-                                                <img src="${contextPath}/resources/images/profile3.jpg" />
-                                            </a>
-                                        </label>
-                                        <div class="modal-alarm-contents">
-                                            <div class="modal-alarm-user">
-                                                im_Danbi
-                                            </div>
-                                            <div class="modal-alarm-content">
-                                                im_Danbi님이 회원님의 사진을 좋아요💗 눌렀습니다.
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-profile-icon">
-                                        <label>
-                                            <a>
-                                                <img src="${contextPath}/resources/images/profile4.jpg" />
-                                            </a>
-                                        </label>
-                                        <div class="modal-alarm-contents">
-                                            <div class="modal-alarm-user">
-                                                im_so_Sad
-                                            </div>
-                                            <div class="modal-alarm-content">
-                                                im_so_Sad님이 댓글을 남겼습니다 : "희미한 과거만 바라보다 선명한 현재를 놓치지 말자"
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-profile-icon">
-                                        <label>
-                                            <a>
-                                                <img src="${contextPath}/resources/images/profile5.jpg" />
-                                            </a>
-                                        </label>
-                                        <div class="modal-alarm-contents">
-                                            <div class="modal-alarm-user">
-                                                im_so_famous_spongeBob
-                                            </div>
-                                            <div class="modal-alarm-content">
-                                                im_so_famous_spongeBob님이 댓글을 남겼습니다 : "사실 집게리아 패티는 중국산이야 ㅠ.ㅠ"
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-profile-icon">
-                                        <label>
-                                            <a>
-                                                <img src="${contextPath}/resources/images/profile6.jpg" />
-                                            </a>
-                                        </label>
-                                        <div class="modal-alarm-contents">
-                                            <div class="modal-alarm-user">
-                                                im_so_4rory_ya
-                                            </div>
-                                            <div class="modal-alarm-content">
-                                                im_so_4rory_ya님이 회원님을 팔로우하기 시작했습니다.
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-profile-icon">
-                                        <label>
-                                            <a>
-                                                <img src="${contextPath}/resources/images/profile7.jpg" />
-                                            </a>
-                                        </label>
-                                        <div class="modal-alarm-contents">
-                                            <div class="modal-alarm-user">
-                                                Cute_cat
-                                            </div>
-                                            <div class="modal-alarm-content">
-                                                Cute_cat님이 회원님의 사진을 좋아요💗 눌렀습니다.
-                                            </div>
-                                        </div>
-                                    </div>
+                                    </c:forEach>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <script>
+			    	function alarm(e,no,type){
+			    		const type1 = type;
+			    		const no1 = no;
+			    		const p = $('#newAlarm');
+			    		console.log(no1,type1);
+			    		if(type1 == 'F'){
+			    			location.href = '${contextPath}/otherperson.op?ano='+no1;
+			    		} 
+			    		/* 
+			    		else if(type =='R'){
+			    			
+			    		}else if(type == 'L'){
+			    			
+			    		}else{
+			    			
+			    		} */
+			    	}
+			    </script>
                 <!-- 모달 끝 -->
             </div>
             <div class="dm-tool">
                 <span class="material-symbols-outlined">
                     mail
                 </span>
-                <p></p>
             </div>
 
             <div class="profile">
             	<c:if test="${loginUser.userId ne 'admin'}">
 	                <div class="profile-img" onclick="location.href='${contextPath}/MyFeed.me';">
-	                    <img src="${contextPath}${profileImg.filePath}/${profileImg.changeName}" />
+	                    <img src="${contextPath}/${profileImg.filePath}/${profileImg.changeName}" />
 	                </div>
 	                <div class="profile-name" onclick="location.href='${contextPath}/MyFeed.me';">
 	                    <p>${loginUser.userNick}</p>
@@ -195,7 +129,7 @@
                 </c:if>
                 <c:if test="${loginUser.userId eq 'admin'}">
                 	<div class="profile-img" onclick="location.href='${contextPath}/adminMain';">
-	                    <img src="${contextPath}${profileImg.filePath}/${profileImg.changeName}" />
+	                    <img src="${contextPath}/${profileImg.filePath}/${profileImg.changeName}" />
 	                </div>
 	                <div class="profile-name" onclick="location.href='${contextPath}/adminMain';">
 	                    <p>${loginUser.userNick}</p>
@@ -204,6 +138,60 @@
             </div>
         </div>
     </div>
+
+    <script>
+    const socketHeader = new SockJS("http://localhost:8083${contextPath}/websocket"); //URL에 대한 WebSocket 연결을 설정
+    const stompAlram = Stomp.over(socketHeader); //WebSocket을 통해 Stomp 클라이언트를 생성
+    console.log('1111111111111111','${alarmlist}')
+    stompAlram.connect( {} , () => {
+        console.log('연결되었어요2');
+        stompAlram.subscribe('/topic/updateFollowStatus', function(message) {
+        	var message1 = JSON.parse(message.body);
+        	const alarmlist1 = message1.alarmList;
+        	const userNo = message1.userNo;
+        	const loginUser = "${loginUser.userNo}";
+        	console.log('updateFollowStatus',alarmlist1);
+        	console.log('updateFollowStatus',userNo);
+        	console.log('updateFollowStatus',loginUser);
+        	const div = $('.modal-box');
+
+        	let value = "";
+        	if(loginUser == userNo){
+        		div.empty();
+	        	for (let i of alarmlist1) {
+	      	       value += "<div class='modal-profile-icon' onclick=alarm(event,"+ i.alarmNo + "," + "'"+i.alarmType+"'"+")>"
+	      	       value += "<label>"
+	      	       value +=  "<a>"
+	   	    	   value += "<img src=${contextPath}/"+i.filePath+"/"+i.changeName+">"
+	   	    	   value += "</a>"
+	    		   value += "</label>"
+	   			   value += "<div class='modal-alarm-contents'>"
+				   value += "<div class='modal-alarm-user'>"
+				   value += i.userNick
+				   value += "<span class='alarm-status'>안읽음</span>"
+				   value += "</div>"
+				   value += "<div class='modal-alarm-content'>"
+				   value += i.alarmContent
+				   value += "</div>"
+				   value += "</div>"
+				   value += "</div>"
+	        	}
+	        	div.append(value);
+        		$('#newAlarm2').css('background-color','red');
+        	}
+        	
+        	console.log('ajax',alarmlist1);
+        	 $.ajax({
+        	   type: "POST",
+  	           url: '${contextPath}/upToDate',
+	  	       data: {alarmlist1 : JSON.stringify(alarmlist1)},
+  	           success: function (result) {
+  	        	   console.log(result);
+  	        	}
+        	 });
+        })
+    });
+    </script>
 </body>
 
 </html>

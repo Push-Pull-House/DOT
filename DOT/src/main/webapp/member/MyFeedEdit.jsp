@@ -85,7 +85,7 @@
                             <div class="slide_container">
                                 <div class="add-remove">
                                 <c:forEach var="i" items="${feedImgs}" begin="0" end="${feedImgs.size()}">
-	                       			<img src="${contextPath}${i.filePath}/${i.changeName}">
+	                       			<img src="${contextPath}/${i.filePath}/${i.changeName}">
 	                       		</c:forEach>
 	                       		<c:set var="other1" value="5"/>
 	                       		<c:set var="other2" value="${feedImgs.size()}"/>
@@ -135,7 +135,7 @@
                                 	
                                 	<c:forEach var="i" items="${feedImgs}" begin="0" end="5">
 	                       				<div class="thumbnail">
-	                                		<img src="${contextPath}${i.filePath}/${i.changeName}">
+	                                		<img src="${contextPath}/${i.filePath}/${i.changeName}">
 			                				<a href="javascript:void(0)" class="remove-slide">
 			                					<span class="material-symbols-outlined remove">delete_forever</span>
 			                				</a>
@@ -157,7 +157,7 @@
                         <div class="update_container">
                             <div class="id_container">
                                 <div class="userid_img">
-                                    <img src ="${contextPath}${profileImg.filePath}/${profileImg.changeName}">
+                                    <img src ="${contextPath}/${profileImg.filePath}/${profileImg.changeName}">
                                 </div>
                                 <div class="user_id">
                                     <h5>${loginUser.userNick}</h5>

@@ -3,6 +3,7 @@ package com.kh.dots.common;
 import java.sql.Date;
 import java.util.List;
 
+import com.kh.dots.common.model.vo.Alarm;
 import com.kh.dots.member.model.vo.Member;
 
 import lombok.AllArgsConstructor;
@@ -18,7 +19,8 @@ public class UserStatusMessage {
     private String userNick;
     private boolean checkLog;
     private int userNo;
+    private int userNo2;
     private List<Member> friendList;
-    
+    private List<Alarm> alarmList;
     // Getter 및 Setter 메서드
 }
