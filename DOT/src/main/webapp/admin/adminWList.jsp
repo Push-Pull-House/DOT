@@ -11,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="${contextPath}/resources/css/Dot_admin.css" />
+    <link rel="stylesheet" href="${contextPath}/resources/css/Dot_admin2.css" />
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -41,23 +41,15 @@
                     </div>
                     <div class="det-wrapper">
                         <div class="member det">
-                            <div class="det-area" onclick="location.href='${contextPath}/adminWBlist';">
+                            <div class="det-area" onclick="location.href='${contextPath}/adminWList';">
                                 <h4>인플루언서</h4>
                             </div>
                         </div>
                         <div class="member det">
-                            <div class="det-area" onclick="location.href='${contextPath}/adminWBlist2';">
+                            <div class="det-area" onclick="location.href='${contextPath}/adminBList';">
                                 <h4>블랙리스트</h4>
                             </div>
                         </div>
-                        <!-- <div class="member det">
-                         <span class="material-symbols-outlined pass">
-                            fingerprint
-                        </span> 
-                        <div class="det-area">
-                            <h4>비밀번호 관리</h4>
-                        </div>
-                    </div> -->
                     </div>
                     <div class="feed-controller cont" onclick="location.href='${contextPath}/adminFeed';">
                         <span class="material-symbols-outlined"> data_table </span>
@@ -84,9 +76,6 @@
                             <div class="content-icon">
                                 <span class="material-symbols-outlined icon" onclick="location.href='${contextPath}/adminWBlist';"> verified </span>
                                 <span class="material-symbols-outlined icon" onclick="location.href='${contextPath}/adminWBlist2';"> person_off </span>
-                                <!-- <span class="material-symbols-outlined icon">
-	                                fingerprint
-	                            	</span> -->
                                 <div class="font">l</div>
                                 <span class="material-symbols-outlined" onclick="location.href='${contextPath}/adminFeed';"> data_table </span>
                                 <div class="font">l</div>
@@ -107,11 +96,11 @@
 				               </tr>
 				            </thead>
 				            <tbody>
-				               <c:if test="${empty WBlist}">
+				               <c:if test="${empty WList}">
 				                  <td colspan="5" align="center">회원 목록이 없떠요ㅠㅠ</td>
 				               </c:if>
-				               <c:forEach var="w" items="${WBlist}">
-				                  <tr onClick="movePage(${w.userNo});">
+				               <c:forEach var="w" items="${WList}">
+				                  <tr>
 				                     <td>${w.userNo}</td>
 				                     <td>${w.userId}</td>
 				                     <td>${w.userName}</td>

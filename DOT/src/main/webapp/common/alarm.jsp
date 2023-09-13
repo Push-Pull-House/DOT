@@ -46,7 +46,7 @@
 				                </div>
 				                <div class="alarm-content-box">
 				                	<c:forEach var="alarm" items="${alarmlist}">
-				                    <div class="profile-icon">
+				                    <div class="profile-icon" onclick="location.href='${contextPath}/YourFeed.me?uno=${alarm.userNo}'">
 				                    	 <label>
 				                            <a>
 				                                <img src="${contextPath}/${alarm.filePath}/${alarm.changeName}">

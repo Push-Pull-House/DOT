@@ -18,4 +18,7 @@ public class Images {
 	private String status;
 	private int fileLevel;
 	private int fileFno;
+	
+	private int likeCount;
+	private String userNick;
 }

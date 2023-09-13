@@ -112,4 +112,39 @@ public class CommonServiceImpl implements CommonService {
 	public int updateRead(int ano) {
 		return cDao.updateRead(ano);
 	}
+
+	@Override
+	public int insertLikeAlarm1(Member m1) {
+		return cDao.insertLikeAlarm1(m1);
+	}
+
+	@Override
+	public int updateLikeAlarm1(Member m2) {
+		return cDao.updateLikeAlarm1(m2);
+	}
+
+	@Override
+	public int deleteMemberAdmin(Map<String, Object> map) {
+		return cDao.deleteMemberAdmin(map);
+	}
+
+	@Override
+	public List<Member> WList(Map<String, Object> paramMap, RowBounds rowBounds) {
+		return cDao.WList(paramMap,rowBounds);
+	}
+
+	@Override
+	public int selectWListCount(Map<String, Object> paramMap) {
+		return cDao.selectWListCount(paramMap);
+	}
+
+	@Override
+	public List<Member> BList(Map<String, Object> paramMap, RowBounds rowBounds) {
+		return cDao.BList(paramMap,rowBounds);
+	}
+
+	@Override
+	public int selectBListCount(Map<String, Object> paramMap) {
+		return cDao.selectBListCount(paramMap);
+	}
 }

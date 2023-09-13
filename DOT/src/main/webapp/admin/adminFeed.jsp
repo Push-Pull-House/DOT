@@ -43,29 +43,15 @@
                     </div>
                     <div class="det-wrapper">
                         <div class="member det">
-                            <!-- <span class="material-symbols-outlined">
-                            new_releases
-                        </span> -->
-                            <div class="det-area" onclick="location.href='${contextPath}/adminWBlist';">
+                            <div class="det-area" onclick="location.href='${contextPath}/adminWList';">
                                 <h4>인플루언서</h4>
                             </div>
                         </div>
                         <div class="member det">
-                            <!-- <span class="material-symbols-outlined">
-                            person_off
-                        </span> -->
-                            <div class="det-area" onclick="location.href='${contextPath}/adminWBlist2';">
+                            <div class="det-area" onclick="location.href='${contextPath}/adminBList';">
                                 <h4>블랙리스트</h4>
                             </div>
                         </div>
-                        <!-- <div class="member det">
-                         <span class="material-symbols-outlined pass">
-                            fingerprint
-                        </span> 
-                        <div class="det-area">
-                            <h4>비밀번호 관리</h4>
-                        </div>
-                    </div> -->
                     </div>
                     <div class="feed-controller cont" onclick="location.href='${contextPath}/adminFeed';">
                         <span class="material-symbols-outlined"> data_table </span>
@@ -87,15 +73,12 @@
 
             <div class="header-bar">
                 <div class="content-area">
-                    <form action="${contextPath}/deleteFeed" method="post" id="form-feed-admin">
+                    <form action="${contextPath}/deleteFeed" style="margin-top:-75px;" method="post" id="form-feed-admin">
                     <div class="content-header">
                         <div class="icon-area">
                             <div class="content-icon">
                                 <span class="material-symbols-outlined icon" onclick="location.href='${contextPath}/adminWBlist';"> verified </span>
                                 <span class="material-symbols-outlined icon" onclick="location.href='${contextPath}/adminWBlist2';"> person_off </span>
-                                <!-- <span class="material-symbols-outlined icon">
-	                                fingerprint
-	                            	</span> -->
                                 <div class="font">l</div>
                                 <span class="material-symbols-outlined" onclick="location.href='${contextPath}/adminFeed';"> data_table </span>
                                 <div class="font">l</div>
@@ -112,6 +95,7 @@
                     <div class="content-body">
                         <table id="feedList" class="table table-hover" align="center">
 				            <thead class="category-wrap">
+				            	<tr>
 				               	 <th width="250px">
 					                  <label style="margin:0px 20px 0px -40px;">
 	                                       <input type="checkbox" id="selectAllBtn" onclick="selectAll();">
@@ -141,7 +125,7 @@
 				               </c:forEach>
 				            </tbody>
 				         </table>
-         			
+         			</div>
          			
          			<script>
          			 var form = $('#form-feed-admin');

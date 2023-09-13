@@ -119,6 +119,28 @@ public class WebSocketController  {
 		 message.setAlarmList(list);
 		 messagingTemplate.convertAndSend("/topic/updateFollowStatus", message);
 	 }
+	 
+	 @MessageMapping("/updateLikeStatus")
+	 public void updateLikeStatus(@Payload UserStatusMessage message) {
+		 int feedNo = message.getUserNo();
+		 int loginNo = message.getUserNo2();
+		 
+		 Member Writer = mService.feedMember(feedNo);
+		 int userNo = Writer.getUserNo();
+		 Member m1 = mService.checkMember(userNo);
+		 Member m2 = mService.checkMember(loginNo);
+		 int result = cService.insertLikeAlarm1(m1);
+		 int result2 = cService.updateLikeAlarm1(m2);
+		 
+		 List<Alarm> list = cService.selectMyAlarm(userNo);
+		 log.info("list={}",list);
+			
+		 
+		 message.setAlarmList(list);
+		 message.setUserNo(userNo);
+		 
+		 messagingTemplate.convertAndSend("/topic/updateLikeStatus", message);
+	 }
  }
 	 
 

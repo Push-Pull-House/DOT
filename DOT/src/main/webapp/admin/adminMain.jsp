@@ -27,6 +27,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+    <!-- alert 스타일 변경 -->
+  	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <title>admin</title>
 </head>
 <body>
@@ -41,23 +43,15 @@
                     </div>
                     <div class="det-wrapper">
                         <div class="member det">
-                            <div class="det-area" onclick="location.href='${contextPath}/adminWBlist';">
+                            <div class="det-area" onclick="location.href='${contextPath}/adminWList';">
                                 <h4>인플루언서</h4>
                             </div>
                         </div>
                         <div class="member det">
-                            <div class="det-area" onclick="location.href='${contextPath}/adminWBlist2';">
+                            <div class="det-area" onclick="location.href='${contextPath}/adminBList';">
                                 <h4>블랙리스트</h4>
                             </div>
                         </div>
-                        <!-- <div class="member det">
-                         <span class="material-symbols-outlined pass">
-                            fingerprint
-                        </span> 
-                        <div class="det-area">
-                            <h4>비밀번호 관리</h4>
-                        </div>
-                    </div> -->
                     </div>
                     <div class="feed-controller cont" onclick="location.href='${contextPath}/adminFeed';">
                         <span class="material-symbols-outlined"> data_table </span>
@@ -79,29 +73,33 @@
 
             <div class="header-bar">
                 <div class="content-area">
+              		<form id="form-member-admin" style="margin-top:-75px;" action="${contextPath}/delMemberadmin" method="post">
                     <div class="content-header">
                         <div class="icon-area">
                             <div class="content-icon">
                                 <span class="material-symbols-outlined icon" onclick="location.href='${contextPath}/adminWBlist';"> verified </span>
                                 <span class="material-symbols-outlined icon" onclick="location.href='${contextPath}/adminWBlist2';"> person_off </span>
-                                <!-- <span class="material-symbols-outlined icon">
-	                                fingerprint
-	                            	</span> -->
                                 <div class="font">l</div>
                                 <span class="material-symbols-outlined" onclick="location.href='${contextPath}/adminFeed';"> data_table </span>
                                 <div class="font">l</div>
                                 <span class="material-symbols-outlined" onclick="location.href='${contextPath}/adminReport';"> feedback </span>
+                                <div class="font">l&nbsp;</div>
+                                <button class="del-btn" 
+                                		id="btn-del"
+                                		type="button" 
+                                		style="color:black; background-color:lightgray; width:85px; float: right; margin-right: 7px; border-radius: 3px;"
+                                		name="del"
+                                		>차단/해제</button>
                             </div>
                         </div>
                     </div>
                     
                     <div class="content-body">
-                        <form id="MemberForm" action="${contextPath}/delMember" method="post">
                         <table id="memberList" class="table table-hover" align="center">
 				            <thead class="category-wrap">
 				               <tr>
 				                  <th width="250px">
-					                  <label style="margin:0px 20px 0px -40px;">
+					                  <label style="margin:0px 10px 0px -20px;">
 	                                       <input type="checkbox" id="selectAllBtn"  onclick="selectAll();"/>
 	                                       <span></span>
 	                                   </label>
@@ -135,16 +133,27 @@
 				               </c:forEach>
 				            </tbody>
 				         </table>
-         				</form>
-         			<div>
-         				<!--<input type="submit" onclick="location.href='${contextPath}/delMember/delete?=${userNo}';" value="삭제" style="color:black; background:white; width:50px;"/>-->
-         				<button class="del-btn" type="submit" href="${contextPath}/delMember/delete?=${userNo}" style="color:black; background-color:lightgray; width:50px; float: right; margin-right: 20px; border-radius: 3px;">Del</a>
-         				<!-- <input type="hidden" id="delResult"/>
-         				<a id="delMember-btn1" onclick="delMember();">Delete</a>
-         				<button id="delMember-btn2" style="display:none;">Delete</button>  -->
-         			</div>
+				       </div>
          			
          			<script>
+         			 var form = $('#form-member-admin');
+         			 var btn = $('#btn-del');
+         			  btn.on('click', function(event) {
+         				  //event.preventDefault();
+         				  console.log("1");
+         				  swal({
+         					  text:"회원을 차단하시겠습니까?",
+         					  buttons : ["취소하기","차단하기"]
+         				  })
+         				  .then((value) => {
+         					  console.log(value);
+         					  if(value){
+         						  form.submit();
+         					  }else{
+         						  console.log("다시해~");
+         					  }
+         				  });
+        			    });
 			         	function movePage(no){
 			         		location.href="${contextPath}/adminMain/${userNo}/"+no;
 			         	}
@@ -176,27 +185,6 @@
 						    }
 						}
 						
-						/* 회원 삭제 */
-						/* function delMember(){
-							const query = 'input[class="rowCheck-btn"]:checked';
-							const del = document.querySelectorAll(query);
-							let result = '';
-							delMember.forEach((el)=>{
-								result += el.value + ",";
-							});
-						}
-						
-						function submit(){
-							$("#MemberForm").attr("action","${contextPath}/delMember");
-							$("#MemberForm").submit();
-						}
-						
-						$(function(){
-							$("#delMember-btn2").click(function(){
-							delMember();
-							setTimeout(function(){submit();},500);
-							})
-				    	}); */
 			         </script>
          
          			<c:set var="url" value="${m}?currentPage="/>
@@ -233,7 +221,7 @@
 			  				</c:choose>
 			  			</ul>		
 			  		</div>
-			  		
+			  		</form>
 			  		<br clear="both"><br>
 			  		
 			  		<form id="searchForm" action="${contextPath}/adminMain" method="get" align="center">

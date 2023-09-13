@@ -62,7 +62,7 @@ public class CommonController {
 				Alarm al = new Alarm();
 				al.setAlarmNo((Integer) data.get("alarmNo"));
 				al.setAlarmWriter((Integer) data.get("alarmWriter"));
-				al.setAlarmAcceptUser((String) data.get("alarmAcceptUser"));
+				al.setAlarmAcceptUser((int) data.get("alarmAcceptUser"));
 				al.setAlarmContent((String) data.get("alarmContent"));
 				al.setAlarmType((String) data.get("alarmType"));
 				al.setUserNick((String) data.get("userNick"));
@@ -148,6 +148,28 @@ public class CommonController {
 
 		return "member/YourFeed.jsp";
 	}
+	
+	@GetMapping("/myperson.op")
+	public String myperson(int ano, Model model, HttpSession session) {
+		Member loginUser = (Member) session.getAttribute("loginUser");
+		Alarm al = cService.selectAlarmOne(ano);
+		log.info("ano={}",ano);
+		log.info("al={}",al);
+		Member otherUser = mService.checkMember(al.getAlarmAcceptUser());
+		List<Images> myImglist = mService.selectListMyImg(al.getAlarmAcceptUser());
+		List<Member> follower = mService.searchFollowerList(al.getAlarmAcceptUser());
+		List<Member> follow = mService.searchFollowList(al.getAlarmAcceptUser());
+		int result = cService.updateRead(ano);
+		List<Alarm> list = cService.selectMyAlarm(loginUser.getUserNo());
+		session.setAttribute("alarmlist", list);
+
+		model.addAttribute("follower", follower);
+		model.addAttribute("follow", follow);
+		model.addAttribute("otherUser", otherUser);
+		model.addAttribute("myImglist", myImglist);
+
+		return "member/MyFeed.jsp";
+	}
 
 	/* 어드민 기능 */
 	@GetMapping("/adminMain")
@@ -173,6 +195,23 @@ public class CommonController {
 		model.addAttribute("pi", pi);
 
 		return "admin/adminMain.jsp";
+	}
+	
+	@PostMapping("/delMemberadmin")
+	public String delMemberadmin(int[] rowCheck) {
+		int result = 0;
+		
+		for (int i = 0; i < rowCheck.length; i++) {
+			Map<String,Object> map = new HashMap<String,Object>();
+			Member m = mService.checkMember(rowCheck[i]);
+			map.put("uno",m.getUserNo());
+			map.put("status",m.getStatus());
+			result = cService.deleteMemberAdmin(map);
+			if (result == 0) {
+				break;
+			}
+		}
+		return "redirect:/adminMain";
 	}
 
 	@GetMapping("/adminFeed")
@@ -210,6 +249,50 @@ public class CommonController {
 			}
 		}
 		return "redirect:/adminFeed";
+	}
+	
+	@GetMapping("/adminWList")
+	public String adminWList(
+			@RequestParam(value="currentPage", defaultValue="1") int currentPage,
+			Model model,
+			@RequestParam Map<String, Object> paramMap
+			) {
+		int offset = (currentPage -1) *5;
+		int limit = 5;
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		List<Member> WList = cService.WList(paramMap, rowBounds);
+		log.info("WList ={}", WList);
+		int total = cService.selectWListCount(paramMap);		
+		int pageLimit = 10;
+		int boardLimit = 5;
+		PageInfo pi = Pagination.getPageInfo(total, currentPage, pageLimit, boardLimit);
+		
+		model.addAttribute("WList", WList);
+		model.addAttribute("pi", pi);
+		return "admin/adminWList.jsp";
+	}
+	
+	@GetMapping("/adminBList")
+	public String adminBList(
+			@RequestParam(value="currentPage", defaultValue="1") int currentPage,
+			Model model,
+			@RequestParam Map<String, Object> paramMap
+			) {
+		int offset = (currentPage -1) *5;
+		int limit = 5;
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		List<Member> BList = cService.BList(paramMap, rowBounds);
+		log.info("BList ={}", BList);
+		int total = cService.selectBListCount(paramMap);		
+		int pageLimit = 10;
+		int boardLimit = 5;
+		PageInfo pi = Pagination.getPageInfo(total, currentPage, pageLimit, boardLimit);
+		
+		model.addAttribute("BList", BList);
+		model.addAttribute("pi", pi);
+		return "admin/adminBList.jsp";
 	}
 
 }

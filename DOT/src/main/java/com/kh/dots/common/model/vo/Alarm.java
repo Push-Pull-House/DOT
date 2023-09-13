@@ -15,7 +15,7 @@ public class Alarm {
 
 	private int alarmNo; 
 	private int alarmWriter;
-	private String alarmAcceptUser;
+	private int alarmAcceptUser;
 	private String alarmContent;
 	private String alarmType;
 	

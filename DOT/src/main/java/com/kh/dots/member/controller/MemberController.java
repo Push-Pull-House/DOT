@@ -30,7 +30,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.kh.dots.common.Utils;
 import com.kh.dots.common.model.vo.Alarm;
 import com.kh.dots.common.model.vo.Images;
+import com.kh.dots.common.model.vo.Search;
 import com.kh.dots.common.service.CommonService;
+import com.kh.dots.feed.model.vo.Choice;
 import com.kh.dots.member.model.service.MemberService;
 import com.kh.dots.member.model.validator.MemberValidator;
 import com.kh.dots.member.model.vo.Friend;
@@ -229,20 +231,35 @@ public class MemberController {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		Images profileImg = mService.selectListImages(loginUser.getUserNo());
 		List<Images> myImglist = mService.selectListMyImg(loginUser.getUserNo());
+		log.info("myFeed={}",myImglist);
 		List<Member> follower = mService.searchFollowerList(loginUser.getUserNo());
 		List<Member> follow = mService.searchFollowList(loginUser.getUserNo());
+		List<Choice> myChoice = mService.myChoiceList(loginUser.getUserNo());
+		List<Search> MyHistory1 = cService.MyHistory(loginUser.getUserNo());
+		List<Search> MyHistory = new ArrayList();
 		
+		for(int i=0; i<MyHistory1.size(); i++) {
+			if(i<8) {
+				Search s = MyHistory1.get(i);
+				MyHistory.add(s);
+			}else {
+				break;
+			}
+		}
+		
+		model.addAttribute("myChoice",myChoice);
 		model.addAttribute("myImglist", myImglist);
 		model.addAttribute("follower", follower);
 		model.addAttribute("follow", follow);
+		session.setAttribute("history",MyHistory);
 		return "member/MyFeed.jsp";
 	}
 	
 	@ResponseBody
 	@GetMapping("/detail.myfeed")
 	public List<Images> detailMyFeedModal(int imgNo) {
-		
 		List<Images> result = mService.detailMyFeedModal(imgNo);
+		log.info("modal={}",result);
 		return result;
 	}
 	

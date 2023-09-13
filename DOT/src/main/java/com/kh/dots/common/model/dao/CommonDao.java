@@ -95,5 +95,33 @@ public class CommonDao {
 	public int updateRead(int ano) {
 		return sqlSession.delete("common.updateRead",ano);
 	}
+
+	public int insertLikeAlarm1(Member m1) {
+		return sqlSession.insert("common.insertLikeAlarm1",m1);
+	}
+
+	public int updateLikeAlarm1(Member m2) {
+		return sqlSession.update("common.updateLikeAlarm1",m2);
+	}
+
+	public int deleteMemberAdmin(Map<String, Object> map) {
+		return sqlSession.update("common.deleteMemberAdmin",map);
+	}
+
+	public List<Member> WList(Map<String, Object> paramMap, RowBounds rowBounds) {
+		return sqlSession.selectList("common.WList",paramMap,rowBounds);
+	}
+
+	public int selectWListCount(Map<String, Object> paramMap) {
+		return sqlSession.selectOne("common.selectWListCount",paramMap);
+	}
+
+	public List<Member> BList(Map<String, Object> paramMap, RowBounds rowBounds) {
+		return sqlSession.selectList("common.BList",paramMap,rowBounds);
+	}
+
+	public int selectBListCount(Map<String, Object> paramMap) {
+		return sqlSession.selectOne("common.selectBListCount",paramMap);
+	}
 	
 }

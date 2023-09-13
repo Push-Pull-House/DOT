@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.dots.common.model.vo.Images;
+import com.kh.dots.feed.model.vo.Choice;
 import com.kh.dots.member.model.vo.Friend;
 import com.kh.dots.member.model.vo.Member;
 
@@ -118,5 +119,13 @@ public class MemberDao {
 
 	public List<Member> recommandFollowList(int userNo) {
 		return sqlSession.selectList("member.recommandFollowList",userNo);
+	}
+
+	public Member feedMember(int feedNo) {
+		return sqlSession.selectOne("member.feedMember",feedNo);
+	}
+
+	public List<Choice> myChoiceList(int userNo) {
+		return sqlSession.selectList("member.myChoiceList",userNo);
 	}
 }

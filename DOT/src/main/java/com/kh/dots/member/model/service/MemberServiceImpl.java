@@ -10,6 +10,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import com.kh.dots.common.model.vo.Images;
+import com.kh.dots.feed.model.vo.Choice;
 import com.kh.dots.member.model.dao.MemberDao;
 import com.kh.dots.member.model.vo.Friend;
 import com.kh.dots.member.model.vo.Member;
@@ -189,5 +190,15 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public List<Member> recommandFollowList(int userNo) {
 		return memberDao.recommandFollowList(userNo);
+	}
+
+	@Override
+	public Member feedMember(int feedNo) {
+		return memberDao.feedMember(feedNo);
+	}
+
+	@Override
+	public List<Choice> myChoiceList(int userNo) {
+		return memberDao.myChoiceList(userNo);
 	}
 }

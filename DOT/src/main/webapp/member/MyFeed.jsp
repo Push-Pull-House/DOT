@@ -128,7 +128,7 @@
                <div class="choice1 list1">
                    <div class="myimage">
                    		<c:forEach var="m" items="${myImglist}">
-	                       <div class="myimage-section" data-bs-toggle="modal" data-bs-target="#MyDetailFeed" onclick="feedNo(event , ${m.fileNo})">
+	                       <div class="myimage-section" data-bs-toggle="modal" data-bs-target="#MyDetailFeed" onclick="feedNo(event , ${m.fileFno})">
 	                           <img class="img-size" src="${contextPath}/${m.filePath}/${m.changeName}" />
 	                           <div class="like">
 	                               <svg
@@ -144,20 +144,7 @@
 	                                       d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
 	                                   />
 	                               </svg>
-	                               <span class="bi">444</span>
-	                               <svg
-	                                   xmlns="http://www.w3.org/2000/svg"
-	                                   width="16"
-	                                   height="16"
-	                                   fill="currentColor"
-	                                   class="bi bi-chat-left-fill"
-	                                   viewBox="0 0 16 16"
-	                               >
-	                                   <path
-	                                       d="M2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"
-	                                   />
-	                               </svg>
-	                               <span class="bi">44</span>
+	                               <span class="bi">${m.likeCount}</span>
 	                           </div>
 	                       </div>
 	                    </c:forEach>
@@ -182,18 +169,6 @@
 			                                                   <span class="material-symbols-outlined"> edit </span>
 			                                                   <a>수정하기</a>
 			                                               </dt>
-			                                               <dt>
-			                                                   <span class="material-symbols-outlined"> add_box </span>
-			                                                   <a>저장하기</a>
-			                                               </dt>
-			                                               <dt>
-			                                                   <span class="material-symbols-outlined"> person_remove </span>
-			                                                   <a>팔로우 취소</a>
-			                                               </dt>
-			                                               <dt>
-			                                                   <span class="material-symbols-outlined"> report </span>
-			                                                   <a>신고하기</a>
-			                                               </dt>
 			                                           </dl>
 			                                       </div>
 			                                   </div>
@@ -214,20 +189,6 @@
 			                               <div class="clickable-svg">
 			                                   <svg
 			                                       xmlns="http://www.w3.org/2000/svg"
-			                                       width="20"
-			                                       height="20"
-			                                       fill="currentColor"
-			                                       class="bi bi-heart"
-			                                       viewBox="0 0 16 16"
-			                                   >
-			                                       <path
-			                                           d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"
-			                                       />
-			                                   </svg>
-			                               </div>
-			                               <div class="clickable-svg">
-			                                   <svg
-			                                       xmlns="http://www.w3.org/2000/svg"
 			                                       width="25"
 			                                       height="25"
 			                                       fill="currentColor"
@@ -239,26 +200,9 @@
 			                                       />
 			                                   </svg>
 			                               </div>
-			                               <div class="clickable-svg">
-			                                   <svg
-			                                       xmlns="http://www.w3.org/2000/svg"
-			                                       width="28"
-			                                       height="28"
-			                                       fill="currentColor"
-			                                       class="bi bi-plus-square"
-			                                       viewBox="0 0 16 16"
-			                                   >
-			                                       <path
-			                                           d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"
-			                                       />
-			                                       <path
-			                                           d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
-			                                       />
-			                                   </svg>
-			                               </div>
 			                           </div>
 			                           <div class="feed-text">
-			                               <span> 회원님의 게시글을 1,024명이 좋아합니다. </span>
+			                               <span id="modal-likeCount"></span>
 			                               <br />
 			                               <span>
 			                                   <b>dasdas</b>
@@ -384,8 +328,8 @@
                <!-- 하단 선택 박스2-->
                <div class="choice2 list2">
                    <div class="myimage">
-                   		<c:forEach var="n" items="${myImglist}" begin="0" end="0">
-	                       <div class="myimage-section"  data-bs-toggle="modal" data-bs-target="#MyDetailFeed2" onclick="feedNo2(event , ${n.fileNo})">
+                   		<c:forEach var="n" items="${myChoice}">
+	                       <div class="myimage-section"  data-bs-toggle="modal" data-bs-target="#MyDetailFeed2" onclick="feedNo2(event , ${n.fileFno})">
 	                           <img class="img-size" src="${contextPath}/${n.filePath}/${n.changeName}" />
 	                           <div class="like">
 	                               <svg
@@ -401,20 +345,7 @@
 	                                       d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
 	                                   />
 	                               </svg>
-	                               <span class="bi">444</span>
-	                               <svg
-	                                   xmlns="http://www.w3.org/2000/svg"
-	                                   width="16"
-	                                   height="16"
-	                                   fill="currentColor"
-	                                   class="bi bi-chat-left-fill"
-	                                   viewBox="0 0 16 16"
-	                               >
-	                                   <path
-	                                       d="M2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"
-	                                   />
-	                               </svg>
-	                               <span class="bi">44</span>
+	                               <span class="bi">${n.likeCount}</span>
 	                           </div>
 	                       </div>
 	                    </c:forEach>
@@ -429,8 +360,10 @@
 		                   <div class="modal-title" id="exampleModalLabel">
 		                       <div class="feed-header modal-feed-header">
 		                           <div class="modal-user-profile">
-		                               <img src="${contextPath}/${profileImg.filePath}/${profileImg.changeName}" />
-		                               <span>${loginUser.userNick}</span>
+		                           	   <div style="width:170px;" id="myChoiceModal">
+		                               		<%-- <img src="${contextPath}/${profileImg.filePath}/${profileImg.changeName}" />
+		                               		<span>${loginUser.userNick}</span> --%>
+		                               </div>
 		                               <div class="line-div">
 		                                   <span class="material-symbols-outlined modal-toggle-button"> more_horiz </span>
 		                                   <div class="modal-more-options">
@@ -464,12 +397,6 @@
 		               <div class="modal-body modal-backgound">
 		                   <div class="modal-feed-body">
 		                       <div class="feed-img2" id="feed-img">
-		                        <%--  <div>
-		                         	<img src="${contextPath}/resources/images/dog1.gif">
-		                         </div>
-		                         <div>
-		                         	<img src="${contextPath}/resources/images/dog2.gif">
-		                         </div> --%>
 		                       </div>
 		                       <div class="body-bottom">
 		                           <div class="feed-tools">
@@ -520,7 +447,7 @@
 		                               </div>
 		                           </div>
 		                           <div class="feed-text">
-		                               <span> 회원님의 게시글을 1,024명이 좋아합니다. </span>
+		                               <span id="modal-likeCount2"></span>
 		                               <br />
 		                               <span>
 		                                   <b>dasdas</b>
@@ -645,141 +572,25 @@
 		   </div>
            <!-- 실시간 바 -->
            <div class="sub-content">
-               <div class="sub-wrap">
-                   <div class="sub-container">
-                       <div>
-                           <div class="Ranking">
-                               <h1
-                                   class="Rangking_Title"
-                                   data-aos="fade-left"
-                                   data-aos-anchor="top-top"
-                                   data-aos-delay="150"
-                               >
-                                   실시간 랭킹
-                               </h1>
-                               <br />
-                               <div class="Ranking_Article">
-                                   <div
-                                       class="Ranking_Content"
-                                       data-aos="fade-left"
-                                       data-aos-anchor="top-top"
-                                       data-aos-delay="250"
-                                   >
-                                       <div class="num">1위</div>
-                                       <div class="Ranking_Text">
-                                           <div class="Ranking_Num"><b>수진님 담주에는 오나?</b></div>
-                                       </div>
-                                   </div>
-                               </div>
-                               <br />
-
-                               <div class="Ranking_Article">
-                                   <div
-                                       class="Ranking_Content"
-                                       data-aos="fade-left"
-                                       data-aos-anchor="top-top"
-                                       data-aos-delay="350"
-                                   >
-                                       <div class="num">2위</div>
-                                       <div class="Ranking_Text">
-                                           <div class="Ranking_Num"><b>서현역 칼부림</b></div>
-                                       </div>
-                                   </div>
-                               </div>
-                               <br />
-
-                               <div class="Ranking_Article">
-                                   <div
-                                       class="Ranking_Content"
-                                       data-aos="fade-left"
-                                       data-aos-anchor="top-top"
-                                       data-aos-delay="450"
-                                   >
-                                       <div class="num">3위</div>
-                                       <div class="Ranking_Text">
-                                           <div class="Ranking_Num"><b>유토피아 콘크리트</b></div>
-                                       </div>
-                                   </div>
-                               </div>
-                               <br />
-
-                               <div class="Ranking_Article">
-                                   <div
-                                       class="Ranking_Content"
-                                       data-aos="fade-left"
-                                       data-aos-anchor="top-top"
-                                       data-aos-delay="550"
-                                   >
-                                       <div class="num">4위</div>
-                                       <div class="Ranking_Text">
-                                           <div class="Ranking_Num"><b>김소연 다리 그만떨어</b></div>
-                                       </div>
-                                   </div>
-                               </div>
-                               <br />
-
-                               <div class="Ranking_Article">
-                                   <div
-                                       class="Ranking_Content"
-                                       data-aos="fade-left"
-                                       data-aos-anchor="top-top"
-                                       data-aos-delay="650"
-                                   >
-                                       <div class="num">5위</div>
-                                       <div class="Ranking_Text">
-                                           <div class="Ranking_Num"><b>집에 가고싶다..</b></div>
-                                       </div>
-                                   </div>
-                               </div>
-                               <br />
-
-                               <div class="Ranking_Article">
-                                   <div
-                                       class="Ranking_Content"
-                                       data-aos="fade-left"
-                                       data-aos-anchor="top-top"
-                                       data-aos-delay="750"
-                                   >
-                                       <div class="num">6위</div>
-                                       <div class="Ranking_Text">
-                                           <div class="Ranking_Num"><b>박보영 졸귀</b></div>
-                                       </div>
-                                   </div>
-                               </div>
-                               <br />
-
-                               <div class="Ranking_Article">
-                                   <div
-                                       class="Ranking_Content"
-                                       data-aos="fade-left"
-                                       data-aos-anchor="top-top"
-                                       data-aos-delay="850"
-                                   >
-                                       <div class="num">7위</div>
-                                       <div class="Ranking_Text">
-                                           <div class="Ranking_Num"><b>마이페이지</b></div>
-                                       </div>
-                                   </div>
-                               </div>
-                               <br />
-
-                               <div class="Ranking_Article">
-                                   <div
-                                       class="Ranking_Content"
-                                       data-aos="fade-left"
-                                       data-aos-anchor="top-top"
-                                       data-aos-delay="950"
-                                   >
-                                       <div class="num">8위</div>
-                                       <div class="Ranking_Text">
-                                           <div class="Ranking_Num"><b>오창정 프신..</b></div>
-                                       </div>
-                                   </div>
-                               </div>
+        	<div class="sub-wrap">
+               <div class="sub-container">
+                  <div>
+                    <div class="Ranking">
+                      <h1 class="Rangking_Title" data-aos="fade-left" data-aos-anchor="top-top" data-aos-delay="150">나의 검색기록</h1>
+                      	<c:forEach var="my" items="${history}">
+                        <br>
+                          <div class="Ranking_Article">
+                             <div class="Ranking_Content" data-aos="fade-left" data-aos-anchor="top-top" data-aos-delay="250">
+                                <div class="Ranking_Text">
+                                   <div class="Ranking_Num"><b>-</b>&nbsp;&nbsp;<b>${my.searchKeyword}</b></div>
+                                 </div>
+                              </div>
                            </div>
-                       </div>
-                   </div>
-               </div>
+                          </c:forEach>
+                        </div>
+                     </div>
+                  </div>
+              </div>
            </div>
        </div>
    </div>
@@ -790,7 +601,7 @@
            location.href = '${contextPath}/logout.me';
        }
        function follow() {
-           location.href = 'following.html';
+           location.href = '${contextPath}/follow/followlist';
        }
        function myEdit() {
            location.href = '${contextPath}/MyEdit.me';
@@ -851,19 +662,20 @@
 	           data: { imgNo : imgNo },
 	           success: function (result) {
 	        	   console.log(result);
+	        	   value ="";
 	               let html = "<div class='fileNum' style='display:none'>"+result[0].fileFno+"</div>"
 	           		   html += "<div id='slick_feed'>";
 	           	   for(let img of result){
-           		   		if(img.changeName != "DotLogo_D.png"){
+           		   		if(img.changeName != "DotLogo_D.png" && img.fileLevel != 1){
 			           		html += "<div>"
 							html += "<img src=${contextPath}/"+img.filePath+"/"+img.changeName+">"
 							html += "</div>"
            	   			}
 	               }
 	           		html += "</div>"
-	           		
 	           	   	jb1(".feed-img").html(html);
-	           		
+	           		value += "회원님의 게시글을 "+result[0].likeCount+"명이 좋아합니다."
+	           		jb1("#modal-likeCount").html(value);
 	           	 if (result.length > 1) {
 			       jb1('#slick_feed').slick({
 			    	   	// Slick configuration options
@@ -892,16 +704,24 @@
 	           data: { imgNo : imgNo },
 	           success: function (result) {
 	        	   console.log(result);
-	           	   html += "<div id='slick_feed2'>";
+	        	   value2="";
+	        	   value ="";
+	        	   let html = "<div class='fileNum' style='display:none'>"+result[0].fileFno+"</div>"
+	           	   	   html += "<div id='slick_feed2'>";
 	           	   for(let img of result){
-          		   	if(img.changeName != "DotLogo_D.png"){
+          		   	if(img.changeName != "DotLogo_D.png" && img.fileLevel != 1){
 			        	html += "<div>"
 						html += "<img src=${contextPath}/"+img.filePath+"/"+img.changeName+">"
 						html += "</div>"
           	   		}
 	              }
 	           	html += "</div>"
-	           	jb1(".feed-img2").html(html);
+		        jb1(".feed-img2").html(html);
+	           	value += "회원님의 게시글을 "+result[0].likeCount+"명이 좋아합니다."
+	           	value2 += "<img src=${contextPath}/"+result[0].filePath+"/"+result[0].changeName+">"+
+           				  "<span style='margin-left: 20px;'>"+result[0].userNick+"</span>";	
+	           	jb1("#modal-likeCount2").html(value);
+	           	jb1("#myChoiceModal").html(value2);
 	           	 if (result.length > 1) {
 			       jb1('#slick_feed2').slick({
 			    	   	// Slick configuration options

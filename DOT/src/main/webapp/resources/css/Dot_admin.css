@@ -53,11 +53,138 @@ body {
 .ctn {
     display: flex;
 }
+/*--------------------- 사이드 ------------------------*/
+
+.side-bar {
+    width: 300px;
+    height: 350px;
+    color: white;
+    margin-top: -25px;
+}
+
+.controller {
+    height: 100%;
+    padding-top: 90px;
+}
+.cont {
+    width: 95%;
+    padding: 17px 0 0 0;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+.cont:hover {
+    background-color: grey;
+    transition: all 0.3s ease;
+}
+.cont span {
+    font-size: 30px;
+    margin-right: 10px;
+    margin-bottom: 16px;
+}
+.det-area h3 {
+    padding-left: 20px;
+    font-size: 140%;
+}
+.det-wrapper {
+    width: 100%;
+}
+.det {
+    display: flex;
+    padding: 5px 0;
+}
+.det-area h4 {
+    font-size: 95%;
+    font-weight: 900;
+    margin-left: 40px;
+    margin-top: 12px;
+}
+.det-area {
+    width: 95%;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    font-weight: 300;
+    cursor: pointer;
+}
+.det-area:hover {
+    background-color: grey;
+    transition: all 0.3s ease;
+}
+
+.det span {
+    font-size: 20px;
+}
+
+/*--------------------- 사이드 끝 ------------------------*/
+
+/* 
+회원 관리  
+ - 인플루언서 
+   ID / 팔로워 수 
+ - 블랙리스트
+   ID / 신고 수 
+피드 관리
+ - 글번호  / 신고수 / ID   
+신고 관리 
+- ID / 신고 내용 
+*/
+
+/*--------------------- 헤더 ------------------------*/
+.header-bar {
+    width: 100%;
+    height: 0px;
+    border-bottom: 1px solid rgb(77, 77, 77);
+    margin-left: -300px;
+}
+.logo-area {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+}
+/* .logo-area *{
+border: 1px solid rgb(77, 77, 77);
+} */
+.logo {
+    z-index: 10;
+    margin-left: 60px;
+    margin-top: 20px;
+}
+.logo img {
+    margin-left: 100px;
+    width: 150px;
+    cursor: pointer;
+    margin-bottom:20px;
+}
+.logout-icon {
+    height: 10%;
+    margin-right: 30px;
+    padding: 10px;
+}
+.logout-area > .logout {
+    font-size: 30px;
+    cursor: pointer;
+    margin: 10px;
+}
+.logout-area:hover {
+    background-color: grey;
+}
+/*--------------------- 헤더 끝 ------------------------*/
 
 /*-------------------- 컨텐츠 시작 --------------------*/
 .content-area {
     width: 82%;
-    height: 700px;
+    height: 380px;
     margin-left: 300px;
     margin-top: 30px;
     background-color: rgba(0, 0, 0, 0.502);
@@ -106,7 +233,7 @@ body {
 /*************    left  ************/
 .content-body {
     width: 100%;
-    height: 700px;
+    height: 300px;
 }
 /* .content-body *{
 } */
@@ -135,11 +262,11 @@ body {
 }
 
 .title-content {
-    width: 560px;
+    width: 520px;
 }
 
 .title-date {
-    width: 130px;
+    width: 160px;
 }
 
 .admin-area {
@@ -185,6 +312,7 @@ body {
 }
 
 h4 {
+	text-align: center;
     font-size: 14px;
 }
 
@@ -249,7 +377,7 @@ h4 {
 }
 
 .ctn-right .userid-btn {
-    width: 25%;
+    width: 45%;
     height: 30px;
     border: 2px solid grey;
     border-radius: 10px;
@@ -291,7 +419,7 @@ h4 {
 }
 
 .ctn-right button {
-    margin-right: 10px;
+    margin-right: 230px;
 }
 
 .ctn-right .right-confirm {
@@ -332,14 +460,14 @@ h4 {
 
 .pagination {
     display: flex;
-    margin-left: 42%;
+    margin-left: 35%;
     list-style: none;
 }
 
 #searchForm {
-    width:80%;
-    margin:auto;
-    padding-left:320px;
+    width:30%;
+    margin-left:33%;
+    /* padding-left:360px; */
 }
         
 #searchForm>* {
@@ -376,39 +504,59 @@ h4 {
 	color:gray;
 }
 
-/* .logout-icon>span{
-	width: 40px;
-	hight: 40px;
+#modi-btn{
+	height: 35px;
+	width: 55px;
+	color: black; 
+	background-color: lightgray;  
+	float: right; 
+	margin: 10px 25px 0px 25px; 
+	border-radius: 3px;
 }
- */
- 
- /* swal */
+
+#del-btn{
+	height: 35px;
+	width: 55px;
+	color: black; 
+	background-color: lightgray;  
+	float: right; 
+	margin: 10px 25px 0px 5px; 
+	border-radius: 3px;
+}
+
+#r-del-btn{
+	height: 35px;
+	width: 55px;
+	color: black; 
+	background-color: lightgray;  
+	float: right; 
+	margin: 10px 25px 0px 5px; 
+	border-radius: 3px;
+	
+}
+ /* swal alert 창 css */
 .swal-modal {
     background-color: black;
-    border: 1px solid white;
+    border: 1px solid rgba(255,255,255,0.3);
+  	margin-top : -6%;
+  	padding-bottom:20px;
 }
 .swal-text {
     text-align: center;
     color: white;
+ 	font-size:20px;
+ 	
 }
 .swal-title {
     text-align: center;
     color: white;
+    
 }
-.swal-icon--success:before {
-    display: none;
-}
-.swal-icon--success:after {
-    display: none;
-}
-.swal-icon--success__hide-corners {
-    display: none;
-}
-.swal-footer{
+.swal-button-container{
 	display: flex;
-    justify-content: center;
+	justify-content : center;
 }
-.btn-box {
-    display: flex;
-    justify-content: center;
+
+.admin-header{
+	top: 2px !important;
 }

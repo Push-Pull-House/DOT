@@ -50,4 +50,18 @@ public interface CommonService {
 	public Alarm selectAlarmOne(int ano);
 
 	public int updateRead(int ano);
+
+	public int insertLikeAlarm1(Member m1);
+
+	public int updateLikeAlarm1(Member m2);
+
+	public int deleteMemberAdmin(Map<String, Object> map);
+
+	public List<Member> WList(Map<String, Object> paramMap, RowBounds rowBounds);
+
+	public int selectWListCount(Map<String, Object> paramMap);
+
+	public List<Member> BList(Map<String, Object> paramMap, RowBounds rowBounds);
+
+	public int selectBListCount(Map<String, Object> paramMap);
 }

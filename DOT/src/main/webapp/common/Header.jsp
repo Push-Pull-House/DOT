@@ -65,8 +65,9 @@
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog modal-xl">
-                        <div class="modal-content haeder-alarm follow-header">
+                        <div class="modal-content haeder-alarm follow-header main-header-alarm">
                             <div class="modal-body modal-backgound" style="height: 30%;">
+                            	<div class="more-alarm"><a href="${contextPath}/Alarm.al">더 보기</a></div>
                                 <div class="modal-box">
                                     <c:forEach var="alarm" items="${alarmlist}">
                                     <div class="modal-profile-icon" onclick="alarm(event,${alarm.alarmNo},'${alarm.alarmType}');">
@@ -99,11 +100,11 @@
 			    		console.log(no1,type1);
 			    		if(type1 == 'F'){
 			    			location.href = '${contextPath}/otherperson.op?ano='+no1;
+			    		}else if(type == 'L'){
+			    			location.href = '${contextPath}/myperson.op?ano='+no1;
 			    		} 
 			    		/* 
 			    		else if(type =='R'){
-			    			
-			    		}else if(type == 'L'){
 			    			
 			    		}else{
 			    			
@@ -132,7 +133,7 @@
 	                    <img src="${contextPath}/${profileImg.filePath}/${profileImg.changeName}" />
 	                </div>
 	                <div class="profile-name" onclick="location.href='${contextPath}/adminMain';">
-	                    <p>${loginUser.userNick}</p>
+	                    <p class="admin-header">${loginUser.userNick}</p>
 	                </div>
                 </c:if>
             </div>
@@ -149,9 +150,6 @@
         	const alarmlist1 = message1.alarmList;
         	const userNo = message1.userNo;
         	const loginUser = "${loginUser.userNo}";
-        	console.log('updateFollowStatus',alarmlist1);
-        	console.log('updateFollowStatus',userNo);
-        	console.log('updateFollowStatus',loginUser);
         	const div = $('.modal-box');
 
         	let value = "";
@@ -188,7 +186,48 @@
   	        	   console.log(result);
   	        	}
         	 });
-        })
+        });
+        
+         stompAlram.subscribe('/topic/updateLikeStatus', function(message) {
+        	var message1 = JSON.parse(message.body);
+        	var acceptUser = message1.userNo;
+        	const loginUser = "${loginUser.userNo}";
+        	const alarmlist1 = message1.alarmList;
+        	const div = $('.modal-box');
+        	let value = "";
+        	if(loginUser == acceptUser){
+        		div.empty();
+	        	for (let i of alarmlist1) {
+	      	       value += "<div class='modal-profile-icon' onclick=alarm(event,"+ i.alarmNo + "," + "'"+i.alarmType+"'"+")>"
+	      	       value += "<label>"
+	      	       value +=  "<a>"
+	   	    	   value += "<img src=${contextPath}/"+i.filePath+"/"+i.changeName+">"
+	   	    	   value += "</a>"
+	    		   value += "</label>"
+	   			   value += "<div class='modal-alarm-contents'>"
+				   value += "<div class='modal-alarm-user'>"
+				   value += i.userNick
+				   value += "<span class='alarm-status'>안읽음</span>"
+				   value += "</div>"
+				   value += "<div class='modal-alarm-content'>"
+				   value += i.alarmContent
+				   value += "</div>"
+				   value += "</div>"
+				   value += "</div>"
+	        	}
+	        	div.append(value);
+        		$('#newAlarm2').css('background-color','red');
+        	}
+        	
+        	 $.ajax({
+          	   type: "POST",
+    	           url: '${contextPath}/upToDate',
+  	  	       data: {alarmlist1 : JSON.stringify(alarmlist1)},
+    	           success: function (result) {
+    	        	   console.log(result);
+    	        	}
+          	 });
+         });
     });
     </script>
 </body>

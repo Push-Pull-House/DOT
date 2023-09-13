@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.kh.dots.common.model.vo.Images;
+import com.kh.dots.feed.model.vo.Choice;
 import com.kh.dots.member.model.vo.Friend;
 import com.kh.dots.member.model.vo.Member;
 
@@ -62,4 +63,8 @@ public interface MemberService {
 	int addFollow(Map<String, Integer> map);
 
 	List<Member> recommandFollowList(int userNo);
+
+	Member feedMember(int feedNo);
+
+	List<Choice> myChoiceList(int userNo);
 }

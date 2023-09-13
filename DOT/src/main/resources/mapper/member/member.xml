@@ -243,18 +243,6 @@
 			)
 	</insert>
 	
-	
-	<!-- <delete id="deleteDuplicateFollower" parameterType="Int">
-    DELETE 
-    FROM FRIEND
-    WHERE FRIEND_USER2 = #{userNo}
-      AND FRIEND_USER1 IN (SELECT FRIEND_USER1
-                           FROM FRIEND
-                           WHERE FRIEND_USER2 = #{userNo}
-                           GROUP BY FRIEND_USER1
-                           HAVING COUNT(*) > 1)
-	</delete> -->
-	
 	<select id="recommandFollowList" parameterType="int" resultMap="memberResultSet">
 		 <![CDATA[
 		SELECT M.USER_NO, M.USER_NAME, I.FILE_PATH, I.CHANGE_NAME, M.USER_NICK
@@ -272,4 +260,12 @@
 		    )
 		]]>
 	</select> 
+	
+	<select id="feedMember" parameterType="int" resultMap="memberResultSet">
+		SELECT *
+		FROM MEMBER M
+		LEFT JOIN IMAGE I ON M.USER_NO = I.FILE_WRITER AND I.FILE_LEVEL = 1
+		JOIN FEED F ON F.FEED_WRITER = M.USER_NO
+		WHERE FEED_NO = #{feedNo}		
+	</select>
 </mapper>
