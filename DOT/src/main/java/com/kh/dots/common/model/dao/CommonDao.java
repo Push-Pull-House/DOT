@@ -68,14 +68,13 @@ public class CommonDao {
 		return sqlSession.selectList("common.selectMyAlarm",userNo);
 	}
 
-	public List<Alarm> selectMyAlarm1(int userNo) {
-		return sqlSession.selectList("common.selectMyAlarm1",userNo);
-	}
-
-	public Member selectMyAlarmUser(int alarmWriter) {
-		return sqlSession.selectOne("common.selectMyAlarmUser",alarmWriter);
-	}
-
+	/*
+	 * public List<Alarm> selectMyAlarm1(int userNo) { return
+	 * sqlSession.selectList("common.selectMyAlarm1",userNo); }
+	 * 
+	 * public Member selectMyAlarmUser(int alarmWriter) { return
+	 * sqlSession.selectOne("common.selectMyAlarmUser",alarmWriter); }
+	 */
 	public int insertFollowAlarm1(Member m1) {
 		return sqlSession.insert("common.insertFollowAlarm1",m1);
 	}
@@ -84,9 +83,10 @@ public class CommonDao {
 		return sqlSession.update("common.updateFollowAlarm1",m2);
 	}
 
-	public List<Alarm> selectMyAlarm4() {
-		return sqlSession.selectList("common.selectMyAlarm4");
-	}
+	/*
+	 * public List<Alarm> selectMyAlarm4() { return
+	 * sqlSession.selectList("common.selectMyAlarm4"); }
+	 */
 
 	public Alarm selectAlarmOne(int ano) {
 		return sqlSession.selectOne("common.selectAlarmOne",ano);

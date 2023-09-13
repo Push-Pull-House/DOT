@@ -277,10 +277,6 @@ body {
     transition: all .35s;
 }
 
-.modal-box>div:nth-child(2) {
-    margin-top: 20px;
-}
-
 .modal-profile-icon{
     display: flex;
     margin-top: 11px;

@@ -66,8 +66,8 @@
                     aria-hidden="true">
                     <div class="modal-dialog modal-xl">
                         <div class="modal-content haeder-alarm follow-header main-header-alarm">
-                            <div class="modal-body modal-backgound" style="height: 30%;">
-                            	<div class="more-alarm"><a href="${contextPath}/Alarm.al">더 보기</a></div>
+                            <div class="modal-body modal-backgound" style="height: 30%; display:block">
+                            	<div class="more-alarm23"><a href="${contextPath}/Alarm.al">더 보기</a></div>
                                 <div class="modal-box">
                                     <c:forEach var="alarm" items="${alarmlist}">
                                     <div class="modal-profile-icon" onclick="alarm(event,${alarm.alarmNo},'${alarm.alarmType}');">

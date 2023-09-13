@@ -56,20 +56,6 @@ public class WebSocketController  {
         
         List<Member> Allmember = mService.selectAll();
         
-        // 친구 목록 서비스를 사용하여 친구 목록을 가져옵니다.
-        //List<Friend> mlist = mService.sideFriendList(userNo);
-		//List<Member> friendList = new ArrayList();
-		//for(Friend a : mlist
-		//		) {
-		//	Member f = mService.selectFriendList2(a);
-		//	if(f != null) {
-		//		String isLoggedIn = f.getCheckLog();
-		//		friendList.add(f);
-		//	}
-		//}
-		//log.info("WebFriend={}",friendList);
-		 //message.setFriendList(friendList);
-        // 해당 정보를 클라이언트에게 보냅니다.
         log.info("WebFriend={}",Allmember);
 		String userTopic = "/topic/updateLoginStatus";
 		message.setFriendList(Allmember);
@@ -105,9 +91,10 @@ public class WebSocketController  {
 	 public void updateFollowStatus(@Payload UserStatusMessage message) {
 		 int userNo = message.getUserNo();
 		 int loginNo = message.getUserNo2();
-		 log.info("websocketNo={}",userNo);
 		 Member m1 = mService.checkMember(userNo);
 		 Member m2 = mService.checkMember(loginNo);
+		 log.info("websocketNo={}", m1.getUserNo());
+		 log.info("websocketNo2={}", m1.getUserNick());
 		 int result = cService.insertFollowAlarm1(m1);
 		 int result2 = cService.updateFollowAlarm1(m2);
 		 

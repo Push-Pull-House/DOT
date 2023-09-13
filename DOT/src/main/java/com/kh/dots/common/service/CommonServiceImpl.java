@@ -78,15 +78,13 @@ public class CommonServiceImpl implements CommonService {
 		return cDao.selectMyAlarm(userNo);
 	}
 
-	@Override
-	public List<Alarm> selectMyAlarm1(int userNo) {
-		return cDao.selectMyAlarm1(userNo);
-	}
-
-	@Override
-	public Member selectMyAlarmUser(int alarmWriter) {
-		return cDao.selectMyAlarmUser(alarmWriter);
-	}
+	/*
+	 * @Override public List<Alarm> selectMyAlarm1(int userNo) { return
+	 * cDao.selectMyAlarm1(userNo); }
+	 * 
+	 * @Override public Member selectMyAlarmUser(int alarmWriter) { return
+	 * cDao.selectMyAlarmUser(alarmWriter); }
+	 */
 
 	@Override
 	public int insertFollowAlarm1(Member m1) {
@@ -98,10 +96,10 @@ public class CommonServiceImpl implements CommonService {
 		return cDao.updateFollowAlarm1(m2);
 	}
 
-	@Override
-	public List<Alarm> selectMyAlarm4() {
-		return cDao.selectMyAlarm4();
-	}
+	/*
+	 * @Override public List<Alarm> selectMyAlarm4() { return cDao.selectMyAlarm4();
+	 * }
+	 */
 
 	@Override
 	public Alarm selectAlarmOne(int ano) {

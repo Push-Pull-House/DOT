@@ -37,15 +37,17 @@ public interface CommonService {
 
 	public List<Alarm> selectMyAlarm(int userNo);
 
-	public List<Alarm> selectMyAlarm1(int userNo);
-
-	public Member selectMyAlarmUser(int alarmWriter);
+	/*
+	 * public List<Alarm> selectMyAlarm1(int userNo);
+	 * 
+	 * public Member selectMyAlarmUser(int alarmWriter);
+	 */
 
 	public int insertFollowAlarm1(Member m1);
 
 	public int updateFollowAlarm1(Member m2);
 
-	public List<Alarm> selectMyAlarm4();
+	//public List<Alarm> selectMyAlarm4();
 
 	public Alarm selectAlarmOne(int ano);
 
