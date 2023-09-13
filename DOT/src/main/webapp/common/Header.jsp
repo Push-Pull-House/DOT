@@ -65,7 +65,7 @@
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog modal-xl">
-                        <div class="modal-content haeder-alarm">
+                        <div class="modal-content haeder-alarm follow-header">
                             <div class="modal-body modal-backgound" style="height: 30%;">
                                 <div class="modal-box">
                                     <c:forEach var="alarm" items="${alarmlist}">
@@ -142,7 +142,6 @@
     <script>
     const socketHeader = new SockJS("http://localhost:8083${contextPath}/websocket"); //URL에 대한 WebSocket 연결을 설정
     const stompAlram = Stomp.over(socketHeader); //WebSocket을 통해 Stomp 클라이언트를 생성
-    console.log('1111111111111111','${alarmlist}')
     stompAlram.connect( {} , () => {
         console.log('연결되었어요2');
         stompAlram.subscribe('/topic/updateFollowStatus', function(message) {

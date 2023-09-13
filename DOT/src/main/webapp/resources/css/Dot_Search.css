@@ -702,6 +702,11 @@ body {
     margin-left:-82px;
 }
 
+.follow-list {
+    display: flex;
+    color: white;
+}
+
 .sub-content .follow-img>img{
     width: 50px;
     height: 50px;

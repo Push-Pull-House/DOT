@@ -51,6 +51,7 @@ body {
     /* border: 1px solid white; */
 }
 
+
 .sub-wrap {
     width: 390px;
     height: 100%;
@@ -469,6 +470,10 @@ body {
 	background-color : rgb(44,44,44);
 	color : white;
 }
+.follower-btn22{
+	background-color : rgb(44,44,44);
+	color : white;
+}
 .btn-danger {
     color: #fff;
     background-color: #dc3545;
@@ -499,4 +504,9 @@ a {
 a:hover {
     color: white;
     text-decoration: none;
+}
+
+
+.follow-header{
+	margin-top : 7% !important;
 }

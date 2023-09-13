@@ -27,7 +27,10 @@
         crossorigin="anonymous"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 	<script type="text/javascript" src="${contextPath}/resources/js/Dot_Search.js"></script>
-
+	
+	 <!--  웹소켓 -->
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.1/sockjs.min.js"></script>
+	 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
     <title>Dot.</title>
 </head>
 
@@ -39,6 +42,7 @@
         	<!-- 탐색 콘텐츠 영역 -->
             <div class="search-content-wrap">
                 <div class="search-inputs-wrap">
+                	<input type="hidden" value="${loginUser.userNo }" id="myUserNo"/>
                     <div class="search-inputs">
 	                    <form action="${contextPath}/searchList.se" method="get">
 	                        <input type="text" name="keyword" class="search-input-text input-style-search" placeholder="무엇을 찾고 싶나요?"/>
@@ -57,21 +61,6 @@
                     <div class="searchTag-box">
                         <div id="SearchList"></div>
                         <h3 id="selected"></h3>
-                        <%-- <c:if test="${empty slist}">
-                        	<span>검색하신 태그가 존재하지 않습니다.</span>
-                        </c:if>
-                        <c:forEach items="${slist}">
-                        	<span onclick="getSearchList(${param.keyword});"></span>
-							<span>${param.keyword}</span>
-						</c:forEach> --%>   
-						                     
-                        <!-- <span>#노티드</span> 
-                        <span>#도넛</span> 
-                        <span>#knotted</span> 
-                        <span>#cream</span>
-                        <span>#doughnut</span>
-                        <span>#컵케익</span>
-                        <span>#노티드우유</span> -->
                     </div>
                 </div>
 
@@ -118,37 +107,37 @@
                 </div>   
             </div>
 			<!-- 실시간 바 -->
-             <div class="sub-content">
-                 <div class="sub-wrap">
-                     <div class="sub-container">
-                         <div class="sub-recommand">
-                             <div class="sub-title">
-                                 <span>회원님을 위한 추천</span>
-                             </div>
-                              <div class="result-content-area">
-                                <c:if test="${rf ne null }">
-                          		  <c:forEach var ="i" items="${rf}">
-                                  <div class="result-content">
-                                      <dl class="follow-list">
-                                          <dt class="follow-img">
-                                              <img src='${contextPath}/${i.filePath}/${i.changeName}' /> 
-                                          </dt>
-                                          <dt class="follow-id">
-                                              <div class="user-id" style="color:white;">
-                                                  <span>${i.userNick }</span>
-                                              </div>
-                                              <div class="user-nickname">
-                                                  <span>${i.userName }</span>
-                                              </div>
-                                          </dt>
-                                          <dt class="follow-btn1">
-                                              <button class="follow-btn10 follower-btn" id="f-btn1_${i.userNo}" onclick="follow(event,${i.userNo})" value="${i.userNo}"><h6>팔로우</h6></button>
-                                              <button class="follow-btn10 follower-btn" id="f-btn2_${i.userNo}" onclick="unfollow(event,${i.userNo})" value="${i.userNo}" style="display:none; color:white;"><h6>팔로잉</h6></button>
-                                          </dt>
-                                      </dl>
-                                  </div>
-                           		  </c:forEach> 
-                           		  </c:if>
+                <div class="sub-content">
+                    <div class="sub-wrap">
+                        <div class="sub-container">
+                            <div class="sub-recommand">
+                                <div class="sub-title">
+                                    <span>회원님을 위한 추천</span>
+                                </div>
+	                                <div class="result-content-area">
+	                                  <c:if test="${rf ne null }">
+                             		  <c:forEach var ="i" items="${rf}">
+	                                    <div class="result-content">
+	                                        <dl class="follow-list">
+	                                            <dt class="follow-img">
+	                                                <img src='${contextPath}/${i.filePath}/${i.changeName}' /> 
+	                                            </dt>
+	                                            <dt class="follow-id">
+	                                                <div class="user-id">
+	                                                    <span>${i.userNick }</span>
+	                                                </div>
+	                                                <div class="user-nickname">
+	                                                    <span>${i.userName }</span>
+	                                                </div>
+	                                            </dt>
+	                                            <dt class="follow-btn1">
+	                                                <button class="follow-btn10 follower-btn" id="f-btn1_${i.userNo}" onclick="follow(event,${i.userNo})" value="${i.userNo}"><h6>팔로우</h6></button>
+	                                                <button class="follow-btn10 follower-btn" id="f-btn2_${i.userNo}" onclick="unfollow(event,${i.userNo})" value="${i.userNo}" style="display:none; color:white;"><h6>팔로잉</h6></button>
+	                                            </dt>
+	                                        </dl>
+	                                    </div>
+                              		  </c:forEach> 
+                              		  </c:if>
                                 </div>
                             </div>
                         </div>
@@ -158,23 +147,29 @@
         </div>
         <script>
         //사이드바 친구추천
+         const socketFollow5 = new SockJS("http://localhost:8083${contextPath}/websocket"); //URL에 대한 WebSocket 연결을 설정
+        const stompFollow5 = Stomp.over(socketFollow5); //WebSocket을 통해 Stomp 클라이언트를 생성
         function follow(e,no){
-        	console.log(e,no);
-            const userNo = $('#f-btn1_'+no).val();
-			const clickbtn = $('#f-btn1_'+no);
-			const clickbtn2 = $('#f-btn2_'+no);
-
-            $.ajax({
-                url: '${contextPath}/follow/followlist/addfollow',
-                data: { userNo: userNo },
-                method: 'post',
-                success(result) {
-                    // 처리 로직
-                    clickbtn.css("display", "none");
-                    clickbtn2.css("display","block");
-                }
-            });
-        }
+        	const myNo = $('#myUserNo').val();
+        	const userNo = $('#f-btn2_'+no).val();
+ 			const clickbtn = $('#f-btn1_'+no);
+ 			const clickbtn2 = $('#f-btn2_'+no);
+			    $.ajax({
+	                url: '${contextPath}/follow/followlist/addfollow',
+	                data: { userNo: userNo },
+	                method: 'post',
+	                success(result) {
+	                    // 처리 로직
+	                    clickbtn.css("display", "none");
+	                    clickbtn2.css("display","block");
+	                }
+	            });
+ 			console.log(userNo);
+	        stompClient.send("/app/updateFollowStatus", {}, JSON.stringify({
+	        	userNo: userNo,
+	        	userNo2 : myNo
+	        }));
+	    };
 		
         function unfollow(e,no){
         	console.log(e,no);
@@ -236,12 +231,6 @@
 		            <div class="modal-body modal-backgound">
 		                <div class="modal-feed-body">
 		                    <div class="feed-img" id="feed-img">
-		                     <%--  <div>
-		                      	<img src="${contextPath}/resources/images/dog1.gif">
-		                      </div>
-		                      <div>
-		                      	<img src="${contextPath}/resources/images/dog2.gif">
-		                      </div> --%>
 		                    </div>
 		                    <div class="body-bottom">
 		                        <div class="feed-tools">

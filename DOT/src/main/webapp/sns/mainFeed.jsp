@@ -26,6 +26,9 @@
     <script type="text/javascript" src="${contextPath}/resources/js/MainFeed.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     
+    <!--  웹소켓 -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.1/sockjs.min.js"></script>
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
     
 </head>
 <body>
@@ -531,9 +534,10 @@
           AOS.init();
     </script>
      <script>
-		 	// 웹소켓 연결(웹 브라우저에서 실행)
-		   // const socket = new SockJS("http://localhost:8083${contextPath}/websocket"); //URL에 대한 WebSocket 연결을 설정
-		    //const stompClient = Stomp.over(socket); //WebSocket을 통해 Stomp 클라이언트를 생성
+		 	//웹소켓 연결(웹 브라우저에서 실행)
+		    //const socketLike = new SockJS("http://localhost:8083${contextPath}/websocket"); //URL에 대한 WebSocket 연결을 설정
+		    //const stompLike = Stomp.over(socketLike); //WebSocket을 통해 Stomp 클라이언트를 생성
+		    
 		    
 		  
 		 

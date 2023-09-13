@@ -111,7 +111,7 @@
                                             <div class="user-nickname">${i.userNick }</div>
                                         </div>
                                         <div class="follow-btn-box">
-                                            <button class="follow-btn" name ="userNo" value="${i.userNo }"><h6>삭제</h6></button>
+                                            <button class="follow-btn delete-follow" name ="userNo" value="${i.userNo }"><h6>삭제</h6></button>
                                         </div>
                                     </dl>
                                 </div>
@@ -121,9 +121,7 @@
                         </div>
                     </div>
                     <script>
-	                    //const userNo = $("input[name='userNo']").val();
-	                    //console.log(userNo);
-						$('.follow-btn').click(function() {
+						$('.delete-follow').click(function() {
 						    const clickedButton = $(this);
 						    const userNo = clickedButton.val(); // 버튼의 value 값 가져오기
 						    
@@ -146,54 +144,6 @@
 						        }
 						    });
 						});
-                  
-						 $(document).ready(function() {
-						$('.follower-btn2').click(function() {
-						    const clickedButton = $(this);
-						    const userNo = clickedButton.val(); // 버튼의 value 값 가져오기
-						    console.log(userNo);
-						    
-						    $.ajax({
-						        url: '${contextPath}/follow/followlist/unfollow',
-						        data: { userNo: userNo },
-						        method: 'post',
-						        success(result) {
-						            // AJAX 요청 성공 처리
-						            console.log(result);
-						
-						            clickedButton.css("background-color", "black");
-						            clickedButton.css("color", "white");
-						            clickedButton.text("팔로우");
-				                    clickedButton.css("font-size", "14px");
-				                    
-			                    clickedButton.click(function() {
-								    const clickedButton = $(this);
-								    const userNo = clickedButton.val(); // 버튼의 value 값 가져오기
-								    
-								    $.ajax({
-								        url: '${contextPath}/follow/followlist/addfollow',
-								        data: { userNo: userNo },
-								        method: 'post',
-								        success(result) {
-								            // AJAX 요청 성공 처리
-								            console.log(result);
-								
-								            clickedButton.css("background-color", "rgb(55,55,55)");
-								            clickedButton.css("color", "white");
-								            clickedButton.text("팔로잉");
-						                    clickedButton.css("font-size", "14px");
-								        },
-								        error() {
-								            console.log("AJAX error");
-								        }
-								    });
-								});
-						        },
-						        error() {
-						            console.log("AJAX error");
-						        }
-						    });
-						})}) ;
                     </script>
                     <!-- 하단 선택 박스2-->
                     <div class="choice2 list2">
@@ -253,18 +203,38 @@
 	                                                <span>회원님을 팔로우합니다</span>
 	                                            </div>
 	                                        </div>
-	                                        <div class="follow-btn-box">
-						                    	<c:set var="div2">
-						                        	<button class="follow-btn follower-btn" id="follower-btn" value="${c.userNo}"><h6>팔로우</h6></button>
-						                        </c:set>
+	                                        <div class="follow-btn-box" id="follow-btn-box_${c.userNo}">
+	                                        	<c:set var="checkf" value="0"/>
+	                                        	<c:set var="loop_flag" value="false" />
 												<c:forEach var ="j" items="${fw}">
-													<c:if test="${j.userNo eq c.userNo}">
-														<c:set var="div2">
-								                        	<button class="follow-btn follower-btn2" value="${c.userNo}" ><h6>팔로잉</h6></button>
-								                        </c:set>
-								                    </c:if>
+													 <c:if test="${not loop_flag }">
+														<c:if test="${j.userNo eq c.userNo}">
+															<input type="hidden" value="${checkf = 1}"/>
+															<c:set var="loop_flag" value="true" />
+									                    </c:if>
+			                            			    <c:if test="${j.userNo ne c.userNo}">
+			                            			    	<input type="hidden" value="${checkf = 2}"/>
+							                        	</c:if>
+							                        </c:if>
 		                            			</c:forEach>
-		                            			<c:out value="${div2}" escapeXml="false"/>
+		                            			<c:if test="${checkf == 1}">
+								                     <button type="button" 
+								                     		 class="follow-btn follower-btn2"
+								                     		 id="f-bbtn1_${c.userNo}" 
+								                     		 onclick="following(event,${c.userNo})"
+								                     		 value="${c.userNo}">
+								                     		 <h6>팔로잉</h6>
+								                     </button>
+								                </c:if>
+								                <c:if test="${checkf == 2}">
+						                        	<button type="button"
+						                        			class="follow-btn follower-btn"
+						                        			id="f-bbtn2_${c.userNo}"
+						                        			onclick="follow2(event,${c.userNo})"
+						                        			value="${c.userNo}">
+						                        			<h6>팔로우</h6>
+						                        	</button>
+						                       	</c:if>
 	                                        </div>
 	                                    </dl>
 	                                </div>
@@ -275,53 +245,62 @@
                     </div>
                 </div>
                <script>
-				    $(document).ready(function() {
-				        $('#follower-btn').click(function() {
-				            const clickedButton = $(this);
-				            const userNo = clickedButton.val();
-				            console.log(userNo);
-				
-				            $.ajax({
-				                url: '${contextPath}/follow/followlist/addfollow',
-				                data: { userNo: userNo },
-				                method: 'post',
-				                success(result) {
-				                    // 처리 로직
-				                    clickedButton.css("background-color", "rgb(55,55,55)");
-				                    clickedButton.css("color", "white");
-				                    clickedButton.text("팔로잉");
-				                    clickedButton.css("font-size", "14px");
-				                    
-				                    clickedButton.click(function() {
-				                    	
-									    const clickedButton = $(this);
-									    const userNo = clickedButton.val(); // 버튼의 value 값 가져오기
-									    
-									    $.ajax({
-									        url: '${contextPath}/follow/followlist/unfollow',
-									        data: { userNo: userNo },
-									        method: 'post',
-									        success(result) {
-									            // AJAX 요청 성공 처리
-									            console.log(result);
-									
-									            clickedButton.css("background-color", "black");
-									            clickedButton.css("color", "white");
-									            clickedButton.text("팔로우");
-							                    clickedButton.css("font-size", "14px");
-									        },
-									        error() {
-									            console.log("AJAX error");
-									        }
-									    });
-									});
-							        },
-				                error() {
-				                    console.log("AJAX error");
-				                }
-				            });
-				        });
-				    });
+               		function following(e,no){
+               			console.log(no);
+               			const clickedbtn = $('#f-bbtn1_'+no);
+					    const userNo = clickedbtn.val();
+					    const btn = $('#follow-btn-box_'+no);
+					    $.ajax({
+					        url: '${contextPath}/follow/followlist/unfollow',
+					        data: { userNo: userNo },
+					        method: 'post',
+					        success(result) {
+					            // AJAX 요청 성공 처리
+					            value = "";
+					            btn.empty();
+					            //clickedbtn.css("display", "none");
+					            console.log(result);
+					            value += "<button type='button'	class='follow-btn follower-btn' id=f-bbtn2_"+no+" onclick=follow2(event,"+no+"); value="+no+">"
+					            value += "<h6>팔로우</h6>"
+					            value += "</button>"
+					            btn.append(value)
+               				}
+					    });
+               		}
+               	 const socketFollow2 = new SockJS("http://localhost:8083${contextPath}/websocket"); //URL에 대한 WebSocket 연결을 설정
+                 const stompFollow2 = Stomp.over(socketFollow2); //WebSocket을 통해 Stomp 클라이언트를 생성
+                /*  stompFollow2.connect( {} , () => {
+                     console.log('연결되었어요4');
+                     
+                 });	 */
+                 function follow2(e,no){
+            			const clickedbtn = $('#f-bbtn2_'+no);
+					    const userNo = clickedbtn.val();
+					    const btn = $('#follow-btn-box_'+no);
+					    $.ajax({
+					        url: '${contextPath}/follow/followlist/addfollow',
+					        data: { userNo: userNo },
+					        method: 'post',
+					        success(result) {
+					            // AJAX 요청 성공 처리
+					            value = "";
+					            console.log(result);
+					            btn.empty();
+					            //clickedbtn.css("display", "none");
+					            value += "<button type='button'	class='follow-btn follower-btn2' id=f-bbtn1_"+no+" onclick=following(event,"+no+"); value="+no+">"
+					            value += "<h6>팔로잉</h6>"
+					            value += "</button>"
+					            btn.append(value)
+            				}
+					    });
+                     	const myNo = $('#myUserNo').val();
+                     	console.log(userNo);
+                     	console.log(myNo);
+         		       stompClient.send("/app/updateFollowStatus", {}, JSON.stringify({
+         		        	userNo: userNo,
+         		        	userNo2 : myNo
+         		        }));
+            		}
 				</script>
                 <!-- 실시간 바 -->
                 <div class="sub-content">
@@ -375,24 +354,6 @@
         });
         
         //사이드바 친구추천
-       /* function follow(e,no){
-        	console.log(e,no);
-            const userNo = $('#f-btn1_'+no).val();
-			const clickbtn = $('#f-btn1_'+no);
-			const clickbtn2 = $('#f-btn2_'+no);
-
-            $.ajax({
-                url: '${contextPath}/follow/followlist/addfollow',
-                data: { userNo: userNo },
-                method: 'post',
-                success(result) {
-                    // 처리 로직
-                    clickbtn.css("display", "none");
-                    clickbtn2.css("display","block");
-                }
-            });
-        }
- */		
         function unfollow(e,no){
         	console.log(e,no);
         	const userNo = $('#f-btn2_'+no).val();
@@ -429,10 +390,10 @@
         <script>
         const socketFollow = new SockJS("http://localhost:8083${contextPath}/websocket"); //URL에 대한 WebSocket 연결을 설정
         const stompFollow = Stomp.over(socketFollow); //WebSocket을 통해 Stomp 클라이언트를 생성
-        stompFollow.connect( {} , () => {
+     /*    stompFollow.connect( {} , () => {
             console.log('연결되었어요3');
             
-        });
+        }); */
             function follow(e,no){
             	const myNo = $('#myUserNo').val();
             	const userNo = $('#f-btn2_'+no).val();
