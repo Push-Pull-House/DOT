@@ -560,3 +560,11 @@ h4 {
 .admin-header{
 	top: 2px !important;
 }
+.memberinfo{
+	cursor:pointer;
+}
+
+.memberinfo:hover{
+	cursor:pointer;
+	background-color:gray;
+}

@@ -59,13 +59,10 @@
                         <span class="material-symbols-outlined"> feedback </span>
                         <h3>신고 관리</h3>
                     </div>
-	                <div class="logout-icon" style="margin-left:190px;">
-	                    <div class="logout-area">
-	                    	<a class="material-symbols-outlined" href="${contextPath}/logout.me">
-	                        	<span class="material-symbols-outlined logout"> logout </span>
-	                        </a>
-	                    </div>
-	                </div>
+	                <div class="report-controller cont" onclick="location.href='${contextPath}/logout.me';">
+                        <span class="material-symbols-outlined logout"> logout </span>
+                        <h3>로그 아웃</h3>
+                    </div>
                 </div>
             </div>
 
@@ -75,6 +72,7 @@
                         <div class="icon-area">
                             <div class="content-icon">
                                 <span class="material-symbols-outlined icon" onclick="location.href='${contextPath}/adminWBlist';"> verified </span>
+                                <div class="font">l</div>
                                 <span class="material-symbols-outlined icon" onclick="location.href='${contextPath}/adminWBlist2';"> person_off </span>
                                 <div class="font">l</div>
                                 <span class="material-symbols-outlined" onclick="location.href='${contextPath}/adminFeed';"> data_table </span>
@@ -100,7 +98,7 @@
 				                  <td colspan="5" align="center">회원 목록이 없떠요ㅠㅠ</td>
 				               </c:if>
 				               <c:forEach var="w" items="${WList}">
-				                  <tr>
+				                  <tr onclick="Memberinfo(event,${w.userNo})" class="memberinfo">
 				                     <td>${w.userNo}</td>
 				                     <td>${w.userId}</td>
 				                     <td>${w.userName}</td>
@@ -112,6 +110,9 @@
 				         </table>
          			
          			<script>
+	         			function Memberinfo(e,no){
+	         				location.href="${contextPath}/YourFeed.me?uno="+no;
+	         			}
 			         	function movePage(no){
 			         		location.href="${contextPath}/adminWList/${userNo}/"+no;
 			         	}

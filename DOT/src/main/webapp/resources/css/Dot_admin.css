@@ -176,9 +176,6 @@ border: 1px solid rgb(77, 77, 77);
     cursor: pointer;
     margin: 10px;
 }
-.logout-area:hover {
-    background-color: grey;
-}
 /*--------------------- 헤더 끝 ------------------------*/
 
 /*-------------------- 컨텐츠 시작 --------------------*/
@@ -559,4 +556,12 @@ h4 {
 
 .admin-header{
 	top: 2px !important;
+}
+.memberinfo{
+	cursor:pointer;
+}
+
+.memberinfo:hover{
+	cursor:pointer;
+	background-color:gray;
 }

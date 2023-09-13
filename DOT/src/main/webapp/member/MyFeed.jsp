@@ -361,18 +361,12 @@
 		                       <div class="feed-header modal-feed-header">
 		                           <div class="modal-user-profile">
 		                           	   <div style="width:170px;" id="myChoiceModal">
-		                               		<%-- <img src="${contextPath}/${profileImg.filePath}/${profileImg.changeName}" />
-		                               		<span>${loginUser.userNick}</span> --%>
 		                               </div>
 		                               <div class="line-div">
 		                                   <span class="material-symbols-outlined modal-toggle-button"> more_horiz </span>
 		                                   <div class="modal-more-options">
 		                                       <div>
 		                                           <dl>
-		                                               <dt id="modifyFeed">
-		                                                   <span class="material-symbols-outlined"> edit </span>
-		                                                   <a>수정하기</a>
-		                                               </dt>
 		                                               <dt>
 		                                                   <span class="material-symbols-outlined"> add_box </span>
 		                                                   <a>저장하기</a>

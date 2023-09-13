@@ -96,8 +96,8 @@
                            </div>
                        </div>
                        <div class="mypage-follower">
-                           <div class="follows" onclick="follow()" style="cursor: pointer"><h5>팔로우  ${follow.size()}명</h5></div>
-                           <div class="follows" onclick="follow()" style="cursor: pointer"><h5>팔로워  ${follower.size()}명<h5></h5></div>
+                           <div class="follows"><h5>팔로우  ${follow.size()}명</h5></div>
+                           <div class="follows"><h5>팔로워  ${follower.size()}명<h5></h5></div>
                            <div class="follows" ><h5>게시물  ${myImglist.size()}개</h5></div>
                        </div>
                    </div>
@@ -117,7 +117,7 @@
                <div class="choice1 list1">
                    <div class="myimage">
                    		<c:forEach var="m" items="${myImglist}">
-	                       <div class="myimage-section" data-bs-toggle="modal" data-bs-target="#MyDetailFeed" onclick="feedNo(event , ${m.fileNo})">
+	                       <div class="myimage-section" data-bs-toggle="modal" data-bs-target="#MyDetailFeed" onclick="feedNo(event , ${m.fileFno})">
 	                           <img class="img-size" src="${contextPath}/${m.filePath}/${m.changeName}" />
 	                           <div class="like">
 	                               <svg
@@ -147,17 +147,13 @@
 			                   <div class="modal-title" id="exampleModalLabel">
 			                       <div class="feed-header modal-feed-header">
 			                           <div class="modal-user-profile">
-			                               <img src="${contextPath}/${profileImg.filePath}/${profileImg.changeName}" />
-			                               <span>${loginUser.userNick}</span>
+				                           <img src="${contextPath}/${otherUser.filePath}/${otherUser.changeName}" />
+			                               <span>${otherUser.userNick}</span>
 			                               <div class="line-div">
 			                                   <span class="material-symbols-outlined modal-toggle-button"> more_horiz </span>
 			                                   <div class="modal-more-options">
 			                                       <div>
 			                                           <dl>
-			                                               <dt onclick="location.href='My_Feed_Edit.html'">
-			                                                   <span class="material-symbols-outlined"> edit </span>
-			                                                   <a>수정하기</a>
-			                                               </dt>
 			                                               <dt>
 			                                                   <span class="material-symbols-outlined"> add_box </span>
 			                                                   <a>저장하기</a>
@@ -182,12 +178,6 @@
 			               <div class="modal-body modal-backgound">
 			                   <div class="modal-feed-body">
 			                       <div class="feed-img" id="feed-img">
-			                        <%--  <div>
-			                         	<img src="${contextPath}/resources/images/dog1.gif">
-			                         </div>
-			                         <div>
-			                         	<img src="${contextPath}/resources/images/dog2.gif">
-			                         </div> --%>
 			                       </div>
 			                       <div class="body-bottom">
 			                           <div class="feed-tools">
@@ -238,7 +228,7 @@
 			                               </div>
 			                           </div>
 			                           <div class="feed-text">
-			                               <span> 회원님의 게시글을 1,024명이 좋아합니다. </span>
+			                               <span id="modal-likeCount2"></span>
 			                               <br />
 			                               <span>
 			                                   <b>dasdas</b>
@@ -364,8 +354,8 @@
 		   </div>
            <!-- 실시간 바 -->
            <div class="sub-content">
-               <div class="sub-wrap">
-                   <div class="sub-container">
+               <div class="sub-wrap1">
+                   <!-- <div class="sub-container">
                        <div>
                            <div class="Ranking">
                                <h1
@@ -497,7 +487,7 @@
                                </div>
                            </div>
                        </div>
-                   </div>
+                   </div> -->
                </div>
            </div>
        </div>
@@ -507,15 +497,6 @@
    <script>
        function toLogin() {
            location.href = 'logout.me';
-       }
-       function follow() {
-           location.href = 'following.html';
-       }
-       function myEdit() {
-           location.href = 'My_Edit.html';
-       }
-       function myFeedEdit() {
-           location.href = 'My_Feed_Edit.html';
        }
        AOS.init();
        $(document).ready(function () {
@@ -552,9 +533,10 @@
 	           data: { imgNo : imgNo },
 	           success: function (result) {
 	        	   console.log(result);
+	        	   value ="";
 	        	   let html = "<div id='slick_feed'>";
 	           	   for(let img of result){
-    	   		   		if(img.changeName != "DotLogo_D.png"){
+    	   		   		if(img.changeName != "DotLogo_D.png" && img.fileLevel != 1){
 			           		html += "<div>"
 							html += "<img src=${contextPath}/"+img.filePath+"/"+img.changeName+">"
 							html += "</div>"
@@ -563,6 +545,9 @@
            			html += "</div>"
 	           		
 	           	   	jb1(".feed-img").html(html);
+           			value += "회원님의 게시글을 "+result[0].likeCount+"명이 좋아합니다."
+    	           	jb1("#modal-likeCount2").html(value);
+           			
            			if (result.length > 1) {
 			       jb1('#slick_feed').slick({
 			    	   	// Slick configuration options

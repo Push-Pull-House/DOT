@@ -11,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="${contextPath}/resources/css/Dot_admin.css" />
+    <link rel="stylesheet" href="${contextPath}/resources/css/Dot_admin2.css" />
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -41,29 +41,15 @@
                     </div>
                     <div class="det-wrapper">
                         <div class="member det">
-                            <!-- <span class="material-symbols-outlined">
-                            new_releases
-                        </span> -->
-                            <div class="det-area" onclick="location.href='${contextPath}/adminWBlist';">
+                            <div class="det-area" onclick="location.href='${contextPath}/adminWList';">
                                 <h4>인플루언서</h4>
                             </div>
                         </div>
                         <div class="member det">
-                            <!-- <span class="material-symbols-outlined">
-                            person_off
-                        </span> -->
-                            <div class="det-area" onclick="location.href='${contextPath}/adminWBlist2';">
+                            <div class="det-area" onclick="location.href='${contextPath}/adminBList';">
                                 <h4>블랙리스트</h4>
                             </div>
                         </div>
-                        <!-- <div class="member det">
-                         <span class="material-symbols-outlined pass">
-                            fingerprint
-                        </span> 
-                        <div class="det-area">
-                            <h4>비밀번호 관리</h4>
-                        </div>
-                    </div> -->
                     </div>
                     <div class="feed-controller cont" onclick="location.href='${contextPath}/adminFeed';">
                         <span class="material-symbols-outlined"> data_table </span>
@@ -73,13 +59,10 @@
                         <span class="material-symbols-outlined"> feedback </span>
                         <h3>신고 관리</h3>
                     </div>
-	                <div class="logout-icon" style="margin-left:190px;">
-	                    <div class="logout-area">
-	                    	<a class="material-symbols-outlined" href="${contextPath}/logout.me">
-	                        	<span class="material-symbols-outlined logout"> logout </span>
-	                        </a>
-	                    </div>
-	                </div>
+	               <div class="report-controller cont" onclick="location.href='${contextPath}/logout.me';">
+                        <span class="material-symbols-outlined logout"> logout </span>
+                        <h3>로그 아웃</h3>
+                    </div>
                 </div>
             </div>
 
@@ -89,10 +72,8 @@
                         <div class="icon-area">
                             <div class="content-icon">
                                 <span class="material-symbols-outlined icon" onclick="location.href='${contextPath}/adminWBlist';"> verified </span>
+                                <div class="font">l</div>
                                 <span class="material-symbols-outlined icon" onclick="location.href='${contextPath}/adminWBlist2';"> person_off </span>
-                                <!-- <span class="material-symbols-outlined icon">
-	                                fingerprint
-	                            	</span> -->
                                 <div class="font">l</div>
                                 <span class="material-symbols-outlined" onclick="location.href='${contextPath}/adminFeed';"> data_table </span>
                                 <div class="font">l</div>
@@ -123,7 +104,6 @@
 				                  <td colspan="5" align="center">신고 내역이 없떠요ㅠㅠ</td>
 				               </c:if>
 				               <c:forEach var="r" items="${rlist}">
-				                  <%-- <tr onClick="movePage(${r.reportNo});"> --%>
 				                  <tr>
 				                     <td>
                                          <label style="margin:0px 27px 0px -57px;">
@@ -132,8 +112,6 @@
                                          </label>
 				                     ${r.reportNo}</td>
 				                     <td>${r.reportWriter}</td>
-				                     <%-- <td>${m.userId}</td>
-				                     <td>${r.userNick}</td> --%>
 				         	         <td>${r.reportTitle}</td>
 				         	         <td>${r.reportLevel}</td>
 				                     <td>${r.enrollDate}</td>

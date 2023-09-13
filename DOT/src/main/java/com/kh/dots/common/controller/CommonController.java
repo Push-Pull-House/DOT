@@ -294,5 +294,10 @@ public class CommonController {
 		model.addAttribute("pi", pi);
 		return "admin/adminBList.jsp";
 	}
+	
+	@GetMapping("/adminReport")
+	public String adminReport() {
+		return "admin/adminReport.jsp";
+	}
 
 }
