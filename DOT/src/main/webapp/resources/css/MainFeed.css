@@ -88,6 +88,7 @@ body {
     align-items: center;
     padding: 3px 0 0 6px;
     transition: all .25s;
+    cursor: pointer;
 }
 
 .more-options dt:hover { 
@@ -205,7 +206,20 @@ body {
     word-wrap: break-word;
     margin-left: 20px;
 }
+.feed-content{
+	 width: 91%;
+    margin: auto;
+    color: rgb(179, 179, 179);
+    font-size: 12px;
+    line-height: 24px;
+    word-wrap: break-word;
+    margin-left: 20px;
+}
 
+.feed-content>.bold{
+	color:white;
+/* 	font-size:14px; */
+}
 
 .feed-text span:nth-child(3) {
     width: 100%;
@@ -253,6 +267,10 @@ body {
 
 .reply-middle dl {
     margin: 0;
+    display : flex;
+    flex-direction : column;
+    height : 50px;
+    overflow:hidden;
 }
 
 .reply-middle dt {
@@ -420,6 +438,7 @@ body {
     align-items: center;
     padding: 3px 0 0 6px;
     transition: all .25s;
+    
 }
 
 .modal-more-options dt:hover { 
@@ -489,6 +508,15 @@ body {
     z-index: 10;
     margin-left: 80%;
     cursor: pointer;
+}
+.more-options .choice-control-js svg{
+	position:absolute;
+	top : 27px;
+	left : 20px;
+	}
+
+.choice-control-js a{
+	margin :0 0 0 32px;
 }
 
 .modal-feed-body .feed-text {
@@ -610,6 +638,7 @@ body {
 }
 
 
+
 /* ============================================================= */
 /* 공유 모달  */
 /* ============================================================= */
@@ -708,13 +737,19 @@ body {
     width: 100%;
     display: flex;
     align-items: center;
+    justify-content : space-between;
     margin-top: 18px;
 }
 
-#shareTool .follower-list dt img,
-#shareTool .chatting-list dt img{
+#shareTool .follower-list dt img{
     width: 36px;
     height: 36px;
+    border-radius: 18px;
+}
+
+#shareTool .chatting-list dt img {
+	width: 17px;
+    height: 17px;
     border-radius: 18px;
 }
 
@@ -728,12 +763,36 @@ body {
 
 #shareTool .follower-list dt input[type=checkbox],
 #shareTool .chatting-list dt input[type=checkbox] {
-    width: 18px;
-    height: 18px;
+    width: 15px;
+    height: 15px;
     border: 1px solid rgba(115,115,115, 0.3) !important;
     border-radius: 9px !important;
     background-color: transparent !important;
-    margin-left: 56%;
+}
+
+#shareTool .follower-list dt>div,
+#shareTool .chatting-list dt>div {
+	display:flex;
+}
+
+#shareTool .userCount {
+	width: 36px;
+    height: 36px;
+	display : grid;
+	grid-template-rows:repeat(2, 17px);
+	grid-template-columns:repeat(2, 17px);
+	gap : 1px;
+	justify-content : center;
+	align-items : center;
+	overflow:hidden;
+}
+
+
+#shareTool dt .titleWrap {
+	width : 250px;
+	white-space:nowrap;
+	overflow:hidden;
+    text-overflow:ellipsis;
 }
 
 #shareTool .modal-footer {

@@ -14,6 +14,10 @@ import com.kh.dots.chatting.model.vo.ChatMessage;
 import com.kh.dots.chatting.model.vo.ChatRoom;
 import com.kh.dots.chatting.model.vo.ChatRoomJoin;
 import com.kh.dots.common.Utils;
+import com.kh.dots.common.model.vo.Images;
+import com.kh.dots.feed.model.vo.Feed;
+import com.kh.dots.feed.model.vo.Reply;
+import com.kh.dots.member.model.vo.Member;
 
 @Service
 public class ChatServiceImpl implements ChatService{
@@ -65,6 +69,72 @@ public class ChatServiceImpl implements ChatService{
 		
 		return cDao.insertMessage(cm);
 	}
+
+	@Override
+	public List<Member> searchFollowListByFollow(Map<String, Object> map) {
+		return cDao.searchFollowListByFollow(map);
+	}
+
+	@Override
+	public List<ChatRoomJoin> selectChatRoomListImage(int userNo) {
+		return cDao.selectChatRoomListImage(userNo);
+	}
+
+	@Override
+	public int exitChatRoom(ChatRoomJoin join) {
+		return cDao.exitChatRoom(join);
+	}
+
+	@Override
+	public int sendImgFile(ChatMessage cm) {
+		return cDao.sendImgFile(cm);
+	}
+
+	@Override
+	public int insertImgFile(Images image) {
+		return cDao.insertImgFile(image);
+	}
+
+	@Override
+	public List<ChatRoomJoin> selectChatRoomImage(int chatRoomNo) {
+		return cDao.selectChatRoomImage(chatRoomNo);
+	}
+
+	@Override
+	public ChatMessage selectImage(ChatMessage message) {
+		return cDao.selectImage(message);
+	}
+
+	@Override
+	public ChatMessage selectNewImg(ChatMessage message) {
+		return cDao.selectNewImg(message);
+	}
+
+	@Override
+	public ChatMessage selectNewMsg(int chatRoomNo) {
+		return cDao.selectNewMsg(chatRoomNo);
+	}
+
+	@Override
+	public ChatMessage selectThumbnail(int feedNo) {
+		return cDao.selectThumbnail(feedNo);
+	}
+
+	@Override
+	public Feed selectFeedOne(int feedNo) {
+		return cDao.selectFeedOne(feedNo);
+	}
+
+	@Override
+	public List<Reply> selectReply(int feedNo) {
+		return cDao.selectReply(feedNo);
+	}
+
+	@Override
+	public List<Images> selectFeedImg(int feedNo) {
+		return cDao.selectFeedImg(feedNo);
+	}
+
 
 	
 

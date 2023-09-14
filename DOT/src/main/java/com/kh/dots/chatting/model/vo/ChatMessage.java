@@ -1,6 +1,7 @@
 package com.kh.dots.chatting.model.vo;
 
 import java.sql.Date;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,5 +21,13 @@ public class ChatMessage {
 	private Date enrollDate;
 	
 	private String userNick;
+	
+	private String originName;
+	private String changeName;
+	private String filePath;
+	
+	private int feedNo;
+	private List<Integer> shareUserList;
+	private List<Integer> shareRoomList;
 
 }

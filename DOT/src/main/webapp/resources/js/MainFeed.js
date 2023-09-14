@@ -1,6 +1,5 @@
 var jb1 = jQuery.noConflict();
 jb1(document).ready(function(){
-  console.log(jb1('.feed-img'))
   jb1('.feed-img').slick({
     // Slick configuration options
     slidesToShow: 1,
@@ -10,7 +9,6 @@ jb1(document).ready(function(){
     // Add more options as needed
   });
 
-  console.log(jb1('.feed-img2'))
   jb1('.feed-img2').slick({
     // Slick configuration options
     slidesToShow: 1,
@@ -99,7 +97,8 @@ var storeFillSVG =
     </svg>`;
 
 
-jb1(".clickable-svg").click(function() {
+jb1(".clickable-svg").click(function(e) {
+	
     var jb1this = jb1(this);
     var currentHeartSVG = jb1this.find("svg");
     var currentBoxSVG = jb1this.find("svg");
@@ -110,11 +109,7 @@ jb1(".clickable-svg").click(function() {
         currentHeartSVG.replaceWith(heartSVG);
     }
 
-    if(currentBoxSVG.hasClass("bi-plus-square")) {
-        currentBoxSVG.replaceWith(storeFillSVG);
-    } else if(currentBoxSVG.hasClass("bi-check-square-fill")) {
-        currentBoxSVG.replaceWith(storeSVG);
-    }
+   
 });
 
 

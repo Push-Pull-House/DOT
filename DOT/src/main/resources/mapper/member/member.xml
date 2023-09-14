@@ -36,9 +36,10 @@
 	</select>
 	
 	<select id="selectOneByUserNo" parameterType="int" resultMap="memberResultSet">
-      SELECT *
-      FROM MEMBER
-      WHERE USER_NO = #{userNo} AND STATUS = 'Y'
+     	SELECT *
+		FROM MEMBER m
+		JOIN IMAGE ON(FILE_WRITER = USER_NO)
+		WHERE USER_NO = #{userNo} AND m.STATUS = 'Y' AND FILE_LEVEL = 1
    </select>
 	
 	<select id="loginUser" parameterType="member" resultMap="memberResultSet">

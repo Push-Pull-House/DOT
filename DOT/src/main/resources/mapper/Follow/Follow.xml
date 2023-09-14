@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="follow">
+
+  <resultMap id="memberResultSet" type="member">
+      <id column="USER_NO" property="userNo"/>
+      <result column="USER_ID" property='userId'/>
+      <result column="USER_PWD" property="userPwd"/>
+      <result column="USER_NAME" property="userName"/>
+      <result column="USER_NICK" property="userNick"/>
+      <result column="USER_PHONE" property="userPhone"/>
+      <result column="USER_EMAIL" property="userEmail"/>
+      <result column="USER_MBTI" property="userMbti"/>
+      <result column="ENROLL_DATE" property="enrollDate"/>
+      <result column="USER_BIRTHDAY" property="userBirthday"/>
+      <result column="ENABLE" property="enable"/>
+      <result column='WB_STATUS' property="wbStatus"/>
+      <result column="STATUS" property="status"/>
+      <result column="FILE_PATH" property="filePath"/>
+      <result column="CHANGE_NAME" property="changeName"/>
+   </resultMap> 
+   
+   <select id="searchFollowList" parameterType="Int" resultMap="memberResultSet">
+	   	SELECT DISTINCT M.USER_ID, M.USER_NICK, I.FILE_PATH, I.CHANGE_NAME, M.USER_NO
+	    FROM "MEMBER" M
+	    LEFT JOIN FRIEND F ON F.FRIEND_USER1 = M.USER_NO
+	    LEFT JOIN IMAGE I ON M.USER_NO = I.FILE_WRITER
+	    WHERE F.FRIEND_USER2 = #{userNo} AND I.FILE_LEVEL = 1
+   </select>
+   
+   <select id="searchFollowListByFollow" parameterType="hashmap" resultMap="memberResultSet">
+	   	SELECT DISTINCT M.USER_ID, M.USER_NICK, I.FILE_PATH, I.CHANGE_NAME, M.USER_NO
+	    FROM "MEMBER" M
+	    LEFT JOIN FRIEND F ON F.FRIEND_USER1 = M.USER_NO
+	    LEFT JOIN IMAGE I ON M.USER_NO = I.FILE_WRITER
+	    WHERE F.FRIEND_USER2 = #{userNo} AND I.FILE_LEVEL = 1 AND M.USER_NICK LIKE '%' || #{follow} || '%'
+   </select>
+
+    <select id="searchFollowerList" parameterType="Int" resultMap="memberResultSet">
+	     SELECT DISTINCT M.USER_ID, M.USER_NICK, I.FILE_PATH, I.CHANGE_NAME , M.USER_NO
+		FROM "MEMBER" M
+	    LEFT JOIN FRIEND F ON F.FRIEND_USER2 = M.USER_NO
+	   	LEFT JOIN IMAGE I ON M.USER_NO = I.FILE_WRITER
+	   	WHERE F.FRIEND_USER1 = #{userNo} AND I.FILE_LEVEL = 1
+   </select>
+   
+   <resultMap id="imageResultSet" type="images">
+      <id column="FILE_NO" property='fileNo'/>
+      <result column="FILE_WRITER" property="fileWriter"/>
+      <result column="ORIGIN_NAME" property="originName"/>
+      <result column="CHANGE_NAME" property="changeName"/>
+      <result column="FILE_PATH" property="filePath"/>
+      <result column="STATUS" property="status"/>
+      <result column="FILE_LEVEL" property="fileLever"/>
+      <result column="FILE_FNO" property="fileFno"/>
+   </resultMap> 
+   
+   <select id="searchFollowerImageList" parameterType="Int" resultMap="imageResultSet">
+		SELECT I.FILE_PATH, I.CHANGE_NAME, M.USER_NO , M.USER_ID
+   		FROM IMAGE I
+   		JOIN "MEMBER" M ON M.USER_NO = I.FILE_WRITER
+   		WHERE I.FILE_WRITER = #{userNo} AND M.USER_NO = #{userNo} AND M.STATUS = 'Y'
+   </select>				
+
+	<delete id="unFollow" parameterType="Map">
+		DELETE 
+		FROM FRIEND F
+		WHERE FRIEND_USER1 = #{userNo} AND FRIEND_USER2 = #{loginUserNo}
+	</delete>
+
+	<insert id="addFollow" parameterType="Map">
+		INSERT INTO FRIEND VALUES(
+			
+			SEQ_FRIEND_NO.NEXTVAL,
+			#{userNo},
+			#{loginUserNo},
+			DEFAULT
+			)
+	</insert>
+	
+	
+	<!-- <delete id="deleteDuplicateFollower" parameterType="Int">
+    DELETE 
+    FROM FRIEND
+    WHERE FRIEND_USER2 = #{userNo}
+      AND FRIEND_USER1 IN (SELECT FRIEND_USER1
+                           FROM FRIEND
+                           WHERE FRIEND_USER2 = #{userNo}
+                           GROUP BY FRIEND_USER1
+                           HAVING COUNT(*) > 1)
+	</delete> -->
+	
+	<select id="recommandFollowList" parameterType="int" resultMap="memberResultSet">
+		 <![CDATA[
+		SELECT M.USER_NO, M.USER_ID, I.FILE_PATH, I.CHANGE_NAME, M.USER_NICK
+		FROM "MEMBER" M
+		JOIN IMAGE I ON M.USER_NO = I.FILE_WRITER
+		WHERE M.USER_NO <> #{userNo}
+			AND M.USER_NO NOT IN  (
+		        SELECT DISTINCT FRIEND_USER1 AS FRIEND_USER
+		        FROM FRIEND 
+		        WHERE FRIEND_USER1 = #{userNo} OR FRIEND_USER2 = #{userNo}
+		        UNION
+		        SELECT DISTINCT FRIEND_USER2 AS FRIEND_USER
+		        FROM FRIEND 
+		        WHERE FRIEND_USER1 = #{userNo} OR FRIEND_USER2 = #{userNo}
+		    )
+		]]>
+	</select> 
+
+
+
+
+
+
+
+</mapper>

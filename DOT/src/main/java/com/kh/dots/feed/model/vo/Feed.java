@@ -20,5 +20,5 @@ public class Feed {
 	private String choiceStatus; //	CHOICE_STATUS
 	private String likeCount; //	LIKE_COUNT
 	private String feedHashtag; //	FEED_HASHTAG
-	
+	private String feedContent;
 }

@@ -8,4 +8,6 @@ public class ChatRoomJoin {
 	private int userNo;
 	private int chatRoomNo;
 
+	private String filePath;
+	private String changeName;
 }

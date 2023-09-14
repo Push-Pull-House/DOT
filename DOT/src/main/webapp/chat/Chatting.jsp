@@ -21,7 +21,11 @@
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,300,0,0" />
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-
+<link rel="stylesheet" type="text/css"
+	href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+<link rel="stylesheet" type="text/css"
+	href="../resources/css/slick-theme.css" />
+<link rel="stylesheet" type="text/css" href="../resources/css/slick.css" />
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -32,6 +36,10 @@
 	
 <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+
+<script type="text/javascript"
+	src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<!-- <script type="text/javascript" src="/resources/js/Dot_ChatSlick.js"></script> -->
 
 <title>Dot.</title>
 </head>
@@ -70,7 +78,7 @@
 							</div>
 						</div>
 					</div>
-					<form>
+					<form action="${contextPath }/chat/exitChatRoom" method="post">
 						<div class="chat-list">
 							<c:choose>
 								<c:when test="${empty chatRoomList }">
@@ -87,19 +95,52 @@
 								<c:otherwise>
 									<dl>
 										<c:forEach var="chatRoom" items="${chatRoomList }">
-											<dt class="joinChatRoom">
-												<input type="hidden" name="chatRoom"
-													value="${chatRoom.chatRoomNo }">
+											<dt class="joinChatRoom joinChatRoom_${chatRoom.chatRoomNo }">
+												<input type="hidden" name="chatRoom" value="${chatRoom.chatRoomNo }">
 												<div class="list-info-wrap">
 													<div class="list-info">
-														<img
-															src="../resources/images/KakaoTalk_Photo_2020-12-19-23-39-15.jpg">
+														<input type="checkbox" name="deleteRoom" value="${chatRoom.chatRoomNo }" class="deleteCheck"/>
+														<div class="userCount">
+														<c:forEach var="chatImage" items="${chatRoomImage }" varStatus="loop">
+															<c:if test="${chatRoom.chatRoomNo == chatImage.chatRoomNo }">
+																<c:if test="${loop.index == 0 }">
+																	<img src="${contextPath}${chatImage.filePath }/${chatImage.changeName}">
+																</c:if>
+																<c:if test="${loop.index == 1 }">
+																	<img src="${contextPath}${chatImage.filePath }/${chatImage.changeName}">
+																</c:if>
+																<c:if test="${loop.index >= 2 }">
+																	<img src="${contextPath}${chatImage.filePath }/${chatImage.changeName}">
+																</c:if>
+															</c:if>
+														</c:forEach>
+														</div>
 														<div class="list-text">
 															<div class="list-top">
-																<span>${chatRoom.title }</span> <span>8월 17일</span>
+																<div>
+																	<span>${chatRoom.title }</span>
+																	<span> ${chatRoom.cnt }</span>
+																</div>
+																<c:forEach var="msgList" items="${chatMessageList }">
+																<c:if test="${chatRoom.chatRoomNo == msgList.chatRoomNo }">
+																	<c:if test="${msgList.enrollDate eq null }">
+																		<span></span>
+																	</c:if> 
+																	<span>${msgList.enrollDate }</span>
+																</c:if>
+																</c:forEach>
 															</div>
 															<div class="list-bot">
-																<span>밥은 먹엇냐</span>
+															<c:forEach var="msgList" items="${chatMessageList }">
+																<c:if test="${chatRoom.chatRoomNo == msgList.chatRoomNo }">
+																	<c:if test="${msgList.feedNo != 0 }">
+																		<span>게시물을 공유했습니다.</span>
+																	</c:if>
+																	<c:if test="${msgList.feedNo == 0 }">
+																		<span>${msgList.message }</span>
+																	</c:if>
+																</c:if>
+															</c:forEach>
 															</div>
 														</div>
 													</div>
@@ -114,7 +155,9 @@
 				</div>
 			</div>
 			<div class="chat-room-wrap">
-				<div class="room-wrap"></div>
+				<div class="room-wrap">
+				
+				</div>
 			</div>
 			<div class="sub-content"></div>
 		</div>
@@ -130,26 +173,35 @@
 				<div class="modal-header create-room-header">
 					<h5 class="modal-title" id="createChatRoomLabel">채팅방 생성하기</h5>
 					<form>
-						<input type="text" class="friends-search" id="friends-search"
+						<input type="search" class="friends-search" id="friends-search"
 							placeholder="검색할 팔로워를 입력하세요." />
 					</form>
 				</div>
 				<form id="openChatRoomForm"
 					action="${contextPath }/chat/openChatRoom" method="post">
 					<div class="modal-body create-room-body">
-						<span>팔로워</span>
+						<span>팔로우</span>
 						<div class="follower-list">
 							<div>
 								<dl class="output-list">
-									<%-- <c:forEach var="" items=""> --%>
+									<c:if test="${empty follow }">
 										<dt>
 											<div>
-												<img src="resources/img/karina2.jpeg" /> <label
-													for="addFriend1">karina_1211</label>
+												<label>존재하는 팔로우가 없습니다.</label>
 											</div>
-											<input type="checkbox" id="addFriend1" name="userId" value="2" />
 										</dt>
-									<%-- </c:forEach> --%>
+									</c:if>
+									<c:if test="${!empty follow }">
+										<c:forEach var="f" items="${follow }">
+											<dt>
+												<div>
+													<img src="${contextPath}${f.filePath}/${f.changeName}" /> <label
+														for="addFriend1">${f.userNick }</label>
+												</div>
+												<input type="checkbox" id="addFriend1" name="userNo" value="${f.userNo }" />
+											</dt>
+										</c:forEach>
+									</c:if>
 								</dl>
 							</div>
 						</div>
@@ -162,10 +214,86 @@
 			</div>
 		</div>
 	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<script>
 	let userNo;
 	let userNick;
 	let chatRoomNo;
+	let contextPath;
+	let feedNo;
+	let chatRoomStompClient;
+	
+	const socket = new SockJS('http://localhost:8083/dot/ws');
+	const stompClient = Stomp.over(socket);
+	    
+	stompClient.connect({}, frame => {
+	    console.log('Connected: ' + frame);
+	    //반복문돌리면서 채팅방모두 구독
+	    
+	    stompClient.subscribe('/dot/chatList', (message) => {
+	    	
+	    	console.log(message);
+	    	console.log(chatRoomNo);
+	    
+	        const chatMessage = JSON.parse(message.body);
+	        
+	        const chatRoom = document.querySelector(".joinChatRoom_" + chatRoomNo);
+	        
+	        console.log(chatRoom);
+	        
+			const listBot = chatRoom.querySelector(".list-bot>span");
+			
+			console.log(chatMessage.feedNo)
+			
+			if(chatMessage.message.includes('/')) {
+				if(chatMessage.feedNo == 0) {
+					listBot.textContent = "사진을 보냈습니다.";
+				} else {
+					listBot.textContent = "게시물을 공유했습니다.";
+				}
+			} else {
+				listBot.textContent = chatMessage.message;
+			}
+			
+			const listDate = chatRoom.querySelector(".list-top>span");
+			listDate.textContent = currentTime(); 
+			
+			
+			function formatTime(date) {
+			    const now = new Date();
+			    const diff = now - date; // 현재 시간과 주어진 시간 사이의 차이 (밀리초 단위)
+
+			    // 하루를 넘기지 않은 경우 "몇 시간 전"으로 표시
+			    if (diff < 24 * 60 * 60 * 1000) {
+			        const hours = Math.floor(diff / (60 * 60 * 1000));
+			        return hours > 0 ? `${hours} 시간 전` : "방금 전";
+			    } else {
+			        // 하루 이상인 경우 "몇월 몇일"로 표시
+			        const month = date.getMonth() + 1;
+			        const day = date.getDate();
+			        return `${month}월 ${day}일`;
+			    }
+			}
+
+			function currentTime() {
+			    const now = new Date();
+			    return formatTime(now);
+			}
+			
+	        
+	        chatRoom.parentNode.insertBefore(chatRoom, chatRoom.parentNode.firstChild);
+	    });
+	    
+	});
 	</script>
 
 

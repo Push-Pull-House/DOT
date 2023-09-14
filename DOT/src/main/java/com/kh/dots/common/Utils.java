@@ -32,8 +32,6 @@ public class Utils {
 		} catch (IOException e) {
 			log.error("게시글 등록 오류 = {}", e.getMessage());
 		}
-		
-		
 		return changeName;
 	}
 	

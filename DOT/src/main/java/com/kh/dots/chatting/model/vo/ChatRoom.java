@@ -19,4 +19,5 @@ public class ChatRoom {
 	private String userNick;
 	private int cnt;
 
+
 }

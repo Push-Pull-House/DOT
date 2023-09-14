@@ -24,6 +24,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+        <script type="text/javascript"
+	src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <title>Dot.</title>
 </head>
 
@@ -91,7 +93,7 @@
 	                            <label></label>
 	                        </a>
                         </c:forEach>
-                        <div class="friend-profile more-friends">
+                        <div class="friend-profile more-friends" onclick="location.href='${contextPath }/follow/followlist'">
                             <span>더보기</span>
                             <span class="material-symbols-outlined">
                                 add
@@ -158,7 +160,7 @@
                         <h5>스토어</h5>
                     </dt>
                     <dt>
-                        <a class="material-symbols-outlined">
+                        <a class="material-symbols-outlined" href="${contextPath }/follow/followlist">
                             group
                         </a>
                         <h5>친구</h5>

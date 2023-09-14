@@ -16,20 +16,27 @@ $(function() {
     var checkboxAdded = false;
     var button = $('#deleteBtn');
     var chatList = $('.chat-list');
+	var checkbox = $('<input type="checkbox" name="deleteRoom" class="deleteCheck"/>');
+	var checkbtn = $('<button id="deleteList" class="deleteListBtn">삭제하기</button>')
 
+
+	chatList.find('.deleteCheck').hide();
     button.click(function() {
         if (!checkboxAdded) {
-            var checkbox = $('<input type="checkbox" name="deleteRoom" class="deleteCheck"/>');
-            var checkbtn = $('<button id="deleteList" class="deleteListBtn">삭제하기</button>')
-            chatList.find(".list-info").prepend(checkbox);
+            
+            //chatList.find(".list-info").prepend(checkbox);
             chatList.closest(".chat-list").prepend(checkbtn);
+            
+            chatList.find('.deleteCheck').show();
             checkboxAdded = true;
         } else {
-            chatList.find('.deleteCheck').remove();
+            chatList.find('.deleteCheck').hide();
             chatList.find('.deleteListBtn').remove();
             checkboxAdded = false;
         }
     });
+    
+    
     
     
     
@@ -76,22 +83,46 @@ $(function() {
 	});
 	
 	
-	$(".friends-search").on("keyup", () =>{
 	
-		let follower = $(".fiernds-search").val();
+	
+//	let selectedCheckboxes = [];
+//		
+//	$('.output-list input[type="checkbox"][name="userNo"]').each(function() {
+//	    if ($(this).prop('checked')) {
+//	        selectedCheckboxes.push($(this).val());
+//	    }
+//		console.log(selectedCheckboxes);
+//	});
+	
 		
-		$.ajax({
-			url : "/dot//chat/searchFollowList",
-			data : {follower : follower},
-			method :"post",
-			success : (data) => {
-				$(".output-list").empty();
-				$(".output-list").html(data)
-			},
-			error : (error) => {
-				console.error(error);
-			}
-		});
+	$("#friends-search").on("keyup", () => {
 	
-	})
+	    let follow = $("#friends-search").val();
+	
+	    $.ajax({
+	        url: "/dot/chat/searchFollowList",
+	        data: { follow : follow },
+	        method: "post",
+	        success: (data) => {
+	            
+	            console.log(data);
+	            
+	            $(".output-list").empty();
+	            $(".output-list").html(data);
+	            
+	        },
+	        error: console.log
+	    });
+	});
+	
+	
+	
+    $("#deleteList").on("click", (e) => {
+    	let del = $(e.currentTarget);
+    	
+    	console.log(del);
+    	
+    })
+	
+	
 });

@@ -12,7 +12,10 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
-        config.enableSimpleBroker("/topic");
+    	// 보낼 주수에 앞에 부분에 붙여라
+        config.enableSimpleBroker("/dot");
+        
+        // 받을 때 주수에 앞에 부분에 붙여라
         config.setApplicationDestinationPrefixes("/chat");
     }
 

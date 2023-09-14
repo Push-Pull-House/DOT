@@ -23,12 +23,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.csrf().disable()
 			.formLogin().disable()
 			.headers().frameOptions().disable();
-		
-		http
-        .sessionManagement()
-        .sessionFixation().changeSessionId()
-        .maximumSessions(4)
-        .maxSessionsPreventsLogin(true)
-    ;
 	}
 }

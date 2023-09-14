@@ -219,11 +219,24 @@ body {
     margin: 10px auto;
 }
 
+
 .list-info img {
-    width: 40px;
-    min-width: 40px;
-    height: 40px;
-    border-radius: 25px;
+    width: 23px;
+    height:23px;
+    border-radius: 15px;
+}
+
+.list-info .userCount {
+	width : 56px;
+	height :50px;
+	display : grid;
+	grid-template-rows:repeat(2, 24px);
+	grid-template-columns:repeat(2, 24px);
+	gap : 1px;
+	justify-content : center;
+	align-items : center;
+	overflow:hidden;
+	//border : 1px solid white;
 }
 
 .list-text {
@@ -237,12 +250,31 @@ body {
 }
 
 .list-top {
+	width: 100%;
     display: flex;
     justify-content: space-between;
-    color: rgb(229, 229, 229);
+    color: rgb(229, 229, 229) !important;
 }
 
-.list-top>span:last-child {
+.list-top>div {
+	width : 150px;
+    display : flex;
+    
+}
+
+.list-top>div>span:first-child {
+    white-space:nowrap;
+	overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.list-top>div>span:last-child {
+	color: gray;
+	margin-left : 10px;
+}
+
+
+.list-top>span {
     color: gray;
 }
 
@@ -287,20 +319,38 @@ body {
 
 .header-wrap {
     width: 95%;
+    margin-bottom : 10px;
     display: flex;
     align-items: center;
 }
 
+.room-header .userCount {
+	width : 56px;
+	height :50px;
+	display : grid;
+	grid-template-rows:repeat(2, 24px);
+	grid-template-columns:repeat(2, 24px);
+	gap : 1px;
+	justify-content : center;
+	align-items : center;
+	overflow:hidden;
+	//border : 1px solid white;
+}
+
 .room-header img {
-    margin-left: 2%;
-    width: 35px;
-    height: 35px;
-    border-radius: 20px;
+    //margin-left: 2%;
+    width: 23px;
+    height:23px;
+    border-radius: 15px;
 }
 
 .room-header span:nth-child(2) {
     margin-left: 5%;
-    width: 60%;
+    max-width: 60%;
+    width:600px;
+    white-space:nowrap;
+	overflow:hidden;
+    text-overflow:ellipsis;
 }
 
 .user-id {
@@ -310,22 +360,6 @@ body {
 
 .user-id:hover {
     text-decoration: underline;
-}
-
-.room-header span:nth-child(3) {
-    width: 20%;
-    color: rgb(188, 188, 188);
-    text-align: right;
-    height: 100%;
-}
-
-.room-header label {
-    height: 100%;
-    width: 10px;
-    height: 10px;
-    border-radius: 5px;
-    background-color: lightgreen;
-    margin-left: 3%;
 }
 
 .room-body {
@@ -351,11 +385,24 @@ body {
 }
 
 .myChat{
-    text-align: right;
+	margin-top : 0.5rem;
+    display : flex;
+    flex-direction : row;
+    align-items : end;
+    justify-content : end;
+}
+
+.myChat>div {
+	display : flex;
+	flex-direction : column;
+	justify-content : end;
+	align-items : end;
 }
 
 .myChat p {
-    background-color: rgba(48, 48, 250, 0.997);
+	margin-top : 0.5rem;
+	margin-bottom : 0;
+    background-color : #3856E7;
 }
 
 .otherChat b {
@@ -363,13 +410,32 @@ body {
     font-size: 14px;
 }
 
+.otherChat {
+	margin-top : 1.5rem;
+}
+
+.otherChat>div>div {
+	display :flex;
+	flex-direction : column;
+	justify-content : end;
+	align-items : end;
+}
+
+.otherChat>div:nth-child(2) {
+	display : flex;
+    flex-direction : row;
+    align-items : end;
+    justify-content : start;
+    margin-left: 40px;
+}
+
 .otherChat p {
     background-color: rgb(46, 46, 46);
-    margin-left: 40px;
 }
 
 .chatDate{
     font-size : 10px;
+    margin: 0 5px;
 }
 
 .img {
@@ -379,12 +445,21 @@ body {
 }
 
 .chat{
-    max-width: 250px;
+    max-width: 230px;
     display : inline-block;
     border-radius : 10px;
     padding: 5px 10px;
     font-size: 15px;
     text-align: start;
+    margin-bottom : 0;
+}
+
+.chatImg {
+	margin-top : 0.5rem;
+	width : 230px;
+	height : 250px;
+	border-radius : 25px;
+	object-fit : cover;
 }
 
 .room-footer {
@@ -425,22 +500,21 @@ body {
     position: relative;
 }
 
-.chat-tool>.upload-file {
+.chat-tool .upload-file {
     position: absolute;
     width: 30px;
     height: 30px;
-    cursor: pointer;
     opacity: 0;
     z-index: 10;
 }
 
-.chat-tool>span {
+.chat-tool label {
     font-size: 1.6em;
     font-weight: 700;
     cursor: pointer;
 }
 
-.chat-tool>button {
+.chat-tool button {
     font-size: 16px;
     font-weight: 700;
     border: 0px;
@@ -472,7 +546,7 @@ body {
 /* 채팅방 모달  */
 /* ============================================================= */
 
-.modal-content {
+#createChatRoom .modal-content {
     background-color: black !important;
     border: 1.5px solid rgba(255,255,255,0.3) !important;
     border-radius: 15px !important;
@@ -480,7 +554,7 @@ body {
     width: 400px !important;
 }
 
-.modal-header {
+#createChatRoom .modal-header {
     text-align: center !important;
     border-bottom: 1.5px solid rgba(255,255,255,0.3) !important;
     display: flex;
@@ -489,15 +563,15 @@ body {
     justify-content: center;
 }
 
-.modal-header>h5 {
+#createChatRoom .modal-header>h5 {
     font-size: 16px !important;
 }
 
-.modal-header>form {
+#createChatRoom .modal-header>form {
     width: 100%;
 }
 
-.modal-header input[type=search] {
+#createChatRoom .modal-header input[type=search] {
     margin-top: 20px;
     width: 100%;
     height: 40px;
@@ -508,29 +582,29 @@ body {
     padding-left: 20px;
 }
 
-.modal-header input[type=search]:focus {
+#createChatRoom .modal-header input[type=search]:focus {
     outline: 0;
     color: white;
 }
 
-.modal-body {
+#createChatRoom .modal-body {
     height: 500px !important;
     overflow: hidden;
 }
 
-.modal-body>span {
+#createChatRoom .modal-body>span {
     font-size: 14px;
     color: gray;
 }
 
-.modal-body .follower-list {
+#createChatRoom .modal-body .follower-list {
     margin-top: 10px;
     height: 100%;
     padding-bottom: 50px;
     overflow: auto !important;
 }
 
-.modal-body .follower-list dt {
+#createChatRoom .modal-body .follower-list dt {
     width: 100%;
     display: flex;
     align-items: center;
@@ -538,20 +612,20 @@ body {
     justify-content:space-between;
 }
 
-.follower-list dt img {
+#createChatRoom .follower-list dt img {
     width: 36px;
     height: 36px;
     border-radius: 18px;
 }
 
-.follower-list dt label {
+#createChatRoom .follower-list dt label {
     font-size: 15px;
     font-weight: 500;
     margin-left: 18px;
     color: lightgray;
 }
 
-.follower-list dt input[type=checkbox] {
+#createChatRoom .follower-list dt input[type=checkbox] {
     width: 18px;
     height: 18px;
     border: 1px solid rgba(115,115,115, 0.3) !important;
@@ -559,11 +633,11 @@ body {
     background-color: transparent !important;
 }
 
-.modal-footer {
+#createChatRoom .modal-footer {
     border: 0 !important;
 }
 
-.modal-footer button {
+#createChatRoom .modal-footer button {
     padding: 5px 15px !important;
     border-radius: 12px;
     border: 1px solid rgba(255,255,255, 0.3) !important;
@@ -571,7 +645,496 @@ body {
     background-color: transparent !important;
 }
 
-.modal-footer button:hover {
+#createChatRoom .modal-footer button:hover {
     background-color: rgba(255, 255, 255, 0.08) !important;
     transition: all .35s;
 }
+
+
+
+/* ============================================================= */
+/* 피드 모달  */
+/* ============================================================= */
+
+#feedDetail>.modal-dialog> .modal-content {
+    border : 1px solid rgba(255,255,255,0.3)!important;
+    background-color: rgb(0, 0, 0) !important;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-header {
+    width: 65% !important;
+    /* margin-right: 5% !important; */
+    border-bottom: 1px solid rgba(255,255,255,0.3) !important;
+    border-right: 1px solid rgba(255,255,255,0.3) !important;
+    position: relative;
+}
+
+#feedDetail>.modal-dialog .modal-user-profile {
+    width: 650px;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 10px;
+}
+
+#feedDetail>.modal-dialog .modal-user-profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    margin-left: 10px;
+    background-color: white;
+}
+
+#feedDetail>.modal-dialog .modal-user-profile>span:nth-child(2) {
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.modal-user-profile>span:nth-child(2):hover {
+    text-decoration: underline;
+}
+
+.modal-user-profile>span:nth-child(3) {
+    font-size: 35px;
+    font-weight: 900;
+    margin-left: 70%;
+    cursor: pointer;
+}
+
+
+.modal-close {
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border: 0px;
+    color: white;
+    font-weight: 500;
+    font-size: 26px;
+}
+
+
+.modal-user-profile .modal-more-options {
+    display: none;
+    position: absolute;
+    right: -40px;
+    top: 60px;
+    width: 160px;
+    z-index: 50;
+    overflow: hidden;
+}
+
+.modal-more-options>div {
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 15px;
+    background-color: black;
+    line-height: 30px;
+}
+
+.modal-more-options dl {
+    margin: 15px 15px;
+    font-size: 13px;
+    line-height: 35px;
+}
+
+.modal-more-options dt {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    padding: 3px 0 0 6px;
+    transition: all .25s;
+    
+}
+
+.modal-more-options dt:hover { 
+    transition: all .25s;
+    background-color: rgba(115,115,115, 0.4);
+    border-radius: 10px;
+}
+
+.modal-more-options span {
+    font-size: 20px;
+}
+
+.modal-more-options a {
+    margin-left: 10px;
+}
+
+
+
+
+#feedDetail>.modal-dialog>.modal-content .modal-body {
+    display: flex;
+    height: 650px;
+    /* border-top: 1px solid rgba(255,255,255,0.3); */
+    padding: 0 !important;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-body {
+    width: 65%;
+    border-right: 1px solid rgba(255,255,255,0.3);
+}
+
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-body img{
+    width: 100%;
+    margin: 0 auto;
+    height: 430px;
+    object-fit:contain;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-body .feed-tools {
+    border-top: 1px solid rgba(255,255,255,0.3) !important;
+    margin: 5px auto 0;
+    padding: 15px;
+    color:white;
+    display: flex;
+    align-items: center;
+}
+
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-body .feed-tools svg {
+    margin-left: 10px;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-body .feed-tools .clickable-svg:nth-child(1) {
+    cursor: pointer;
+    z-index: 10;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-body .feed-tools .clickable-svg:nth-child(2) {
+    margin-left: 20px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-body .feed-tools .clickable-svg:nth-child(3) {
+    font-size: 25px;
+    z-index: 10;
+    margin-left: 80%;
+    cursor: pointer;
+}
+#feedDetail>.modal-dialog>.modal-content .more-options .choice-control-js svg{
+	position:absolute;
+	top : 27px;
+	left : 20px;
+	}
+
+#feedDetail>.modal-dialog>.modal-content .choice-control-js a{
+	margin :0 0 0 32px;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-body .feed-text {
+    width: 91%;
+    margin: auto;
+    color: rgb(179, 179, 179);
+    font-size: 13px;
+    line-height: 24px;
+    word-wrap: break-word;
+    margin-left: 20px;
+}
+
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-body .feed-text span:nth-child(3) {
+    width: 100%;
+    font-size: 15px;
+    color: white;
+}
+
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer {
+    width: 35%;
+    padding-bottom: 20px;
+    position: relative;
+}
+
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-wrap{
+    width: 100%;
+    height: 110%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    top: -90px;;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-middle {
+    width: 100%;
+    height: 100%;
+    margin: 10px auto;
+    overflow-y: auto;
+    height: 80vh;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-middle dl {
+    margin: 20px 0 20px;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-middle dt {
+    margin: auto;
+    width: 90%;
+    display: flex;
+    height: 50px;
+    padding: 2px 10px;
+    align-items: center;
+    transition: all .25s;
+    margin-top : 0.3rem;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-middle dt:hover {
+    background-color: rgba(115,115,115, 0.2);
+    transition: all .25s;
+    border-radius: 15px;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-middle img{
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-list {
+    display: flex;
+    margin-left: 15px ;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    font-size: 14px;
+    color: lightgray;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-list span:last-child {
+    color: gray;
+    font-size: 13px;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-bottom {
+    width: 93%;
+    padding-top: 6px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* border-top: 1px solid rgba(255,255,255,0.3); */
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-bottom input {
+    margin-top: 10px;
+    width: 85%;
+    height: 33px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.3);
+    padding-left: 10px;
+    background-color: transparent;
+    color: white;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-bottom input:focus{
+    outline: 0;
+}
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-bottom button {
+    margin-top: 10px;
+    height: 33px;
+    background-color: transparent;
+    color: lightgray;
+    border: 0;
+}
+
+#feedDetail>.modal-dialog>.modal-content .noReply {
+	width : 100%;
+	display : flex;
+	align-items : center;
+	justify-content : center;
+	margin-top : 300px;
+	font-size : 14px;
+	color : gray;
+	
+}
+
+
+/* ============================================================= */
+/* 공유 모달  */
+/* ============================================================= */
+
+#shareTool .modal-content {
+    background-color: black !important;
+    border: 1.5px solid rgba(255,255,255,0.3) !important;
+    border-radius: 15px !important;
+    color: white;
+    width: 400px !important;
+}
+
+#shareTool .modal-header {
+    text-align: center !important;
+    border-bottom: 1.5px solid rgba(255,255,255,0.3) !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#shareTool .modal-header>h5 {
+    font-size: 16px !important;
+}
+
+#shareTool .modal-header>form {
+    width: 100%;
+}
+
+#shareTool .modal-header input[type=search] {
+    margin-top: 20px;
+    width: 100%;
+    height: 40px;
+    background-color: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 10px;
+    font-size: 14px;
+    padding-left: 20px;
+}
+
+#shareTool .modal-header input[type=search]:focus {
+    outline: 0;
+    color: white;
+}
+
+#shareTool .modal-body {
+    width: 100%;
+    height: 500px !important;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+#shareTool .list-btn {
+    width: 100%;
+    display: flex;
+    text-align: center;
+}
+
+#shareTool .modal-body .list-btn span {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 40px;
+    width: 50%;
+    border: 1px solid rgba(255,255,255,0.3);
+    font-size: 14px;
+    color: gray;
+}
+
+#shareTool .modal-body .list-btn>span:hover {
+    color:black;
+    background-color: rgb(204, 204, 204) !important;
+    transition: all .35s;
+}
+
+#shareTool .modal-body .lists {
+    overflow: auto !important;
+}
+
+#shareTool .focus-btn {
+    color:black !important;
+    background-color: rgb(204, 204, 204) !important;
+    transition: all .35s;
+}
+
+#shareTool .modal-body .follower-list,
+#shareTool .modal-body .chatting-list {
+    margin-top: 10px;
+    height: 100%;
+    padding-bottom: 50px;
+}
+
+#shareTool .modal-body .follower-list dt,
+#shareTool .modal-body .chatting-list dt {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content : space-between;
+    margin-top: 18px;
+}
+
+#shareTool .follower-list dt img{
+    width: 36px;
+    height: 36px;
+    border-radius: 18px;
+}
+
+#shareTool .chatting-list dt img {
+	width: 17px;
+    height: 17px;
+    border-radius: 18px;
+}
+
+#shareTool .follower-list dt span,
+#shareTool .chatting-list dt span{
+    font-size: 15px;
+    font-weight: 500;
+    margin-left: 18px;
+    color: lightgray;
+}
+
+#shareTool .follower-list dt input[type=checkbox],
+#shareTool .chatting-list dt input[type=checkbox] {
+    width: 15px;
+    height: 15px;
+    border: 1px solid rgba(115,115,115, 0.3) !important;
+    border-radius: 9px !important;
+    background-color: transparent !important;
+}
+
+#shareTool .follower-list dt>div,
+#shareTool .chatting-list dt>div {
+	display:flex;
+}
+
+#shareTool .userCount {
+	width: 36px;
+    height: 36px;
+	display : grid;
+	grid-template-rows:repeat(2, 17px);
+	grid-template-columns:repeat(2, 17px);
+	gap : 1px;
+	justify-content : center;
+	align-items : center;
+	overflow:hidden;
+}
+
+
+#shareTool dt .titleWrap {
+	width : 250px;
+	white-space:nowrap;
+	overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+#shareTool .modal-footer {
+    border: 0 !important;
+}
+
+#shareTool .modal-footer button {
+    width: 100px;
+    padding: 5px 15px !important;
+    border-radius: 7px;
+    border: 1px solid rgba(255,255,255, 0.3) !important;
+    color: lightgray;
+    background-color: transparent !important;
+}
+
+#shareTool .modal-footer button:hover {
+    color:black;
+    background-color: rgb(204, 204, 204) !important;
+    transition: all .35s;
+}
+
+
+
+
+
+
+

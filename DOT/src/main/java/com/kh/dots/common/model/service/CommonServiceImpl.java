@@ -1,4 +1,4 @@
-package com.kh.dots.common.service;
+package com.kh.dots.common.model.service;
 
 import java.util.List;
 import java.util.Map;
