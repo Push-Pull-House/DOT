@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.kh.dots.common.model.dao.CommonDao;
 import com.kh.dots.common.model.vo.Alarm;
 import com.kh.dots.common.model.vo.Images;
+import com.kh.dots.common.model.vo.Report;
 import com.kh.dots.common.model.vo.Search;
 import com.kh.dots.feed.model.vo.Feed;
 import com.kh.dots.member.model.vo.Member;
@@ -45,7 +46,7 @@ public class CommonServiceImpl implements CommonService {
 
 	@Override
 	public List<Feed> feList(Map<String, Object> paramMap, RowBounds rowBounds) {
-		return cDao.feList(paramMap);
+		return cDao.feList(paramMap, rowBounds);
 	}
 
 	@Override
@@ -78,14 +79,6 @@ public class CommonServiceImpl implements CommonService {
 		return cDao.selectMyAlarm(userNo);
 	}
 
-	/*
-	 * @Override public List<Alarm> selectMyAlarm1(int userNo) { return
-	 * cDao.selectMyAlarm1(userNo); }
-	 * 
-	 * @Override public Member selectMyAlarmUser(int alarmWriter) { return
-	 * cDao.selectMyAlarmUser(alarmWriter); }
-	 */
-
 	@Override
 	public int insertFollowAlarm1(Member m1) {
 		return cDao.insertFollowAlarm1(m1);
@@ -95,11 +88,6 @@ public class CommonServiceImpl implements CommonService {
 	public int updateFollowAlarm1(Member m2) {
 		return cDao.updateFollowAlarm1(m2);
 	}
-
-	/*
-	 * @Override public List<Alarm> selectMyAlarm4() { return cDao.selectMyAlarm4();
-	 * }
-	 */
 
 	@Override
 	public Alarm selectAlarmOne(int ano) {
@@ -145,4 +133,31 @@ public class CommonServiceImpl implements CommonService {
 	public int selectBListCount(Map<String, Object> paramMap) {
 		return cDao.selectBListCount(paramMap);
 	}
+
+
+	@Override
+	public List<Report> selectReportList(Map<String, Object> paramMap, RowBounds rowBounds) {
+		return cDao.selectReportList(paramMap,rowBounds);
+	}
+
+	@Override
+	public int selectRListCount(Map<String, Object> paramMap) {
+		return cDao.selectRListCount(paramMap);
+	}
+
+	@Override
+	public Report detailList(int reportNo) {
+		return cDao.detailList(reportNo);
+	}
+
+	@Override
+	public int updateReadReport(int reportNo) {
+		return cDao.updateReadReport(reportNo);
+	}
+
+	@Override
+	public int deleteReport(int i) {
+		return cDao.deleteReport(i);
+	}
+
 }

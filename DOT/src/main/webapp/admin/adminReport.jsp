@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; Charset=EUC-KR" 
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
@@ -8,10 +8,10 @@
 <head>
 	<meta charset="UTF-8" />
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="${contextPath}/resources/css/Dot_admin2.css" />
+    <link rel="stylesheet" href="${contextPath}/resources/css/Dot_admin.css" />
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -27,47 +27,50 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+    <!-- alert 스타일 변경 -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <title>admin</title>
 </head>
 <body>
     <div class="wrap">
-       	<jsp:include page="/common/Header.jsp" />
+          <jsp:include page="/common/Header.jsp" />
         <div class="ctn">
             <div class="side-bar">
                 <div class="controller">
                      <div class="member-controller cont" onclick="location.href='${contextPath}/adminMain';">
                         <span class="material-symbols-outlined"> group </span>
-                        <h3>ȸ�� ����</h3>
+                        <h3>회원 관리</h3>
                     </div>
                     <div class="det-wrapper">
                         <div class="member det">
-                            <div class="det-area" onclick="location.href='${contextPath}/adminWList';">
-                                <h4>���÷��</h4>
+                            <div class="det-area" onclick="location.href='${contextPath}/adminWBlist';">
+                                <h4>인플루언서</h4>
                             </div>
                         </div>
                         <div class="member det">
-                            <div class="det-area" onclick="location.href='${contextPath}/adminBList';">
-                                <h4>��������Ʈ</h4>
+                            <div class="det-area" onclick="location.href='${contextPath}/adminWBlist2';">
+                                <h4>블랙리스트</h4>
                             </div>
                         </div>
                     </div>
                     <div class="feed-controller cont" onclick="location.href='${contextPath}/adminFeed';">
                         <span class="material-symbols-outlined"> data_table </span>
-                        <h3>�ǵ� ����</h3>
+                        <h3>피드 관리</h3>
                     </div>
                     <div class="report-controller cont" onclick="location.href='${contextPath}/adminReport';">
                         <span class="material-symbols-outlined"> feedback </span>
-                        <h3>�Ű� ����</h3>
+                        <h3>신고 관리</h3>
                     </div>
-	               <div class="report-controller cont" onclick="location.href='${contextPath}/logout.me';">
+	                 <div class="report-controller cont" onclick="location.href='${contextPath}/logout.me';">
                         <span class="material-symbols-outlined logout"> logout </span>
-                        <h3>�α� �ƿ�</h3>
+                        <h3>로그 아웃</h3>
                     </div>
                 </div>
             </div>
 
             <div class="header-bar">
-                <div class="content-area">
+                <div class="content-area" style="margin-top:-90px;">
+                	<form action="${contextPath}/deleteReport" id="form-report-admin" >
                     <div class="content-header">
                         <div class="icon-area">
                             <div class="content-icon">
@@ -78,88 +81,228 @@
                                 <span class="material-symbols-outlined" onclick="location.href='${contextPath}/adminFeed';"> data_table </span>
                                 <div class="font">l</div>
                                 <span class="material-symbols-outlined" onclick="location.href='${contextPath}/adminReport';"> feedback </span>
+                                <div class="font">l</div>
+                        		<button class="del-btn" 
+                                		id="btn-del"
+                                		type="button" 
+                                		style="color:black; background-color:lightgray; width:55px; float: right; margin-right: 25px; border-radius: 3px;"
+                                		>Del</button>
                             </div>
                         </div>
                     </div>
                     
                     <div class="content-body">
-                        <table id="reporpList" class="table table-hover" align="center">
-				            <thead class="category-wrap">
-				               <tr>
-				                  <th width="250px">
-					                  <label style="margin:0px 20px 0px -40px;">
-	                                       <input type="checkbox" id="selectAllBtn" class="check-btn" onclick="selectAll();">
-	                                       <span></span>
-	                                   </label>
-				                  		No.
-				                  </th>
-				                  <th width="550px">WRITER</th>
-				                  <th width="550px">TITLE</th>
-				                  <th width="550px">KIND</th>
-				                  <th width="550px">DATE</th>
-				               </tr>
-				            </thead>
-				            <tbody>
-				               <c:if test="${empty rlist}">
-				                  <td colspan="5" align="center">�Ű� ������ ������Ф�</td>
+                            <div class="category-wrap" id="reporpList">
+                                <div class="category">
+                                    <input type="checkbox" id="selectAllBtn" class="check-btn" onclick="selectAll();" style="margin-left:30px">
+                                    <div class="title-no" style="margin-left:5px;">
+                                       <span></span>
+                                        No.
+                                    </div>
+                                    <div class="title-id">
+                                        <span>WRITER</span>
+                                    </div>
+                                    <div class="title-content" style="width:450px;">
+                                        <span>TITLE</span>
+                                    </div>
+                                    <div class="title-date">
+                                        <span>DATE</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="admin-area">
+                                <c:if test="${empty rlist}">
+				                  <div style="width:1000px; padding-top:150px; font-size:25px;"align="center">신고 내역이 없떠요ㅠㅠ</div>
 				               </c:if>
-				               <c:forEach var="r" items="${rlist}">
-				                  <tr>
-				                     <td>
-                                         <label style="margin:0px 27px 0px -57px;">
-                                             <input type="checkbox" name="rowCheck" class="rowCheck-btn" value="${m.userNo}"/>
-                                             <span></span>
-                                         </label>
-				                     ${r.reportNo}</td>
-				                     <td>${r.reportWriter}</td>
-				         	         <td>${r.reportTitle}</td>
-				         	         <td>${r.reportLevel}</td>
-				                     <td>${r.enrollDate}</td>
-				                  </tr>
-				               </c:forEach>
-				            </tbody>
-				         </table>
-         			
-         			<script>
-			         	function movePage(no){
-			         		location.href="${contextPath}/adminReport/${reportNo}/"+no;
-			         	}
-			         	
-			         	/* üũ�ڽ� ���� & ��ü���� */
-			         	function selectAll(){
-					    	const checked = document.getElementById("selectAllBtn").checked;
-					    	const rowChecks = document.querySelectorAll('input[type="checkbox"]');
-					    	rowChecks.forEach( function(rowCheck) {
-					    		rowCheck.checked = checked;
-					     	   })
-						}
-				    
-						/* ��ü���� ���� */ 
-						function selectOne(){
-						    const all = document.getElementById("selectAllBtn");
-						    const one = document.querySelectorAll('input[class="rowCheck-btn"]');
-						    let isAll = true;
-						    for(let i = 0; i < one.length; i++){
-								if(one[i].checked == false){
-						   	        isAll = false;
-						            break;
-						        }
-						    }
-						    if(isAll){
-						      all.checked = true;
-						    } else{
-						    all.checked = false;
-						    }
-						}
-			         </script>
-         
-         			<c:set var="url" value="${r.reportNo}?currentPage="/>
+                               <c:if test="${!empty rlist}">
+                                <div class="content-left" >
+	                                <c:forEach var="r" items="${rlist}" >
+	                                	<c:if test="${r.reportStatus eq 'N'}">
+										<div class="search-report" id="selectR${r.reportNo}" onclick="detailReport(event,${r.reportNo})" style="background-color:black">
+	                                        <input type="checkbox" name="rowCheck" class="rowCheck-btn" value="${r.reportNo}" style="margin-left:20px;"/>
+	                                        <div class="title-no de" style="margin-left:5px;">
+	                                            <span></span>
+	                                            <h4 id="no">${r.reportNo}</h4>
+	                                        </div>
+	                                        <div class="title-id de">
+	                                            <h4>${r.userNick}</h4>
+	                                        </div>
+	                                        <div class="title-content de" style="width:450px;">
+	                                            <h4>${r.reportTitle}</h4>
+	                                        </div>
+	                                        <div class="title-date de">
+	                                            <h4>${r.enrollDate}</h4>
+	                                        </div>
+	                                    </div>
+	                                    </c:if>
+	                                    <c:if test="${r.reportStatus eq 'Y'}">
+										<div class="search-report" id="selectR${r.reportNo}" onclick="detailReport(event,${r.reportNo})">
+	                                        <input type="checkbox" name="rowCheck" class="rowCheck-btn" value="${r.reportNo}" style="margin-left:20px;"/>
+	                                        <div class="title-no de" style="margin-left:5px;">
+	                                            <span></span>
+	                                            <h4 id="no">${r.reportNo}</h4>
+	                                        </div>
+	                                        <div class="title-id de">
+	                                            <h4>${r.userNick}</h4>
+	                                        </div>
+	                                        <div class="title-content de" style="width:450px;">
+	                                            <h4>${r.reportTitle}</h4>
+	                                        </div>
+	                                        <div class="title-date de">
+	                                            <h4>${r.enrollDate}</h4>
+	                                        </div>
+	                                    </div>
+	                                    </c:if>
+	                                </c:forEach>
+                                </div>
+                                </c:if>
+                                <div class="ctn-right">
+                                    <div class="right-wrap">
+                                        <div class="right-container" >
+                                            <div class="right-header">
+                                                <div class="right-userid" >
+                                                    <button class="userid-btn">NICK</button>
+                                                    <h4 id="reportWriter" style="margin-left:-205px; margin-top:10px;">${userNick}</h4>
+                                                </div>
+                                                <div class="rigth-date">
+                                                    <h4 id="enrollDate"  style="margin-left: -160px; margin-top: -5px;">${enrollDate}</h4>
+                                                </div>
+                                            </div>
+                                            <div class="right-title">
+                                                <button class="title-btn">제목</button>
+                                                <h4 id="reportTitle" style="margin-top: 13px; margin-left:-200px;">${reportTitle}</h4>
+                                            </div>
+                                            <div class="right-detail">
+                                                <button class="detail-btn">내용</button>
+                                                <h4 id="reportContent" style="margin-top:-300px; margin-left:-200px;">${reportContent}</h4>
+                                            </div>
+	                                            <div class="right-confirm">
+	                                            	<div id="confirm-btn" style="display:none;"></div>
+	                                                <button type="button" class="confirm-btn" id="confirm-btns" onclick="process()">처리</button>
+	                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                
+                                <script>
+                                /* 신고 게시글 상세 보기 & 게시글 읽음 여부 표시 */
+                                function detailReport(e,no){
+                                    console.log(no);
+                                    console.log('selectR'+no);
+									var reportNo = no;
+									const selectR = $('#selectR'+no);
+									console.log(selectR);
+									
+                                    $.ajax({
+                                        url:"${contextPath}/detailReport",
+                                        data:{reportNo : reportNo},
+                                        success: function(data){
+                                        	console.log(data);
+                                        	selectR.css("background-color","black");
+                                       	
+                                        	$('#reportWriter').text(data.userNick);
+                                        	$('#enrollDate').text(data.enrollDate);
+                                        	$('#reportTitle').text(data.reportTitle);
+                                        	$('#reportContent').text(data.reportContent);
+                                        	$('#confirm-btn').text(data.reportNo);
+                                        },
+                                        error: function () {
+                                        	console.log('detail error');
+                                        }
+                                    });
+                                }
+                                
+                    			 var form = $('#form-report-admin');
+                     			 var btn = $('#btn-del');
+                     			  btn.on('click', function(event) {
+                     				  //event.preventDefault();
+                     				  console.log("1");
+                     				  swal({
+                     					  text:"게시물을 삭제하시겠습니까?",
+                     					  buttons : ["취소하기","삭제하기"]
+                     				  })
+                     				  .then((value) => {
+                     					  console.log(value);
+                     					  if(value){
+                     						  form.submit();
+                     					  }else{
+                     						  console.log("다시해~");
+                     					  }
+                     				  });
+                     			    });
+                                 /* 처리 기능 */
+                                 function process(){
+                                	 const reportNo = $('#confirm-btn').text();
+                                	 console.log(reportNo);
+                                 		$.ajax({
+                                 			url: "${contextPath}/processReport",
+                                 			data: {reportNo : reportNo},
+                                 			success: function(data){
+                                 				console.log(data);
+                                 				if(data == 1){
+                             					  swal({
+                                 					  text:"게시물을 처리를 완료하시겠습니까?",
+                                 					  buttons : ["취소하기","처리하기"]
+                                 				  })
+                                 				  .then((value) => {
+                                 					  console.log(value);
+                                 					  if(value){
+                                 						 location.reload();
+                                 					  }else{
+                                 						  console.log("다시해~");
+                                 					  }
+                                 				  });
+                                 					
+                                 				}
+                                 			},
+                                 			error: function(){
+                                 				console.log('process error');
+                                 			}
+                                		});
+                              		}                                   
+                                /*  var delForm = $('#form-del-report-admin');
+                                 var delBtn = $('#r-del-btn');
+                                 delBtn.on('click', function(event) {
+                                 	var checkboxes = [];
+                                 	$('input[name="rowCheck"]:checked').each(function() {
+                                 		checkboxes.push($(this).val());
+                                     });
+                                 	console.log(checkboxes);
+                                 	
+                                	    if (checkboxes.length > 0) {
+                     	                swal({
+                     	                    text :"신고 게시글을 삭제하시겠습니까?",
+                     	                    buttons : ["취소하기","삭제하기"]
+                     	                })
+                     	                .then((value) => {
+                     	                     console.log(value);
+                     	                     if (value) {
+                     	                         delForm.submit();
+                     	                		 console.log("del-r good");
+
+                     	                     } else {
+                     	                    	 console.log("return!");
+                     	                     }
+                     	                  });
+                                      }
+                                 }); */
+                                </script>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        <c:set var="url" value="${r.reportNo}?currentPage="/>
   		
 			  		<c:if test="${not empty param.condition }"> 
 			  			<c:set var="sUrl" value="&condition=${param.condition }&keyword=${param.keyword }"/>
 			  		</c:if>
 			  		
-			  		<div id="paginArea">
+			  		<div id="paginArea" style="margin-top:200px;">
 			  			<ul class="pagination">
 			  				<c:choose>
 								<c:when test="${pi.currentPage eq 1 }">
@@ -189,21 +332,48 @@
 			  		
 			  		<br clear="both"><br>
 			  		
-			  		<form id="searchForm" action="${reportNo}" method="get" align="center">
+			  		<form id="searchForm" action="${reportNo}" method="get" align="center" style="margin-left:500px; position:absolute;">
 			  			<div class="report-select-wrap">
 						  	<select class="feed-select" name="condition">
-						  		<option value="writer" ${param.condition eq 'writer' ? 'selected' : '' }>�ۼ���</option>
-						  		<option value="title" ${param.condition eq 'title' ? 'selected' : '' }>����</option>
-						  		<option value="kind" ${param.condition eq 'kind' ? 'selected' : '' }>�Ű�����</option>
+						  		<option value="writer" ${param.condition eq 'writer' ? 'selected' : '' }>작성자</option>
+						  		<option value="title" ${param.condition eq 'title' ? 'selected' : '' }>제목</option>
 						  	</select>
 			  			</div>
-			  			<div class="report-search-text">
+			  			<div class="report-search-text" style="width:350px">
 			  				<input type="text" class="form-control" name="keyword" value="${param.keyword }"/>
-			  			</div>
-							<button type="text" class="searchBtn btn btn-secondary">�˻�</button>
+			  			</div> 
+							<button type="text" class="searchBtn btn btn-secondary">검색</button>
 			  		</form>
-			  	</div>
+			  	
+
+        <script>
+            /* 체크박스 선택 & 전체선택 */
+            function selectAll(){
+                const checked = document.getElementById("selectAllBtn").checked;
+                const rowChecks = document.querySelectorAll('input[type="checkbox"]');
+                rowChecks.forEach( function(rowCheck) {
+                    rowCheck.checked = checked;
+                    })
+            }
+        
+            /* 전체선택 해제 */ 
+            function selectOne(){
+                const all = document.getElementById("selectAllBtn");
+                const one = document.querySelectorAll('input[class="rowCheck-btn"]');
+                let isAll = true;
+                for(let i = 0; i < one.length; i++){
+                    if(one[i].checked == false){
+                        isAll = false;
+                        break;
+                    }
+                }
+                if(isAll){
+                    all.checked = true;
+                } else{
+                all.checked = false;
+                }
+            }
+        </script>
 				         
-    <script></script>
 </body>
 </html>

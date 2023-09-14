@@ -26,6 +26,7 @@ import com.kh.dots.common.model.template.Pagination;
 import com.kh.dots.common.model.vo.Alarm;
 import com.kh.dots.common.model.vo.Images;
 import com.kh.dots.common.model.vo.PageInfo;
+import com.kh.dots.common.model.vo.Report;
 import com.kh.dots.common.model.vo.Search;
 import com.kh.dots.common.service.CommonService;
 import com.kh.dots.feed.model.vo.Feed;
@@ -305,8 +306,68 @@ public class CommonController {
 	}
 	
 	@GetMapping("/adminReport")
-	public String adminReport() {
+	public String adminReport(Model model,
+			@RequestParam(value="currentPage", defaultValue="1") int currentPage, 
+			@RequestParam Map<String, Object> paramMap,
+			Member m
+			) {
+		int offset = (currentPage -1) *5;
+		int limit = 5;
+		
+		paramMap.put("m", m);
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		List<Report> rlist = cService.selectReportList(paramMap, rowBounds);
+		int total = cService.selectRListCount(paramMap);		
+		log.info("rlist ={}", rlist);
+		int pageLimit = 10;
+		int boardLimit = 5;
+		PageInfo pi = Pagination.getPageInfo(total, currentPage, pageLimit, boardLimit);
+		model.addAttribute("rlist", rlist);
+		model.addAttribute("pi", pi);
+		
 		return "admin/adminReport.jsp";
 	}
+	
+	@ResponseBody
+	@GetMapping("/detailReport")
+	public Report detailReport(
+			Model model,
+			int reportNo
+			) {
+		Report detailList = cService.detailList(reportNo); 
+		int result = cService.updateReadReport(reportNo);
+		log.info("detailList={}",detailList);
+		
+		return detailList;
+	}
+	
+	@GetMapping("/deleteReport")
+	public String deleteReport(
+			int[] rowCheck
+			) {
+		log.info("rowCheck={}",rowCheck);
+		int result = 0;
+		if(rowCheck !=null) {
+			for (int i = 0; i < rowCheck.length; i++) {
+				result = cService.deleteReport(rowCheck[i]);
+				if (result == 0) {
+					break;
+				}
+			}
+		}
+		return "/adminReport";
+	}
+	
+	@ResponseBody
+	@GetMapping("/processReport")
+	public int processReport(
+			Model model,
+			int reportNo
+			) {
+		int result = cService.deleteReport(reportNo);
+		
+		return result;
+	}
+	
 
 }

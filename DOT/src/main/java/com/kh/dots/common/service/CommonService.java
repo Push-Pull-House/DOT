@@ -7,6 +7,7 @@ import org.apache.ibatis.session.RowBounds;
 
 import com.kh.dots.common.model.vo.Alarm;
 import com.kh.dots.common.model.vo.Images;
+import com.kh.dots.common.model.vo.Report;
 import com.kh.dots.common.model.vo.Search;
 import com.kh.dots.feed.model.vo.Feed;
 import com.kh.dots.member.model.vo.Member;
@@ -37,17 +38,9 @@ public interface CommonService {
 
 	public List<Alarm> selectMyAlarm(int userNo);
 
-	/*
-	 * public List<Alarm> selectMyAlarm1(int userNo);
-	 * 
-	 * public Member selectMyAlarmUser(int alarmWriter);
-	 */
-
 	public int insertFollowAlarm1(Member m1);
 
 	public int updateFollowAlarm1(Member m2);
-
-	//public List<Alarm> selectMyAlarm4();
 
 	public Alarm selectAlarmOne(int ano);
 
@@ -66,4 +59,15 @@ public interface CommonService {
 	public List<Member> BList(Map<String, Object> paramMap, RowBounds rowBounds);
 
 	public int selectBListCount(Map<String, Object> paramMap);
+
+	public List<Report> selectReportList(Map<String, Object> paramMap, RowBounds rowBounds);
+
+	public int selectRListCount(Map<String, Object> paramMap);
+
+	public Report detailList(int reportNo);
+
+	public int updateReadReport(int reportNo);
+
+	public int deleteReport(int i);
+
 }

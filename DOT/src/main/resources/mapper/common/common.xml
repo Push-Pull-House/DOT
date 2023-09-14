@@ -55,6 +55,16 @@
 		<result column="FEED_HASHTAG" property="feedHashtag"/>
 	</resultMap> 
 	
+	<resultMap id="reportResultSet" type="report">
+		<id column="REPORT_NO" property="reportNo"/>
+		<result column="REPORT_WRITER" property="reportWriter"/>
+		<result column="REPORT_TITLE" property="reportTitle"/>
+		<result column="REPORT_CONTENT" property="reportContent"/>
+		<result column="ENROLL_DATE" property="enrollDate"/>
+		<result column="REPORT_LEVEL" property="reportLevel"/>
+		<result column="REPORT_STATUS" property="reportStatus"/>
+	</resultMap>
+	
 	<select id="selectList" parameterType="string" resultMap="imageResultSet">
 		SELECT *
 		FROM IMAGE I
@@ -323,4 +333,61 @@
 			</choose>
 		</if>
 	</select>
+	
+	<select id="selectReportList" resultMap="reportResultSet">
+		SELECT *
+		FROM REPORT R
+ 		JOIN MEMBER M ON M.USER_NO = R.REPORT_WRITER
+ 		WHERE M.STATUS = 'Y' 
+ 		<if test="keyword != null and keyword != ''">
+			AND
+			<choose>
+				<when test="condition == 'writer'">
+					M.USER_WRITER LIKE '%${keyword}%'
+				</when>
+				<when test="condition == 'title'">
+					REPORT_TITLE LIKE '%${keyword}%'
+				</when>
+			</choose>
+		</if>
+		ORDER BY R.REPORT_NO DESC
+	</select>
+	
+	<select id="selectRListCount" parameterType="hashmap" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM REPORT R
+		JOIN MEMBER M ON R.REPORT_WRITER = M.USER_NO
+		WHERE M.STATUS = 'Y' 
+		<if test="keyword != null and keyword != ''">
+			AND
+			<choose>
+				<when test="condition == 'writer'">
+					M.USER_WRITER LIKE '%${keyword}%'
+				</when>
+				<when test="condition == 'title'">
+					REPORT_TITLE LIKE '%${keyword}%'
+				</when>
+			</choose>
+		</if>
+	</select>
+	
+	<select id="detailList" parameterType="int" resultMap="reportResultSet">
+		SELECT *
+		FROM REPORT R
+		JOIN MEMBER M ON R.REPORT_WRITER = M.USER_NO
+		WHERE R.REPORT_NO = #{reportNo}
+	</select>
+	
+	<update id="updateReadReport" parameterType="int">
+		UPDATE REPORT
+		SET REPORT_STATUS = 'N'
+		WHERE REPORT_NO = #{reportNo}
+	</update>
+	
+	<delete id="deleteReport" parameterType="int">
+   		DELETE REPORT
+   		WHERE REPORT_NO = #{i}
+   </delete>
+	
 </mapper>
