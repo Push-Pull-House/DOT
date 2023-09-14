@@ -142,9 +142,6 @@ body {
     cursor: pointer;
 }
 
-.user-profile span:nth-child(2):hover {
-    text-decoration: underline;
-}
 
 .user-profile span:nth-child(3) {
     font-size: 35px;

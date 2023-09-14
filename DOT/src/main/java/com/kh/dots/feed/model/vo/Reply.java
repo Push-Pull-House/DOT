@@ -20,6 +20,8 @@ public class Reply {
 	private int replyFno; 
 	private Date enrollDate; 
 	private String status; 
+	
+	
 	private String userNick;
 	private String filePath;
 	private String changeName;

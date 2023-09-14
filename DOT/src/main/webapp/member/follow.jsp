@@ -101,10 +101,10 @@
                             <div class="result-content-area">
                                 <div class="result-content">
                                     <dl class="follow-list">
-                                        <div class="follow-img">
-                                            <img src='${contextPath}/${i.filePath}/${i.changeName}' />
+                                        <div class="follow-img" onclick="location.href='${contextPath}/YourFeed.me?uno=${i.userNo}'">
+                                            <img src='${contextPath}/${i.filePath}/${i.changeName}' onclick="location.href='${contextPath}/YourFeed.me?uno=${i.userNo}'"/>
                                         </div>
-                                        <div class="follow-id">
+                                        <div class="follow-id" onclick="location.href='${contextPath}/YourFeed.me?uno=${i.userNo}'">
                                             <div class="user-id">
                                                 <span>${i.userId}</span>
                                             </div>
@@ -190,10 +190,10 @@
 	                            <div class="result-content-area">
 	                                <div class="result-content">
 	                                    <dl class="follow-list">
-	                                        <div class="follow-img">
-	                                            <img src='${contextPath}/${c.filePath}/${c.changeName}' />
+	                                        <div class="follow-img" onclick="location.href='${contextPath}/YourFeed.me?uno=${c.userNo}'">
+	                                            <img src='${contextPath}/${c.filePath}/${c.changeName}'  onclick="location.href='${contextPath}/YourFeed.me?uno=${c.userNo}'"/>
 	                                        </div>
-	                                        <div class="follow-id">
+	                                        <div class="follow-id" onclick="location.href='${contextPath}/YourFeed.me?uno=${c.userNo}'">
 	                                            <div class="user-id">
 	                                                <span>
 			                                        	<div>${c.userNick}</div>	
@@ -226,7 +226,7 @@
 								                     		 <h6>팔로잉</h6>
 								                     </button>
 								                </c:if>
-								                <c:if test="${checkf == 2}">
+								                <c:if test="${checkf == 2 || checkf == 0}">
 						                        	<button type="button"
 						                        			class="follow-btn follower-btn"
 						                        			id="f-bbtn2_${c.userNo}"

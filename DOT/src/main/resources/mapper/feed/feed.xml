@@ -297,10 +297,10 @@
 		WHERE CHOICE_MEMBER = #{userNo }
 	</select>
 	
-	<select id="checkChoice" parameterType="Feed" resultMap="choiceResultSet">
+	<select id="checkChoice" parameterType="choice" resultMap="choiceResultSet">
 		SELECT *
 		FROM CHOICE
-		WHERE CHOICE_FNO = #{feedNo}
+		WHERE CHOICE_FNO = #{choiceFno} AND CHOICE_MEMBER = #{choiceMember}
 	</select>
 	
 	<select id="friend4" parameterType="int" resultMap="friendResultSet">

@@ -30,6 +30,7 @@ import com.kh.dots.common.model.vo.Search;
 import com.kh.dots.common.service.CommonService;
 import com.kh.dots.feed.model.vo.Feed;
 import com.kh.dots.member.model.service.MemberService;
+import com.kh.dots.member.model.vo.Friend;
 import com.kh.dots.member.model.vo.Member;
 
 import lombok.extern.slf4j.Slf4j;
@@ -54,10 +55,11 @@ public class CommonController {
 		log.info("abcabcalist={}",  param.get("alarmlist1"));
 		Object a = param.get("alarmlist1");
 		List<Alarm> list = new ArrayList();
+		List<Member> friendList = new ArrayList();
 		try {
 			ObjectMapper objectMapper = new ObjectMapper();
 			List<Map<String, Object>> dataList = objectMapper.readValue(a.toString(), new TypeReference<List<Map<String, Object>>>(){});
-			
+			Member loginUser = (Member)session.getAttribute("loginUser");
 			for(Map<String,Object> data : dataList) {
 				Alarm al = new Alarm();
 				al.setAlarmNo((Integer) data.get("alarmNo"));
@@ -70,15 +72,22 @@ public class CommonController {
 				al.setChangeName((String) data.get("changeName"));
 				list.add(al);
 			}
+			List<Friend> mlist = mService.sideFriendList(loginUser.getUserNo());
 			
-			
+			for(Friend b : mlist) {
+				Member f = mService.selectFriendList2(b);
+				if(f != null) {
+					friendList.add(f);
+				}
+			}
 		} catch (JsonMappingException e) {
 			e.printStackTrace();
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
+		session.setAttribute("mlist", friendList);
 		session.setAttribute("alarmlist", list);
-		
+		log.info("mlistlate={}",session.getAttribute("mlist"));
 		log.info("alarmListabcabcc={}",session.getAttribute("alarmlist"));
 		
 		int result = 0; 
@@ -116,7 +125,7 @@ public class CommonController {
 		}
 		List<Images> slist = cService.selectList(keyword);
 		log.info("slist = {} ", slist);
-
+		model.addAttribute("keyword",keyword);
 		model.addAttribute("slist", slist);
 		return "common/search.jsp";
 	}

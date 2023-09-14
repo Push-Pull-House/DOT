@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.dots.common.model.vo.Images;
 import com.kh.dots.feed.model.vo.Choice;
+import com.kh.dots.feed.model.vo.Reply;
 import com.kh.dots.member.model.vo.Friend;
 import com.kh.dots.member.model.vo.Member;
 
@@ -127,5 +128,20 @@ public class MemberDao {
 
 	public List<Choice> myChoiceList(int userNo) {
 		return sqlSession.selectList("member.myChoiceList",userNo);
+	}
+
+	public List<Reply> detailReply(int imgNo) {
+		return sqlSession.selectList("member.detailReply",imgNo);
+	}
+
+	public int insertReplyMy(Map<String, Object> map) {
+		log.info("Dao userNo={}",map.get("userNo"));
+		log.info("Dao replyContent={}",map.get("replyContent"));
+		log.info("Dao feedNo={}",map.get("feedNo"));
+		return sqlSession.insert("member.insertReplyMy",map);
+	}
+
+	public Reply latelyReply(Map<String, Object> map) {
+		return sqlSession.selectOne("member.latelyReply",map);
 	}
 }

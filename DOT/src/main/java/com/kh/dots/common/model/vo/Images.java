@@ -21,4 +21,11 @@ public class Images {
 	
 	private int likeCount;
 	private String userNick;
+	private int likeFno;
+	private int choiceFno;
+	private int friendUser2;
+	private int friendUser1;
+	private int feedWriter;
+	private String feedContent;
+	private String feedHashtag;
 }

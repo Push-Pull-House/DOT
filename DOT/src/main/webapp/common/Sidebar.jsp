@@ -73,7 +73,7 @@
                             </a>
                         </dt>
                         <dt>
-                            <a class="material-symbols-outlined">
+                            <a class="material-symbols-outlined" href="${contextPath}/follow/followlist">
                                 group
                                 <span>팔로워</span>
                             </a>
@@ -83,7 +83,7 @@
                 <div class="friends br-bottom">
                     <span>친구</span>
                     <div class="friends-list">
-                    	<c:forEach var="f" items="${mlist}">
+                    	<c:forEach var="f" items="${mlist}" begin="0" end="4">
 	                        <a class="friend-profile"  href="${contextPath}/YourFeed.me?uno=${f.userNo}">
 	                            <div class="profile-img">
 	                               <img src="${contextPath}/${f.filePath}/${f.changeName}" />
@@ -94,7 +94,7 @@
 	                           		<label id="friend${f.userNo}"></label>
 	                        </a>
                         </c:forEach>
-                        <div class="friend-profile more-friends">
+                        <div class="friend-profile more-friends" onclick="location.href='${contextPath}/follow/followlist'">
                             <span>더보기</span>
                             <span class="material-symbols-outlined">
                                 add

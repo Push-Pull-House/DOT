@@ -189,7 +189,7 @@
 																		<div class="feed-control-js">
 																			<div class="clickable-svg clicked-heart">
 																				<svg xmlns="http://www.w3.org/2000/svg" width="25"
-																					height="25" fill="currentColor"
+																					height="25" fill="red"
 																					class="bi bi-heart-fill" viewBox="0 0 16 16">
 																                <path
 																						d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
@@ -371,8 +371,6 @@
 			}; 
 			
 			 $(".choice-control-js").click(function(e){
-				 /* const target = $(e.currentTarget);
-				 console.log(target) */
 				 var storeSVG =
 					    `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
 					    fill="currentColor" class="bi bi-plus-square animate__animated animate__flipInY"
@@ -397,7 +395,7 @@
 				    
 	            if($(this).find('.bi-check-square-fill').length != 0){
 	            	 const feedNo = $(this).find('input').val();
-	            	 
+	            	 console.log(feedNo);
 		             $.ajax({
 	                    url: '${contextPath}/mainFeed/removeChoice',
 	                    data: { feedNo: feedNo },
@@ -415,12 +413,13 @@
 	                });
 	            }else{
 	               const feedNo = $(this).find('input').val();
-	                
+	               console.log(feedNo);
 	                $.ajax({
 	                    url: '${contextPath}/mainFeed/addChoice',
 	                    data: { feedNo: feedNo },
 	                    method: 'post',
 	                    success: function(result) {
+	                    	console.log(result);
 	                    	currentBoxSVG.replaceWith(storeFillSVG);
 	                    	svgElement.replaceWith(storeFillSVG);
 	                    	aElement.replaceWith('<a>저장됨</a>');
@@ -619,97 +618,6 @@
                         <div class="reply-wrap">
                             <div class="reply-middle">
                                 <dl>
-                                    <dt>
-                                        <img src="${contextPath}/resources/images/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
-                                        <div class="reply-list">
-                                            <span>dasdasda</span>
-                                            <span>와 오창정 폼 미쳐따이</span>
-                                        </div>
-                                    </dt>
-                                    <dt>
-                                        <img src="${contextPath}/resources/images/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
-                                        <div class="reply-list">
-                                            <span>dasdasda</span>
-                                            <span>와 오창정 폼 미쳐따이</span>
-                                        </div>
-                                    </dt>
-                                    <dt>
-                                        <img src="${contextPath}/resources/images/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
-                                        <div class="reply-list">
-                                            <span>dasdasda</span>
-                                            <span>와 오창정 폼 미쳐따이</span>
-                                        </div>
-                                    </dt>
-                                    <dt>
-                                        <img src="${contextPath}/resources/images/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
-                                        <div class="reply-list">
-                                            <span>dasdasda</span>
-                                            <span>와 오창정 폼 미쳐따이</span>
-                                        </div>
-                                    </dt>
-                                    <dt>
-                                        <img src="${contextPath}/resources/images/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
-                                        <div class="reply-list">
-                                            <span>dasdasda</span>
-                                            <span>와 오창정 폼 미쳐따이</span>
-                                        </div>
-                                    </dt>
-                                    <dt>
-										<img src="${contextPath}/resources/images/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
-                                        <div class="reply-list">
-                                            <span>dasdasda</span>
-                                            <span>와 오창정 폼 미쳐따이</span>
-                                        </div>
-                                    </dt>
-                                    <dt>
-                                        <img src="${contextPath}/resources/images/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
-                                        <div class="reply-list">
-                                            <span>dasdasda</span>
-                                            <span>와 오창정 폼 미쳐따이</span>
-                                        </div>
-                                    </dt>
-                                    <dt>
-                                        <img src="${contextPath}/resources/images/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
-                                        <div class="reply-list">
-                                            <span>dasdasda</span>
-                                            <span>와 오창정 폼 미쳐따이</span>
-                                        </div>
-                                    </dt>
-                                    <dt>
-                                        <img src="${contextPath}/resources/images/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
-                                        <div class="reply-list">
-                                            <span>dasdasda</span>
-                                            <span>와 오창정 폼 미쳐따이</span>
-                                        </div>
-                                    </dt>
-                                    <dt>
-                                        <img src="${contextPath}/resources/images/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
-                                        <div class="reply-list">
-                                            <span>dasdasda</span>
-                                            <span>와 오창정 폼 미쳐따이</span>
-                                        </div>
-                                    </dt>
-                                    <dt>
-                                        <img src="${contextPath}/resources/images/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
-                                        <div class="reply-list">
-                                            <span>dasdasda</span>
-                                            <span>와 오창정 폼 미쳐따이</span>
-                                        </div>
-                                    </dt>
-                                    <dt>
-                                        <img src="${contextPath}/resources/images/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
-                                        <div class="reply-list">
-                                            <span>dasdasda</span>
-                                            <span>와 오창정 폼 미쳐따이</span>
-                                        </div>
-                                    </dt>
-                                    <dt>
-                                        <img src="${contextPath}/resources/images/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
-                                        <div class="reply-list">
-                                            <span>dasdasda</span>
-                                            <span>와 오창정 폼 미쳐따이</span>
-                                        </div>
-                                    </dt>
                                     <dt>
                                         <img src="${contextPath}/resources/images/KakaoTalk_Photo_2020-12-19-23-39-15.jpg" />
                                         <div class="reply-list">

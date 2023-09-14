@@ -181,8 +181,8 @@ public class FeedServiceImpl implements FeedService {
 	}
 
 	@Override
-	public List<Choice> checkChoice(Feed f) {
-		return fDao.checkChoice(f);
+	public List<Choice> checkChoice(Choice c) {
+		return fDao.checkChoice(c);
 	}
 
 	@Override
@@ -209,4 +209,5 @@ public class FeedServiceImpl implements FeedService {
 	public List<Choice> choiceFilter() {
 		return fDao.choiceFilter();
 	}
+
 }

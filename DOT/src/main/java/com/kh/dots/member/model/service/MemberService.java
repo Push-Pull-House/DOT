@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.kh.dots.common.model.vo.Images;
 import com.kh.dots.feed.model.vo.Choice;
+import com.kh.dots.feed.model.vo.Reply;
 import com.kh.dots.member.model.vo.Friend;
 import com.kh.dots.member.model.vo.Member;
 
@@ -67,4 +68,10 @@ public interface MemberService {
 	Member feedMember(int feedNo);
 
 	List<Choice> myChoiceList(int userNo);
+
+	List<Reply> detailReply(int imgNo);
+
+	int insertReplyMy(Map<String, Object> map);
+
+	Reply latelyReply(Map<String, Object> map);
 }

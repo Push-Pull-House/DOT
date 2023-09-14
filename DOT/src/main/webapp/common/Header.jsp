@@ -64,13 +64,13 @@
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
-                    <div class="modal-dialog modal-xl">
+                    <div class="modal-dialog modal-xl" >
                         <div class="modal-content haeder-alarm follow-header main-header-alarm">
                             <div class="modal-body modal-backgound" style="height: 30%; display:block">
-                            	<div class="more-alarm23"><a href="${contextPath}/Alarm.al">더 보기</a></div>
+                            	<div class="more-alarm23 more-alarm24"><a href="${contextPath}/Alarm.al">더 보기</a></div>
                                 <div class="modal-box">
                                     <c:forEach var="alarm" items="${alarmlist}">
-                                    <div class="modal-profile-icon" onclick="alarm(event,${alarm.alarmNo},'${alarm.alarmType}');">
+                                    <div class="modal-profile-icon header-icon-my" onclick="alarm(event,${alarm.alarmNo},'${alarm.alarmType}');">
                                         <label>
                                             <a>
                                                 <img src="${contextPath}/${alarm.filePath}/${alarm.changeName}">

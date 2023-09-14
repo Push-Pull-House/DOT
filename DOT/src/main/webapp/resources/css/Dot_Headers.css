@@ -203,7 +203,6 @@ body {
 
 .header .profile p:hover {
     cursor: pointer;
-    text-decoration: underline;
 }
 
 .profile-img>img {
@@ -265,7 +264,7 @@ body {
 
 .modal-profile-icon{
     display: flex;
-    margin-top: 11px;
+    margin-top: 15px;
     cursor: pointer;
     padding: 5px;
 }

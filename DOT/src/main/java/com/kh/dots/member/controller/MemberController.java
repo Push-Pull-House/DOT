@@ -33,6 +33,7 @@ import com.kh.dots.common.model.vo.Images;
 import com.kh.dots.common.model.vo.Search;
 import com.kh.dots.common.service.CommonService;
 import com.kh.dots.feed.model.vo.Choice;
+import com.kh.dots.feed.model.vo.Reply;
 import com.kh.dots.member.model.service.MemberService;
 import com.kh.dots.member.model.validator.MemberValidator;
 import com.kh.dots.member.model.vo.Friend;
@@ -509,4 +510,29 @@ public class MemberController {
 		return result+"";
 	}
 	
+	@ResponseBody
+	@GetMapping("/detailreply.myfeed")
+	public List<Reply> detailreply(int imgNo) {
+		List<Reply> rlist = mService.detailReply(imgNo); 
+		log.info("rlist={}",rlist);
+		return rlist;
+	}
+	
+	@ResponseBody
+	@PostMapping("/detailSendReply.myfeed")
+	public Reply detailSendReply(HttpSession session,int feedNo, String replyContent) {
+		log.info("rfeedNo={}",feedNo);
+		log.info("rreplyContent={}",replyContent);
+		Member m = (Member)session.getAttribute("loginUser");
+		Map<String,Object> map = new HashMap();
+		map.put("feedNo",feedNo);
+		map.put("replyContent",replyContent);
+		map.put("userNo", m.getUserNo());
+		int result = mService.insertReplyMy(map);
+		Reply reply = new Reply(); 
+		if(result >0) {
+			reply = mService.latelyReply(map);
+		}
+		return reply;
+	}
 } 

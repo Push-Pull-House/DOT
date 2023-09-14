@@ -43,7 +43,15 @@
       <result column="CHOICE_MEMBER" property="choiceMember"/>
       <result column="CHOICE_STATUS" property="choiceStatus"/>
   </resultMap>
-
+  
+  <resultMap id="replyResultSet" type="reply">
+		<id column="REPLY_NO" property="replyNo"/>
+		<result column="REPLY_WRITER" property='replyWriter'/>
+		<result column="REPLY_CONTENT" property="replyContent"/>
+		<result column="REPLY_FNO" property="replyFno"/>
+		<result column="ENROLL_DATE" property="enrollDate"/>
+		<result column="STATUS" property="status"/>
+	</resultMap>
  	<select id="selectOne" parameterType="String" resultMap="memberResultSet">
 		SELECT *
 		FROM MEMBER
@@ -91,20 +99,27 @@
 	<select id="selectListMyImg" parameterType="int" resultMap="imagesResultSet">
 		SELECT *
 		FROM IMAGE
+		JOIN FEED ON FEED_NO = FILE_FNO
 		WHERE FILE_WRITER = #{userNo}
 			AND FILE_LEVEL = 2
+		ORDER BY FILE_NO
 	</select>
 	
 	<select id="detailMyFeedModal" parameterType="int" resultMap="imagesResultSet">
-		SELECT *
+		SELECT DISTINCT FILE_NO, FILE_LEVEL, FILE_PATH, CHANGE_NAME, LIKE_COUNT, USER_NICK, LIKE_FNO, CHOICE_FNO, FRIEND_USER1, FEED_WRITER, FILE_FNO
+				,FEED_CONTENT, FEED_HASHTAG
 		FROM IMAGE
 		LEFT JOIN FEED ON FEED_NO = #{imgNo}
 		LEFT JOIN MEMBER ON USER_NO = FILE_WRITER
+		LEFT JOIN LIKE_TABLE ON LIKE_FNO = #{imgNo}
+        LEFT JOIN CHOICE ON CHOICE_FNO = #{imgNo}
+        LEFT JOIN FRIEND ON FEED_WRITER = FRIEND_USER1
 		WHERE FILE_FNO = #{imgNo} OR (FILE_LEVEL = 1 AND FILE_WRITER = (
                                                                 SELECT FEED_WRITER
                                                                 FROM FEED
                                                                 WHERE FEED_NO = #{imgNo}
                                                                 ))
+        ORDER BY FILE_LEVEL
 	</select>
 	
 	<select id="sideFriendList" parameterType="int" resultMap="friendResultSet">
@@ -272,6 +287,35 @@
 		LEFT JOIN IMAGE ON CHOICE_FNO = FILE_FNO AND FILE_LEVEL = 2
 		LEFT JOIN FEED ON FEED_NO = CHOICE_FNO
 		WHERE CHOICE_MEMBER = #{userNo}
+	</select>
+	
+	<select id="detailReply" parameterType="int" resultMap="replyResultSet">
+		SELECT *
+		FROM REPLY
+		JOIN MEMBER ON REPLY_WRITER = USER_NO
+        JOIN IMAGE ON USER_NO = FILE_WRITER AND FILE_LEVEL = 1
+		WHERE REPLY_FNO = #{imgNo}
+		ORDER BY REPLY_NO DESC
+	</select>
+	
+	<insert id="insertReplyMy" parameterType="map">
+		INSERT INTO REPLY
+		VALUES(
+			SEQ_REPLY_NO.NEXTVAL,
+			${userNo},
+			'${replyContent}',
+			${feedNo},
+			SYSDATE,
+			'Y'
+		)
+	</insert>
+	
+	<select id="latelyReply" parameterType="map" resultMap="replyResultSet">
+		SELECT *
+		FROM REPLY
+		JOIN MEMBER ON REPLY_WRITER = USER_NO
+        JOIN IMAGE ON USER_NO = FILE_WRITER AND FILE_LEVEL = 1
+		WHERE REPLY_CONTENT = #{replyContent}
 	</select>
 	
 </mapper>

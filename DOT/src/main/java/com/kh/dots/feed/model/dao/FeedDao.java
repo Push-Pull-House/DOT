@@ -15,6 +15,9 @@ import com.kh.dots.feed.model.vo.Reply;
 import com.kh.dots.member.model.vo.Friend;
 import com.kh.dots.member.model.vo.Member;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Repository
 public class FeedDao {
 	
@@ -113,8 +116,8 @@ public class FeedDao {
 		return sqlSession.selectList("feed.likeCount",feedNo);
 	}
 
-	public List<Choice> checkChoice(Feed f ){
-		return sqlSession.selectList("feed.checkChoice", f);
+	public List<Choice> checkChoice(Choice c ){
+		return sqlSession.selectList("feed.checkChoice", c);
 	}
 
 	public List<Friend> friend4(int userNo) {
@@ -136,4 +139,5 @@ public class FeedDao {
 	public List<Choice> choiceFilter() {
 		return sqlSession.selectList("feed.choiceFilter");
 	}
+
 }

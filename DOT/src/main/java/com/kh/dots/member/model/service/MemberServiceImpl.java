@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.dots.common.model.vo.Images;
 import com.kh.dots.feed.model.vo.Choice;
+import com.kh.dots.feed.model.vo.Reply;
 import com.kh.dots.member.model.dao.MemberDao;
 import com.kh.dots.member.model.vo.Friend;
 import com.kh.dots.member.model.vo.Member;
@@ -200,5 +201,20 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public List<Choice> myChoiceList(int userNo) {
 		return memberDao.myChoiceList(userNo);
+	}
+
+	@Override
+	public List<Reply> detailReply(int imgNo) {
+		return memberDao.detailReply(imgNo);
+	}
+
+	@Override
+	public int insertReplyMy(Map<String, Object> map) {
+		return memberDao.insertReplyMy(map);
+	}
+
+	@Override
+	public Reply latelyReply(Map<String, Object> map) {
+		return memberDao.latelyReply(map);
 	}
 }

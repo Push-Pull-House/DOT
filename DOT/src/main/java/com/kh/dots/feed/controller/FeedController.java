@@ -281,13 +281,14 @@ public class FeedController {
 			c.setChoiceMember(m.getUserNo());
 			c.setChoiceFno(f.getFeedNo());
 		}
-		List<Choice> list = fService.checkChoice(f);
+		List<Choice> list = fService.checkChoice(c);
+		log.info("choiceList={}",c);
 		int ac = 0;
 		if(list .isEmpty()) {
 			ac = fService.addChoice(c);
 		}
 		int result = 0 ;
-		if(ac > 0 ) {
+		if(ac > 0  ) {
 			result = 1;
 		}
 		return result;
@@ -302,7 +303,6 @@ public class FeedController {
 			c.setChoiceFno(f.getFeedNo());
 		}
 		int rc = fService.removeChoice(c);
-		
 		int result = 0 ;
 		if(rc > 0 ) {
 			result = 1;

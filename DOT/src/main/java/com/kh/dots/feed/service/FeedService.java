@@ -55,7 +55,7 @@ public interface FeedService {
 
 	List<Feed> likeCount(int feedNo);
 
-	List<Choice> checkChoice(Feed f);
+	List<Choice> checkChoice(Choice c);
 
 	List<Friend> friend4(int userNo);
 

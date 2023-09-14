@@ -110,7 +110,7 @@
 				                  <td colspan="5" align="center">게시글이 없떠요ㅠㅠ</td>
 				               </c:if>
 				               <c:forEach var="f" items="${feList}">
-				                  <tr>
+				                  <tr onclick="location.href='${contextPath}/YourFeed.me?uno=${f.feedWriter}'" class="memberinfo">
 				                     <td>
                                          <label style="margin:0px 20px 0px -40px;">
                                              <input type="checkbox" name="rowCheck" value="${f.feedNo}"/>

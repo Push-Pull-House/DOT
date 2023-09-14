@@ -108,7 +108,7 @@ body {
 
 .sub-recommand button:hover {
     background-color: transparent;
-    color: white;
+    color: black;
 }
 .sub-content .result-content-area {
     margin: 60px 0 0 40px;
@@ -223,7 +223,6 @@ body {
 
 .follow-btn:hover {
     cursor: pointer;
-    background-color: white !important;
     border-color: black;
     color: black !important;
 }
@@ -374,9 +373,6 @@ body {
 .follow-btn > h6 {
     font-size: 13.333333px;
     line-height: 25px;
-}
-.follow-btn:hover {
-    color: white;
 }
 
 .result-content-area {
