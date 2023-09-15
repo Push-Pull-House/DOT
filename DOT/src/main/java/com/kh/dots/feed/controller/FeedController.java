@@ -66,6 +66,7 @@ public class FeedController {
 		List <Choice> choice = fService.choice4(loginUser.getUserNo());
 		List <Friend> follwer = fService.friend4(loginUser.getUserNo());
 		List <Friend> follow4 = fService.friend5(loginUser.getUserNo());
+		List <Friend> friendList = fService.friendList(loginUser.getUserNo());
 		
 		log.info("like = {}", like);
 		
@@ -82,6 +83,7 @@ public class FeedController {
 		model.addAttribute("mem",member);
 		model.addAttribute("fi",feedImg);
 		model.addAttribute("fd",feedList);
+		model.addAttribute("friendList",friendList);
 		
 		return "sns/mainFeed.jsp";
 	}

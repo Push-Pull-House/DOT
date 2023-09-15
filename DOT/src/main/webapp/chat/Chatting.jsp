@@ -54,9 +54,9 @@
 					<div class="chat-header">
 						<span>Message</span> <input type="checkbox" id="chat-search" />
 						<form>
-							<label for="chat-search"> <input id="input-search-chat"
-								name="keyword" type="search" placeholder="검색할 항목을 입력해주세요." /> <label
-								for="input-search-chat"></label>
+							<label for="chat-search"> 
+								<input id="input-search-chat" name="keyword" type="search" placeholder="검색할 항목을 입력해주세요." /> 
+								<label for="input-search-chat"></label>
 							</label>
 						</form>
 						<span class="material-symbols-outlined search_list"> search
@@ -82,15 +82,11 @@
 						<div class="chat-list">
 							<c:choose>
 								<c:when test="${empty chatRoomList }">
-									<dl>
-										<dt>
-											<div class="list-info-wrap">
-												<div class="list-info">
-													<span>조회된 채팅방이 없습니다.</span>
-												</div>
-											</div>
-										</dt>
-									</dl>
+									<div class="empty-list-info">
+										<div class="empty-list">
+											<span>조회된 채팅방이 없습니다.</span>
+										</div>
+									</div>
 								</c:when>
 								<c:otherwise>
 									<dl>
@@ -104,13 +100,13 @@
 														<c:forEach var="chatImage" items="${chatRoomImage }" varStatus="loop">
 															<c:if test="${chatRoom.chatRoomNo == chatImage.chatRoomNo }">
 																<c:if test="${loop.index == 0 }">
-																	<img src="${contextPath}${chatImage.filePath }/${chatImage.changeName}">
+																	<img src="${contextPath}/${chatImage.filePath }/${chatImage.changeName}">
 																</c:if>
 																<c:if test="${loop.index == 1 }">
-																	<img src="${contextPath}${chatImage.filePath }/${chatImage.changeName}">
+																	<img src="${contextPath}/${chatImage.filePath }/${chatImage.changeName}">
 																</c:if>
 																<c:if test="${loop.index >= 2 }">
-																	<img src="${contextPath}${chatImage.filePath }/${chatImage.changeName}">
+																	<img src="${contextPath}/${chatImage.filePath }/${chatImage.changeName}">
 																</c:if>
 															</c:if>
 														</c:forEach>
@@ -125,8 +121,10 @@
 																<c:if test="${chatRoom.chatRoomNo == msgList.chatRoomNo }">
 																	<c:if test="${msgList.enrollDate eq null }">
 																		<span></span>
-																	</c:if> 
-																	<span>${msgList.enrollDate }</span>
+																	</c:if>
+																	<c:if test="${msgList.enrollDate ne null }">
+																		<span>${msgList.enrollDate }</span>
+																	</c:if>  
 																</c:if>
 																</c:forEach>
 															</div>
@@ -183,19 +181,19 @@
 						<span>팔로우</span>
 						<div class="follower-list">
 							<div>
+								<c:if test="${empty follow }">
+									<div class="empty-follow-info">
+										<div class="empty-follow">
+											<span>존재하는 팔로우가 없습니다.</span>
+										</div>
+									</div>
+								</c:if>
 								<dl class="output-list">
-									<c:if test="${empty follow }">
-										<dt>
-											<div>
-												<label>존재하는 팔로우가 없습니다.</label>
-											</div>
-										</dt>
-									</c:if>
 									<c:if test="${!empty follow }">
 										<c:forEach var="f" items="${follow }">
 											<dt>
 												<div>
-													<img src="${contextPath}${f.filePath}/${f.changeName}" /> <label
+													<img src="${contextPath}/${f.filePath}/${f.changeName}" /> <label
 														for="addFriend1">${f.userNick }</label>
 												</div>
 												<input type="checkbox" id="addFriend1" name="userNo" value="${f.userNo }" />
@@ -246,7 +244,9 @@
 	    
 	        const chatMessage = JSON.parse(message.body);
 	        
-	        const chatRoom = document.querySelector(".joinChatRoom_" + chatRoomNo);
+	        const chatRoom = document.querySelector(".joinChatRoom_" + chatMessage.chatRoomNo);
+	        
+	        chatRoom.classList.add('scale-up-center');
 	        
 	        console.log(chatRoom);
 	        

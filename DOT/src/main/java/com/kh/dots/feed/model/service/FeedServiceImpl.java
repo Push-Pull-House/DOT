@@ -125,4 +125,9 @@ public class FeedServiceImpl implements FeedService {
 		return fDao.friend5(userNo);
 	}
 
+	@Override
+	public List<Friend> friendList(int userNo) {
+		return fDao.friendList(userNo);
+	}
+
 }

@@ -54,5 +54,7 @@ public interface FeedService {
 
 	List<Friend> friend5(int userNo);
 
+	List<Friend> friendList(int userNo);
+
 
 }

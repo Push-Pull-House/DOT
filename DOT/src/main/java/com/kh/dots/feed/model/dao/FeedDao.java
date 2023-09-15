@@ -102,6 +102,10 @@ public class FeedDao {
 	public List<Friend> friend5(int userNo) {
 		return sqlSession.selectList("feed.friend5", userNo);
 	}
+
+	public List<Friend> friendList(int userNo) {
+		return sqlSession.selectList("feed.friendList", userNo);
+	}
 		
 		
 	}

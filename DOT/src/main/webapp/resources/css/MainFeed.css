@@ -111,6 +111,7 @@ body {
     margin: auto;
     display: flex;
     flex-direction: row;
+    justify-content : space-between;
     align-items: center;
 }
 
@@ -131,11 +132,11 @@ body {
     text-decoration: underline;
 }
 
-.user-profile span:nth-child(3) {
+.user-profile>span {
     font-size: 35px;
     font-weight: 900;
-    margin-left: 59%;
     cursor: pointer;
+    margin-right : 10px;
 }
 
 
@@ -345,16 +346,17 @@ body {
     border: 0;
 }
 
+
 /* ============================================================= */
 /* 피드 모달  */
 /* ============================================================= */
 
-#feedDetail .modal-content {
+#feedDetail>.modal-dialog> .modal-content {
     border : 1px solid rgba(255,255,255,0.3)!important;
     background-color: rgb(0, 0, 0) !important;
 }
 
-#feedDetail .modal-header {
+#feedDetail>.modal-dialog>.modal-content .modal-header {
     width: 65% !important;
     /* margin-right: 5% !important; */
     border-bottom: 1px solid rgba(255,255,255,0.3) !important;
@@ -362,17 +364,18 @@ body {
     position: relative;
 }
 
-.modal-user-profile {
-    width: 650px;
+#feedDetail>.modal-dialog .modal-user-profile {
+    width: 680px;
     height: 100%;
     margin: auto;
     display: flex;
     flex-direction: row;
+    justify-content : space-between;
     align-items: center;
     margin-left: 10px;
 }
 
-.modal-user-profile img {
+#feedDetail>.modal-dialog .modal-user-profile img {
     width: 40px;
     height: 40px;
     border-radius: 20px;
@@ -380,19 +383,18 @@ body {
     background-color: white;
 }
 
-.modal-user-profile>span:nth-child(2) {
+#feedDetail>.modal-dialog .modal-user-profile>div>span:nth-child(2) {
     margin-left: 20px;
     cursor: pointer;
 }
 
-.modal-user-profile>span:nth-child(2):hover {
+.modal-user-profile>div>span:nth-child(2):hover {
     text-decoration: underline;
 }
 
-.modal-user-profile>span:nth-child(3) {
+.modal-user-profile>span {
     font-size: 35px;
     font-weight: 900;
-    margin-left: 70%;
     cursor: pointer;
 }
 
@@ -411,8 +413,8 @@ body {
 .modal-user-profile .modal-more-options {
     display: none;
     position: absolute;
-    right: -40px;
-    top: 60px;
+    right: 20px;
+    top: 50px;
     width: 160px;
     z-index: 50;
     overflow: hidden;
@@ -448,7 +450,8 @@ body {
 }
 
 .modal-more-options span {
-    font-size: 20px;
+    font-size: 25px;
+    font-weight : 500;
 }
 
 .modal-more-options a {
@@ -456,29 +459,37 @@ body {
 }
 
 
+.modal-more-options .follow-control-js div{
+   display : flex;
+   align-items : center;
+}
 
 
-#feedDetail .modal-body {
+#feedDetail>.modal-dialog>.modal-content .modal-body {
     display: flex;
     height: 650px;
     /* border-top: 1px solid rgba(255,255,255,0.3); */
     padding: 0 !important;
 }
 
-.modal-feed-body {
+#feedDetail>.modal-dialog>.modal-content .modal-feed-body {
     width: 65%;
     border-right: 1px solid rgba(255,255,255,0.3);
 }
 
+#feedDetail .clickable-svg .bi-heart-fill {
+    color: red;
+}
 
-.modal-feed-body img{
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-body img{
     width: 100%;
     margin: 0 auto;
     height: 430px;
     object-fit:contain;
 }
 
-.modal-feed-body .feed-tools {
+#feedDetail>.modal-dialog>.modal-content .modal-feed-body .feed-tools {
     border-top: 1px solid rgba(255,255,255,0.3) !important;
     margin: 5px auto 0;
     padding: 15px;
@@ -488,38 +499,40 @@ body {
 }
 
 
-.modal-feed-body .feed-tools svg {
+#feedDetail>.modal-dialog>.modal-content .modal-feed-body .feed-tools svg {
     margin-left: 10px;
 }
 
-.modal-feed-body .feed-tools .clickable-svg:nth-child(1) {
+#feedDetail>.modal-dialog>.modal-content .modal-feed-body .feed-tools .clickable-svg:nth-child(1) {
     cursor: pointer;
     z-index: 10;
 }
 
-.modal-feed-body .feed-tools .clickable-svg:nth-child(2) {
+#feedDetail>.modal-dialog>.modal-content .modal-feed-body .feed-tools .clickable-svg:nth-child(2) {
     margin-left: 20px;
     cursor: pointer;
     z-index: 10;
 }
 
-.modal-feed-body .feed-tools .clickable-svg:nth-child(3) {
+#feedDetail>.modal-dialog>.modal-content .modal-feed-body .feed-tools .clickable-svg:nth-child(3) {
     font-size: 25px;
     z-index: 10;
     margin-left: 80%;
     cursor: pointer;
 }
-.more-options .choice-control-js svg{
+
+#feedDetail>.modal-dialog>.modal-content .more-options .choice-control-js svg{
 	position:absolute;
 	top : 27px;
 	left : 20px;
 	}
 
-.choice-control-js a{
+#feedDetail>.modal-dialog>.modal-content .choice-control-js a{
 	margin :0 0 0 32px;
 }
 
-.modal-feed-body .feed-text {
+
+#feedDetail>.modal-dialog>.modal-content .modal-feed-body .feed-text {
     width: 91%;
     margin: auto;
     color: rgb(179, 179, 179);
@@ -530,21 +543,21 @@ body {
 }
 
 
-.modal-feed-body .feed-text span:nth-child(3) {
+#feedDetail>.modal-dialog>.modal-content .modal-feed-body .feed-text span:nth-child(3) {
     width: 100%;
     font-size: 15px;
     color: white;
 }
 
 
-.modal-feed-footer {
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer {
     width: 35%;
     padding-bottom: 20px;
     position: relative;
 }
 
 
-.modal-feed-footer .reply-wrap{
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-wrap{
     width: 100%;
     height: 110%;
     color: white;
@@ -555,7 +568,7 @@ body {
     top: -90px;;
 }
 
-.modal-feed-footer .reply-middle {
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-middle {
     width: 100%;
     height: 100%;
     margin: 10px auto;
@@ -563,11 +576,11 @@ body {
     height: 80vh;
 }
 
-.modal-feed-footer .reply-middle dl {
-    margin: 0;
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-middle dl {
+    margin: 20px 0 20px;
 }
 
-.modal-feed-footer .reply-middle dt {
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-middle dt {
     margin: auto;
     width: 90%;
     display: flex;
@@ -575,21 +588,22 @@ body {
     padding: 2px 10px;
     align-items: center;
     transition: all .25s;
+    margin-top : 0.3rem;
 }
 
-.modal-feed-footer .reply-middle dt:hover {
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-middle dt:hover {
     background-color: rgba(115,115,115, 0.2);
     transition: all .25s;
     border-radius: 15px;
 }
 
-.modal-feed-footer .reply-middle img{
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-middle img{
     width: 30px;
     height: 30px;
     border-radius: 15px;
 }
 
-.modal-feed-footer .reply-list {
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-list {
     display: flex;
     margin-left: 15px ;
     flex-direction: column;
@@ -599,12 +613,12 @@ body {
     color: lightgray;
 }
 
-.modal-feed-footer .reply-list span:last-child {
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-list span:last-child {
     color: gray;
     font-size: 13px;
 }
 
-.modal-feed-footer .reply-bottom {
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-bottom {
     width: 93%;
     padding-top: 6px;
     margin: auto;
@@ -614,7 +628,7 @@ body {
     /* border-top: 1px solid rgba(255,255,255,0.3); */
 }
 
-.modal-feed-footer .reply-bottom input {
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-bottom input {
     margin-top: 10px;
     width: 85%;
     height: 33px;
@@ -625,11 +639,11 @@ body {
     color: white;
 }
 
-.modal-feed-footer .reply-bottom input:focus{
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-bottom input:focus{
     outline: 0;
 }
 
-.modal-feed-footer .reply-bottom button {
+#feedDetail>.modal-dialog>.modal-content .modal-feed-footer .reply-bottom button {
     margin-top: 10px;
     height: 33px;
     background-color: transparent;
@@ -637,6 +651,16 @@ body {
     border: 0;
 }
 
+#feedDetail>.modal-dialog>.modal-content .noReply {
+	width : 100%;
+	display : flex;
+	align-items : center;
+	justify-content : center;
+	margin-top : 300px;
+	font-size : 14px;
+	color : gray;
+	
+}
 
 
 /* ============================================================= */
@@ -753,12 +777,14 @@ body {
     border-radius: 18px;
 }
 
-#shareTool .follower-list dt span,
+#shareTool .follower-list dt label,
 #shareTool .chatting-list dt span{
     font-size: 15px;
     font-weight: 500;
     margin-left: 18px;
     color: lightgray;
+    margin : auto;
+    margin-left : 20px;
 }
 
 #shareTool .follower-list dt input[type=checkbox],
@@ -814,8 +840,18 @@ body {
     transition: all .35s;
 }
 
+#shareTool .empty-follow-info {
+	width : 100%;
+	height : 400px;
+	display : flex;
+	align-items : center;
+	justify-content : center;
+}
 
-
+#shareTool .empty-follow {
+	color : gray;
+	font-weight : 400;	
+}
 
 
 

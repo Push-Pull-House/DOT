@@ -108,8 +108,6 @@ jb1(".clickable-svg").click(function(e) {
     } else if (currentHeartSVG.hasClass("bi-heart-fill")) {
         currentHeartSVG.replaceWith(heartSVG);
     }
-
-   
 });
 
 

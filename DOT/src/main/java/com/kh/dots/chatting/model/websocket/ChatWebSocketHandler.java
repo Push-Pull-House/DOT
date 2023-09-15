@@ -47,7 +47,7 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
     		
     		log.info("메세지 왓다 = {}", "하이");
     		
-    		message.setEnrollDate(new Date(System.currentTimeMillis()));
+    		message.setEnrollDate(new Date(System.currentTimeMillis())+"");
     		
     		ChatMessage msg = cService.selectImage(message);
     		log.info("msg = {}", msg);

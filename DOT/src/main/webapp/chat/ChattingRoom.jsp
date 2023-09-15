@@ -12,7 +12,7 @@
 				<c:forEach var="chatImage" items="${chatRoomImage }"
 					varStatus="loop">
 					<img
-						src="${contextPath}${chatImage.filePath }/${chatImage.changeName}">
+						src="${contextPath}/${chatImage.filePath }/${chatImage.changeName}">
 				</c:forEach>
 			</div>
 			<span class="user-id"> <a>${map.joinRoom[0].title}</a> <input
@@ -236,10 +236,16 @@
 		
 			    function currentTime() {
 			        const now = new Date();
-			        let time = "";
-			        time = now.getFullYear() + "-" + addZero(now.getMonth() + 1) + "-" + addZero(now.getDate());
-			        return time;
+			        const hour = now.getHours();
+			        const minute = now.getMinutes();
+			        const ampm = hour < 12 ? '오전' : '오후';
+			        
+			        const formattedHour = hour % 12 === 0 ? 12 : hour % 12; // 0시는 12시로 표시
+			        const formattedMinute = addZero(minute);
+
+			        return `\${ampm} \${formattedHour}시 \${formattedMinute}분`;
 			    }
+			    
 		
 			    function addZero(time) {
 			        return time < 10 ? "0" + time : time;
@@ -330,18 +336,16 @@
 					data : {feedNo : feedNo},
 					method : 'post',
 					success : (data) => {
-						//$("#feedDetail").empty();
+						$("#feedDetail").empty();
 						$("#feedDetail").html(data);
 						
 						if($("#feedDetail").find('.feed-img').children().length != 1) {
 							
 							$("#feedDetail").find('.feed-img').slick({
-							    // Slick configuration options
 							    slidesToShow: 1,
 							    slidesToScroll: 1,
 							    arrows : true,
 							    dots:true
-							    // Add more options as needed
 							  });
 							$("#feedDetail").find('.slick-dots').children()[0].click();
 						}

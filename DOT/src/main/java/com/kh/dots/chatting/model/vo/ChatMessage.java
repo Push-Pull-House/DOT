@@ -1,6 +1,7 @@
 package com.kh.dots.chatting.model.vo;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -18,7 +19,7 @@ public class ChatMessage {
 	private int chatRoomNo;
 	private int userNo;
 	private String message;
-	private Date enrollDate;
+	private String enrollDate;
 	
 	private String userNick;
 	
@@ -30,4 +31,5 @@ public class ChatMessage {
 	private List<Integer> shareUserList;
 	private List<Integer> shareRoomList;
 
+	
 }

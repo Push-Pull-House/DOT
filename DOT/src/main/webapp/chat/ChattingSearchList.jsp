@@ -8,15 +8,11 @@
 
 <c:choose>
 	<c:when test="${empty chatRoomList }">
-		<dl>
-			<dt>
-				<div class="list-info-wrap">
-					<div class="list-info">
-						<span>조회된 채팅방이 없습니다.</span>
-					</div>
-				</div>
-			</dt>
-		</dl>
+		<div class="empty-list-info">
+			<div class="empty-list">
+				<span>조회된 채팅방이 없습니다.</span>
+			</div>
+		</div>
 	</c:when>
 	<c:otherwise>
 		<dl>
@@ -30,13 +26,13 @@
 							<c:forEach var="chatImage" items="${chatRoomImage }" varStatus="loop">
 								<c:if test="${chatRoom.chatRoomNo == chatImage.chatRoomNo }">
 									<c:if test="${loop.index == 0 }">
-										<img src="${contextPath}${chatImage.filePath }/${chatImage.changeName}">
+										<img src="${contextPath}/${chatImage.filePath }/${chatImage.changeName}">
 									</c:if>
 									<c:if test="${loop.index == 1 }">
-										<img src="${contextPath}${chatImage.filePath }/${chatImage.changeName}">
+										<img src="${contextPath}/${chatImage.filePath }/${chatImage.changeName}">
 									</c:if>
 									<c:if test="${loop.index >= 2 }">
-										<img src="${contextPath}${chatImage.filePath }/${chatImage.changeName}">
+										<img src="${contextPath}/${chatImage.filePath }/${chatImage.changeName}">
 									</c:if>
 								</c:if>
 							</c:forEach>

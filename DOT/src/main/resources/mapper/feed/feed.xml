@@ -150,7 +150,7 @@
 		LEFT JOIN MEMBER M ON R.REPLY_WRITER = M.USER_NO
 		LEFT JOIN IMAGE I ON I.FILE_WRITER = M.USER_NO
 		WHERE I.FILE_LEVEL = 1
-		ORDER BY REPLY_NO DESC
+		ORDER BY REPLY_NO
 	</select>
 	
 	<insert id="insertReply" parameterType="Reply">
@@ -202,7 +202,7 @@
 	
 	<select id="like4" parameterType="int" resultMap="likeResultSet">
 		SELECT *
-		FROM "LIKE"
+		FROM LIKE_TABLE
 		WHERE LIKE_MEMBER = #{userNo }
 	</select>
 	
@@ -271,5 +271,12 @@
          DEFAULT
          )
    </insert>
+   
+   
+   <select id="friendList" parameterType="int" resultMap="friendResultSet">
+         SELECT *
+         FROM FRIEND
+      WHERE FRIEND_USER1 = ${loginUserNo} OR FRIEND_USER2 = #{loginUserNo}
+   </select>
    
 </mapper>
