@@ -21,8 +21,8 @@ public class CommonDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	public List<Images> selectList(String keyword) {
-		return sqlSession.selectList("common.selectList" , keyword);
+	public List<Images> selectList() {
+		return sqlSession.selectList("common.selectList");
 	}
 
 	public int keywordList(Map<String, Object> map) {
@@ -131,6 +131,10 @@ public class CommonDao {
 
 	public int deleteReport(int i) {
 		return sqlSession.delete("common.deleteReport",i);
+	}
+
+	public List<Images> selectList2(Map<String, Object> paramMap) {
+		return sqlSession.selectList("common.selectList2", paramMap);
 	}
 	
 }

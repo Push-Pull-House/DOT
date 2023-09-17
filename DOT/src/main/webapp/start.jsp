@@ -59,31 +59,33 @@
                 </div>
                 <div class="sec2-body">
                     <div class="sec2-container">
-                        <div class="left-description">
+                        <div class="left-description" style="text-align:center;">
                             <div class="left-t1 hide-text">
-                                description 1
+                                당신의 일상을 기록하세요!
                             </div>
                             <div class="left-t2 hide-text">
-                                description 2
+                                상대방과 자유롭게 <br> 
+                                소통할 수 있어요
                             </div>
                             <div class="left-t3 hide-text">
-                                description 3
+                                재미있게 <br>
+                                대화를 나누세요
                             </div>
                         </div>
-                        <div class="right-description">
+                        <div class="right-description" style="display: table;">
                             <div class="right-img1">
-                                <div class="img-box">
-                                    <img src="resources/img/karina2.jpeg">
+                                <div class="img-box" style="display: table-cell;">
+                                    <img src="resources/images/start_sample1.jpg" style="width: 1000px; height:1500px; max-height:1400px;">
                                 </div>
                             </div>
                             <div class="right-img2">
-                                <div class="img-box">
-                                    <img src="resources/img/karina3.jpeg">
+                                <div class="img-box" style="display: table-cell;">
+                                    <img src="resources/images/start_sample2.jpg" style="width: 1000px; height:1500px;max-height:1400px;">
                                 </div>
                             </div>
                             <div class="right-img3">
-                                <div class="img-box">
-                                    <img src="resources/img/karina1.jpeg">
+                                <div class="img-box" style="display: table-cell;">
+                                    <img src="resources/images/start_sample3.jpg">
                                 </div>
                             </div>
                         </div>

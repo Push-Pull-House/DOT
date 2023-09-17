@@ -45,6 +45,10 @@
                 	<input type="hidden" value="${loginUser.userNo }" id="myUserNo"/>
                     <div class="search-inputs">
 	                    <form action="${contextPath}/searchList.se" method="get">
+	                    	<select class="select-option" name="condition" style="border-radius:6px; padding:5px 5px; color:gray;">
+						  		<option value="hashtag" style="color:gray;" ${param.condition eq 'hashtag' ? 'selected' : '' }>해시태그</option>
+						  		<option value="userNick" style="color:gray;" ${param.condition eq 'userNick' ? 'selected' : '' }>작성자</option>
+	                        </select>
 	                        <input type="text" value="${keyword}" name="keyword" class="search-input-text input-style-search" placeholder="무엇을 찾고 싶나요?"/>
 	               			<button type="submit" class="search-btn">Search</button>
 	                    </form>
@@ -67,7 +71,34 @@
                 <!-- 검색아래 피드파트-->
                  <div class="feed-content-wrap">
                     <div class="feed-content-wrap1">
-                    	<c:forEach var="s" items="${slist}" begin="0" end="${slist.size()}" step="1" >
+                    	<c:if test="${keyword == null}">
+	                    	<c:forEach var="s" items="${slist}" begin="0" end="${slist.size()}" step="1" >
+	                    	<div class="feed-content2" data-bs-toggle="modal" data-bs-target="#MyDetailFeed" onclick="feedNo(event , ${s.fileFno})">
+                        		<div>
+                                <img src="${contextPath}/${s.filePath}/${s.changeName}">
+                                <div class="like">
+	                               <svg
+	                                   xmlns="http://www.w3.org/2000/svg"
+	                                   width="16"
+	                                   height="16"
+	                                   fill="currentColor"
+	                                   class="bi bi-heart-fill"
+	                                   viewBox="0 0 16 16"
+	                               >
+	                                   <path
+	                                       fill-rule="evenodd"
+	                                       d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+	                                   />
+	                               </svg>
+	                               <span class="bi">${s.likeCount}</span>
+	                           </div>
+	                           </div>
+                        	</div>
+                        	</c:forEach>
+                    	</c:if>
+                    	
+                    	<c:if test="${keyword != null}">
+                    		<c:forEach var="s" items="${slist}" begin="0" end="${slist.size()}" step="1" >
                         	<div class="feed-content2" data-bs-toggle="modal" data-bs-target="#MyDetailFeed" onclick="feedNo(event , ${s.fileFno})">
                         		<div>
                                 <img src="${contextPath}/${s.filePath}/${s.changeName}">
@@ -90,6 +121,7 @@
 	                           </div>
                         	</div>
                         </c:forEach>
+                    </c:if>
                     </div>
                 </div>   
             </div>

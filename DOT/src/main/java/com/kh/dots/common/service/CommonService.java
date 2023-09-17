@@ -14,7 +14,7 @@ import com.kh.dots.member.model.vo.Member;
 
 public interface CommonService {
 
-	public List<Images> selectList(String keyword);
+	public List<Images> selectList();
 
 	public int keywordList(Map<String, Object> map);
 
@@ -69,5 +69,8 @@ public interface CommonService {
 	public int updateReadReport(int reportNo);
 
 	public int deleteReport(int i);
+
+	public List<Images> selectList2(Map<String, Object> paramMap);
+
 
 }

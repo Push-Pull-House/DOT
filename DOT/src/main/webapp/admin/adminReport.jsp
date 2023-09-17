@@ -214,6 +214,7 @@
                                     });
                                 }
                                 
+                                /* 삭제 기능 */
                     			 var form = $('#form-report-admin');
                      			 var btn = $('#btn-del');
                      			  btn.on('click', function(event) {

@@ -65,13 +65,33 @@
 		<result column="REPORT_STATUS" property="reportStatus"/>
 	</resultMap>
 	
+	<!-- search 기능 -->
 	<select id="selectList" parameterType="string" resultMap="imageResultSet">
 		SELECT *
 		FROM IMAGE I
 		JOIN FEED F ON F.FEED_NO = I.FILE_FNO
-		WHERE F.FEED_HASHTAG LIKE '%${keyword}%' AND I.FILE_LEVEL = '2'
+			 JOIN MEMBER M ON M.USER_NO = F.FEED_WRITER 
+		WHERE I.FILE_LEVEL = '2' 
 	</select> 
 	
+	<select id="selectList2" parameterType="string" resultMap="imageResultSet">
+		SELECT *
+		FROM IMAGE I
+		JOIN FEED F ON F.FEED_NO = I.FILE_FNO
+			 JOIN MEMBER M ON M.USER_NO = F.FEED_WRITER 
+		WHERE I.FILE_LEVEL = '2' 
+		<if test="keyword != null and keyword != ''">
+			AND
+			<choose>
+				<when test="condition == 'hashtag'">
+					FEED_HASHTAG LIKE '%${keyword}%'
+				</when>
+				<when test="condition == 'userNick'">
+					USER_NICK LIKE '%${keyword}%'
+				</when>
+			</choose>
+		</if>
+	</select> 
 	
 	<select id="MyHistory" parameterType="int" resultMap="searchResultSet">
 		SELECT *

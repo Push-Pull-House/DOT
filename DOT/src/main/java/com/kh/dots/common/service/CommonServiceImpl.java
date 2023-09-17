@@ -21,10 +21,10 @@ public class CommonServiceImpl implements CommonService {
 	@Autowired
 	private CommonDao cDao;
 	
-	public List<Images> selectList(String keyword){
-		return cDao.selectList(keyword);
+	public List<Images> selectList(){
+		return cDao.selectList();
 	}
-
+	
 	public int keywordList(Map<String, Object> map) {
 		return cDao.keywordList(map);
 	}
@@ -159,5 +159,12 @@ public class CommonServiceImpl implements CommonService {
 	public int deleteReport(int i) {
 		return cDao.deleteReport(i);
 	}
+
+	@Override
+	public List<Images> selectList2(Map<String, Object> paramMap) {
+		return cDao.selectList2(paramMap);
+	}
+
+
 
 }

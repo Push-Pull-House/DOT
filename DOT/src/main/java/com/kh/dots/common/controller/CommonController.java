@@ -101,21 +101,27 @@ public class CommonController {
 		Member m = (Member) Session.getAttribute("loginUser");
 		List<Member> rf = mService.recommandFollowList(m.getUserNo());
 		log.info("rf={}", rf);
+		
+		List<Images> slist = cService.selectList();
+		log.info("slist = {} ", slist);
 		model.addAttribute("rf", rf);
+		model.addAttribute("slist", slist);
+
 		return "common/search.jsp";
 	}
 
 	// 검색 기능
 	@GetMapping("/searchList.se")
-	public String selectList(@RequestParam(name = "keyword") String keyword, Model model, HttpSession Session) {
+	public String selectList(@RequestParam Map<String, Object> paramMap, @RequestParam(name = "keyword") String keyword, Model model, HttpSession Session, String feedHashtag, String userNick) {
 		Member m = (Member) Session.getAttribute("loginUser");
 		List<Member> rf = mService.recommandFollowList(m.getUserNo());
 		log.info("rf={}", rf);
 		model.addAttribute("rf", rf);
 		log.info("keyword = {}", keyword);
 		List<Search> MyHistory = cService.MyHistory(m.getUserNo());
+		log.info("MyHistory = {}", MyHistory);
 		int result = 0;
-		if (MyHistory != null) {
+		if (!MyHistory.isEmpty()) {
 			if (!MyHistory.get(0).getSearchKeyword().equals(keyword)) {
 				Search search = new Search();
 				search.setSearchWriter(m.getUserNo());
@@ -124,11 +130,18 @@ public class CommonController {
 				log.info("result={}", result);
 			}
 		}
-		List<Images> slist = cService.selectList(keyword);
-		log.info("slist = {} ", slist);
-		model.addAttribute("keyword",keyword);
-		model.addAttribute("slist", slist);
-		return "common/search.jsp";
+		
+		log.info("paramMap = {}", paramMap);
+		paramMap.put("feedHashtag", keyword);
+		paramMap.put("userNick", m.getUserNo());
+		log.info("paramMap2 = {}", paramMap);
+		
+		List<Images> slist2 = cService.selectList2(paramMap);
+		log.info("slist2 = {}", slist2);
+		
+		model.addAttribute("slist", slist2);
+		
+		return "forward:/common/search.jsp";
 	}
 
 	@GetMapping("/Alarm.al")
@@ -347,7 +360,7 @@ public class CommonController {
 			) {
 		log.info("rowCheck={}",rowCheck);
 		int result = 0;
-		if(rowCheck !=null) {
+		if(rowCheck != null) {
 			for (int i = 0; i < rowCheck.length; i++) {
 				result = cService.deleteReport(rowCheck[i]);
 				if (result == 0) {
