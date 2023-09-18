@@ -55,6 +55,8 @@ public interface ChatService {
 
 	List<Images> selectFeedImg(int feedNo);
 
+	List<ChatRoomJoin> selectJoinUsers(Map<String, Object> map);
+
 	
 
 	

@@ -135,6 +135,11 @@ public class ChatServiceImpl implements ChatService{
 		return cDao.selectFeedImg(feedNo);
 	}
 
+	@Override
+	public List<ChatRoomJoin> selectJoinUsers(Map<String, Object> map) {
+		return cDao.selectJoinUsers(map);
+	}
+
 
 	
 

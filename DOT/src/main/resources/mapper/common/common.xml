@@ -13,6 +13,14 @@
 		<result column="FILE_FNO" property="fileFno"/>
 	</resultMap>
 	
+	<resultMap id="alarmResultSet" type="alarm">
+		<id column="BOARD_NO" property="alarmNo"/>
+		<result column="BOARD_WRITER" property="alarmWriter"/>
+		<result column="BOARD_ACCEPTUSER" property="alarmAcceptUser"/>
+		<result column="BOARD_CONTENT" property="alarmContent"/>
+		<result column="BOARD_TYPE" property="alarmType"/>
+	</resultMap>
+	
 	<select id="selectList" parameterType="string" resultMap="imageResultSet">
 		SELECT *
 		FROM IMAGE I
@@ -28,6 +36,18 @@
 			#{search_writer}, 
 			#{search_keyword}
 		)		
+	</insert>
+	
+	
+	<insert id="insertChatAlarm">
+		INSERT INTO BOARD
+		VALUES(
+			SEQ_BOARD_NO.NEXTVAL,
+			#{alarmWriter},
+			#{alarmAcceptUser},
+			#{alarmContent},
+			'C'
+		)
 	</insert>
 	
 </mapper>

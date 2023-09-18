@@ -212,14 +212,10 @@
 	
 	
 	<select id="selectThumbnail" resultMap="chatMessageResultSet">
-		SELECT *
-		FROM (
-			SELECT FILE_PATH, CHANGE_NAME
-			FROM IMAGE i 
-			JOIN FEED ON(FEED_WRITER = FILE_WRITER)
-			WHERE FEED_NO = #{feedNo} AND FILE_LEVEL = 2
-			)
-		WHERE ROWNUM = 1
+		SELECT FILE_PATH, CHANGE_NAME
+		FROM IMAGE i 
+		JOIN FEED ON(FILE_FNO = FEED_NO)
+		WHERE FEED_NO = #{feedNo} AND FILE_LEVEL = 2
 	</select>
 	
 	
@@ -277,6 +273,13 @@
 		SELECT *
 		FROM IMAGE
 		WHERE FILE_FNO = #{feedNo} AND FILE_LEVEL IN (2,3,4,5,6)
+	</select>
+	
+	
+	<select id="selectJoinUsers" resultMap="chatRoomJoinResultSet">
+		SELECT *
+		FROM CHAT_ROOM_JOIN
+		WHERE CHAT_ROOM_NO = #{chatRoomNo} AND CHAT_USER_NO != #{userNo}
 	</select>
 	
 	

@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.dots.common.model.vo.Alarm;
 import com.kh.dots.common.model.vo.Images;
 
 @Repository
@@ -21,6 +22,10 @@ public class CommonDao {
 
 	public int keywordList(Map<String, Object> map) {
 		return sqlSession.insert("common.keywordList" , map);
+	}
+
+	public int insertChatAlarm(Alarm alarm) {
+		return sqlSession.insert("common.insertChatAlarm", alarm);
 	}
 	
 }

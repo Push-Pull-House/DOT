@@ -8,244 +8,244 @@
 
 <!-- FeedDetail Modal -->
 <div class="modal-dialog modal-xl">
-   <div class="modal-content">
-      <div class="modal-header modal-backgound">
-         <div class="modal-title" id="feedDetail">
-            <div class="feed-header modal-feed-header">
-               <div class="modal-user-profile">
-                  <div>
-                     <img
-                        src="${contextPath }/${feedWriter.filePath}/${feedWriter.changeName}" />
-                     <span>${feedWriter.userNick }</span>
-                  </div>
-                  <span class="material-symbols-outlined modal-toggle-button">
-                     more_horiz </span>
-                  <div class="modal-more-options">
-                     <div>
-                        <dl>
-                           <c:if test="${feedWriter.userNo == loginUser.userNo }">
-                              <dt>
-                                 <span class="material-symbols-outlined"> edit </span> <a>수정하기</a>
-                              </dt>
-                           </c:if>
-                           <dt>
-                              <div class="clickable-svg storeFeed">
+	<div class="modal-content">
+		<div class="modal-header modal-backgound">
+			<div class="modal-title" id="feedDetail">
+				<div class="feed-header modal-feed-header">
+					<div class="modal-user-profile">
+						<div>
+							<img
+								src="${contextPath }/${feedWriter.filePath}/${feedWriter.changeName}" />
+							<span>${feedWriter.userNick }</span>
+						</div>
+						<span class="material-symbols-outlined modal-toggle-button">
+							more_horiz </span>
+						<div class="modal-more-options">
+							<div>
+								<dl>
+									<c:if test="${feedWriter.userNo == loginUser.userNo }">
+										<dt>
+											<span class="material-symbols-outlined"> edit </span> <a>수정하기</a>
+										</dt>
+									</c:if>
+									<dt>
+										<div class="clickable-svg storeFeed">
 
-                                 <c:set var="selectChoice">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="25"
-                                       height="25" fill="currentColor" class="bi bi-plus-square"
-                                       viewBox="0 0 16 16">
+											<c:set var="selectChoice">
+												<svg xmlns="http://www.w3.org/2000/svg" width="25"
+													height="25" fill="currentColor" class="bi bi-plus-square"
+													viewBox="0 0 16 16">
                                                           <path
-                                          d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+														d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
                                                           <path
-                                          d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+														d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
                                                       </svg>
-                                    <a>저장하기</a>
-                                 </c:set>
+												<a>저장하기</a>
+											</c:set>
 
-                                 <c:if test="${!empty choice }">
-                                    <c:forEach var="choice" items="${choice}">
-                                       <c:if test="${choice.choiceFno eq feed.feedNo }">
-                                          <c:set var="selectChoice">
-                                             <svg xmlns="http://www.w3.org/2000/svg" width="20"
-                                                height="20" fill="currentColor"
-                                                class="bi bi-check-square-fill animate__animated animate__flipInY"
-                                                viewBox="0 0 16 16">
+											<c:if test="${!empty choice }">
+												<c:forEach var="choice" items="${choice}">
+													<c:if test="${choice.choiceFno eq feed.feedNo }">
+														<c:set var="selectChoice">
+															<svg xmlns="http://www.w3.org/2000/svg" width="20"
+																height="20" fill="currentColor"
+																class="bi bi-check-square-fill animate__animated animate__flipInY"
+																viewBox="0 0 16 16">
                                                               <path
-                                                   d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z" />
+																	d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z" />
                                                           </svg>
-                                             <a>저장됨</a>
-                                          </c:set>
-                                       </c:if>
-                                    </c:forEach>
-                                 </c:if>
-                                 <c:out value="${selectChoice }" escapeXml="false" />
+															<a>저장됨</a>
+														</c:set>
+													</c:if>
+												</c:forEach>
+											</c:if>
+											<c:out value="${selectChoice }" escapeXml="false" />
 
-                                 <input type="hidden" id="feedNo_${feed.feedNo}"
-                                    value="${feed.feedNo}" />
-                              </div>
-                           </dt>
+											<input type="hidden" id="feedNo_${feed.feedNo}"
+												value="${feed.feedNo}" />
+										</div>
+									</dt>
 
-                           <dt>
+									<dt>
 
-                              <c:if test="${feed.feedWriter eq m.userNo}">
-                                 <c:set var="div5">
-                                 </c:set>
-                              </c:if>
+										<c:if test="${feed.feedWriter eq m.userNo}">
+											<c:set var="div5">
+											</c:set>
+										</c:if>
 
-                              <c:forEach var="friendList" items="${friendList}">
-                                 <c:if
-                                    test="${(loginUser.userNo eq friendList.friendUser1 && feed.feedWriter eq friendList.friendUser2)&& (loginUser.userNo eq friendList.friendUser2 && feed.feedWriter eq friendList.friendUser1) }">
-                                    <c:set var="div5">
-                                       <div class="follow-control-js">
-                                          <div class="remove-follow">
-                                             <span class="material-symbols-outlined">person_remove</span>
-                                             <a>팔로우 취소</a>
-                                          </div>
-                                          <input type="hidden" id="feedNo_${feed.feedNo}"
-                                             value="${feed.feedWriter}" />
-                                       </div>
-                                    </c:set>
-                                 </c:if>
-                                 <c:if
-                                    test="${loginUser.userNo eq friendList.friendUser2 && feed.feedWriter eq friendList.friendUser1}">
-                                    <c:set var="div5">
-                                       <div class="follow-control-js">
-                                          <div class="remove-follow">
-                                             <span class="material-symbols-outlined">person_remove</span>
-                                             <a>팔로우 취소</a>
-                                          </div>
-                                          <input type="hidden" id="feedNo_${feed.feedNo}"
-                                             value="${feed.feedWriter}" />
-                                       </div>
-                                    </c:set>
-                                 </c:if>
-                                 <c:if
-                                    test="${loginUser.userNo eq friendList.friendUser1 && feed.feedWriter eq friendList.friendUser2}">
-                                    <c:set var="div5">
-                                       <div class="follow-control-js">
-                                          <div class="add-follow">
-                                             <span class="material-symbols-outlined">person_add</span>
-                                             <a>팔로우 추가</a>
-                                          </div>
-                                          <input type="hidden" id="feedNo_${feed.feedNo}"
-                                             value="${feed.feedWriter}" />
-                                       </div>
-                                    </c:set>
-                                 </c:if>
+										<c:forEach var="friendList" items="${friendList}">
+											<c:if
+												test="${(loginUser.userNo eq friendList.friendUser1 && feed.feedWriter eq friendList.friendUser2)&& (loginUser.userNo eq friendList.friendUser2 && feed.feedWriter eq friendList.friendUser1) }">
+												<c:set var="div5">
+													<div class="follow-control-js">
+														<div class="remove-follow">
+															<span class="material-symbols-outlined">person_remove</span>
+															<a>팔로우 취소</a>
+														</div>
+														<input type="hidden" id="feedNo_${feed.feedNo}"
+															value="${feed.feedWriter}" />
+													</div>
+												</c:set>
+											</c:if>
+											<c:if
+												test="${loginUser.userNo eq friendList.friendUser2 && feed.feedWriter eq friendList.friendUser1}">
+												<c:set var="div5">
+													<div class="follow-control-js">
+														<div class="remove-follow">
+															<span class="material-symbols-outlined">person_remove</span>
+															<a>팔로우 취소</a>
+														</div>
+														<input type="hidden" id="feedNo_${feed.feedNo}"
+															value="${feed.feedWriter}" />
+													</div>
+												</c:set>
+											</c:if>
+											<c:if
+												test="${loginUser.userNo eq friendList.friendUser1 && feed.feedWriter eq friendList.friendUser2}">
+												<c:set var="div5">
+													<div class="follow-control-js">
+														<div class="add-follow">
+															<span class="material-symbols-outlined">person_add</span>
+															<a>팔로우 추가</a>
+														</div>
+														<input type="hidden" id="feedNo_${feed.feedNo}"
+															value="${feed.feedWriter}" />
+													</div>
+												</c:set>
+											</c:if>
 
-                              </c:forEach>
-                              <c:out value="${div5}" escapeXml="false" />
-                           </dt>
-                           <dt>
-                              <span class="material-symbols-outlined"> report </span> <a>신고하기</a>
-                           </dt>
-                        </dl>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-      <div class="modal-body modal-backgound">
-         <div class="modal-feed-body">
-            <div class="feed-img">
-               <c:forEach var="img" items="${img }">
-                  <div>
-                     <img src="${contextPath }/${img.filePath}/${img.changeName}" />
-                  </div>
-               </c:forEach>
-            </div>
-            <div class="body-bottom">
-               <div class="feed-tools">
-                  <div class="clickable-svg likeFeed">
+										</c:forEach>
+										<c:out value="${div5}" escapeXml="false" />
+									</dt>
+									<dt>
+										<span class="material-symbols-outlined"> report </span> <a>신고하기</a>
+									</dt>
+								</dl>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal-body modal-backgound">
+			<div class="modal-feed-body">
+				<div class="feed-img">
+					<c:forEach var="img" items="${img }">
+						<div>
+							<img src="${contextPath }/${img.filePath}/${img.changeName}" />
+						</div>
+					</c:forEach>
+				</div>
+				<div class="body-bottom">
+					<div class="feed-tools">
+						<div class="clickable-svg likeFeed">
 
-                     <c:set var="selectLike">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
-                           fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+							<c:set var="selectLike">
+								<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+									fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
                                            <path
-                              d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+										d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
                                 </svg>
-                     </c:set>
-                     <c:if test="${!empty like }">
-                        <c:forEach var="like" items="${like}">
-                           <c:if test="${like.likeFno eq feed.feedNo }">
-                              <c:set var="selectLike">
-                                 <svg xmlns="http://www.w3.org/2000/svg" width="25"
-                                    height="25" fill="currentColor" class="bi bi-heart-fill"
-                                    viewBox="0 0 16 16">
+							</c:set>
+							<c:if test="${!empty like }">
+								<c:forEach var="like" items="${like}">
+									<c:if test="${like.likeFno eq feed.feedNo }">
+										<c:set var="selectLike">
+											<svg xmlns="http://www.w3.org/2000/svg" width="25"
+												height="25" fill="currentColor" class="bi bi-heart-fill"
+												viewBox="0 0 16 16">
                                         <path
-                                       d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+													d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
                                        </svg>
-                              </c:set>
-                           </c:if>
-                        </c:forEach>
-                     </c:if>
-                     <c:out value="${selectLike }" escapeXml="false" />
+										</c:set>
+									</c:if>
+								</c:forEach>
+							</c:if>
+							<c:out value="${selectLike }" escapeXml="false" />
 
-                     <input type="hidden" id="feedNo_${feed.feedNo}"
-                        value="${feed.feedNo}" />
-                  </div>
-                  <div class="clickable-svg shareFeed" data-bs-toggle="modal"
-                     data-bs-target="#shareTool">
-                     <input type="hidden" name="feedNo" value="${feed.feedNo }" />
-                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
-                        fill="currentColor" class="bi bi-share" viewBox="0 0 16 16">
+							<input type="hidden" id="feedNo_${feed.feedNo}"
+								value="${feed.feedNo}" />
+						</div>
+						<div class="clickable-svg shareFeed" data-bs-toggle="modal"
+							data-bs-target="#shareTool">
+							<input type="hidden" name="feedNo" value="${feed.feedNo }" />
+							<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+								fill="currentColor" class="bi bi-share" viewBox="0 0 16 16">
                                         <path
-                           d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z" />
+									d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z" />
                                     </svg>
-                  </div>
-                  <div class="clickable-svg storeFeed">
+						</div>
+						<div class="clickable-svg storeFeed">
 
-                     <c:set var="selectChoice">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
-                           fill="currentColor" class="bi bi-plus-square"
-                           viewBox="0 0 16 16">
+							<c:set var="selectChoice">
+								<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+									fill="currentColor" class="bi bi-plus-square"
+									viewBox="0 0 16 16">
                                                           <path
-                              d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+										d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
                                                           <path
-                              d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+										d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
                                                       </svg>
-                     </c:set>
+							</c:set>
 
-                     <c:if test="${!empty choice }">
-                        <c:forEach var="choice" items="${choice}">
-                           <c:if test="${choice.choiceFno eq feed.feedNo }">
-                              <c:set var="selectChoice">
-                                 <svg xmlns="http://www.w3.org/2000/svg" width="20"
-                                    height="20" fill="currentColor"
-                                    class="bi bi-check-square-fill animate__animated animate__flipInY"
-                                    viewBox="0 0 16 16">
+							<c:if test="${!empty choice }">
+								<c:forEach var="choice" items="${choice}">
+									<c:if test="${choice.choiceFno eq feed.feedNo }">
+										<c:set var="selectChoice">
+											<svg xmlns="http://www.w3.org/2000/svg" width="20"
+												height="20" fill="currentColor"
+												class="bi bi-check-square-fill animate__animated animate__flipInY"
+												viewBox="0 0 16 16">
                                                               <path
-                                       d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z" />
+													d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z" />
                                                           </svg>
-                              </c:set>
-                           </c:if>
-                        </c:forEach>
-                     </c:if>
-                     <c:out value="${selectChoice }" escapeXml="false" />
+										</c:set>
+									</c:if>
+								</c:forEach>
+							</c:if>
+							<c:out value="${selectChoice }" escapeXml="false" />
 
-                     <input type="hidden" id="feedNo_${feed.feedNo}"
-                        value="${feed.feedNo}" />
-                  </div>
-               </div>
-               <div class="feed-text feed-text${feed.feedNo }">
-                  <span> 해당 게시글을 ${feed.likeCount }명이 좋아합니다. </span> <br> <span><b>${feedWriter.userNick }</b>
-                     ${feed.feedContent }</span> <br> <span> <a>#${feed.feedHashtag
-                        }</a></span>
-               </div>
-            </div>
-         </div>
-         <div class="modal-feed-footer">
-            <div class="reply-wrap">
-               <div class="reply-middle">
-                  <dl>
-                     <c:if test="${empty reply }">
-                        <div class="noReply">
-                           <span>현재 댓글이 존재하지 않습니다.</span>
-                        </div>
-                     </c:if>
-                     <c:if test="${!empty reply }">
-                        <c:forEach var="reply" items="${reply }">
-                           <dt class="output output_${reply.replyFno }">
-                              <img
-                                 src="${contextPath }/${reply.filePath}/${reply.changeName}" />
-                              <div class="reply-list">
-                                 <span>${reply.userNick }</span> <span>${reply.replyContent }</span>
-                              </div>
-                           </dt>
-                        </c:forEach>
-                     </c:if>
-                  </dl>
-               </div>
-               <div class="reply-bottom">
-                  <input type="text" class="insertReply" placeholder="댓글을 입력하세요." />
-                  <button class="reply_input" value="${feed.feedNo}">답글</button>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
+							<input type="hidden" id="feedNo_${feed.feedNo}"
+								value="${feed.feedNo}" />
+						</div>
+					</div>
+					<div class="feed-text feed-text${feed.feedNo }">
+						<span> 해당 게시글을 ${feed.likeCount }명이 좋아합니다. </span> <br> <span><b>${feedWriter.userNick }</b>
+							${feed.feedContent }</span> <br> <span> <a>#${feed.feedHashtag
+								}</a></span>
+					</div>
+				</div>
+			</div>
+			<div class="modal-feed-footer">
+				<div class="reply-wrap">
+					<div class="reply-middle">
+						<dl>
+							<c:if test="${empty reply }">
+								<div class="noReply">
+									<span>현재 댓글이 존재하지 않습니다.</span>
+								</div>
+							</c:if>
+							<c:if test="${!empty reply }">
+								<c:forEach var="reply" items="${reply }">
+									<dt class="output output_${reply.replyFno }">
+										<img
+											src="${contextPath }/${reply.filePath}/${reply.changeName}" />
+										<div class="reply-list">
+											<span>${reply.userNick }</span> <span>${reply.replyContent }</span>
+										</div>
+									</dt>
+								</c:forEach>
+							</c:if>
+						</dl>
+					</div>
+					<div class="reply-bottom">
+						<input type="text" class="insertReply" placeholder="댓글을 입력하세요." />
+						<button class="reply_input" value="${feed.feedNo}">답글</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
 <!-- Share Modal -->
@@ -277,7 +277,8 @@
 									<c:forEach var="f" items="${follow }">
 										<dt>
 											<div>
-												<img src="${contextPath}${f.filePath}/${f.changeName}" /> <label>${f.userNick }</label>
+												<img src="${contextPath}/${f.filePath}/${f.changeName}" />
+												<label>${f.userNick }</label>
 											</div>
 											<input type="checkbox" id="addFriend1" name="userNo"
 												value="${f.userNo }" />
@@ -304,15 +305,15 @@
 															test="${chatRoom.chatRoomNo == chatImage.chatRoomNo }">
 															<c:if test="${loop.index == 0 }">
 																<img
-																	src="${contextPath}${chatImage.filePath }/${chatImage.changeName}">
+																	src="${contextPath}/${chatImage.filePath }/${chatImage.changeName}">
 															</c:if>
 															<c:if test="${loop.index == 1 }">
 																<img
-																	src="${contextPath}${chatImage.filePath }/${chatImage.changeName}">
+																	src="${contextPath}/${chatImage.filePath }/${chatImage.changeName}">
 															</c:if>
 															<c:if test="${loop.index >= 2 }">
 																<img
-																	src="${contextPath}${chatImage.filePath }/${chatImage.changeName}">
+																	src="${contextPath}/${chatImage.filePath }/${chatImage.changeName}">
 															</c:if>
 														</c:if>
 													</c:forEach>
@@ -354,6 +355,29 @@
 			error : console.log
 		})
 	})
+	var followBtn = $('.followBtn');
+    var chatBtn = $('.chatBtn');
+
+    var followerList = $('.follower-list');
+    var chattingList = $('.chatting-list');
+
+    chattingList.css("display","none");
+
+    followBtn.click(() => {
+        followBtn.addClass('focus-btn');
+        chatBtn.removeClass('focus-btn');
+
+        followerList.css('display','block');
+        chattingList.css("display","none");
+    });
+
+    chatBtn.click(() => {
+        followBtn.removeClass('focus-btn');
+        chatBtn.addClass('focus-btn');
+
+        followerList.css('display','none');
+        chattingList.css("display","block");
+    });
 </script>
 
 <script>
@@ -438,6 +462,8 @@
                 const inputElement = parentContainer.find('input');
                 const replyContent = inputElement.val();
                 const feedNo = parentContainer.find("button").val(); 
+                
+                console.log("modalReply")
                 
                 $.ajax({
                     url: '${contextPath}/mainFeed/insertReply',

@@ -129,6 +129,11 @@ public class ChatDao {
 	}
 
 
+	public List<ChatRoomJoin> selectJoinUsers(Map<String, Object> map) {
+		return sqlSession.selectList("chatting.selectJoinUsers", map);
+	}
+
+
 
 	
 	

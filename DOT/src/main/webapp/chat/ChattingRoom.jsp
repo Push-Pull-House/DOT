@@ -56,7 +56,7 @@
 					<c:if test="${not fn:contains(msg.message, '/') }">
 						<li class="otherChat">
 							<div>
-								<img class="img" src="${contextPath}${msg.filePath }/${msg.changeName}" /> 
+								<img class="img" src="${contextPath}/${msg.filePath }/${msg.changeName}" /> 
 								<b>${msg.userNick }</b>
 							</div>
 							<div>
@@ -68,7 +68,7 @@
 					<c:if test="${fn:contains(msg.message, '/') }">
 						<li class="otherChat">
 							<div>
-								<img class="img" src="${contextPath}${msg.filePath }/${msg.changeName}" /> 
+								<img class="img" src="${contextPath}/${msg.filePath }/${msg.changeName}" /> 
 								<b>${msg.userNick }</b>
 							</div>
 							<div>
@@ -181,17 +181,17 @@
 							li.classList.add("otherChat");
 				        	
 				        	img1.classList.add("img");
-				        	img1.src = contextPath + chatMessage.filePath + "/" + chatMessage.changeName; // 이미지 경로 설정
+				        	img1.src = contextPath + "/" + chatMessage.filePath + "/" + chatMessage.changeName; // 이미지 경로 설정
 				        	b.textContent = chatMessage.userNick; // 사용자 닉네임 설정
 				        	div1.append(img1, b);
 				        	
 				        	// 두 번째 div 엘리먼트 생성 및 추가
 				        	img.classList.add("chatImg");
 				        	img.src = contextPath + "/" + chatMessage.message; // 이미지 경로 설정
-				        	span.classList.add("chatDate");
-				        	span.textContent = chatMessage.enrollDate; // 날짜 설정
-				        	div.append(img, span);
-				        	div2.append(div);
+				        	//span.classList.add("chatDate");
+				        	//span.textContent = chatMessage.enrollDate; // 날짜 설정
+				        	div.append(img);
+				        	div2.append(div, span);
 	
 				        	// li 엘리먼트에 div1과 div2 추가
 				        	li.appendChild(div1);
@@ -210,15 +210,15 @@
 				        	li.classList.add("otherChat");
 				        	
 				        	img.classList.add("img");
-				        	img.src = contextPath + chatMessage.filePath + "/" + chatMessage.changeName; // 이미지 경로 설정
+				        	img.src = contextPath + "/" + chatMessage.filePath + "/" + chatMessage.changeName; // 이미지 경로 설정
 				        	b.textContent = chatMessage.userNick; // 사용자 닉네임 설정
 				        	div1.append(img, b);
 	
 				        	// 두 번째 div 엘리먼트 생성 및 추가
 				        	p.classList.add("chat");
 				        	p.textContent = chatMessage.message; // 메시지 설정
-				        	span.classList.add("chatDate");
-				        	span.textContent = chatMessage.enrollDate; // 날짜 설정
+				        	//span.classList.add("chatDate");
+				        	//span.textContent = chatMessage.enrollDate; // 날짜 설정
 				        	div2.append(p, span);
 	
 				        	// li 엘리먼트에 div1과 div2 추가
@@ -251,7 +251,9 @@
 			        return time < 10 ? "0" + time : time;
 			    }
 			    
-			    handleChatMessage(chatMessage);
+			    if(chatRoomNo == chatMessage.chatRoomNo) {
+				    handleChatMessage(chatMessage);
+			    }
 	        });
 	        
 

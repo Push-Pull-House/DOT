@@ -16,7 +16,7 @@ $(function() {
 
                     setTimeout(() => {
                         $(".start-wrap").removeClass("start-wrap");
-                        $(".start-wrap").css("z-index","-1");
+                        $(".start-wrap").css("display","none");
                     }, 1500);
     
                 }, 1200);
@@ -126,28 +126,4 @@ $(function() {
     };
     window.addEventListener("scroll", onScroll, { passive: true });
 
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-    var parent = document.querySelector('.splitview'),
-        topPanel = parent.querySelector('.top1'),
-        handle = parent.querySelector('.handle1'),
-        skewHack = 0,
-        delta = 0;
-
-    // If the parent has .skewed class, set the skewHack var.
-    if (parent.className.indexOf('skewed') != -1) {
-        skewHack = 1000;
-    }
-
-    parent.addEventListener('mousemove', function(event) {
-        // Get the delta between the mouse position and center point.
-        delta = (event.clientX - window.innerWidth / 2) * 0.5;
-
-        // Move the handle.
-        handle.style.left = event.clientX + delta + 'px';
-
-        // Adjust the top panel width.
-        topPanel.style.width = event.clientX + skewHack + delta + 'px';
-    });
 });

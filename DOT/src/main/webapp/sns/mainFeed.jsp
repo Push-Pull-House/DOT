@@ -294,7 +294,7 @@
 														<div class="reply-top">
 															<button data-feedNo="${i.feedNo} ">댓글 더보기</button>
 														</div>
-														<div class="reply-middle">
+														<div class="reply-middle reply-feed-middle">
 															<dl>
 																<dt class="output output_${i.feedNo }"></dt>
 																<c:if test="${not empty rp }">
@@ -589,6 +589,8 @@
              const replyContent = inputElement.val();
              const feedNo = parentContainer.find("button").val(); 
              
+             console.log("feedReply")
+             
              $.ajax({
                  url: '${contextPath}/mainFeed/insertReply',
                  data: {
@@ -809,7 +811,7 @@
 	<script>
     $(function() {
        
-       const socket = new SockJS('http://localhost:8083/dot/ws');
+      const socket = new SockJS('http://localhost:8083/dot/ws');
       const stompClient = Stomp.over(socket);
       
       stompClient.connect({}, frame => {
@@ -819,11 +821,13 @@
           let shareRoomList = [];
           let feedNo;
           
-          $(".shareFeed").on('click', () => {
+          $(".shareFeed").on('click', (e) => {
              
+        	 let focus = $(e.currentTarget);
+        	  
              console.log("hi");
              
-             feedNo = $(this).find("input[name='feedNo']").val();
+             feedNo = focus.find("input[name='feedNo']").val();
              
              console.log(feedNo);
           })
@@ -866,7 +870,7 @@
     
      $(".reply-top>button").on('click',(e) => {
           
-           const fd = $(e.currentTarget);
+         const fd = $(e.currentTarget);
          let feedNo = fd[0].dataset.feedno;
 
          if(feedNo != undefined) {
@@ -936,63 +940,7 @@
           });
       });
    })
-   $(function() {
-       
-       const socket = new SockJS('http://localhost:8083/dot/ws');
-      const stompClient = Stomp.over(socket);
-      
-      stompClient.connect({}, frame => {
-          console.log('Connected: ' + frame);
-            
-          let shareUserList = [];
-          let shareRoomList = [];
-          let feedNo;
-          
-          $(".shareFeed").on('click', () => {
-             
-             console.log("hi");
-             
-             feedNo = $(this).find("input[name='feedNo']").val();
-             
-             console.log(feedNo);
-          })
-          
-          $(".share-add").on('click', () => {
-             
-             
-             $("input[name='userNo']:checked").each(function() {
-                 shareUserList.push($(this).val());
-             });
-      
-             $("input[name='shareRoom']:checked").each(function() {
-                 shareRoomList.push($(this).val());
-             });
-   
-             console.log("shareUserList: " + JSON.stringify(shareUserList));
-             console.log("shareRoomList: " + JSON.stringify(shareRoomList));
-   
-             const shareList = {
-                   "feedNo" : feedNo,
-                   "userNo" : ${loginUser.userNo},
-                   "shareUserList" : shareUserList,
-                   "shareRoomList" : shareRoomList
-                   };
-             console.log(shareList);
-             
-             stompClient.send('/chat/shareFeed/', {}, JSON.stringify(shareList));
-             stompClient.disconnect();
-             
-             $(".share-close").click();
-             $("input[name='userNo']:checked").prop("checked", false);
-             $("input[name='shareRoom']:checked").prop("checked", false);
-             shareUserList = [];
-             shareRoomList = [];
-          });
-          
-          
-      });
-    })
-   var followBtn = $('.followBtn');
+    var followBtn = $('.followBtn');
     var chatBtn = $('.chatBtn');
 
     var followerList = $('.follower-list');

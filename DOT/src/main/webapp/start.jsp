@@ -30,8 +30,8 @@
 
 <body>
     <div class="wrap">
-        <div class="start-wrap">
-        </div>
+        <!-- <div class="start-wrap">
+        </div> -->
         <div class="header">
             <div class="logo">
                 <a>
@@ -40,7 +40,7 @@
             </div>
             <div class="header-form">
                 <a href="${contextPath}/login.me">Log in</a>
-                <a href="#">Sign in</a>
+                <a href="${contextPath}/enrollForm.me">Sign in</a>
             </div>
         </div>
         <div class="section-container">
@@ -61,7 +61,14 @@
                     <div class="sec2-container">
                         <div class="left-description">
                             <div class="left-t1 hide-text">
-                                description 1
+                                <div class="t1-head">
+                                	Explore What's New
+                                </div>
+                                <div class="t1-body">
+                                	지속적으로 발전하는 기능을 통해 여러분은 <br> 새로운 방식으로 자신을 표현할 수 있습니다.
+                                </div>
+                                <div class="t1-foot">
+                                </div>
                             </div>
                             <div class="left-t2 hide-text">
                                 description 2
@@ -73,7 +80,7 @@
                         <div class="right-description">
                             <div class="right-img1">
                                 <div class="img-box">
-                                    <img src="resources/img/karina2.jpeg">
+                                    <img src="${contextPath }/resources/images/sns_image.jpeg">
                                 </div>
                             </div>
                             <div class="right-img2">
@@ -91,37 +98,16 @@
                 </div>
             </div>
             <div class="section3-wrap">
-                <div class="divide_content">
-                    <div class="divide_ctn">
-                        <div class="splitview skewed">
-                            <div class="panel bottom1">
-                                <div class="content">
-                                    <div class="description">
-                                        <h1>The original image.</h1>
-                                        <p>This is how the image looks like before applying a duotone effect.</p>
-                                    </div>
-
-                                    <img src="https://cdn.ibos.kr/design/upload_file/__HTMLEDITOR__/mystyxn/d74462fd1229b0d74e0b2932199c1644_16887163229279.jpg"
-                                        alt="Original">
-                                </div>
-                            </div>
-
-                            <div class="panel top1">
-                                <div class="content">
-                                    <div class="description">
-                                        <h1>The duotone image.</h1>
-                                        <p>This is how the image looks like after applying a duotone effect.</p>
-                                    </div>
-
-                                    <img src="https://nimage.newsway.co.kr/photo/2023/07/07/20230707000038_0700.jpg"
-                                        alt="Duotone">
-                                </div>
-                            </div>
-
-                            <div class="handle1"></div>
-                        </div>
-                    </div>
-                </div>
+            </div>
+            <div class="section4-wrap">
+            	<div class="section4-container">
+            		<img alt="" src="${contextPath }/resources/images/sns_image3.jpeg">
+            		<div class="sec4-txt">
+            			<div>
+            			</div>
+            			<a>시작하기</a>
+            		</div>
+            	</div>
             </div>
         </div>
     </div>

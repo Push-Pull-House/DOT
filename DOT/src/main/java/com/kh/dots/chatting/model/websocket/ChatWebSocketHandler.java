@@ -1,7 +1,9 @@
 package com.kh.dots.chatting.model.websocket;
 
 import java.sql.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
@@ -15,7 +17,8 @@ import com.kh.dots.chatting.model.service.ChatService;
 import com.kh.dots.chatting.model.vo.ChatMessage;
 import com.kh.dots.chatting.model.vo.ChatRoom;
 import com.kh.dots.chatting.model.vo.ChatRoomJoin;
-import com.kh.dots.common.model.vo.Images;
+import com.kh.dots.common.model.service.CommonService;
+import com.kh.dots.common.model.vo.Alarm;
 import com.kh.dots.member.model.service.MemberService;
 import com.kh.dots.member.model.vo.Member;
 
@@ -34,14 +37,26 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
     @Autowired
 	private MemberService mService;
     
+    @Autowired
+	CommonService cmService;
+    
 
     @MessageMapping("/chatRoomList/{chatRoomNo}")
     public void handleChatMessage(
     		@Payload ChatMessage message,
     		@DestinationVariable("chatRoomNo") int chatRoomNo
     		) {
-    	
     	log.info("message = {}", message);
+    	
+    	Alarm alarm = new Alarm();
+    	
+    	Map<String, Object> map = new HashMap();
+    	map.put("chatRoomNo", message.getChatRoomNo());
+    	map.put("userNo", message.getUserNo());
+    	
+    	// 사용자를 제외한 나머지 채팅방 참가자
+    	List<ChatRoomJoin> join = cService.selectJoinUsers(map);
+    	log.info("join = {}", join);
     	
     	if(message.getFilePath() == null) {
     		
@@ -59,8 +74,26 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
     		
     		int result = cService.insertMessage(message);
     		
+    		
     		log.info("result ={}", result);
     		
+    		int result2 = 0;
+    		
+    		for(int i = 0; i < join.size(); i++) {
+    			
+    			alarm.setAlarmWriter(message.getUserNo());
+    			alarm.setAlarmAcceptUser(join.get(i).getUserNo());
+    			if(message.getFeedNo() == 0) {
+    				alarm.setAlarmContent(message.getUserNick() + "님이 채팅을 보냈습니다.");
+    			} else {
+    				alarm.setAlarmContent(message.getUserNick() + "님이 게시물을 공유했습니다.");    				
+    			}
+    			result2 = cmService.insertChatAlarm(alarm);
+    			
+    			if(result2 > 0) {
+//    				messagingTemplate.convertAndSend("/topic/updateAlarm", alarm);
+    			}
+    		}
     		
     		if (result > 0) {
     			log.info("Received message: {}", message.getMessage());
@@ -86,9 +119,22 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
     		if(msg != null) {
     			message.setFilePath(msg.getFilePath());
     			message.setChangeName(msg.getChangeName());
-    		} else {
-    			
     		}
+    		
+    		int result2 = 0;
+    		for(int i = 0; i < join.size(); i++) {
+    			
+    			alarm.setAlarmWriter(message.getUserNo());
+    			alarm.setAlarmAcceptUser(join.get(i).getUserNo());
+    			alarm.setAlarmContent(message.getUserNick() + "님이 사진을 보냈습니다.");
+    			
+    			result2 = cmService.insertChatAlarm(alarm);
+    			
+    			if(result2 > 0) {
+//    				messagingTemplate.convertAndSend("/topic/updateAlarm", alarm);
+    			}
+    		}
+    		
     		log.info("message = {}", message);
     		
     		messagingTemplate.convertAndSend("/dot/chat", message);

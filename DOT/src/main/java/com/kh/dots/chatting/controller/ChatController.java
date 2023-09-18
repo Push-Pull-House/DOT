@@ -33,6 +33,7 @@ import com.kh.dots.chatting.model.vo.ChatRoomJoin;
 import com.kh.dots.common.Utils;
 import com.kh.dots.common.model.vo.Images;
 import com.kh.dots.feed.model.service.FeedService;
+import com.kh.dots.feed.model.vo.Choice;
 import com.kh.dots.feed.model.vo.Feed;
 import com.kh.dots.feed.model.vo.Friend;
 import com.kh.dots.feed.model.vo.Like;
@@ -229,7 +230,6 @@ public class ChatController {
 			for(int i = 0; i < msgList.size(); i++) {
 				
 				date = dateFormatHour(msgList.get(i).getEnrollDate());
-				log.info("date = {}", date);
 				msgList.get(i).setEnrollDate(date);
 			}
 		}
@@ -377,12 +377,14 @@ public class ChatController {
 		List<Member> follow = fService.searchFollowList(loginUser.getUserNo());
 		List<ChatRoomJoin> crImage = cService.selectChatRoomListImage(loginUser.getUserNo());
 		List <Like> like = fdService.like4(loginUser.getUserNo());
+		List <Choice> choice = fdService.choice4(loginUser.getUserNo());
 		
 		List <Friend> friendList = fdService.friendList(loginUser.getUserNo());
 		
 		log.info("feed ={}", feed);
 		log.info("like ={}", like);
 		log.info("reply ={}", reply);
+		log.info("choice ={}", choice);
 		
 		model.addAttribute("feed", feed);
 		model.addAttribute("feedWriter", feedWriter);
@@ -392,6 +394,7 @@ public class ChatController {
 		model.addAttribute("follow", follow);
 		model.addAttribute("chatRoomImage", crImage);
 		model.addAttribute("like", like);
+		model.addAttribute("choice", choice);
 		
 		model.addAttribute("friendList",friendList);
 		
@@ -425,42 +428,52 @@ public class ChatController {
 	}
 	
 	public String dateFormatHour(String date) {
-		
-		String savedDateString = date; // 데이터베이스에서 가져온 날짜 문자열을 설정해주세요
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-        String returnStr = "";
-        
-        try {
-            Date savedDate = sdf.parse(savedDateString);
-            Date currentDate = new Date();
+	    String savedDateString = date; // 데이터베이스에서 가져온 날짜 문자열을 설정해주세요
+	    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-            long timeDifference = currentDate.getTime() - savedDate.getTime();
+	    String returnStr = "";
 
-            if  (timeDifference < 60 * 60 * 1000) { // 1시간 미만인 경우
-            	
-                long minutes = timeDifference / (60 * 1000);
-                
-                returnStr = "오후 " + (savedDate.getHours() - 12) + "시 " + minutes + "분";
-                
-            } else if (timeDifference < 24 * 60 * 60 * 1000) { // 24시간 미만인 경우
-            	
-                SimpleDateFormat timeFormat = new SimpleDateFormat("a h시 m분");
-                
-                returnStr = timeFormat.format(savedDate) + "";
-                
-            } else { // 24시간 이상인 경우
-            	
-                SimpleDateFormat monthDayFormat = new SimpleDateFormat("MM월 dd일");
-                
-                returnStr = monthDayFormat.format(savedDate) + "";
-            }
-        } catch (Exception e) {
-        	
-        }
-        
-        log.info("returnStr = {}", returnStr);
-        return returnStr;
+	    try {
+	        Date savedDate = sdf.parse(savedDateString);
+	        Date currentDate = new Date();
+
+	        long timeDifference = currentDate.getTime() - savedDate.getTime();
+
+	        if (timeDifference < 60 * 60 * 1000) { // 1시간 미만인 경우
+
+	            long minutes = timeDifference / (60 * 1000);
+
+	            int hour = savedDate.getHours(); // 시간을 가져옵니다.
+
+	            // 시간이 12시를 넘어가면 오전으로 변경
+	            if (hour >= 12) {
+	                hour -= 12;
+	                returnStr = "오후 " + hour + "시 " + minutes + "분";
+	            } else {
+	                if (hour == 0) {
+	                    hour = 12; // 0시는 12시로 표시
+	                }
+	                returnStr = "오전 " + hour + "시 " + minutes + "분";
+	            }
+
+	        } else if (timeDifference < 24 * 60 * 60 * 1000) { // 24시간 미만인 경우
+
+	            SimpleDateFormat timeFormat = new SimpleDateFormat("a h시 m분");
+
+	            returnStr = timeFormat.format(savedDate) + "";
+
+	        } else { // 24시간 이상인 경우
+
+	            SimpleDateFormat monthDayFormat = new SimpleDateFormat("MM월 dd일");
+
+	            returnStr = monthDayFormat.format(savedDate) + "";
+	        }
+	    } catch (Exception e) {
+
+	    }
+
+	    return returnStr;
 	}
 	
 	

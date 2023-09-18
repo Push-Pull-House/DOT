@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.dots.common.model.dao.CommonDao;
+import com.kh.dots.common.model.vo.Alarm;
 import com.kh.dots.common.model.vo.Images;
 
 @Service
@@ -21,5 +22,10 @@ public class CommonServiceImpl implements CommonService {
 
 	public int keywordList(Map<String, Object> map) {
 		return cDao.keywordList(map);
+	}
+
+	@Override
+	public int insertChatAlarm(Alarm alarm) {
+		return cDao.insertChatAlarm(alarm);
 	}
 }
