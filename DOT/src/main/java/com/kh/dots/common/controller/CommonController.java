@@ -142,16 +142,12 @@ public class CommonController {
 		log.info("keyword = {}", paramMap);
 		List<Search> MyHistory = cService.MyHistory(m.getUserNo());
 		int result = 0;
-		if (MyHistory != null && !(MyHistory.isEmpty())) {
-			if (!MyHistory.get(0).getSearchKeyword().equals(keyword)) {
-				Search search = new Search();
-				search.setSearchWriter(m.getUserNo());
-				search.setSearchKeyword(keyword);
-				result = cService.insertSearch(search);
-				log.info("result={}", result);
-			}
-		}
-		
+		Search search = new Search();
+		search.setSearchWriter(m.getUserNo());
+		search.setSearchKeyword(keyword);
+		result = cService.insertSearch(search);
+		log.info("result={}", result);
+
 		List<Search> MyHistory1 = cService.MyHistory(m.getUserNo());
 		List<Search> MyHistory2 = new ArrayList();
 		for(int i=0; i<MyHistory1.size(); i++) {
