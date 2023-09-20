@@ -72,7 +72,7 @@
 		WHERE I.FILE_LEVEL = '2'
 	</select> 
 	
-	<select id="selectList2" parameterType="map" resultMap="imageResultSet">
+	<select id="selectList2" parameterType="hashmap" resultMap="imageResultSet">
 		SELECT *
 		FROM IMAGE I
 		JOIN FEED F ON F.FEED_NO = I.FILE_FNO

@@ -43,6 +43,7 @@
                 <label for="search">
                     <form action="${contextPath}/searchList.se" method="get">
                         <input type="text" class="search-input" name="keyword" placeholder="검색할 항목을 입력하세요" />
+                        <input type="hidden" class="search-input" name="condition" value="feedHashtag" />
                         <button type="submit" style="display:none">Search</button>
                     </form>
                 </label>

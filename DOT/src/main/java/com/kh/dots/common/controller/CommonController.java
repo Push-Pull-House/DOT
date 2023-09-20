@@ -139,7 +139,7 @@ public class CommonController {
 		List<ChatRoomJoin> crImage = chService.selectChatRoomListImage(m.getUserNo());
 		
 		model.addAttribute("rf", rf);
-		log.info("keyword = {}", keyword);
+		log.info("keyword = {}", paramMap);
 		List<Search> MyHistory = cService.MyHistory(m.getUserNo());
 		int result = 0;
 		if (MyHistory != null && !(MyHistory.isEmpty())) {
