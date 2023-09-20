@@ -30,8 +30,8 @@
 
 <body>
     <div class="wrap">
-        <div class="start-wrap">
-        </div>
+       <div class="start-wrap">
+        </div> 
         <div class="header">
             <div class="logo">
                 <a>
@@ -97,17 +97,17 @@
                         <div class="right-description">
                             <div class="right-img1">
                                 <div class="img-box">
-                                    <img src="${contextPath }/resources/images/sns_image.jpeg">
+                                    <img src="${contextPath }/resources/images/startImg-1.png">
                                 </div>
                             </div>
                             <div class="right-img2">
                                 <div class="img-box">
-                                    <img src="${contextPath }/resources/images/sns_image.jpeg">
+                                    <img src="${contextPath }/resources/images/startImg-2.png">
                                 </div>
                             </div>
                             <div class="right-img3">
                                 <div class="img-box">
-                                    <img src="${contextPath }/resources/images/sns_image.jpeg">
+                                    <img src="${contextPath }/resources/images/startImg-3.png">
                                 </div>
                             </div>
                         </div>

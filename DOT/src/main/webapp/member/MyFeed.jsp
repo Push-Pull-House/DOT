@@ -52,6 +52,11 @@
             type="text/css"
             href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
         />
+        <style>
+        *{
+        color: white;
+        }
+        </style>
 </head>
 <body>
 	<c:if test="${ not empty alertMsg }">
@@ -80,14 +85,12 @@
                    <div class="mypage-setbox">
                        <div class="setbox-header">
                            <div class="user_Id">
-                               <span><h6>${loginUser.userNick}</h6>
+                               <span>${loginUser.userNick}
                                		<c:if test="${loginUser.wbStatus == 'W'}">
                                			<img src="${contextPath}/resources/images/goodIcon.jfif" />
                                		</c:if>
-                               </span><br /><br/>
+                               </span>
                                <div class="user_name">@${loginUser.userName}</div>
-                               <div class="empty">
-                               </div>
                            </div>
                            <div class="update_profile">
                                <button class="btn" onclick="myEdit()">
@@ -99,9 +102,9 @@
                            </div>
                        </div>
                        <div class="mypage-follower">
-                           <div class="follows" onclick="follow()" style="cursor: pointer"><h5>팔로우  ${follow.size()}명</h5></div>
-                           <div class="follows" onclick="follow()" style="cursor: pointer"><h5>팔로워  ${follower.size()}명<h5></h5></div>
-                           <div class="follows" ><h5>게시물  ${myImglist.size()}개</h5></div>
+                           <div class="follows" onclick="follow()" style="cursor: pointer"><h5>팔로우  :  ${follow.size()}명</h5></div>
+                           <div class="follows" onclick="follow()" style="cursor: pointer"><h5>팔로워  :  ${follower.size()}명<h5></h5></div>
+                           <div class="follows" ><h5>게시물  :  ${myImglist.size()}개</h5></div>
                        </div>
                    </div>
                </div>
@@ -645,25 +648,7 @@
 		   
            <!-- 실시간 바 -->
            <div class="sub-content">
-        	<div class="sub-wrap">
-               <div class="sub-container">
-                  <div>
-                    <div class="Ranking">
-                      <h1 class="Rangking_Title" data-aos="fade-left" data-aos-anchor="top-top" data-aos-delay="150">나의 검색기록</h1>
-                      	<c:forEach var="my" items="${history}">
-                        <br>
-                          <div class="Ranking_Article">
-                             <div class="Ranking_Content" data-aos="fade-left" data-aos-anchor="top-top" data-aos-delay="250">
-                                <div class="Ranking_Text">
-                                   <div class="Ranking_Num"><b>-</b>&nbsp;&nbsp;<b>${my.searchKeyword}</b></div>
-                                 </div>
-                              </div>
-                           </div>
-                          </c:forEach>
-                        </div>
-                     </div>
-                  </div>
-              </div>
+        	
            </div>
        </div>
    </div>

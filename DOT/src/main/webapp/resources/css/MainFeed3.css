@@ -1043,7 +1043,7 @@ body {
     border-radius: 0.5rem;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
         box-shadow 0.15s ease-in-out;
-    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border: 0 !important;
 }
 .sub-content .follow-id{
     cursor: pointer;
@@ -1320,4 +1320,13 @@ body {
     width: 420px;
     font-size: 16px;
     border-radius: 0.5rem;
+}
+
+.add-follow{
+	display: flex;
+    align-items: center;
+}
+.remove-follow{
+	display: flex;
+    align-items: center;
 }

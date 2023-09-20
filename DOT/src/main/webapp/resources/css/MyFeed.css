@@ -14,7 +14,7 @@ body {
 
 
 /* ============================================================= */
-/* 컨텐츠 영역 */
+/* 而⑦뀗痢� �쁺�뿭 */
 /* ============================================================= */
 .contents {
     display: flex;
@@ -24,59 +24,19 @@ body {
 }
 
 /* ============================================================= */
-/* 메인 컨텐츠 */
+/* 硫붿씤 而⑦뀗痢� */
 /* ============================================================= */
 
 .main-content {
     width: 50vw;
     height: 100%;
-    /* border-left: 1px solid rgba(255, 255, 255, 0.3);
-    border-right: 1px solid rgba(255, 255, 255, 0.3); */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
     min-width: 400px;
+    //max-width : 800px;
     display: flex;
     flex-direction: column;
     overflow: auto;
-}
-
-/* ============================================================= */
-/* 서브 컨텐츠  */
-/* ============================================================= */
-
-.sub-content {
-    width: 25vw;
-    min-width: 400px;
-    height: 100%;
-    padding: 0 0 0 50px;
-    /* border: 1px solid white; */
-}
-
-.sub-wrap {
-    width: 350px;
-    height: 500px;
-    margin-top: 70px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 20px;
-    /* background-color: white; */
-}
-
-.Ranking {
-    color: white;
-    text-align: center;
-    margin: 30px 15px;
-}
-.Rangking_Title {
-    font-size: 25px;
-}
-.Ranking_Content {
-    display: flex;
-}
-.num {
-    font-size: 15px;
-}
-.Ranking_Num {
-    font-size: 15px;
-    margin-left: 30px;
 }
 
 /* =================================================================*/
@@ -85,10 +45,10 @@ body {
     margin-right: 70px;
 }
 .profile-imgs img {
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
     border-radius: 500px;
-    margin: 50px 0;
+    margin: 60px 0;
 }
 .user_Id {
     margin: 0 0 5px 0;
@@ -96,14 +56,11 @@ body {
 .user_Id img {
     width: 20px;
     height: 20px;
-    margin-left: 10px;
-    margin-top: 5px;
+    margin-top: -10px;
     border-radius: 500px;
 }
 .user_name {
     font-size: 15px;
-    margin-top: -20px;
-    margin-left: 10px;
     margin-bottom: 20px;
     color: gray;
 }
@@ -115,51 +72,9 @@ body {
 } */
 .mypage-profile-container {
     width: 100%;
-    height: 250px;
+    height: 220px;
     display: flex;
     justify-content: center;
-}
-.profile-camera {
-    width: 20px;
-    height: 20px;
-    margin-left: 100px;
-    margin-top: -80px;
-    border: 1px solid rgba(255, 255, 255, 0.3) !important;
-}
-.profile-camera > button {
-    border-radius: 150rem;
-    background-color: black;
-    border-color: white;
-    cursor: pointer;
-}
-.cameras {
-    background-color: rgb(40, 43, 43);
-    width: 35px;
-    height: 35px;
-    border: 1px solid rgba(255, 255, 255, 0.3) !important;
-    position: relative;
-    transition: all 0.3s;
-    border-radius : 9rem;
-}
-.cameras-form{
-	border-radius : .5rem;
-}
-.icon1 {
-    position: absolute;
-    font-size: 22px !important;
-    color: white;
-    bottom: 5.8px;
-    right: 5px;
-    transition: all 0.3s;
-}
-.profile-camera button:hover {
-    color: black !important;
-    background-color: white;
-    transition: all 0.3s;
-}
-.profile-camera span:hover {
-    color: black;
-    transition: all 0.3s;
 }
 
 .update_profile {
@@ -202,7 +117,7 @@ body {
 .mypage-setbox {
     color: white;
     font-size: 24px;
-    margin-top: 60px;
+    margin-top: 80px;
     width: 60%;
     position: relative;
 }
@@ -322,10 +237,11 @@ body {
 .myimage {
     display: grid;
     grid-template-columns: 300px 300px 300px;
-    grid-template-rows: 300px 300px 300px;
+    grid-template-rows: 300px;
     gap: 5px;
     flex-wrap: wrap;
     justify-content: center;
+    padding-bottom : 100px;
 }
 
 .myimage img:hover {
@@ -380,8 +296,8 @@ body {
     line-height: 300px;
 }
 .like:hover {
-    filter: brightness(1); /* 어두운 필터 */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* 그림자 효과 */
+    filter: brightness(1); /* �뼱�몢�슫 �븘�꽣 */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* 洹몃┝�옄 �슚怨� */
     transition: filter 0.3s, box-shadow 0.3s;
     opacity: 1;
     cursor: pointer;
@@ -389,7 +305,7 @@ body {
 .myimage-section {
     position: relative;
 }
-/* 부트스트랩 겹치는거 */
+/* 遺��듃�뒪�듃�옪 寃뱀튂�뒗嫄� */
 h5 {
     font-size: 10px;
 }
@@ -404,7 +320,7 @@ a:hover {
     text-decoration: none !imiportant;
 }
 
-/* 모달스타일 */
+/* 紐⑤떖�뒪���씪 */
 .report_title {
     font-size: 25px;
     border-bottom: 1px solid white;
@@ -445,7 +361,7 @@ a:hover {
 }
 
 /* ============================================================= */
-/* 피드 모달  */
+/* �뵾�뱶 紐⑤떖  */
 /* ============================================================= */
 
 #MyDetailFeed .modal-content {
@@ -1024,7 +940,7 @@ a:hover {
 
 
 /* ============================================================= */
-/* 공유 모달  */
+/* 怨듭쑀 紐⑤떖  */
 /* ============================================================= */
 
 .shareTool  .modal-content , #shareToolMain  .modal-content {
@@ -1234,11 +1150,11 @@ a:hover {
 
 
 /* ============================================================= */
-/* 서브 컨텐츠  */
+/* �꽌釉� 而⑦뀗痢�  */
 /* ============================================================= */
 
 .sub-content {
-    width: 30%;
+    width: 25vw;
     min-width: 400px;
     height: 100%;
     /* border: 1px solid white; */
@@ -1247,7 +1163,7 @@ a:hover {
 .sub-wrap {
     width: 350px;
     height: 500px;
-    margin-top: 70px;
+    margin : 70px 50px;
     border: 1px solid rgba(255,255,255,0.3);
     border-radius: 20px;
     /* background-color: white; */
@@ -1336,7 +1252,7 @@ a:hover {
 	cursor:pointer;
 }
 
-/* 모달스타일2 */
+/* 紐⑤떖�뒪���씪2 */
 
 #detailReport .modal-dialog {
     padding-top: 120px;

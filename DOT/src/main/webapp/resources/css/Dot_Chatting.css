@@ -379,12 +379,18 @@ body {
     white-space:nowrap;
 	overflow:hidden;
     text-overflow:ellipsis;
+    font-weight : 900;
 }
 
 .user-id {
     height: 100%;
     cursor: pointer;
 }
+
+.user-id a {
+	font-weight : 500 !important;
+}
+
 
 .user-id:hover {
     text-decoration: underline;

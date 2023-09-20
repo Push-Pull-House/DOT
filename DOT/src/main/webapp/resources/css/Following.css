@@ -215,16 +215,19 @@ body {
     border-radius: 0.5rem;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
         box-shadow 0.15s ease-in-out;
-    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border: 0px !important;
 }
 
 .follow-btn:focus {
     outline: 1px solid rgba(255, 255, 255, 0.3) !important;
 }
 
+.follow-btn10 :hover{
+   color:white;
+}
 .follow-btn:hover {
     cursor: pointer;
-    border-color: black;
+    background-color: white;
     color: black !important;
 }
 

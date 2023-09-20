@@ -146,7 +146,6 @@ body {
     margin-left: 50px;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
     position: relative;
 }
 
@@ -525,11 +524,10 @@ input[id='menuicon']:checked + label ~ .sidebar-shortcuts {
 /* ============================================================= */
 
 .sub-content {
-    width: 30%;
+    width: 25%;
     min-width: 400px;
     height: 100%;
     margin-left: 20px;
-    /* border: 1px solid white; */
 }
 
 .sub-wrap {
@@ -538,7 +536,6 @@ input[id='menuicon']:checked + label ~ .sidebar-shortcuts {
     margin-top: 70px;
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 20px;
-    /* background-color: white; */
 }
 
 .Ranking {
@@ -564,32 +561,34 @@ input[id='menuicon']:checked + label ~ .sidebar-shortcuts {
 /* =========================My Edit ================================ */
 
 .my_edit_container {
-    width: 45vw;
+    width: 50vw;
     height: 1000px;
     color: white;
     overflow-y:scroll;
+    border-left: 1px solid rgba(255,255,255,0.2);
+    border-right: 1px solid rgba(255,255,255,0.2);
 }
 
 .my_edit_title {
-    margin: 30px 50px;
-    font-size: 30px;
+    padding : 50px 140px 30px;
+    font-size: 25px;
 }
 .edit_form {
     display: flex;
     flex-direction: column;
-    padding: 30px 130px 80px 130px;
     position: relative;
+    padding : 0 200px 0;
 }
+
 .my_edit_form img {
     width: 70px;
     height: 70px;
     border-radius: 500px;
-    margin-left: 50px;
 }
 .my_edit_Id {
     display: flex;
-    position: absolute;
-    left: 60px;
+    margin : 10px 0;
+    position: relative;
 }
 
 .edit_form input {
@@ -606,38 +605,80 @@ input[id='menuicon']:checked + label ~ .sidebar-shortcuts {
 
 .field {
     display: flex;
+    justify-content : space-between;
+    margin-top : 20px;
     width: 100%;
 }
 
 .field > div:first-child {
-    width: 80px;
-    height: 50px;
+    width: 120px;
+    height: 40px;
+    display : flex;
+    align-items : center;
+    justify-content : center;
 }
 
 .my_Id {
+	margin-left : 40px;
+	height : 100%;
     font-size: 18px;
-    margin-left: 60px;
-    margin-top: 10px;
+    display : flex;
+    align-items : center;
 }
 
 .my_change_img {
     margin-left: 65px;
     font-size: 15px;
     color: #007bff;
+    display : none;
 }
+
+.labelProfile {
+	width : 30px;
+	height: 30px;
+	border-radius : 15px;
+	background-color : black;
+	border : 1.2px solid white;
+	position : absolute;
+	left : 50px;
+	bottom : -5px;
+	transition : all .35s;
+}
+
+.labelProfile:hover {
+	background-color : white;
+}
+
+.labelProfile:hover > span {
+	font-weight : 300;
+	color: black;
+}
+
+
+.labelProfile > span {
+	font-weight : 200;
+	color : white;
+	display : flex;
+	align-items : center;
+	margin-top : 2px;
+	justify-content : center;
+	transition : all .35s;
+}
+
 .my_change_img:hover {
     cursor: pointer;
     color: white;
 }
 .my_edit_section {
-    margin: 50px 0;
-    font-size: 20px;
+    margin: 20px 0;
+    font-size: 17px;
 }
+
 .form-control {
-    width: 28vw;
-    padding: 0.375rem 0.75rem;
-    font-size: 1rem;
-    font-weight: 400;
+    width: 100%;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 300;
     line-height: 1.5;
     color: #495057;
     background-color: #fff;
@@ -650,10 +691,12 @@ input[id='menuicon']:checked + label ~ .sidebar-shortcuts {
     margin-left: 50px;
 }
 .mbti_container2 {
-    margin: 0 90px;}
+	margin : auto;
+}
 
 .mbti_container2 td {
     padding: 0 7px;
+    font-size : 15px;
 }
 
 .font-style {
@@ -661,6 +704,7 @@ input[id='menuicon']:checked + label ~ .sidebar-shortcuts {
     color: skyblue;
 }
 .btn {
+	margin-top : 50px;
     display: inline-block;
     font-weight: 400;
     color: white;
@@ -669,7 +713,7 @@ input[id='menuicon']:checked + label ~ .sidebar-shortcuts {
     user-select: none;
     background-color: black;
     border: 1px solid transparent;
-    font-size: 12px;
+    font-size: 15px !important;
     line-height: 1.5;
     border-radius: 0.5rem;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,

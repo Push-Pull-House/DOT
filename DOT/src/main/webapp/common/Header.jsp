@@ -69,24 +69,35 @@
                             <div class="modal-body modal-backgound" style="height: 30%; display:block">
                             	<div class="more-alarm23 more-alarm24"><a href="${contextPath}/Alarm.al">더 보기</a></div>
                                 <div class="modal-box">
-                                    <c:forEach var="alarm" items="${alarmlist}">
-                                    <div class="modal-profile-icon" onclick="alarm(event,${alarm.alarmNo},'${alarm.alarmType}');">
-                                        <label>
-                                            <a>
-                                                <img src="${contextPath}/${alarm.filePath}/${alarm.changeName}">
-                                            </a>
-                                        </label>
-                                        <div class="modal-alarm-contents">
-                                            <div class="modal-alarm-user">
-                                                ${alarm.userNick}
-                                                <span class="alarm-status">안읽음</span>
-                                            </div>
-                                            <div class="modal-alarm-content">
-                                                ${alarm.alarmContent}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </c:forEach>
+                                	<c:if test="${alarmlist.isEmpty()}">
+                                		<div class="modal-profile-icon">
+	                                        <div class="modal-alarm-contents">
+	                                            <div class="modal-alarm-user">
+	                                            	<span style="font-size:13px; color:gray; margin-left:28px; line-height:15;">현재 조회된 알람이 없습니다.</span>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+                                	</c:if>
+                                	<c:if test="${!alarmlist.isEmpty()}">
+	                                    <c:forEach var="alarm" items="${alarmlist}">
+	                                    <div class="modal-profile-icon" onclick="alarm(event,${alarm.alarmNo},'${alarm.alarmType}');">
+	                                        <label>
+	                                            <a>
+	                                                <img src="${contextPath}/${alarm.filePath}/${alarm.changeName}">
+	                                            </a>
+	                                        </label>
+	                                        <div class="modal-alarm-contents">
+	                                            <div class="modal-alarm-user">
+	                                                ${alarm.userNick}
+	                                                <span class="alarm-status">안읽음</span>
+	                                            </div>
+	                                            <div class="modal-alarm-content">
+	                                                ${alarm.alarmContent}
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                    </c:forEach>
+                                    </c:if>
                                 </div>
                             </div>
                         </div>

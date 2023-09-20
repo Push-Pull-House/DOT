@@ -52,10 +52,9 @@
 	  		<jsp:include page="../common/Sidebar.jsp" />
 	        <div class="main_content">
 	        	<div class="my_edit_container">
-	                <div class="my_edit_title">프로필 편집</div>
+	                <div class="my_edit_title">프로필 수정</div>
 	                <div class="my_edit_form">
 	                    <form class="edit_form" action="${contextPath}/update.me" method="post" enctype="multipart/form-data">
-	                        <br /><br />
 	                        <div class="my_edit_Id">
 	                            <div>
 	                            	<c:if test="${profileImg.fileNo == 0}">
@@ -67,9 +66,14 @@
 	                            </div>
 	                            <div>
 	                                <div class="my_Id">${loginUser.userNick}</div><br>
-	                                <input type="file" name="proFileImg" class="my_change_img" />
+	                                <input type="file" id="profileImg" name="proFileImg" class="my_change_img" />
+	                                <label for="profileImg" class="labelProfile">
+		                                <span class="material-symbols-outlined">
+											photo_camera
+										</span>
+									</label>
 	                            </div>
-	                        </div><br>
+	                        </div>
 	                        <div class="my_edit_section">
 	                            <div class="field">
 	                                <div class="field_name">이름</div>
@@ -83,7 +87,6 @@
 	                                    value="${loginUser.userName}"
 	                                />
 	                            </div>
-	                            <br />
 	                            <div class="field">
 	                                <div class="filed_nickname">별명</div>
 	                                <input
@@ -95,7 +98,6 @@
 	                                    value="${loginUser.userNick}"
 	                                />
 	                            </div>
-	                            <br />
 	                            <!--  필드(생년월일) -->
 	                            <div class="field birth">
 	                                <div class="field_birth">생일</div>
@@ -107,7 +109,6 @@
 	                                    value="${loginUser.userBirthday}"
 	                                />
 	                            </div>
-	                            <br />
 	
 	                            <!-- 필드(MBTI) -->
 	                            <div class="field gender">
@@ -254,12 +255,10 @@
 	                                    </table>
 	                                </div>
 	                            </div>
-	                            <br />
 	                            <div class="chap3">
 	                                <!-- 이메일_주소지 -->
 	                                <div class="field">
 	                                    <div>이메일</div>
-	                                    <br /><br />
 	                                    <input
 	                                        type="email"
 	                                        class="form-control"
@@ -270,10 +269,8 @@
 	                                        value="${loginUser.userEmail}"
 	                                    />
 	                                </div>
-	                                <br />
 	                                <div class="field">
 	                                    <div>휴대전화</div>
-	                                    <br /><br />
 	                                    <input
 	                                        type="text"
 	                                        class="form-control input_checkform2"
@@ -283,17 +280,16 @@
 	                                        value="${loginUser.userPhone}"
 	                                    />
 	                                </div>
-	                                <br />
 	                            </div>
 	                            <!-- 수정하기 버튼 -->
 	                            <div class="btn-box">
-	                                <button type="submit" class="btn btn-primary btn2 btn-lg">
+	                                <button type="submit" class="btn btn2 btn-secondary btn-lg">
 	                                    회원수정
 	                                </button>
 	                                &nbsp;&nbsp;
 	                                <button
 	                                    type="button"
-	                                    class="btn btn-danger btn2 btn-lg"
+	                                    class="btn btn2 btn-secondary btn-lg"
 	                                    onclick="location.href='${contextPath}/deleteUser'"
 	                                >
 	                                    회원탈퇴
@@ -315,142 +311,6 @@
 	        </div>
 	        <!-- 실시간 바 -->
 	        <div class="sub-content">
-	            <<!-- div class="sub-wrap">
-	                <div class="sub-container">
-	                    <div>
-	                        <div class="Ranking">
-	                            <h1
-	                                class="Rangking_Title"
-	                                data-aos="fade-left"
-	                                data-aos-anchor="top-top"
-	                                data-aos-delay="150"
-	                                style="color:white"
-	                            >
-	                                실시간 랭킹
-	                            </h1>
-	                            <br />
-	                            <div class="Ranking_Article">
-	                                <div
-	                                    class="Ranking_Content"
-	                                    data-aos="fade-left"
-	                                    data-aos-anchor="top-top"
-	                                    data-aos-delay="250"
-	                                >
-	                                    <div class="num">1위</div>
-	                                    <div class="Ranking_Text">
-	                                        <div class="Ranking_Num"><b>수진님 담주에는 오나?</b></div>
-	                                    </div>
-	                                </div>
-	                            </div>
-	                            <br />
-	
-	                            <div class="Ranking_Article">
-	                                <div
-	                                    class="Ranking_Content"
-	                                    data-aos="fade-left"
-	                                    data-aos-anchor="top-top"
-	                                    data-aos-delay="350"
-	                                >
-	                                    <div class="num">2위</div>
-	                                    <div class="Ranking_Text">
-	                                        <div class="Ranking_Num"><b>서현역 칼부림</b></div>
-	                                    </div>
-	                                </div>
-	                            </div>
-	                            <br />
-	
-	                            <div class="Ranking_Article">
-	                                <div
-	                                    class="Ranking_Content"
-	                                    data-aos="fade-left"
-	                                    data-aos-anchor="top-top"
-	                                    data-aos-delay="450"
-	                                >
-	                                    <div class="num">3위</div>
-	                                    <div class="Ranking_Text">
-	                                        <div class="Ranking_Num"><b>유토피아 콘크리트</b></div>
-	                                    </div>
-	                                </div>
-	                            </div>
-	                            <br />
-	
-	                            <div class="Ranking_Article">
-	                                <div
-	                                    class="Ranking_Content"
-	                                    data-aos="fade-left"
-	                                    data-aos-anchor="top-top"
-	                                    data-aos-delay="550"
-	                                >
-	                                    <div class="num">4위</div>
-	                                    <div class="Ranking_Text">
-	                                        <div class="Ranking_Num"><b>김소연 다리 그만떨어</b></div>
-	                                    </div>
-	                                </div>
-	                            </div>
-	                            <br />
-	
-	                            <div class="Ranking_Article">
-	                                <div
-	                                    class="Ranking_Content"
-	                                    data-aos="fade-left"
-	                                    data-aos-anchor="top-top"
-	                                    data-aos-delay="650"
-	                                >
-	                                    <div class="num">5위</div>
-	                                    <div class="Ranking_Text">
-	                                        <div class="Ranking_Num"><b>집에 가고싶다..</b></div>
-	                                    </div>
-	                                </div>
-	                            </div>
-	                            <br />
-	
-	                            <div class="Ranking_Article">
-	                                <div
-	                                    class="Ranking_Content"
-	                                    data-aos="fade-left"
-	                                    data-aos-anchor="top-top"
-	                                    data-aos-delay="750"
-	                                >
-	                                    <div class="num">6위</div>
-	                                    <div class="Ranking_Text">
-	                                        <div class="Ranking_Num"><b>박보영 졸귀</b></div>
-	                                    </div>
-	                                </div>
-	                            </div>
-	                            <br />
-	
-	                            <div class="Ranking_Article">
-	                                <div
-	                                    class="Ranking_Content"
-	                                    data-aos="fade-left"
-	                                    data-aos-anchor="top-top"
-	                                    data-aos-delay="850"
-	                                >
-	                                    <div class="num">7위</div>
-	                                    <div class="Ranking_Text">
-	                                        <div class="Ranking_Num"><b>마이페이지</b></div>
-	                                    </div>
-	                                </div>
-	                            </div>
-	                            <br />
-	
-	                            <div class="Ranking_Article">
-	                                <div
-	                                    class="Ranking_Content"
-	                                    data-aos="fade-left"
-	                                    data-aos-anchor="top-top"
-	                                    data-aos-delay="950"
-	                                >
-	                                    <div class="num">8위</div>
-	                                    <div class="Ranking_Text">
-	                                        <div class="Ranking_Num"><b>오창정 프신..</b></div>
-	                                    </div>
-	                                </div>
-	                            </div>
-	                        </div>
-	                    </div>
-	                </div>
-	            </div> -->
 	        </div>
 	    </div>    
     </div>

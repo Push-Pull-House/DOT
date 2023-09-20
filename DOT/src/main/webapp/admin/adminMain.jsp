@@ -39,7 +39,7 @@
                 <div class="controller">
                     <div class="member-controller cont" onclick="location.href='${contextPath}/adminMain';">
                         <span class="material-symbols-outlined"> group </span>
-                        <h3>회원 관리</h3>
+                        <h3>회원관리</h3>
                     </div>
                     <div class="det-wrapper">
                         <div class="member det">
@@ -55,15 +55,15 @@
                     </div>
                     <div class="feed-controller cont" onclick="location.href='${contextPath}/adminFeed';">
                         <span class="material-symbols-outlined"> data_table </span>
-                        <h3>피드 관리</h3>
+                        <h3>피드관리</h3>
                     </div>
                     <div class="report-controller cont" onclick="location.href='${contextPath}/adminReport';">
                         <span class="material-symbols-outlined"> feedback </span>
-                        <h3>신고 관리</h3>
+                        <h3>신고관리</h3>
                     </div>
                      <div class="report-controller cont" onclick="location.href='${contextPath}/logout.me';">
                         <span class="material-symbols-outlined logout"> logout </span>
-                        <h3>로그 아웃</h3>
+                        <h3>로그아웃</h3>
                     </div>
                 </div>
             </div>
@@ -82,18 +82,20 @@
                                 <span class="material-symbols-outlined" onclick="location.href='${contextPath}/adminReport';"> feedback </span>
                                 <div class="font">l&nbsp;</div>
                                 <button class="del-btn" 
-                                		id="btn-Black"
-                                		type="button" 
-                                		style="color:black; background-color:lightgray; width:1500px; float: right; margin-right: 7px; border-radius: 3px;"
-                                		name="del"
-                                		>블랙리스트 등록</button>
-                                <div class="font">l&nbsp;</div>
-                                <button class="del-btn" 
                                 		id="btn-White"
                                 		type="button" 
-                                		style="color:black; background-color:lightgray; width:1500px; float: right; margin-right: 7px; border-radius: 3px;"
+                                		style="background-color : transparent;  padding-left:30px;"
                                 		name="del"
-                                		>인플루언서 등록</button>
+                                		><span class="material-symbols-outlined"> verified </span></button>
+                                <div class="font">l&nbsp;</div>
+                                <button class="del-btn" 
+                                		id="btn-Black"
+                                		type="button" 
+                                		style="background-color : transparent;"
+                                		name="del"
+                                		><span class="material-symbols-outlined">
+block
+</span></button>
                             </div>
                         </div>
                     </div>
@@ -108,12 +110,12 @@
 	                                   </label>
 				                  		No.
 				                  </th>
-				                  <th width="550px">ID</th>
-				            	  <th width="600px">NAME</th>
-				            	  <th width="600px">NICK</th>
-				                  <th width="550px">W STATUS</th>
+				                  <th width="550px">Id</th>
+				            	  <th width="600px">Name</th>
+				            	  <th width="600px">Nick</th>
+				                  <th width="550px">W Status</th>
 				                  <th width="600px">ReportCount</th>
-				                  <th width="550px">B STATUS</th>
+				                  <th width="550px">B Status</th>
 				                  <th width="600px">FollowerCount</th>
 				               </tr>
 				            </thead>
@@ -190,8 +192,8 @@
          					  }
          				  }
          				  swal({
-         					  text:"회원을 차단하시겠습니까?",
-         					  buttons : ["취소하기","차단하기"]
+         					  text:"회원을 인증하시겠습니까?",
+         					  buttons : ["취소하기","인증하기"]
          				  })
          				  .then((value) => {
          					  console.log(value);

@@ -39,7 +39,7 @@
                 <div class="controller">
                     <div class="member-controller cont" onclick="location.href='${contextPath}/adminMain';">
                         <span class="material-symbols-outlined"> group </span>
-                        <h3>회원 관리</h3>
+                        <h3>회원관리</h3>
                     </div>
                     <div class="det-wrapper">
                         <div class="member det">
@@ -55,15 +55,15 @@
                     </div>
                     <div class="feed-controller cont" onclick="location.href='${contextPath}/adminFeed';">
                         <span class="material-symbols-outlined"> data_table </span>
-                        <h3>피드 관리</h3>
+                        <h3>피드관리</h3>
                     </div>
                     <div class="report-controller cont" onclick="location.href='${contextPath}/adminReport';">
                         <span class="material-symbols-outlined"> feedback </span>
-                        <h3>신고 관리</h3>
+                        <h3>신고관리</h3>
                     </div>
 	                <div class="report-controller cont" onclick="location.href='${contextPath}/logout.me';">
                         <span class="material-symbols-outlined logout"> logout </span>
-                        <h3>로그 아웃</h3>
+                        <h3>로그아웃</h3>
                     </div>
                 </div>
             </div>
@@ -85,8 +85,10 @@
                                 <button class="del-btn" 
                                 		id="btn-del"
                                 		type="button" 
-                                		style="color:black; background-color:lightgray; width:55px; float: right; margin-right: 25px; border-radius: 3px;"
-                                		>Del</button>
+                                		style="background-color:transparent; padding-left:30px;"
+                                		><span class="material-symbols-outlined">
+delete
+</span></button>
                             </div>
                         </div>
                     </div>
@@ -101,7 +103,7 @@
 	                                   </label>
 				                  		No.
 				                  </th>
-				                  <th width="550px">WRITER</th>
+				                  <th width="550px">Writer</th>
 				                  <th width="1000px">Feed Hashtag</th>
 				               </tr>
 				            </thead>

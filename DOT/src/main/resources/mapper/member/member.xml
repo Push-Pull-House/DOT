@@ -275,8 +275,8 @@
 		        UNION
 		        SELECT DISTINCT FRIEND_USER2 AS FRIEND_USER
 		        FROM FRIEND 
-		        WHERE FRIEND_USER1 = #{userNo} OR FRIEND_USER2 = #{userNo}
-		    )
+		        WHERE FRIEND_USER1 = #{userNo} OR FRIEND_USER2 = #{userNo} 
+		    ) AND USER_NO != 999
 		]]>
 	</select> 
 	

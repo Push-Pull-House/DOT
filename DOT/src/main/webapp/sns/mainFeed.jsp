@@ -42,6 +42,7 @@
 			<div class="main-content">
 				<div class="main-wrap">
 					<div class="feed-list">
+					<input type="hidden" value="${loginUser.userNo }" id="myUserNo"/>
 						<dl>
 							<c:forEach var="i" items="${fd}">
 								<c:forEach var="u" items="${mem}">
@@ -52,7 +53,12 @@
 													<div class="user-profile">
 														<div>
 															<img src="${contextPath}/${u.filePath}/${u.changeName}" />
-															<span>${u.userNick}</span>
+															<c:if test="${loginUser.userNo != u.userNo}">
+																<span onclick="location.href='${contextPath}/YourFeed.me?uno=${u.userNo}'">${u.userNick}</span>
+															</c:if>
+															<c:if test="${loginUser.userNo == u.userNo}">
+																<span onclick="location.href='${contextPath}/MyFeed.me'">${u.userNick}</span>
+															</c:if>
 														</div>
 														<span class="material-symbols-outlined toggle-button"
 															id="more-options-icon"> more_horiz </span>
@@ -171,9 +177,11 @@
 													<div class="feed-img">
 														<c:forEach var="l" items="${fi}">
 															<c:if test="${i.feedNo==l.fileFno}">
-																<div>
-																	<img src="${contextPath}/${l.filePath}/${l.changeName}" />
-																</div>
+																<c:if test="${l.changeName != 'DotLogo_D.png'}">
+																	<div>
+																		<img src="${contextPath}/${l.filePath}/${l.changeName}" />
+																	</div>
+																</c:if>
 															</c:if>
 														</c:forEach>
 													</div>
@@ -201,7 +209,7 @@
 																			<div class="feed-control-js">
 																				<div class="clickable-svg clicked-heart">
 																					<svg xmlns="http://www.w3.org/2000/svg" width="20"
-																						height="20" fill="currentColor"
+																						height="20" fill="red"
 																						class="bi bi-heart-fill" viewBox="0 0 16 16">
                                                                							 <path
 																							d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
@@ -297,20 +305,33 @@
 														<div class="reply-top">
 															<button data-feedNo="${i.feedNo} ">댓글 더보기</button>
 														</div>
+														
 														<div class="reply-middle reply-feed-middle">
 															<dl>
-																<dt class="output output_${i.feedNo }"></dt>
+																<dt class="output output1_${i.feedNo}">
+																	<div>
+																		<span style="font-size:13px; color:gray;">등록된 댓글이 없습니다.</span>
+																	</div>
+																</dt>
+																
 																<c:if test="${not empty rp }">
+																	<c:set var="loop_flag" value="false" />
 																	<c:forEach var="n" items="${rp}">
-																		<c:if test="${i.feedNo==n.replyFno}">
-																			<dt class="output output_${i.feedNo }">
+																		<c:if test="${not loop_flag }">
+																		<c:if test="${i.feedNo == n.replyFno}">
+																			<script>
+																				$(".output1_${i.feedNo}").empty();
+																			</script>
+																			<dt class="output output1_${i.feedNo }">
 																				<img
 																					src="${contextPath}/${n.filePath}/${n.changeName}" />
 																				<div class="reply-list">
 																					<span>${n.userNick }</span> <span>${n.replyContent }</span>
 																				</div>
 																			</dt>
+																			<c:set var="loop_flag" value="true" />
 																		</c:if>
+																		 </c:if>
 																	</c:forEach>
 																</c:if>
 															</dl>
@@ -651,17 +672,17 @@
 				data: {bno : feedNo },
 				method : 'get',
 				success : function(replyList){
+					console.log(replyList);
 					let html= "";
 					for(let reply of replyList){
 					html= 
-						"<dt class=output output_"+reply.feedNo+">"+
 						"<img src='" + '${contextPath}/' + reply.filePath + '/' + reply.changeName + "' />" +
 		                "<div class='reply-list'>" +
 						"<span>" + reply.userNick +"</span><span>"+ reply.replyContent + "</span>"+
-						"</div>"+
-						"</dt>";
+						"</div>";
 					}
-					$("#reply-output_"+feedNo).html(html);
+					$(".output1_"+feedNo).empty();
+					$(".output1_"+feedNo).html(html);
 				}
 			})
 		}; 
@@ -786,6 +807,12 @@
 			                        console.error('오류 발생:', error);
 			                    }
 			                });
+			                
+			                const myNo = $('#myUserNo').val();
+	         		       stompClient.send("/app/updateFollowStatus", {}, JSON.stringify({
+	         		        	userNo: userNo,
+	         		        	userNo2 : myNo
+	         		        }));
 			            }
 			         });         
 		</script>
@@ -1005,6 +1032,7 @@
 		        }
 		    });
         }
+        
         </script>
       
 </body>

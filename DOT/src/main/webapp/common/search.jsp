@@ -68,6 +68,10 @@
                 <!-- 검색아래 피드파트-->
                  <div class="feed-content-wrap">
                     <div class="feed-content-wrap1">
+                    	<c:if test="${empty slist}">>
+                    		<div class="search-noresult">검색 결과가 없습니다.</div>
+                    	</c:if>
+                    	<c:if test="${not empty slist }">
                     	<c:forEach var="s" items="${slist}" begin="0" end="${slist.size()}" step="1" >
                         	<div class="feed-content2" data-bs-toggle="modal" data-bs-target="#MyDetailFeed" onclick="feedNo(event , ${s.fileFno})">
                                 <img class="searchImg" src="${contextPath}/${s.filePath}/${s.changeName}">
@@ -89,6 +93,7 @@
 	                           </div>
                         	</div>
                         </c:forEach>
+                        </c:if>
                     </div>
                 </div>   
             </div>
@@ -661,6 +666,7 @@
                             "</div>"+
                         "</dt>";
 	    	   	}
+	    	   	reply.empty();
 	    	   	reply.append(rep);
 	           }
 	       });

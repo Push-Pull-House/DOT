@@ -142,7 +142,7 @@ public class CommonController {
 		log.info("keyword = {}", keyword);
 		List<Search> MyHistory = cService.MyHistory(m.getUserNo());
 		int result = 0;
-		if (MyHistory != null) {
+		if (MyHistory != null && !(MyHistory.isEmpty())) {
 			if (!MyHistory.get(0).getSearchKeyword().equals(keyword)) {
 				Search search = new Search();
 				search.setSearchWriter(m.getUserNo());

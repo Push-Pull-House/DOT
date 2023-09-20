@@ -82,17 +82,16 @@
                    <div class="mypage-setbox">
                        <div class="setbox-header">
                            <div class="user_Id">
-                               <span><h6>${otherUser.userNick}</h6>
+                               <span>${otherUser.userNick}
                                		<c:if test="${otherUser.wbStatus == 'W'}">
                                			<img src="${contextPath}/resources/images/goodIcon.jfif" />
                                		</c:if>
-                               </span><br /><br/>
+                               </span>
                                <div class="user_name">@${otherUser.userName}</div>
                                <div class="empty">
                                </div>
                            </div>
                            <div class="update_profile">
-                              	<img class="yourlogo" src="${contextPath}/resources/images/dot_logo.png">
                            </div>
                        </div>
                        <div class="mypage-follower">

@@ -68,13 +68,14 @@ public class FeedController {
 		List <Friend> follwer = fService.friend4(m.getUserNo());
 		List <Friend> follow4 = fService.friend5(m.getUserNo());
 		List <Choice> choiceFilter = fService.choiceFilter();
+		List <Friend> friendList = fService.friendList(m.getUserNo());
 		
 		List<ChatRoom> crList = chService.selectChatRoomList(m.getUserNo());
 		List<Member> follow = mService.searchFollowList(m.getUserNo());
 		List<ChatRoomJoin> crImage = chService.selectChatRoomListImage(m.getUserNo());
 		
 		List<Member> rf = mService.recommandFollowList(m.getUserNo());
-		log.info("rf={}", rf);
+		log.info("rp={}", reply);
 		model.addAttribute("rf", rf);
 		
 		model.addAttribute("chatRoomList", crList);
@@ -91,6 +92,7 @@ public class FeedController {
 		model.addAttribute("mem",member);
 		model.addAttribute("fi",feedImg);
 		model.addAttribute("fd",feedList);
+		model.addAttribute("friendList",friendList);
 		
 		return "sns/mainFeed.jsp";
 	}

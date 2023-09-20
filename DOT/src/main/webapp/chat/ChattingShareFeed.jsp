@@ -133,9 +133,11 @@
 			<div class="modal-feed-body">
 				<div class="feed-img">
 					<c:forEach var="img" items="${img }">
-						<div>
-							<img src="${contextPath }/${img.filePath}/${img.changeName}" />
-						</div>
+						<c:if test="${img.changeName != 'DotLogo_D.png'}">
+							<div>
+								<img src="${contextPath }/${img.filePath}/${img.changeName}" />
+							</div>
+						</c:if>
 					</c:forEach>
 				</div>
 				<div class="body-bottom">
@@ -154,7 +156,7 @@
 									<c:if test="${like.likeFno eq feed.feedNo }">
 										<c:set var="selectLike">
 											<svg xmlns="http://www.w3.org/2000/svg" width="25"
-												height="25" fill="currentColor" class="bi bi-heart-fill"
+												height="25" fill="red" class="bi bi-heart-fill"
 												viewBox="0 0 16 16">
                                         <path
 													d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
@@ -509,7 +511,7 @@
                                "<div class='reply-list'>" +
                            "<span>" + reply.userNick +"</span><span>"+ reply.replyContent + "</span>"+
                            "</div>";
-                     $(".feed-wrap .output_"+feedNo).eq(0).html(reply ? html1 : "").siblings().remove();
+                     $(".feed-wrap .output1_"+feedNo).eq(0).html(reply ? html1 : "").siblings().remove();
                      $(".modal .output_"+feedNo).parent().prepend(html);
                   }
                })
@@ -524,7 +526,7 @@
                    '</svg>';
 
                var heartFillSVG =
-                       '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-heart-fill animate__animated animate__rubberBand" viewBox="0 0 16 16">' +
+                       '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="red" class="bi bi-heart-fill animate__animated animate__rubberBand" viewBox="0 0 16 16">' +
                        '    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>' +
                        '</svg>';
                  
@@ -719,6 +721,12 @@
                                     console.error('오류 발생:', error);
                                 }
                             });
+                            
+                            const myNo = $('#myUserNo').val();
+ 	         		       stompClient.send("/app/updateFollowStatus", {}, JSON.stringify({
+ 	         		        	userNo: userNo,
+ 	         		        	userNo2 : myNo
+ 	         		        }));
                         }
                      });         
     });
