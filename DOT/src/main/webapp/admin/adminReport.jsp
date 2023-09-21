@@ -74,9 +74,9 @@
                     <div class="content-header">
                         <div class="icon-area">
                             <div class="content-icon">
-                                <span class="material-symbols-outlined icon" onclick="location.href='${contextPath}/adminWBlist';"> verified </span>
+                                <span class="material-symbols-outlined icon" onclick="location.href='${contextPath}/adminWList';"> verified </span>
                                 <div class="font">l</div>
-                                <span class="material-symbols-outlined icon" onclick="location.href='${contextPath}/adminWBlist2';"> person_off </span>
+                                <span class="material-symbols-outlined icon" onclick="location.href='${contextPath}/adminBList';"> person_off </span>
                                 <div class="font">l</div>
                                 <span class="material-symbols-outlined" onclick="location.href='${contextPath}/adminFeed';"> data_table </span>
                                 <div class="font">l</div>
