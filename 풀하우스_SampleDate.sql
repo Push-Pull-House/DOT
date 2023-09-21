@@ -60,7 +60,7 @@ INSERT INTO MEMBER VALUES(
           '¿Ã¡§øœ',
           'Wans',
           '010-1234-1232',
-          'wan9415@naver.com',
+          'jwan9415@naver.com',
           'ESTJ',
           SYSDATE,
           '1994-01-25',

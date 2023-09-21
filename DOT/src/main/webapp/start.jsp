@@ -140,7 +140,7 @@
             			</div>
             			<div class="profil-box">
             				<div class="img-box">
-            					<img src="${contextPath }/resources/images/changjeongProfile.png"/>
+            					<img src="${contextPath }/resources/images/junhoProfile.png"/>
             				</div>
             				<div class="name-box">
             					<span class="kor-name">이준호</span>
